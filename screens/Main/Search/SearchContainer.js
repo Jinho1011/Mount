@@ -1,6 +1,6 @@
 import React from 'react';
-import MyPresesnter from './MyPresesnter';
+import SearchPresenter from './SearchPresenter';
 
 export default () => {
-  return <MyPresesnter />;
+  return <SearchPresenter />;
 };

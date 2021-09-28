@@ -1,6 +1,6 @@
 import React from 'react';
-import FavoritePresesnter from './FavoritePresesnter';
+import FavoritePresenter from './FavoritePresenter';
 
 export default () => {
-  return <FavoritePresesnter />;
+  return <FavoritePresenter />;
 };
