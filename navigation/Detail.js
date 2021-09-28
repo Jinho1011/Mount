@@ -1,6 +1,11 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import FoodSet from '../screens/Detail/FoodSet';
+import FoodSet from '../screens/Main/Detail/FoodSet';
+import FoodSingle from '../screens/Main/Detail/FoodSingle';
+import RecreationSet from '../screens/Main/Detail/RecreationSet';
+import RecreationSingle from '../screens/Main/Detail/RecreationSingle';
+
+const MainNavigator = createStackNavigator();
 
 const DetailNavigator = createStackNavigator();
 
@@ -13,4 +18,8 @@ const Details = () => {
     </DetailNavigator.Navigator>
 };
 
-export default Details;
+export default () => {
+    <MainNavigator.Navigator>
+        <MainNavigator.Screen name="Detail" component={Details}/>
+    </MainNavigator.Navigator>
+};
