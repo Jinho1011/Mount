@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Pressable, Button} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 
@@ -10,7 +10,18 @@ export default () => {
   return (
     <View>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
-      <Text>Asd</Text>
+      <Button
+        title="navigate to home detail"
+        onPress={() => {
+          navigation.navigate('HomeDetail');
+        }}
+      />
+      <Button
+        title="navigate to detail"
+        onPress={() => {
+          navigation.navigate('HomeDetail');
+        }}
+      />
     </View>
   );
 };
