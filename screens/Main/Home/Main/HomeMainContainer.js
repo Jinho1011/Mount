@@ -1,5 +1,5 @@
 import React from 'react';
-import HomePresenter from './HomePresenter';
+import HomePresenter from './HomeMainPresenter';
 
 export default () => {
   return <HomePresenter />;
