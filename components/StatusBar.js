@@ -10,3 +10,5 @@ function FocusAwareStatusBar(props) {
 
   return isFocused ? <StatusBar {...props} /> : null;
 }
+
+export default FocusAwareStatusBar;
