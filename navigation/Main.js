@@ -5,6 +5,7 @@ import Home from '../screens/Main/Home';
 import Search from '../screens/Main/Search';
 import Favorite from '../screens/Main/Favorite';
 import My from '../screens/Main/My';
+import FoodSetPresenter from '../screens/Main/Detail/FoodSet/FoodSetPresenter';
 
 const TabsNavigator = createBottomTabNavigator();
 
@@ -25,6 +26,10 @@ export default () => (
       name="Tabs"
       component={Tabs}
       options={{headerShown: false}}
+    />
+    <MainNavigator.Screen
+      name="Detail"
+      component={FoodSetPresenter}
     />
   </MainNavigator.Navigator>
 );
