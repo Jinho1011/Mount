@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 
-import FocusAwareStatusBar from '../../../components/StatusBar';
+import FocusAwareStatusBar from '../../../../components/StatusBar';
 
 export default () => {
   const navigation = useNavigation();
