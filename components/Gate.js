@@ -8,8 +8,7 @@ export default () => {
 
   return (
     <NavigationContainer>
-      {/* {isLoggedIn ? <Main /> : <Auth />} */}
-      <Main></Main>
+      {isLoggedIn ? <Main /> : <Auth />}
     </NavigationContainer>
   );
 };
