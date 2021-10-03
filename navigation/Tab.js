@@ -15,9 +15,13 @@ const Tabs = () => (
       component={Homes}
       options={{headerShown: false}}
     />
+    <TabsNavigator.Screen
+      name="Search"
+      component={Search}
+      options={{headerShown: false}}
+    />
     <TabsNavigator.Group
       screenOptions={{
-        headerTitle: () => <HeaderTitle title="Home" />,
         headerStyle: {
           backgroundColor: '#000000',
           height: 58,
@@ -26,9 +30,20 @@ const Tabs = () => (
         headerTintColor: '#fff',
         headerRight: () => <HeaderRight />,
       }}>
-      <TabsNavigator.Screen name="Search" component={Search} />
-      <TabsNavigator.Screen name="Fav" component={Favorite} />
-      <TabsNavigator.Screen name="MyPage" component={My} />
+      <TabsNavigator.Screen
+        name="Fav"
+        component={Favorite}
+        options={{
+          headerTitle: () => <HeaderTitle title="찜한 목록" />,
+        }}
+      />
+      <TabsNavigator.Screen
+        name="MyPage"
+        component={My}
+        options={{
+          headerTitle: () => <HeaderTitle title="마이페이지" />,
+        }}
+      />
     </TabsNavigator.Group>
   </TabsNavigator.Navigator>
 );
