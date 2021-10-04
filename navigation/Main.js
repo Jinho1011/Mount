@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Tabs from './Tab';
-import FoodSetPresenter from '../screens/Main/Detail/FoodSet/FoodSetPresenter';
+import { Details } from './Details';
 
 const MainNavigator = createStackNavigator();
 
@@ -12,6 +12,9 @@ export default () => (
       component={Tabs}
       options={{headerShown: false}}
     />
-    <MainNavigator.Screen name="Detail" component={FoodSetPresenter} />
+    <MainNavigator.Screen
+      name="Details"
+      component={Details}
+    />
   </MainNavigator.Navigator>
 );
