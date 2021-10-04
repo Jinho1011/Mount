@@ -10,18 +10,6 @@ export default () => {
   return (
     <View>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
-      <Button
-        title="navigate to home detail"
-        onPress={() => {
-          navigation.navigate('HomeDetail');
-        }}
-      />
-      <Button
-        title="navigate to detail"
-        onPress={() => {
-          navigation.navigate('HomeDetail');
-        }}
-      />
     </View>
   );
 };
