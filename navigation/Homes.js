@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, Image} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import styled from 'styled-components';
-import {HeaderRight, HeaderTitle} from '../components/Header';
+import {HeaderRight, HeaderTitle} from '../components/TransparentHeader';
 
 import HomeMain from '../screens/Main/Home/Main';
 import HomeDetail from '../screens/Main/Home/Detail';
