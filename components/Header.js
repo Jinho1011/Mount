@@ -25,7 +25,6 @@ const HeaderProgramText = styled.Text`
 
 const HeaderText = styled.Text`
   color: #ffffff;
-  font-weight: bold;
   font-size: 18px;
   font-family: 'NotoSansKR-Bold';
 `;
