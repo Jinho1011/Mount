@@ -1,3 +1,3 @@
-import tutorialContainer from './tutorialContainer';
+import TutorialContainer from './TutorialContainer';
 
-export default tutorialContainer;
+export default TutorialContainer;
