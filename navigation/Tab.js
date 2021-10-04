@@ -5,6 +5,7 @@ import Homes from './Homes';
 import Search from '../screens/Main/Search';
 import Favorite from '../screens/Main/Favorite';
 import My from '../screens/Main/My';
+import Test from '../screens/Test';
 
 const TabsNavigator = createBottomTabNavigator();
 
@@ -45,6 +46,7 @@ const Tabs = () => (
         }}
       />
     </TabsNavigator.Group>
+    <TabsNavigator.Screen name="Test" component={Test} />
   </TabsNavigator.Navigator>
 );
 
