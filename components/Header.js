@@ -23,6 +23,13 @@ const HeaderProgramText = styled.Text`
   font-size: 10px;
 `;
 
+const HeaderText = styled.Text`
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: 'NotoSansKR-Bold';
+`;
+
 export const HeaderRight = () => {
   return (
     <HeaderProgram>
@@ -38,7 +45,7 @@ export const HeaderTitle = ({title}) => {
       {title == 'Home' ? (
         <Image source={require('../assets/mount.png')} />
       ) : (
-        <Text>{title}</Text>
+        <HeaderText>{title}</HeaderText>
       )}
     </HeaderContainer>
   );
