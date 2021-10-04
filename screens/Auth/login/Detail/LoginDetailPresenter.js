@@ -6,7 +6,7 @@ export default () => {
   const navigation = useNavigation();
   return (
     <View>
-      <Text>Signup</Text>
+      <Text>LoginSetup</Text>
     </View>
   );
 };
