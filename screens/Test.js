@@ -13,25 +13,25 @@ export default () => {
         }}
       />
       <Button
-        title="navigate to detail"
+        title="navigate to FoodSet"
         onPress={() => {
           navigation.navigate('FoodSet');
         }}
       />
       <Button
-        title="navigate to detail"
+        title="navigate to FoodSingle"
         onPress={() => {
           navigation.navigate('FoodSingle');
         }}
       />
       <Button
-        title="navigate to detail"
+        title="navigate to RecreationSet"
         onPress={() => {
           navigation.navigate('RecreationSet');
         }}
       />
       <Button
-        title="navigate to detail"
+        title="navigate to RecreationSingle"
         onPress={() => {
           navigation.navigate('RecreationSingle');
         }}
