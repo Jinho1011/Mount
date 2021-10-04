@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Tabs from './Tab';
+import { Details } from './Details';
 
 const MainNavigator = createStackNavigator();
 
@@ -10,6 +11,10 @@ export default () => (
       name="Tabs"
       component={Tabs}
       options={{headerShown: false}}
+    />
+    <MainNavigator.Screen
+      name="Details"
+      component={Details}
     />
   </MainNavigator.Navigator>
 );
