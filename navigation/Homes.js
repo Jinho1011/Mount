@@ -7,6 +7,7 @@ import {HeaderRight, HeaderTitle} from '../components/Header';
 import HomeMain from '../screens/Main/Home/Main';
 import HomeDetail from '../screens/Main/Home/Detail';
 import FoodSet from '../screens/Main/Detail/FoodSet/FoodSetPresenter';
+import RecreationSet from '../screens/Main/Detail/RecreationSet/RecreationSetPresenter';
 
 const HomeNavigator = createStackNavigator();
 
@@ -27,6 +28,7 @@ const Homes = () => {
         <HomeNavigator.Screen name="HomeMain" component={HomeMain} />
         <HomeNavigator.Screen name="HomeDetail" component={HomeDetail} />
         <HomeNavigator.Screen name="FoodSet" component={FoodSet} />
+        <HomeNavigator.Screen name="RecreationSet" component={RecreationSet} />
       </HomeNavigator.Group>
     </HomeNavigator.Navigator>
   );
