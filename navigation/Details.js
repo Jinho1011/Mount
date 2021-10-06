@@ -8,10 +8,19 @@ import RecreationSingle from '../screens/Main/Detail/RecreationSingle';
 const DetailNavigator = createStackNavigator();
 
 export const Details = () => {
-    <DetailNavigator.Navigator>
-        <DetailNavigator.Screen name="FoodSet" component={FoodSet}/>
-        <DetailNavigator.Screen name="FoodSingle" component={FoodSingle}/>
-        <DetailNavigator.Screen name="RecreationSet" component={RecreationSet}/>
-        <DetailNavigator.Screen name="RecreationSingle" component={RecreationSingle}/>
-    </DetailNavigator.Navigator>
+  <DetailNavigator.Navigator>
+    <DetailNavigator.Screen
+      name="FoodSet"
+      component={FoodSet}
+      options={{
+        headerTransparent: true,
+      }}
+    />
+    <DetailNavigator.Screen name="FoodSingle" component={FoodSingle} />
+    <DetailNavigator.Screen name="RecreationSet" component={RecreationSet} />
+    <DetailNavigator.Screen
+      name="RecreationSingle"
+      component={RecreationSingle}
+    />
+  </DetailNavigator.Navigator>;
 };
