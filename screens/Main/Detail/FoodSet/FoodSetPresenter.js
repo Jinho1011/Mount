@@ -1,11 +1,18 @@
 import React from 'react';
-import {Image, View, Text, TouchableOpacity, ScrollView, ImageBackground} from 'react-native';
+import {
+  Image,
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  ImageBackground,
+  Pressable,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
-const ScrollViewContainer = styled.ScrollView`
-  background-color: #ffffff;
-  flex: 1;
+const ScrollContainer = styled.ScrollView`
+  background-color: #e5e5e5;
 `;
 
 const FoodImage = styled.Image`
@@ -13,201 +20,153 @@ const FoodImage = styled.Image`
   height: 254px;
 `;
 
-const FirstContainer = styled.View`
-  width: 100%;
-  height: 172px;
+const DetailHeader = styled.View`
+  padding: 16px 20px 20px 20px;
+  background-color: #fff;
+  justify-content: space-between;
 `;
 
-const FoodSetTitle = styled.Text`
-  /* 제목몇글자들어가나요여기 */
-  position: absolute;
-  height: 26px;
-  left: 26px;
-  margin-top: 17px;
+const DetailTitleContainer = styled.View`
+  margin-bottom: 26px;
+`;
 
-  /* mount/Headline 1B */
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+const DetailTitle = styled.Text`
+  color: #000;
   font-size: 18px;
   line-height: 26px;
+  font-family: 'NotoSansKR-Bold';
+  margin-bottom: 4px;
+`;
 
-  /* identical to box height, or 144% */
-  display: flex;
+const DetailSetInfo = styled.View`
+  flex-direction: row;
+`;
+
+const DetailSetLabelContainer = styled.View`
+  padding: 2px 4px 1px 4px;
+  background-color: #f3f3f3;
+  border-radius: 6px;
+  height: 16px;
+  justify-content: center;
   align-items: center;
-
-  color: #000000;
-`;
-
-// 세트 + 구성품1, 구성품2, ...
-const First_FirstContainer = styled.View`
-  position: relative;
-  margin-top: 43px;
-  flexDirection: row;
-`;
-
-const CategoryBackground = styled.View`
-  width: 23px;
-  height: 15px;
-  left: 27px;
-
-  /* light grey1 */
-
-  background: #EFEFEF;
-  border-radius: 5px;
-`;
-
-const CategoryTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 8px;
-  line-height: 12px;
-  margin-left: 4px;
   margin-right: 4px;
-  margin-top: 2px;
-  margin-bottom: 1px;
-
-  display: flex;
-  align-items: center;
-
-  /* grey2 */
-
-  color: #8B8B8B;
 `;
 
-const SetItems = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 15px;
-  margin-left: 54px;
-  margin-top: 4px;
-  /* identical to box height, or 150% */
+const DetailSetLabel = styled.Text`
+  color: #8b8b8b;
+  font-size: 8px;
+  font-family: 'NotoSansKR-Regular';
+  line-height: 12px;
+`;
 
-  display: flex;
-  align-items: center;
-
-  /* grey3 */
-
+const DetailSetElements = styled.Text`
   color: #777777;
+  font-size: 10px;
+  font-family: 'NotoSansKR-Regular';
+  line-height: 15px;
 `;
 
-const BorderLine = styled.View`
-  width: 100%;
-  height: 63px;
-  margin-left: 19px;
-  margin-right: 21px;
-  margin-top: 26px;
-  border: 1px solid #EAEAEA;
-  border-radius: 7px;
-
-  flexDirection: row;
+const DetailMembers = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 14px;
+  border-radius: 8px;
+  border: 1px solid #eaeaea;
 `;
 
-const TotalPeople = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+const DetailMemberText = styled.Text`
+  color: #000;
   font-size: 14px;
+  font-family: 'NotoSansKR-Bold';
   line-height: 20px;
+`;
 
-  margin-top: 22px;
-  margin-bottom: 21px;
-  margin-left: 15px;
-  
-  /* identical to box height, or 143% */
-
-  display: flex;
+const DetailAdjustMembers = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 `;
 
-const Counter = styled.View`
-  width: 131px;
-  height: 24px;
-
-  margin-top: 20px;
-  margin-bottom: 19px;
-  margin-left: 175px;
-
-  flexDirection: row;
+const DetailMemberCounter = styled.View`
+  margin: 0 14px;
+  padding: 0 22px;
+  border-radius: 6px;
+  border: 1px solid #f3f3f3;
 `;
 
-const InnerBorderLine = styled.View`
-  width: 55px;
-  height: 24px;
-
-  margin-left: 13px;
-  margin-right: 15px;
-
-  background: #FFFFFF;
-  /* Light Grey 1 */
-
-  border: 1px solid #F3F3F3;
-  border-radius: 5px;
-`;
-
-const Items = styled.Text`
-  margin-left: 20px;
-
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 17px;
-  display: flex;
-  align-items: center;
-
-  color: #000000;
-`;
-
-const ItemsBox = styled.View`
-  width: 100%;
-  height: 286px;
-
-  margin-left: 35px;
-  margin-right: 35px;
-
-  color: #123456;
-`;
-
-const TouchBox = styled.TouchableOpacity`
-  width: 100%;
-  height: 48px;
-
+const CounterNumber = styled.Text`
+  color: #000;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: 'NotoSansKR-Bold';
 `;
 
 export default () => {
-  
   const navigation = useNavigation();
   return (
-    <ScrollViewContainer>
-        <FoodImage source={require('../../../../assets/food_detail_sample.png')} />
-        <FirstContainer>
-          <FoodSetTitle>제목몇글자들어가나요여기</FoodSetTitle>     
-            <First_FirstContainer>
-              <CategoryBackground>
-                <CategoryTitle>세트</CategoryTitle>
-              </CategoryBackground>
-              <SetItems>구성품1, 구성품2, 구성품3, 구성품4, 구성품5 ...</SetItems>
-            </First_FirstContainer>
-            <BorderLine>
-              <TotalPeople>총 인원 수</TotalPeople>
-              <Counter>
-                <Image source={require('../../../../assets/minus_dis.png')} />
-                <InnerBorderLine></InnerBorderLine>
-                <Image source={require('../../../../assets/plus_dis.png')} />
-              </Counter>
-            </BorderLine>
-        </FirstContainer>
-        <Items>구성품</Items>
-        <ItemsBox>
-
-        </ItemsBox>
-        <TouchBox>
-
-        </TouchBox>
-    </ScrollViewContainer>   
+    <ScrollContainer>
+      <FoodImage
+        source={require('../../../../assets/food_detail_sample.png')}
+      />
+      <DetailHeader>
+        <DetailTitleContainer>
+          <DetailTitle>제목몇글자들어가나요</DetailTitle>
+          <DetailSetInfo>
+            <DetailSetLabelContainer>
+              <DetailSetLabel>세트</DetailSetLabel>
+            </DetailSetLabelContainer>
+            <DetailSetElements>
+              구성품1, 구성품2, 구성품3, 구성품4
+            </DetailSetElements>
+          </DetailSetInfo>
+        </DetailTitleContainer>
+        <DetailMembers>
+          <DetailMemberText>총 인원 수</DetailMemberText>
+          <DetailAdjustMembers>
+            <Pressable
+              onPress={() => {
+                console.log('minus');
+              }}>
+              <Image source={require('../../../../assets/minus_dis.png')} />
+            </Pressable>
+            <DetailMemberCounter>
+              <CounterNumber>0</CounterNumber>
+            </DetailMemberCounter>
+            <Pressable
+              onPress={() => {
+                console.log('plus');
+              }}>
+              <Image source={require('../../../../assets/plus_dis.png')} />
+            </Pressable>
+          </DetailAdjustMembers>
+        </DetailMembers>
+      </DetailHeader>
+    </ScrollContainer>
+    // <ScrollViewContainer>
+    //   <FoodImage
+    //     source={require('../../../../assets/food_detail_sample.png')}
+    //   />
+    //   <FirstContainer>
+    //     <FoodSetTitle>제목몇글자들어가나요여기</FoodSetTitle>
+    //     <First_FirstContainer>
+    //       <CategoryBackground>
+    //         <CategoryTitle>세트</CategoryTitle>
+    //       </CategoryBackground>
+    //       <SetItems>구성품1, 구성품2, 구성품3, 구성품4, 구성품5 ...</SetItems>
+    //     </First_FirstContainer>
+    //     <BorderLine>
+    //       <TotalPeople>총 인원 수</TotalPeople>
+    //       <Counter>
+    //         <Image source={require('../../../../assets/minus_dis.png')} />
+    //         <InnerBorderLine></InnerBorderLine>
+    //         <Image source={require('../../../../assets/plus_dis.png')} />
+    //       </Counter>
+    //     </BorderLine>
+    //   </FirstContainer>
+    //   <Items>구성품</Items>
+    //   <ItemsBox></ItemsBox>
+    //   <TouchBox></TouchBox>
+    // </ScrollViewContainer>
   );
 };
