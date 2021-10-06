@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Tabs from './Tab';
-import { Details } from './Details';
+import Details from './Details';
 
 const MainNavigator = createStackNavigator();
 
@@ -15,6 +15,7 @@ export default () => (
     <MainNavigator.Screen
       name="Details"
       component={Details}
+      options={{headerShown: false}}
     />
   </MainNavigator.Navigator>
 );
