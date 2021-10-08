@@ -4,7 +4,7 @@ import Auth from '../navigation/Auth';
 import Main from '../navigation/Main';
 
 export default () => {
-  var isLoggedIn = true;
+  var isLoggedIn = false;
 
   return (
     <NavigationContainer>
