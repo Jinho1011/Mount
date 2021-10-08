@@ -1,10 +1,17 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#FFFFFF',
   },
   Kakaotalk: {
     alignItems: 'center',
@@ -12,7 +19,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 314,
     height: 48,
-    left: 22,
+    left: (Dimensions.get('window').width - 314) / 2, //22
     top: 450,
     backgroundColor: '#FFE600',
     borderRadius: 5,
@@ -23,7 +30,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 314,
     height: 48,
-    left: 22,
+    left: (Dimensions.get('window').width - 314) / 2, //22
     top: 506,
     backgroundColor: '#20E41C',
     borderRadius: 5,
@@ -34,7 +41,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 314,
     height: 48,
-    left: 22,
+    left: (Dimensions.get('window').width - 314) / 2, //22
     top: 562,
     backgroundColor: '#FF5E5E',
     borderRadius: 5,
@@ -45,14 +52,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 314,
     height: 48,
-    left: 22,
+    left: (Dimensions.get('window').width - 314) / 2, //22
     top: 618,
     backgroundColor: '#F3F3F3',
     borderRadius: 5,
   },
   ButtonText: {
     textAlign: 'center',
-    fontFamily: 'Noto Sans KR',
+    fontFamily: 'NotoSansKR-Bold',
     fontStyle: 'normal',
     fontWeight: '500',
     fontSize: 16,
