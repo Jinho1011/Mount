@@ -7,83 +7,70 @@ import {
   Dimensions,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import styled from 'styled-components';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-  Kakaotalk: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    width: 314,
-    height: 48,
-    left: (Dimensions.get('window').width - 314) / 2, //22
-    top: 450,
-    backgroundColor: '#FFE600',
-    borderRadius: 5,
-  },
-  Naver: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    width: 314,
-    height: 48,
-    left: (Dimensions.get('window').width - 314) / 2, //22
-    top: 506,
-    backgroundColor: '#20E41C',
-    borderRadius: 5,
-  },
-  Google: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    width: 314,
-    height: 48,
-    left: (Dimensions.get('window').width - 314) / 2, //22
-    top: 562,
-    backgroundColor: '#FF5E5E',
-    borderRadius: 5,
-  },
-  EtcEmail: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    width: 314,
-    height: 48,
-    left: (Dimensions.get('window').width - 314) / 2, //22
-    top: 618,
-    backgroundColor: '#F3F3F3',
-    borderRadius: 5,
-  },
-  ButtonText: {
-    textAlign: 'center',
-    fontFamily: 'NotoSansKR-Bold',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: 16,
-    lineHeight: 24,
-  },
-});
+const Container = styled.View`
+  flex: 1;
+  background-color: #ffffff;
+`;
+
+const CommonTouchableOpacity = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 87%;
+  height: 48;
+  margin-left: 23;
+  border-radius: 5;
+`;
+
+const Kakaotalk = styled(CommonTouchableOpacity)`
+  margin-top: 450;
+  background-color: #ffe600;
+`;
+
+const Naver = styled(CommonTouchableOpacity)`
+  margin-top: 506;
+  background-color: #20e41c;
+`;
+
+const Google = styled(CommonTouchableOpacity)`
+  margin-top: 562;
+  background-color: #ff5e5e;
+`;
+
+const EtcEmail = styled(CommonTouchableOpacity)`
+  margin-top: 618;
+  background-color: #f3f3f3;
+`;
+
+const ButtonText = styled.Text`
+  text-align: center;
+  font-family: 'NotoSansKR-Bold';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16;
+  line-height: 24;
+`;
 
 export default () => {
   const navigation = useNavigation();
   const onPress = () => navigation.navigate('SignupDetail');
+
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.Kakaotalk} onPress={() => true}>
-        <Text style={styles.ButtonText}>카카오톡</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.Naver} onPress={() => true}>
-        <Text style={styles.ButtonText}>네이버 아이디연동</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.Google} onPress={() => true}>
-        <Text style={styles.ButtonText}>구글</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.EtcEmail} onPress={onPress}>
-        <Text style={styles.ButtonText}>기타 아이디 회원가입</Text>
-      </TouchableOpacity>
-    </View>
+    <Container>
+      <Kakaotalk>
+        <ButtonText>카카오톡</ButtonText>
+      </Kakaotalk>
+      <Naver>
+        <ButtonText>네이버 아이디연동</ButtonText>
+      </Naver>
+      <Google>
+        <ButtonText>구글</ButtonText>
+      </Google>
+      <EtcEmail onPress={onPress}>
+        <ButtonText>기타 이메일 회원가입</ButtonText>
+      </EtcEmail>
+    </Container>
   );
 };
