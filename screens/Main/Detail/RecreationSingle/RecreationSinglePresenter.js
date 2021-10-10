@@ -160,46 +160,75 @@ const RecSetListTitle = styled.Text`
   color: #000000;
 `;
 
-const RecSetListItemBigContainer = styled.View`
-  border: 1px solid #EAEAEA;
-  border-radius: 12px;
-
-  margin-top: 18px;
-`;
-
-const RecSetListName = styled.Text`
+/* 가이드라인 */
+const GuideLineTitle = styled.Text`
   font-family: Noto Sans KR;
   font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 24px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
   color: #000000;
-
-  margin-top: 14px;
-  margin-left: 14px;
+  margin-left: 152px;
 `;
 
-const RecSetListItemTitle = styled.Text`
+const GuideLineContainer = styled.View`
+  margin-top: -20px;
+  background: #FFFFFF;
+  border: 1px solid #FF0000;
+`;
+
+const GuideLineImageBox = styled.View`
+  padding: 28px 44px 17px 39px;
+`;
+
+const SwipeContainer = styled.View`
+  flex-direction: row;
+  padding: 10px 140px 10px 120px;
+  background: #ffffff;
+`;
+
+const RedCircle = styled.View`
+  margin: 0px 15px;
+`;
+
+const GrayCircle = styled.View`
+  margin: 0px 15px;
+`;
+
+const RecSetBorderLine = styled.View`
+  border: 0.35px solid #EAEAEA;
+`;
+
+/* 레크레이션 세트 리스트 */
+const FoodSetListContainer = styled.View`
+  margin-top: 4px;
+  padding: 20px 20px 20px 20px;
+  justify-content: space-between;
+  background-color: #fff;
+`;
+
+const FoodSetListTitle = styled.Text`
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
-  line-height: 17px;
+  line-height: 16px;
   color: #000000;
-
-  margin-top: 14px;
-  margin-left: 16px;
 `;
 
-const RecSetListItemContainer = styled.View`
+const FoodSetListItemBigContainer = styled.View`
+  margin-top: 18px;
+`;
+
+const FoodSetListItemContainer = styled.View`
   margin: 12px 16px 20px 16px;
 `;
 
-const RecSetItem = styled.View`
+const FoodSetItem = styled.View`
   flex-direction: row;
 `;
 
-const RecSetItemName = styled.Text`
+const FoodSetItemName = styled.Text`
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: normal;
@@ -211,23 +240,15 @@ const RecSetItemName = styled.Text`
   margin-top: 5px;
 `;
 
-const MinusPressable = styled.Pressable`
-  margin: 16px 0 16px 24px;
-`;
-
-const PlusPressable = styled.Pressable`
-  margin: 11px 0 11px 6px;
-`;
-
-const RecSetItemCountBlock = styled.View`
+const FoodSetItemCountBlock = styled.View`
   background: #F3F3F3;
   border-radius: 12.5px;
   margin-top: 3px;
-  margin-left: 6px;
+  margin-left: 38px;
   padding: 2px 16px 3px 16px;
 `;
 
-const RecSetItemCount = styled.Text`
+const FoodSetItemCount = styled.Text`
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: normal;
@@ -236,12 +257,12 @@ const RecSetItemCount = styled.Text`
   color: #000000;
 `;
 
-const RecSetItemPriceContainer = styled.View`
+const FoodSetItemPriceContainer = styled.View`
   flex-direction: column;
-  margin-left: 12px;
+  margin-left: 58px;
 `;
 
-const RecSetItemSize = styled.Text`
+const FoodSetItemSize = styled.Text`
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: normal;
@@ -251,7 +272,7 @@ const RecSetItemSize = styled.Text`
   color: #828282;
 `;
 
-const RecSetItemPrice = styled.Text`
+const FoodSetItemPrice = styled.Text`
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
@@ -262,30 +283,13 @@ const RecSetItemPrice = styled.Text`
   margin-left: 12px;
 `;
 
-const RecSetBorderLine = styled.View`
+const FoodSetBorderLine = styled.View`
   border: 0.35px solid #EAEAEA;
 
   margin-top: 14px;
 `;
 
-const MoreRecButton = styled.TouchableOpacity`
-  padding: 12px 76px;
-  margin: 24px 28px 22px 28px;
-  background: #E2F955;
-  border-radius: 5px;
-`;
-
-const MoreRecButtonText = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: center;
-  color: #000000;
-`;
-
-const RecSetTotalPriceTitle = styled.Text`
+const FoodSetTotalPriceTitle = styled.Text`
   margin-top: 26px;
 
   font-family: Noto Sans KR;
@@ -298,7 +302,7 @@ const RecSetTotalPriceTitle = styled.Text`
   color: #000000;
 `;
 
-const RecSetTotalCalculatorContainer = styled.View`
+const FoodSetTotalCalculatorContainer = styled.View`
   flex-direction: row;
   margin-top: 12px;
   margin-bottom: 20px;
@@ -340,7 +344,7 @@ const CloseImageContainer = styled.View`
   margin-bottom: 6px;
 `;
 
-const RecSetTotalCount = styled.Text`
+const FoodSetTotalCount = styled.Text`
   margin: 9px 0 2px 14px;
 
   font-family: Noto Sans KR;
@@ -353,7 +357,7 @@ const RecSetTotalCount = styled.Text`
   color: #8B8B8B;
 `;
 
-const RecSetTotalResultBox = styled.View`
+const FoodSetTotalResultBox = styled.View`
   flex-direction: column;
   margin-left: 70px;
 `;
@@ -382,9 +386,10 @@ const ResultPrice = styled.Text`
   color: #FF5151;
 `;
 
+
 /* 주의사항 */
 const CautionContainer = styled.View`
-  margin-top: -10px;
+  margin-top: 4px;
   padding: 24px 20px 92px 20px;
   background: #ffffff;
 `;
@@ -534,57 +539,67 @@ export default () => {
           </View>       
         </RecSetHeader>
         <RecSetListContainer>
-          <RecSetListTitle>저희 레크는요</RecSetListTitle>
-          <RecSetListItemBigContainer>
-            <RecSetListName>레크 이름 텍스트</RecSetListName>
-            <RecSetListItemTitle>구성품</RecSetListItemTitle>
-            <RecSetListItemContainer>
-              <RecSetItem>
-                <Image source={require('../../../../assets/rec_set_item_image_sample.png')} />
-                <RecSetItemName>상품이름이...</RecSetItemName>
-                <MinusPressable
-                      onPress={() => {
-                        console.log('plus');
-                      }}>
-                      <Image source={require('../../../../assets/minus.png')} />
-                </MinusPressable>
-                <RecSetItemCountBlock>
-                  <RecSetItemCount>3</RecSetItemCount>
-                </RecSetItemCountBlock>
-                <PlusPressable
-                      onPress={() => {
-                        console.log('plus');
-                      }}>
-                      <Image source={require('../../../../assets/plus.png')} />
-                </PlusPressable>
-                <RecSetItemPriceContainer>
-                  <RecSetItemSize>4인 (800g)</RecSetItemSize>
-                  <RecSetItemPrice>16,000원</RecSetItemPrice>
-                </RecSetItemPriceContainer>          
-              </RecSetItem>
-              <RecSetBorderLine />
-              <MoreRecButton>
-                <MoreRecButtonText>레크 정보 더보기</MoreRecButtonText>
-              </MoreRecButton>
-            </RecSetListItemContainer>
-          </RecSetListItemBigContainer>
-          <RecSetTotalPriceTitle>총 예상금액</RecSetTotalPriceTitle>        
-          <RecSetTotalCalculatorContainer>
-            <PriceForPersonBox>
-              <PriceForPersonTitle>1인 기준</PriceForPersonTitle>
-              <PriceForPersonPrice>12000원</PriceForPersonPrice>
-            </PriceForPersonBox>
-            <CloseImageContainer>
-              <Image source={require('../../../../assets/close.png')} /> 
-            </CloseImageContainer>
-            <RecSetTotalCount>20</RecSetTotalCount>  
-            <RecSetTotalResultBox>
-              <ResultTitle>총 금액</ResultTitle>
-              <ResultPrice>999,999원</ResultPrice>
-            </RecSetTotalResultBox>          
-          </RecSetTotalCalculatorContainer>    
+          <RecSetListTitle>저희 레크는요</RecSetListTitle>   
+          <GuideLineTitle>가이드라인</GuideLineTitle>
         </RecSetListContainer>
+          <GuideLineContainer>
+            <GuideLineImageBox>
+              <Image source={require('../../../../assets/guideline_sample.png')} />
+            </GuideLineImageBox>
+          </GuideLineContainer>
+          <SwipeContainer>
+            <RedCircle>
+              <Image source={require('../../../../assets/red_circle.png')} />
+            </RedCircle>
+            <GrayCircle>
+              <Image source={require('../../../../assets/gray_circle.png')} />
+            </GrayCircle>
+            <GrayCircle>
+              <Image source={require('../../../../assets/gray_circle.png')} />
+            </GrayCircle>
+            <GrayCircle>
+              <Image source={require('../../../../assets/gray_circle.png')} />
+            </GrayCircle>
+            <GrayCircle>
+              <Image source={require('../../../../assets/gray_circle.png')} />
+            </GrayCircle>
+          </SwipeContainer>
         <RecSetBorderLine />
+        <FoodSetListContainer>
+            <FoodSetListTitle>구성품</FoodSetListTitle>
+            <FoodSetListItemBigContainer>
+              <FoodSetListItemContainer>
+                <FoodSetItem>
+                  <Image source={require('../../../../assets/rec_set_item_image_sample.png')} />
+                  <FoodSetItemName>상품이름이...</FoodSetItemName>                  
+                  <FoodSetItemCountBlock>
+                    <FoodSetItemCount>3</FoodSetItemCount>
+                  </FoodSetItemCountBlock>                
+                  <FoodSetItemPriceContainer>
+                    <FoodSetItemSize>4인 (800g)</FoodSetItemSize>
+                    <FoodSetItemPrice>16,000원</FoodSetItemPrice>
+                  </FoodSetItemPriceContainer>          
+                </FoodSetItem>
+                <FoodSetBorderLine />
+              </FoodSetListItemContainer>
+            </FoodSetListItemBigContainer>
+            <FoodSetTotalPriceTitle>총 예상금액</FoodSetTotalPriceTitle>        
+            <FoodSetTotalCalculatorContainer>
+              <PriceForPersonBox>
+                <PriceForPersonTitle>1인 기준</PriceForPersonTitle>
+                <PriceForPersonPrice>12000원</PriceForPersonPrice>
+              </PriceForPersonBox>
+              <CloseImageContainer>
+                <Image source={require('../../../../assets/close.png')} /> 
+              </CloseImageContainer>
+              <FoodSetTotalCount>20</FoodSetTotalCount>  
+              <FoodSetTotalResultBox>
+                <ResultTitle>총 금액</ResultTitle>
+                <ResultPrice>999,999원</ResultPrice>
+              </FoodSetTotalResultBox>          
+            </FoodSetTotalCalculatorContainer>    
+          </FoodSetListContainer>
+          <RecSetBorderLine />
         <CautionContainer>
           <CautionTitle>주의 사항</CautionTitle>
           <CautionDetailContainer>
