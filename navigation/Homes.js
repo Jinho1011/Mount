@@ -18,6 +18,7 @@ const Homes = () => {
           headerStyle: {
             backgroundColor: '#000000',
             height: 58,
+            shadowColor: 'transparent',
           },
           headerTitleAlign: 'center',
           headerTintColor: '#fff',
