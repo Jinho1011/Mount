@@ -8,7 +8,7 @@ import {
   Button,
   Dimensions,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useIsFocused} from '@react-navigation/native';
 import styled from 'styled-components';
 
 const Container = styled.View`
@@ -93,7 +93,7 @@ const SignupButton = styled.TouchableOpacity`
   padding-bottom: 12;
 `;
 
-const SignupText = styled(CommonText)`
+const SignupText = styled.Text`
   font-family: 'NotoSansKR-Bold';
   font-weight: 500;
   font-size: 16;
@@ -115,8 +115,7 @@ export default props => {
   const [passwordCheckValid, setPasswordCheckValid] = useState(false); //비밀번호와 일치 여부
 
   const EmailChangeHandler = text => {
-    const emailRegex =
-      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     setEmailValid(emailRegex.test(text));
     setEmail(text);
   }; //이메일 검사
@@ -132,7 +131,6 @@ export default props => {
     setPasswordCheckValid(password === text);
     setPasswordCheck(text);
   }; //비밀번호 확인 검사
-
   // const ref_input = Array < React.RefObject < TextInput >> [];
   // ref_input[0] = useRef(null);
   // ref_input[1] = useRef(null);
@@ -156,6 +154,9 @@ export default props => {
         placeholderTextColor="#8B8B8B"
         value={email}
         onChangeText={text => EmailChangeHandler(text)}
+        autoCapitalize={'none'}
+        keyboardType={'email-address'}
+        returnKeyType={'done'}
       />
       {!emailValid ? (
         <EmailHelpText>유효하지 않은 이메일</EmailHelpText>
@@ -170,6 +171,8 @@ export default props => {
         value={password}
         onChangeText={text => PasswordChangeHandler(text)}
         secureTextEntry={true}
+        autoCapitalize={'none'}
+        returnKeyType={'done'}
       />
       {!passwordValid ? (
         <PasswordHelpText>특수문자, 숫자, 문자 포함 8~15자리</PasswordHelpText>
@@ -183,6 +186,8 @@ export default props => {
         value={passwordCheck}
         onChangeText={text => PasswordCheckChangeHandler(text)}
         secureTextEntry={true}
+        autoCapitalize={'none'}
+        returnKeyType={'done'}
       />
       {!passwordCheckValid ? (
         <PasswordCheckHelpText>비밀번호가 다릅니다.</PasswordCheckHelpText>
@@ -190,7 +195,8 @@ export default props => {
         <PasswordCheckHelpText> </PasswordCheckHelpText>
       )}
       <SignupButton
-        disabled={!emailValid || !passwordCheckValid}
+        //disabled={!emailValid || !passwordCheckValid}
+        disabled={false} //임시
         onPress={onPress}>
         <SignupText>회원가입</SignupText>
       </SignupButton>
