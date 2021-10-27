@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Pressable, Button, ScrollView} from 'react-native';
 import styled from 'styled-components';
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import {useNavigation} from '@react-navigation/native';
 
 import FocusAwareStatusBar from '../../../../components/StatusBar';
@@ -50,13 +51,18 @@ const DetailsTitle = styled.Text`
   line-height: 24px;
 `;
 
-const DetailMore = styled.Pressable``;
+const DetailMore = styled.Pressable`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
 
 const DetailMoreText = styled.Text`
   color: #8b8b8b;
   font-size: 12px;
   font-family: 'NotoSansKR-Regular';
   line-height: 16px;
+  margin-right: 4px;
 `;
 
 const Details = styled.ScrollView``;
@@ -88,8 +94,12 @@ export default () => {
       <DetailsWrapper>
         <DetailsHeader>
           <DetailsTitle>음식세트 어쩌구 문구</DetailsTitle>
-          <DetailMore>
+          <DetailMore
+            onPress={() => {
+              navigation.navigate('HomeTabs');
+            }}>
             <DetailMoreText>더보기</DetailMoreText>
+            <Icon name="arrow-right" size={12} color="#8b8b8b"></Icon>
           </DetailMore>
         </DetailsHeader>
         <Details horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -102,9 +112,13 @@ export default () => {
       </DetailsWrapper>
       <DetailsWrapper>
         <DetailsHeader>
-          <DetailsTitle>음식세트 어쩌구 문구</DetailsTitle>
-          <DetailMore>
+          <DetailsTitle>레크세트 어쩌구 문구</DetailsTitle>
+          <DetailMore
+            onPress={() => {
+              navigation.navigate('HomeTabs');
+            }}>
             <DetailMoreText>더보기</DetailMoreText>
+            <Icon name="arrow-right" size={12} color="#8b8b8b"></Icon>
           </DetailMore>
         </DetailsHeader>
         <Details horizontal={true} showsHorizontalScrollIndicator={false}>
