@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image, SafeAreaView} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
@@ -97,6 +97,14 @@ const SignupText = styled.Text`
   text-align: center;
 `;
 
+const imageStyles = StyleSheet.create({
+  image: {
+    width: 24,
+    height: 24,
+    resizeMode: 'stretch',
+  },
+});
+
 export default () => {
   const navigation = useNavigation();
   const [firstCheck, setFirstCheck] = useState(false);
@@ -122,9 +130,15 @@ export default () => {
         onPress={AgreeButtonPress}
         backgroundColor={firstCheck && secondCheck}>
         {firstCheck && secondCheck ? (
-          <Image source={require('../../../../assets/Check_round_on.png')} />
+          <Image
+            style={imageStyles.image}
+            source={require('../../../../assets/Check_round_on.png')}
+          />
         ) : (
-          <Image source={require('../../../../assets/Check_round_off.png')} />
+          <Image
+            style={imageStyles.image}
+            source={require('../../../../assets/Check_round_off.png')}
+          />
         )}
         <ButtonText color={firstCheck && secondCheck}>
           모두 동의합니다!
@@ -132,9 +146,15 @@ export default () => {
       </AgreeButton>
       <CheckButton onPress={firstCheckPress}>
         {firstCheck ? (
-          <Image source={require('../../../../assets/Check_.png')} />
+          <Image
+            style={imageStyles.image}
+            source={require('../../../../assets/Check_.png')}
+          />
         ) : (
-          <Image source={require('../../../../assets/Check.png')} />
+          <Image
+            style={imageStyles.image}
+            source={require('../../../../assets/Check.png')}
+          />
         )}
       </CheckButton>
       <TosTextBlack>이용약관</TosTextBlack>
@@ -142,9 +162,15 @@ export default () => {
       <TosTextBox>이용 약관 내용 첨부</TosTextBox>
       <CheckButton2 onPress={secondCheckPress}>
         {secondCheck ? (
-          <Image source={require('../../../../assets/Check_.png')} />
+          <Image
+            style={imageStyles.image}
+            source={require('../../../../assets/Check_.png')}
+          />
         ) : (
-          <Image source={require('../../../../assets/Check.png')} />
+          <Image
+            style={imageStyles.image}
+            source={require('../../../../assets/Check.png')}
+          />
         )}
       </CheckButton2>
       <TosTextBlack>이용약관</TosTextBlack>
