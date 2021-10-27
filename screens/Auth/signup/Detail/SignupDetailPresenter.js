@@ -1,14 +1,5 @@
-import React, {useState, useRef} from 'react';
-import {
-  TextInput,
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Button,
-  Dimensions,
-} from 'react-native';
-import {useNavigation, useIsFocused} from '@react-navigation/native';
+import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
 const Container = styled.View`
@@ -101,35 +92,48 @@ const SignupText = styled.Text`
   text-align: center;
 `;
 
+//유효 검사
+let emailValid = false;
+let passwordValid = false;
+let passwordCheckValid = false;
+
+//수정 전 border 표시
+let emailIsEdited = false;
+let passwordIsEdited = false;
+let passwordCheckIsEdited = false;
+
 export default props => {
   const navigation = useNavigation();
   const onPress = () => navigation.navigate('SignupTos'); //다음으로 이동
 
-  const [email, setEmail] = useState('');
-  const [emailValid, setEmailValid] = useState(false); //유효 이메일 확인
-
-  const [password, setPassword] = useState('');
-  const [passwordValid, setPasswordValid] = useState(false); //유효 비밀번호 확인
-
-  const [passwordCheck, setPasswordCheck] = useState('');
-  const [passwordCheckValid, setPasswordCheckValid] = useState(false); //비밀번호와 일치 여부
+  const [email, setEmail] = useState(email);
+  const [password, setPassword] = useState(password);
+  const [passwordCheck, setPasswordCheck] = useState(passwordCheck);
 
   const EmailChangeHandler = text => {
-    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    setEmailValid(emailRegex.test(text));
     setEmail(text);
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    emailRegex.test(text) ? (emailValid = true) : (emailValid = false);
+    emailIsEdited = true;
   }; //이메일 검사
 
   const PasswordChangeHandler = text => {
+    setPassword(text);
     const passwordRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-    setPasswordValid(passwordRegex.test(text));
-    setPassword(text);
+    passwordRegex.test(text) ? (passwordValid = true) : (passwordValid = false);
+    passwordIsEdited = true;
+    passwordCheck && text === passwordCheck
+      ? (passwordCheckValid = true)
+      : (passwordCheckValid = false);
   }; //비밀번호 검사
 
   const PasswordCheckChangeHandler = text => {
-    setPasswordCheckValid(password === text);
+    password && password === text
+      ? (passwordCheckValid = true)
+      : (passwordCheckValid = false);
     setPasswordCheck(text);
+    passwordCheckIsEdited = true;
   }; //비밀번호 확인 검사
   // const ref_input = Array < React.RefObject < TextInput >> [];
   // ref_input[0] = useRef(null);
@@ -149,7 +153,7 @@ export default props => {
     <Container>
       <EmailText>이메일</EmailText>
       <EmailTextInput
-        border={!emailValid}
+        border={!emailValid && emailIsEdited}
         placeholder="이메일 주소"
         placeholderTextColor="#8B8B8B"
         value={email}
@@ -158,14 +162,14 @@ export default props => {
         keyboardType={'email-address'}
         returnKeyType={'done'}
       />
-      {!emailValid ? (
+      {!emailValid && emailIsEdited ? (
         <EmailHelpText>유효하지 않은 이메일</EmailHelpText>
       ) : (
         <EmailHelpText> </EmailHelpText>
       )}
       <PasswordText>비밀번호</PasswordText>
       <PasswordTextInput
-        border={!passwordValid}
+        border={!passwordValid && passwordIsEdited}
         placeholder="비밀번호"
         placeholderTextColor="#8B8B8B"
         value={password}
@@ -174,13 +178,13 @@ export default props => {
         autoCapitalize={'none'}
         returnKeyType={'done'}
       />
-      {!passwordValid ? (
+      {!passwordValid && passwordIsEdited ? (
         <PasswordHelpText>특수문자, 숫자, 문자 포함 8~15자리</PasswordHelpText>
       ) : (
         <PasswordHelpText> </PasswordHelpText>
       )}
       <PasswordCheckTextInput
-        border={!passwordCheckValid}
+        border={!passwordCheckValid && passwordCheckIsEdited}
         placeholder="비밀번호 확인"
         placeholderTextColor="#8B8B8B"
         value={passwordCheck}
@@ -189,14 +193,14 @@ export default props => {
         autoCapitalize={'none'}
         returnKeyType={'done'}
       />
-      {!passwordCheckValid ? (
+      {!passwordCheckValid && passwordCheckIsEdited ? (
         <PasswordCheckHelpText>비밀번호가 다릅니다.</PasswordCheckHelpText>
       ) : (
         <PasswordCheckHelpText> </PasswordCheckHelpText>
       )}
       <SignupButton
-        //disabled={!emailValid || !passwordCheckValid}
-        disabled={false} //임시
+        disabled={!(emailValid && passwordValid && passwordCheckValid)}
+        //disabled={false} //임시
         onPress={onPress}>
         <SignupText>회원가입</SignupText>
       </SignupButton>
