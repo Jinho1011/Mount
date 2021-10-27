@@ -31,6 +31,7 @@ const HeaderText = styled.Text`
 
 export const HeaderRight = () => {
   return (
+    // navigate to Program
     <HeaderProgram>
       <Image source={require('../assets/projectfile_w.png')} />
       <HeaderProgramText>기획서</HeaderProgramText>
