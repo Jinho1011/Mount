@@ -13,10 +13,10 @@ const HomeNavigator = createStackNavigator();
 
 const HomeTab = createMaterialTopTabNavigator();
 
-function HomeTabs() {
+function HomeTabs(navigation) {
   return (
     <HomeTab.Navigator
-      initialRouteName="HomeFoodDetail"
+      initialRouteName={navigation.route.params.initialRoute}
       screenOptions={{
         tabBarActiveTintColor: '#E2F955',
         tabBarInactiveTintColor: '#8B8B8B',
@@ -41,8 +41,16 @@ function HomeTabs() {
           height: 4,
         },
       }}>
-      <HomeTab.Screen name="음식" component={FoodDetail} />
-      <HomeTab.Screen name="레크" component={RecDetail} />
+      <HomeTab.Screen
+        name="HomeFoodDetail"
+        component={FoodDetail}
+        options={{title: '음식'}}
+      />
+      <HomeTab.Screen
+        name="HomeRecDetail"
+        component={RecDetail}
+        options={{title: '레크'}}
+      />
     </HomeTab.Navigator>
   );
 }
