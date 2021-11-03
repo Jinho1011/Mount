@@ -15,9 +15,34 @@ const HomeTab = createMaterialTopTabNavigator();
 
 function HomeTabs() {
   return (
-    <HomeTab.Navigator>
-      <HomeTab.Screen name="HomeFoodDetail" component={FoodDetail} />
-      <HomeTab.Screen name="HomeRecreationDetail" component={RecDetail} />
+    <HomeTab.Navigator
+      initialRouteName="HomeFoodDetail"
+      screenOptions={{
+        tabBarActiveTintColor: '#E2F955',
+        tabBarInactiveTintColor: '#8B8B8B',
+        tabBarLabelStyle: {
+          fontSize: 16,
+          fontFamily: 'NotoSansKR-Bold',
+          lineHeight: 24,
+        },
+        tabBarStyle: {
+          backgroundColor: '#000000',
+          paddingLeft: 22,
+          paddingRight: 22,
+        },
+        tabBarItemStyle: {width: 60},
+        tabBarIndicatorContainerStyle: {
+          marginLeft: 26,
+          width: 100,
+        },
+        tabBarIndicatorStyle: {
+          paddingLeft: 22,
+          backgroundColor: '#E2F955',
+          height: 4,
+        },
+      }}>
+      <HomeTab.Screen name="음식" component={FoodDetail} />
+      <HomeTab.Screen name="레크" component={RecDetail} />
     </HomeTab.Navigator>
   );
 }
