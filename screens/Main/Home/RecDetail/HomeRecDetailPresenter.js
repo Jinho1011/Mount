@@ -10,7 +10,7 @@ export default () => {
   return (
     <View>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
-      <Text>Asd</Text>
+      <Text>HomeRecDetailPresenter</Text>
     </View>
   );
 };
