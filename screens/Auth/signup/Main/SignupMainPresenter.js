@@ -12,28 +12,28 @@ const CommonTouchableOpacity = styled.TouchableOpacity`
   justify-content: center;
   position: absolute;
   width: 87%;
-  height: 48;
-  margin-left: 23;
-  border-radius: 5;
+  height: 48px;
+  margin-left: 23px;
+  border-radius: 5px;
 `;
 
 const Kakaotalk = styled(CommonTouchableOpacity)`
-  margin-top: 450;
+  margin-top: 450px;
   background-color: #ffe600;
 `;
 
 const Naver = styled(CommonTouchableOpacity)`
-  margin-top: 506;
+  margin-top: 506px;
   background-color: #20e41c;
 `;
 
 const Google = styled(CommonTouchableOpacity)`
-  margin-top: 562;
+  margin-top: 562px;
   background-color: #ff5e5e;
 `;
 
 const EtcEmail = styled(CommonTouchableOpacity)`
-  margin-top: 618;
+  margin-top: 618px;
   background-color: #f3f3f3;
 `;
 
@@ -42,8 +42,8 @@ const ButtonText = styled.Text`
   font-family: 'NotoSansKR-Bold';
   font-style: normal;
   font-weight: 500;
-  font-size: 16;
-  line-height: 24;
+  font-size: 16px;
+  line-height: 24px;
 `;
 
 export default () => {

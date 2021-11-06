@@ -9,20 +9,20 @@ const Container = styled.View`
 
 const LoginButton = styled.TouchableOpacity`
   width: 87%;
-  height: 48;
-  margin-top: 618;
-  margin-left: 23;
-  border-radius: 5;
+  height: 48px;
+  margin-top: 618px;
+  margin-left: 23px;
+  border-radius: 5px;
   background-color: #e2f955;
-  padding-top: 12;
-  padding-bottom: 12;
+  padding-top: 12px;
+  padding-bottom: 12px;
 `;
 
 const LoginText = styled.Text`
   font-family: 'NotoSansKR-Bold';
-  font-weight: 500;
-  font-size: 16;
-  line-height: 24;
+  font-weight: 500px;
+  font-size: 16px;
+  line-height: 24px;
   text-align: center;
 `;
 
