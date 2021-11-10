@@ -1,5 +1,5 @@
 import React from 'react';
-import TutorialPresenter from './TutorialPresenter';
+import TutorialPresenter from './tutorialPresenter';
 
 export default () => {
   return <TutorialPresenter />;

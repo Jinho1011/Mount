@@ -1,11 +1,11 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import SignupDetail from '../screens/Auth/Signup/Detail';
-import SignupMain from '../screens/Auth/Signup/Main';
-import SignupTos from '../screens/Auth/Signup/Tos';
-import LoginDetail from '../screens/Auth/Login/Detail';
-import LoginMain from '../screens/Auth/Login/Main';
-import Tutorial from '../screens/Auth/Tutorial';
+import SignupDetail from '../screens/Auth/signup/Detail';
+import SignupMain from '../screens/Auth/signup/Main';
+import SignupTos from '../screens/Auth/signup/Tos';
+import LoginDetail from '../screens/Auth/login/Detail';
+import LoginMain from '../screens/Auth/login/Main';
+import Tutorial from '../screens/Auth/tutorial';
 
 const AuthNavigator = createStackNavigator();
 

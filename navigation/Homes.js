@@ -2,12 +2,25 @@ import React from 'react';
 import {View, Text, Image} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import styled from 'styled-components';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {HeaderRight, HeaderTitle} from '../components/Header';
 
 import HomeMain from '../screens/Main/Home/Main';
-import HomeDetail from '../screens/Main/Home/Detail';
+import FoodDetail from '../screens/Main/Home/FoodDetail';
+import RecDetail from '../screens/Main/Home/RecDetail';
 
 const HomeNavigator = createStackNavigator();
+
+const HomeTab = createMaterialTopTabNavigator();
+
+function HomeTabs() {
+  return (
+    <HomeTab.Navigator>
+      <HomeTab.Screen name="HomeFoodDetail" component={FoodDetail} />
+      <HomeTab.Screen name="HomeRecreationDetail" component={RecDetail} />
+    </HomeTab.Navigator>
+  );
+}
 
 const Homes = () => {
   return (
@@ -18,13 +31,14 @@ const Homes = () => {
           headerStyle: {
             backgroundColor: '#000000',
             height: 58,
+            shadowColor: 'transparent',
           },
           headerTitleAlign: 'center',
           headerTintColor: '#fff',
           headerRight: () => <HeaderRight />,
         }}>
         <HomeNavigator.Screen name="HomeMain" component={HomeMain} />
-        <HomeNavigator.Screen name="HomeDetail" component={HomeDetail} />
+        <HomeNavigator.Screen name="HomeTabs" component={HomeTabs} />
       </HomeNavigator.Group>
     </HomeNavigator.Navigator>
   );
