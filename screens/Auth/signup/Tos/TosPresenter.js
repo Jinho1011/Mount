@@ -9,91 +9,91 @@ const Container = styled.View`
 `;
 
 const TitleText = styled.Text`
-  width: 150;
-  height: 40;
-  margin-top: 71;
-  margin-left: 23;
+  width: 150px;
+  height: 40px;
+  margin-top: 71px;
+  margin-left: 23px;
   font-style: normal;
   font-family: 'NotoSansKR-Bold';
-  font-weight: 700;
-  font-size: 18;
+  font-weight: 700px;
+  font-size: 18px;
 `;
 
 const AgreeButton = styled.TouchableOpacity`
   width: 87%;
-  height: 48;
+  height: 48px;
   background-color: ${props => (props.backgroundColor ? '#000000' : '#f3f3f3')};
-  margin-top: 16;
-  margin-left: 23;
-  padding-top: 12;
-  padding-left: 19;
+  margin-top: 16px;
+  margin-left: 23px;
+  padding-top: 12px;
+  padding-left: 19px;
   border-radius: 5px;
 `;
 const ButtonText = styled.Text`
   width: 70%;
-  height: 20;
+  height: 20px;
   color: ${props => (props.color ? '#e2f955' : '#b4b4b4')};
   font-family: 'NotoSansKR';
   font-weight: 400;
   font-style: normal;
-  font-size: 14;
-  line-height: 20;
+  font-size: 14px;
+  line-height: 20px;
   align-items: center;
-  margin-top: -22;
+  margin-top: -22px;
   margin-left: 31%;
 `;
 
 const CheckButton = styled.TouchableOpacity`
-  width: 24;
-  height: 24;
-  margin-top: 33;
-  margin-left: 31;
+  width: 24px;
+  height: 24px;
+  margin-top: 33px;
+  margin-left: 31px;
 `;
 
 const CheckButton2 = styled(CheckButton)`
-  margin-top: 27;
+  margin-top: 27px;
 `;
 
 const TosTextBlack = styled.Text`
   width: 13%;
-  height: 16;
+  height: 16px;
   font-family: 'NotoSansKR';
   font-weight: 400;
-  font-size: 12;
-  line-height: 16;
-  margin-top: -21;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: -21px;
   margin-left: 16%;
 `;
 const TosTextRed = styled(TosTextBlack)`
   width: 9%;
   color: #ff5151;
-  margin-top: -16;
+  margin-top: -16px;
   margin-left: 28.5%;
 `;
 const TosTextBox = styled.Text`
   border: 1px solid #eaeaea;
   border-radius: 5px;
   width: 87%;
-  height: 95;
-  margin-top: 11;
-  margin-left: 23;
+  height: 95px;
+  margin-top: 11px;
+  margin-left: 23px;
 `;
 const SignupButton = styled.TouchableOpacity`
   width: 87%;
-  height: 48;
-  margin-top: 123;
-  margin-left: 23;
-  border-radius: 5;
+  height: 48px;
+  margin-top: 123px;
+  margin-left: 23px;
+  border-radius: 5px;
   background-color: ${props => (props.disabled ? '#f3f3f3' : '#e2f955')};
-  padding-top: 12;
-  padding-bottom: 12;
+  padding-top: 12px;
+  padding-bottom: 12px;
 `;
 
 const SignupText = styled.Text`
   font-family: 'NotoSansKR-Bold';
   font-weight: 500;
-  font-size: 16;
-  line-height: 24;
+  font-size: 16px;
+  line-height: 24px;
   text-align: center;
 `;
 
