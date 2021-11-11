@@ -96,7 +96,7 @@ export default () => {
           <DetailsTitle>음식세트 어쩌구 문구</DetailsTitle>
           <DetailMore
             onPress={() => {
-              navigation.navigate('HomeTabs');
+              navigation.navigate('HomeTabs', {initialRoute: 'HomeFoodDetail'});
             }}>
             <DetailMoreText>더보기</DetailMoreText>
             <Icon name="arrow-right" size={12} color="#8b8b8b"></Icon>
@@ -115,7 +115,7 @@ export default () => {
           <DetailsTitle>레크세트 어쩌구 문구</DetailsTitle>
           <DetailMore
             onPress={() => {
-              navigation.navigate('HomeTabs');
+              navigation.navigate('HomeTabs', {initialRoute: 'HomeRecDetail'});
             }}>
             <DetailMoreText>더보기</DetailMoreText>
             <Icon name="arrow-right" size={12} color="#8b8b8b"></Icon>
