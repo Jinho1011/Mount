@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {HeaderRight, HeaderTitle} from '../components/TransparentHeader';
+import {HeaderRight, HeaderTitle} from '../components/Header/TransparentHeader';
 import FoodSet from '../screens/Main/Detail/FoodSet';
 import FoodSingle from '../screens/Main/Detail/FoodSingle';
 import RecreationSet from '../screens/Main/Detail/RecreationSet';

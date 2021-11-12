@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/stack';
 import styled from 'styled-components';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {HeaderRight, HeaderTitle} from '../components/Header';
+import {HeaderRight, HeaderTitle} from '../components/Header/Header';
 
 import HomeMain from '../screens/Main/Home/Main';
 import FoodDetail from '../screens/Main/Home/FoodDetail';
