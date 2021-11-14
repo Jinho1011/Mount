@@ -32,7 +32,7 @@ const HeaderText = styled.Text`
 export const HeaderRight = () => {
   return (
     <HeaderProgram>
-      <Image source={require('../assets/projectfile_w.png')} />
+      <Image source={require('../../assets/projectfile_w.png')} />
       <HeaderProgramText>기획서</HeaderProgramText>
     </HeaderProgram>
   );
@@ -42,7 +42,7 @@ export const HeaderTitle = ({title}) => {
   return (
     <HeaderContainer>
       {title == 'Home' ? (
-        <Image source={require('../assets/mount.png')} />
+        <Image source={require('../../assets/mount.png')} />
       ) : (
         <HeaderText>{title}</HeaderText>
       )}
