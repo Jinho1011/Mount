@@ -6,7 +6,7 @@ const HeaderContainer = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
-  opacity: 0;
+  background-color: #000;
 `;
 
 const HeaderProgram = styled.View`
@@ -31,8 +31,9 @@ const HeaderText = styled.Text`
 
 export const HeaderRight = () => {
   return (
+    // navigate to Program
     <HeaderProgram>
-      <Image source={require('../assets/projectfile_w.png')} />
+      <Image source={require('../../assets/projectfile_w.png')} />
       <HeaderProgramText>기획서</HeaderProgramText>
     </HeaderProgram>
   );
@@ -42,7 +43,7 @@ export const HeaderTitle = ({title}) => {
   return (
     <HeaderContainer>
       {title == 'Home' ? (
-        <Image source={require('../assets/mount.png')} />
+        <Image source={require('../../assets/mount.png')} />
       ) : (
         <HeaderText>{title}</HeaderText>
       )}

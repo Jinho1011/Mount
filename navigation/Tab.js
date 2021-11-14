@@ -1,6 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {HeaderRight, HeaderTitle} from '../components/Header';
+import {HeaderRight, HeaderTitle} from '../components/Header/Header';
 import Homes from './Homes';
 import Search from '../screens/Main/Search';
 import Favorite from '../screens/Main/Favorite';
