@@ -11,8 +11,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
-const PageWrap = styled.View`
-`;
+const PageWrap = styled.View``;
 
 const ScrollContainer = styled.ScrollView`
   background-color: #e5e5e5;
@@ -100,13 +99,13 @@ const FoodSingleResultContainer = styled.View`
 `;
 
 const FoodSingleBorderLine = styled.View`
-  border: 0.35px solid #EAEAEA;
+  border: 0.35px solid #eaeaea;
 
   margin-top: 14px;
 `;
 
 const FoodSingleSmallBorderLine = styled.View`
-  border: 0.35px solid #EAEAEA;
+  border: 0.35px solid #eaeaea;
 `;
 
 const FoodSingleTotalPriceTitle = styled.Text`
@@ -141,7 +140,7 @@ const PriceForPersonTitle = styled.Text`
   line-height: 15px;
   display: flex;
   align-items: center;
-  color: #8B8B8B;
+  color: #8b8b8b;
 `;
 
 const PriceForPersonPrice = styled.Text`
@@ -155,7 +154,7 @@ const PriceForPersonPrice = styled.Text`
   line-height: 26px;
   display: flex;
   align-items: center;
-  color: #8B8B8B;
+  color: #8b8b8b;
 `;
 
 const CloseImageContainer = styled.View`
@@ -174,7 +173,7 @@ const FoodSingleTotalCount = styled.Text`
   line-height: 26px;
   display: flex;
   align-items: center;
-  color: #8B8B8B;
+  color: #8b8b8b;
 `;
 
 const FoodSingleTotalResultBox = styled.View`
@@ -191,7 +190,7 @@ const ResultTitle = styled.Text`
   display: flex;
   align-items: center;
   text-align: right;
-  color: #8B8B8B;
+  color: #8b8b8b;
 `;
 
 const ResultPrice = styled.Text`
@@ -203,7 +202,7 @@ const ResultPrice = styled.Text`
   display: flex;
   align-items: center;
   text-align: right;
-  color: #FF5151;
+  color: #ff5151;
 `;
 
 /* 마운트의 추천 */
@@ -225,7 +224,7 @@ const RecomendationTitle = styled.Text`
 
 const RecomendationDetailBox = styled.View`
   padding: 16px 20px 80px 20px;
-  background: #F3F3F3;
+  background: #f3f3f3;
   margin-top: 18px;
 `;
 
@@ -265,14 +264,14 @@ const CautionTitle = styled.Text`
   line-height: 16px;
   display: flex;
   align-items: center;
-  color: #9E9E9E;
+  color: #9e9e9e;
 `;
 
 const CautionDetailContainer = styled.View`
   margin-top: 10px;
   padding: 14px 12px 12px 12px;
 
-  background: #F3F3F3;
+  background: #f3f3f3;
 `;
 
 const CautionDetail = styled.Text`
@@ -283,14 +282,14 @@ const CautionDetail = styled.Text`
   line-height: 15px;
   display: flex;
   align-items: center;
-  color: #8B8B8B;
+  color: #8b8b8b;
 `;
 
 /* bottom button container */
 const BottomConatiner = styled.View`
   flex-direction: row;
-  background: #FFFFFF;
-  border: 0.3px solid #B4B4B4;
+  background: #ffffff;
+  border: 0.3px solid #b4b4b4;
 
   padding: 8px 21px 8px 23px;
 `;
@@ -298,7 +297,7 @@ const BottomConatiner = styled.View`
 const ChangeCountButton = styled.TouchableOpacity`
   padding: 12px 118px;
 
-  background: #E2F955;
+  background: #e2f955;
   border-radius: 5px;
 
   height: 48px;
@@ -326,7 +325,7 @@ const LikeCount = styled.Text`
   line-height: 24px;
   display: flex;
   align-items: center;
-  color: #8B8B8B;
+  color: #8b8b8b;
 
   margin-top: 11px;
   margin-left: 3px;
@@ -335,7 +334,7 @@ const LikeCount = styled.Text`
 export default () => {
   const navigation = useNavigation();
   return (
-    <PageWrap style={{ flex: 1 }}>
+    <PageWrap style={{flex: 1}}>
       <ScrollContainer>
         <FoodImage
           source={require('../../../../assets/food_detail_sample.png')}
@@ -343,8 +342,8 @@ export default () => {
         <DetailHeader>
           <DetailTitleContainer>
             <DetailTitle>고기</DetailTitle>
-            <DetailSetInfo>            
-              <DetailSetLabel>1인분 200g 기준</DetailSetLabel>              
+            <DetailSetInfo>
+              <DetailSetLabel>1인분 200g 기준</DetailSetLabel>
             </DetailSetInfo>
           </DetailTitleContainer>
           <DetailMembers>
@@ -369,21 +368,21 @@ export default () => {
           </DetailMembers>
         </DetailHeader>
         <FoodSingleResultContainer>
-          <FoodSingleTotalPriceTitle>총 예상금액</FoodSingleTotalPriceTitle>        
+          <FoodSingleTotalPriceTitle>총 예상금액</FoodSingleTotalPriceTitle>
           <FoodSingleTotalCalculatorContainer>
             <PriceForPersonBox>
               <PriceForPersonTitle>1인 기준</PriceForPersonTitle>
               <PriceForPersonPrice>12000원</PriceForPersonPrice>
             </PriceForPersonBox>
             <CloseImageContainer>
-              <Image source={require('../../../../assets/close.png')} /> 
+              <Image source={require('../../../../assets/close.png')} />
             </CloseImageContainer>
-            <FoodSingleTotalCount>20</FoodSingleTotalCount>  
+            <FoodSingleTotalCount>20</FoodSingleTotalCount>
             <FoodSingleTotalResultBox>
               <ResultTitle>총 금액</ResultTitle>
               <ResultPrice>999,999원</ResultPrice>
-            </FoodSingleTotalResultBox>          
-          </FoodSingleTotalCalculatorContainer>    
+            </FoodSingleTotalResultBox>
+          </FoodSingleTotalCalculatorContainer>
         </FoodSingleResultContainer>
         <FoodSingleSmallBorderLine />
         <RecomendationContainer>
@@ -391,42 +390,47 @@ export default () => {
           <RecomendationDetailBox>
             <RecomendationDetailTitle>음식 설명</RecomendationDetailTitle>
             <RecomendationDetail>
-            위하여서 사랑의 이상의 우리의 보라. 우리의 못할 용기가 몸이 철환하였는가? 
-            인간의 되려니와, 불어 같이, 아니다. 따뜻한 같이 아니한 이것이다. {"\n"}{"\n"}
-            위하여서 사랑의 이상의 우리의 보라. 우리의 못할 용기가 몸이 철환하였는가? 
-            인간의 되려니와, 불어 같이, 아니다. 따뜻한 같이 아니한 이것이다. 
+              위하여서 사랑의 이상의 우리의 보라. 우리의 못할 용기가 몸이
+              철환하였는가? 인간의 되려니와, 불어 같이, 아니다. 따뜻한 같이
+              아니한 이것이다. {'\n'}
+              {'\n'}
+              위하여서 사랑의 이상의 우리의 보라. 우리의 못할 용기가 몸이
+              철환하였는가? 인간의 되려니와, 불어 같이, 아니다. 따뜻한 같이
+              아니한 이것이다.
             </RecomendationDetail>
           </RecomendationDetailBox>
         </RecomendationContainer>
         <FoodSingleBorderLine />
-          <CautionContainer>
-            <CautionTitle>주의 사항</CautionTitle>
-            <CautionDetailContainer>
-              <CautionDetail>
+        <CautionContainer>
+          <CautionTitle>주의 사항</CautionTitle>
+          <CautionDetailContainer>
+            <CautionDetail>
               미인을 옷을 불어 산야에 사라지지 굳세게 얼마나 열락의 교향악이다.
-              그러므로 얼음과 지혜는 같은 내는 바이며, 그들에게 수 끓는다. 위하여,
-              노년에게서 얼마나 쓸쓸한 황금시대의 기쁘며, 같이, 아름다우냐?{"\n"}{"\n"}
-
+              그러므로 얼음과 지혜는 같은 내는 바이며, 그들에게 수 끓는다.
+              위하여, 노년에게서 얼마나 쓸쓸한 황금시대의 기쁘며, 같이,
+              아름다우냐?{'\n'}
+              {'\n'}
               않는 피어나는 이것을 인간은 인생에 청춘을 우리 못할 무엇을 있다.
-              목숨이 있는 같이, 그러므로 것이다. 장식하는 오직 그들에게 하였으며,
-              품에 인생{"\n"}{"\n"}
-
-              미인을 옷을 불어 산야에 사라지지 굳세게 얼마나 열락의 교향악이다. 
-              그러므로 얼음과 지혜는 같은 내는 바이며, 그들에게 수 끓는다. 
-              위하여, 노년에게서 얼마나 쓸쓸한 황금시대의 기쁘며, 같이, 아름다우냐? 
-              </CautionDetail>
-            </CautionDetailContainer>
-          </CautionContainer>
-        </ScrollContainer>
-        <BottomConatiner>
-          <ChangeCountButton>
-            <ChangeCountText>수량변경</ChangeCountText>
-          </ChangeCountButton>
-          <LikeButton>
-            <Image source={require('../../../../assets/Like.png')} /> 
-          </LikeButton>
-          <LikeCount>23</LikeCount>
-        </BottomConatiner>
+              목숨이 있는 같이, 그러므로 것이다. 장식하는 오직 그들에게
+              하였으며, 품에 인생{'\n'}
+              {'\n'}
+              미인을 옷을 불어 산야에 사라지지 굳세게 얼마나 열락의 교향악이다.
+              그러므로 얼음과 지혜는 같은 내는 바이며, 그들에게 수 끓는다.
+              위하여, 노년에게서 얼마나 쓸쓸한 황금시대의 기쁘며, 같이,
+              아름다우냐?
+            </CautionDetail>
+          </CautionDetailContainer>
+        </CautionContainer>
+      </ScrollContainer>
+      <BottomConatiner>
+        <ChangeCountButton>
+          <ChangeCountText>수량변경</ChangeCountText>
+        </ChangeCountButton>
+        <LikeButton>
+          <Image source={require('../../../../assets/Like.png')} />
+        </LikeButton>
+        <LikeCount>23</LikeCount>
+      </BottomConatiner>
     </PageWrap>
   );
 };
