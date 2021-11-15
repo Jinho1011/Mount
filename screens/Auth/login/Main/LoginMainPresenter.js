@@ -36,7 +36,7 @@ const EtcEmail = styled(CommonTouchableOpacity)`
 
 const ButtonText = styled.Text`
   text-align: center;
-  font-family: 'NotoSansKR';
+  font-family: 'NotoSansKR-normal';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
