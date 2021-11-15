@@ -20,7 +20,7 @@ const LoginButton = styled.TouchableOpacity`
 
 const LoginText = styled.Text`
   font-family: 'NotoSansKR-Bold';
-  font-weight: 500px;
+  font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
