@@ -9,7 +9,7 @@ const Container = styled.View`
 `;
 
 const CommonText = styled.Text`
-  font-family: 'NotoSansKR';
+  font-family: 'NotoSansKR-normal';
   font-style: normal;
   font-weight: 400;
   margin-left: 23px;
@@ -101,42 +101,25 @@ const FindPassword = styled(FindId)`
 `;
 
 const FindText = styled.Text`
-  font-family: 'NotoSansKR';
+  font-family: 'NotoSansKR-normal';
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
   color: #8b8b8b;
 `;
 
-//유효 검사
-let emailValid = false;
-let passwordValid = false;
-
-//수정 전 border 표시
-let emailIsEdited = false;
-let passwordIsEdited = false;
-
-export default props => {
+export default ({
+  email,
+  emailValid,
+  emailIsEdited,
+  emailChangeHandler,
+  password,
+  passwordValid,
+  passwordIsEdited,
+  passwordChangeHandler,
+}) => {
   const navigation = useNavigation();
-  const onPress = () => navigation.navigate('Tutorial'); //다음으로 이동
-
-  const [email, setEmail] = useState(email);
-  const [password, setPassword] = useState(password);
-
-  const EmailChangeHandler = text => {
-    setEmail(text);
-    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    emailRegex.test(text) ? (emailValid = true) : (emailValid = false);
-    emailIsEdited = true;
-  }; //이메일 검사
-
-  const PasswordChangeHandler = text => {
-    setPassword(text);
-    const passwordRegex =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-    passwordRegex.test(text) ? (passwordValid = true) : (passwordValid = false);
-    passwordIsEdited = true;
-  }; //비밀번호 검사
+  const tutorialPress = () => navigation.navigate('Tutorial'); //다음으로 이동
 
   return (
     <Container>
@@ -146,7 +129,7 @@ export default props => {
         placeholder="이메일 주소"
         placeholderTextColor="#8B8B8B"
         value={email}
-        onChangeText={text => EmailChangeHandler(text)}
+        onChangeText={emailChangeHandler}
         autoCapitalize={'none'}
         keyboardType={'email-address'}
         returnKeyType={'done'}
@@ -162,7 +145,7 @@ export default props => {
         placeholder="비밀번호"
         placeholderTextColor="#8B8B8B"
         value={password}
-        onChangeText={text => PasswordChangeHandler(text)}
+        onChangeText={passwordChangeHandler}
         secureTextEntry={true}
         autoCapitalize={'none'}
         returnKeyType={'done'}
@@ -176,7 +159,7 @@ export default props => {
       <LoginButton
         disabled={!emailValid || !passwordValid}
         //disabled={false} //임시
-        onPress={onPress}>
+        onPress={tutorialPress}>
         <LoginText>로그인 하기</LoginText>
       </LoginButton>
 

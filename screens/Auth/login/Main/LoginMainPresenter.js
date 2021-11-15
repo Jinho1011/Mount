@@ -36,7 +36,7 @@ const EtcEmail = styled(CommonTouchableOpacity)`
 
 const ButtonText = styled.Text`
   text-align: center;
-  font-family: 'NotoSansKR';
+  font-family: 'NotoSansKR-normal';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -45,7 +45,7 @@ const ButtonText = styled.Text`
 
 export default () => {
   const navigation = useNavigation();
-  const onPress = () => navigation.navigate('LoginDetail');
+  const loginDetailPress = () => navigation.navigate('LoginDetail');
 
   return (
     <Container>
@@ -58,7 +58,7 @@ export default () => {
       <Google>
         <ButtonText>구글</ButtonText>
       </Google>
-      <EtcEmail onPress={onPress}>
+      <EtcEmail onPress={loginDetailPress}>
         <ButtonText>기타 이메일 회원가입</ButtonText>
       </EtcEmail>
     </Container>

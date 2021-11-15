@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
@@ -8,7 +8,7 @@ const Container = styled.View`
 `;
 
 const CommonText = styled.Text`
-  font-family: 'NotoSansKR';
+  font-family: 'NotoSansKR-normal';
   font-style: normal;
   font-weight: 400;
   margin-left: 23px;
@@ -92,62 +92,22 @@ const SignupText = styled.Text`
   text-align: center;
 `;
 
-//유효 검사
-let emailValid = false;
-let passwordValid = false;
-let passwordCheckValid = false;
-
-//수정 전 border 표시
-let emailIsEdited = false;
-let passwordIsEdited = false;
-let passwordCheckIsEdited = false;
-
-export default props => {
+export default ({
+  email,
+  emailValid,
+  emailIsEdited,
+  emailChangeHandler,
+  password,
+  passwordValid,
+  passwordIsEdited,
+  passwordChangeHandler,
+  passwordCheck,
+  passwordCheckValid,
+  passwordCheckIsEdited,
+  passwordCheckChangeHandler,
+}) => {
   const navigation = useNavigation();
-  const onPress = () => navigation.navigate('SignupTos'); //다음으로 이동
-
-  const [email, setEmail] = useState(email);
-  const [password, setPassword] = useState(password);
-  const [passwordCheck, setPasswordCheck] = useState(passwordCheck);
-
-  const EmailChangeHandler = text => {
-    setEmail(text);
-    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    emailRegex.test(text) ? (emailValid = true) : (emailValid = false);
-    emailIsEdited = true;
-  }; //이메일 검사
-
-  const PasswordChangeHandler = text => {
-    setPassword(text);
-    const passwordRegex =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-    passwordRegex.test(text) ? (passwordValid = true) : (passwordValid = false);
-    passwordIsEdited = true;
-    passwordCheck && text === passwordCheck
-      ? (passwordCheckValid = true)
-      : (passwordCheckValid = false);
-  }; //비밀번호 검사
-
-  const PasswordCheckChangeHandler = text => {
-    password && password === text
-      ? (passwordCheckValid = true)
-      : (passwordCheckValid = false);
-    setPasswordCheck(text);
-    passwordCheckIsEdited = true;
-  }; //비밀번호 확인 검사
-  // const ref_input = Array < React.RefObject < TextInput >> [];
-  // ref_input[0] = useRef(null);
-  // ref_input[1] = useRef(null);
-  // ref_input[2] = useRef(null);
-
-  // const onFocusNext = index => {
-  //   if (ref_input[index + 1] && index < ref_input.length - 1) {
-  //     ref_input[index + 1].current?.focus();
-  //   }
-  //   if (ref_input[index + 1] && index === ref_input.length - 1) {
-  //     ref_input[index].current?.blur();
-  //   }
-  // };
+  const signupTosPress = () => navigation.navigate('SignupTos'); //다음으로 이동
 
   return (
     <Container>
@@ -157,7 +117,7 @@ export default props => {
         placeholder="이메일 주소"
         placeholderTextColor="#8B8B8B"
         value={email}
-        onChangeText={text => EmailChangeHandler(text)}
+        onChangeText={emailChangeHandler}
         autoCapitalize={'none'}
         keyboardType={'email-address'}
         returnKeyType={'done'}
@@ -173,7 +133,7 @@ export default props => {
         placeholder="비밀번호"
         placeholderTextColor="#8B8B8B"
         value={password}
-        onChangeText={text => PasswordChangeHandler(text)}
+        onChangeText={passwordChangeHandler}
         secureTextEntry={true}
         autoCapitalize={'none'}
         returnKeyType={'done'}
@@ -188,7 +148,7 @@ export default props => {
         placeholder="비밀번호 확인"
         placeholderTextColor="#8B8B8B"
         value={passwordCheck}
-        onChangeText={text => PasswordCheckChangeHandler(text)}
+        onChangeText={passwordCheckChangeHandler}
         secureTextEntry={true}
         autoCapitalize={'none'}
         returnKeyType={'done'}
@@ -199,9 +159,9 @@ export default props => {
         <PasswordCheckHelpText> </PasswordCheckHelpText>
       )}
       <SignupButton
-        disabled={!(emailValid && passwordValid && passwordCheckValid)}
-        //disabled={false} //임시
-        onPress={onPress}>
+        //disabled={!(emailValid && passwordValid && passwordCheckValid)}
+        disabled={false} //임시
+        onPress={signupTosPress}>
         <SignupText>회원가입</SignupText>
       </SignupButton>
     </Container>

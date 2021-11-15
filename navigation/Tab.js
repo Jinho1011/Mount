@@ -1,6 +1,8 @@
 import React from 'react';
+import {Image} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {HeaderRight, HeaderTitle} from '../components/Header/Header';
+
 import Homes from './Homes';
 import Search from '../screens/Main/Search';
 import Favorite from '../screens/Main/Favorite';
@@ -10,7 +12,44 @@ import Test from '../screens/Test';
 const TabsNavigator = createBottomTabNavigator();
 
 const Tabs = () => (
-  <TabsNavigator.Navigator>
+  <TabsNavigator.Navigator
+    screenOptions={({route}) => ({
+      tabBarIcon: ({focused, color, size}) => {
+        let iconName = '../assets/tabs/';
+        let source;
+
+        if (route.name === 'Homes') {
+          source = focused
+            ? require('../assets/tabs/home_.png')
+            : require('../assets/tabs/home.png');
+        } else if (route.name === 'Search') {
+          source = focused
+            ? require('../assets/tabs/search_.png')
+            : require('../assets/tabs/search.png');
+        } else if (route.name === 'Fav') {
+          source = focused
+            ? require('../assets/tabs/like_.png')
+            : require('../assets/tabs/like.png');
+        } else if (route.name === 'MyPage') {
+          source = focused
+            ? require('../assets/tabs/hamburger_.png')
+            : require('../assets/tabs/hamburger.png');
+        }
+
+        return <Image source={source} />;
+      },
+      tabBarActiveTintColor: '#373737',
+      tabBarInactiveTintColor: '#8b8b8b',
+      tabBarStyle: {
+        height: 63,
+        paddingBottom: 7,
+      },
+      tabBarLabelStyle: {
+        fontSize: 10,
+        fontFamily: 'NotoSansKR-Normal',
+        lineHeight: 15,
+      },
+    })}>
     <TabsNavigator.Screen
       name="Homes"
       component={Homes}

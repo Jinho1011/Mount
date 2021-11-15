@@ -14,6 +14,8 @@ import TitleContainer from '../../../../components/Common/SetTitle';
 import Counter from '../../../../components/Food/Counter';
 import Items from '../../../../components/Common/Items';
 
+import FocusAwareStatusBar from '../../../../components/StatusBar';
+
 const PageWrap = styled.View``;
 
 const ScrollContainer = styled.ScrollView`
@@ -324,6 +326,7 @@ const FoodSetPresenter = ({
 }) => {
   return (
     <PageWrap style={{flex: 1}}>
+      <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
         <TitleContainer
           img={foodSet[0]?.img}
