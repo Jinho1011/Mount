@@ -33,7 +33,7 @@ const ButtonText = styled.Text`
   width: 70%;
   height: 20px;
   color: ${props => (props.color ? '#e2f955' : '#b4b4b4')};
-  font-family: 'NotoSansKR';
+  font-family: 'NotoSansKR-normal';
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
@@ -57,7 +57,7 @@ const CheckButton2 = styled(CheckButton)`
 const TosTextBlack = styled.Text`
   width: 13%;
   height: 16px;
-  font-family: 'NotoSansKR';
+  font-family: 'NotoSansKR-normal';
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;

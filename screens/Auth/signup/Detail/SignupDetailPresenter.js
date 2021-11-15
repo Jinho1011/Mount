@@ -8,7 +8,7 @@ const Container = styled.View`
 `;
 
 const CommonText = styled.Text`
-  font-family: 'NotoSansKR';
+  font-family: 'NotoSansKR-normal';
   font-style: normal;
   font-weight: 400;
   margin-left: 23px;
