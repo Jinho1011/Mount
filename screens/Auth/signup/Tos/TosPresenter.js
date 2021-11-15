@@ -15,7 +15,7 @@ const TitleText = styled.Text`
   margin-left: 23px;
   font-style: normal;
   font-family: 'NotoSansKR-Bold';
-  font-weight: 700px;
+  font-weight: 700;
   font-size: 18px;
 `;
 
