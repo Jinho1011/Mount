@@ -2,13 +2,33 @@ import React, {useState, useEffect} from 'react';
 import HomePresenter from './HomeMainPresenter';
 
 export default () => {
-  const [foods, setFoods] = useState([]);
+  const [state, setState] = useState({
+    foods: [],
+    recs: [],
+    isLoaded: false,
+  });
 
-  useEffect(async () => {
+  const _loadFoods = async () => {
     let data = await fetch('/api/home/foods');
     let foods = JSON.parse(data._bodyInit).foods;
-    setFoods(foods);
+    setState(prev => ({...prev, foods}));
+  };
+
+  const _setLoaded = () => {
+    setState(prev => ({...prev, isLoaded: true}));
+  };
+
+  useEffect(() => {
+    const init = async () => {
+      _loadFoods();
+      _setLoaded();
+    };
+    init();
   }, []);
 
-  return <HomePresenter foods={foods} />;
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
+
+  return <HomePresenter state={state} setState={setState} />;
 };

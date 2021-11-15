@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, Image } from 'react-native';
+import {Pressable, Image} from 'react-native';
 import styled from 'styled-components';
 
 const CounterContainer = styled.View`
@@ -44,31 +44,37 @@ const CounterNumber = styled.Text`
   font-family: 'NotoSansKR-Bold';
 `;
 
-const Counter = ({membercount, onDecreaseMember, onIncreaseMember}) => {
-    return (
-        <CounterContainer>
-          <CounterBox>
-            <CounterTitle>총 인원 수</CounterTitle>
-            <CouterAdjustBox>
-              <Pressable
-                onPress={() => {
-                  onDecreaseMember();
-                }}>
-                <Image source={require('../../assets/minus_dis.png')} />
-              </Pressable>
-              <CouterNumberBox>
-                <CounterNumber>{membercount}</CounterNumber>
-              </CouterNumberBox>
-              <Pressable
-                onPress={() => {
-                  onIncreaseMember();
-                }}>
-                <Image source={require('../../assets/plus_dis.png')} />
-              </Pressable>
-            </CouterAdjustBox>
-          </CounterBox>
-        </CounterContainer>
-    );
+const Counter = ({state, setState}) => {
+  return (
+    <CounterContainer>
+      <CounterBox>
+        <CounterTitle>총 인원 수</CounterTitle>
+        <CouterAdjustBox>
+          <Pressable
+            onPress={() => {
+              //   setMembercount(Math.max(0, membercount - 1)); // 인원수는 음수가 되면 안됨
+              // onDecreaseMember();
+              let memCnt = state.membercount;
+              setState(prev => ({
+                ...prev,
+                memberCnt: Math.max(0, membercount - 1),
+              }));
+            }}>
+            <Image source={require('../../assets/minus_dis.png')} />
+          </Pressable>
+          <CouterNumberBox>
+            <CounterNumber>{membercount}</CounterNumber>
+          </CouterNumberBox>
+          <Pressable
+            onPress={() => {
+              onIncreaseMember();
+            }}>
+            <Image source={require('../../assets/plus_dis.png')} />
+          </Pressable>
+        </CouterAdjustBox>
+      </CounterBox>
+    </CounterContainer>
+  );
 };
 
 export default Counter;
