@@ -314,33 +314,20 @@ const LikeCount = styled.Text`
   margin-left: 3px;
 `;
 
-const FoodSetPresenter = ({
-  foodSet,
-  membercount,
-  items,
-  itemscount,
-  onIncreaseMember,
-  onDecreaseMember,
-  onIncreaseItems,
-  onDecreaseItems,
-}) => {
+const FoodSetPresenter = ({state, setState}) => {
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
         <TitleContainer
-          img={foodSet[0]?.img}
+          img={state?.foodSet[0]?.img}
           title={foodSet[0]?.title}
           components={foodSet[0]?.components}
         />
-        <Counter 
-          membercount={membercount}
-          onIncreaseMember={onIncreaseMember}
-          onDecreaseMember={onDecreaseMember} 
-        />
+        <Counter state={state} setState={setState} />
         <FoodSetListContainer>
           <FoodSetListTitle>구성품</FoodSetListTitle>
-          <Items 
+          <Items
             name={items[0]?.name}
             price={items[0]?.price}
             itemscount={itemscount}

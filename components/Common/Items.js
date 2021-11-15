@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import {Image, Pressable} from 'react-native';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ItemsContainer = styled.View`
   margin: 12px 16px 20px 16px;
@@ -81,12 +81,10 @@ const FoodSetBorderLine = styled.View`
 
 const Items = ({name, price, itemscount, onDecreaseItems, onIncreaseItems}) => {
   console.log(itemscount);
-  return(
+  return (
     <ItemsContainer>
       <ItemsBox>
-        <Image
-          source={require('../../assets/rec_set_item_image_sample.png')}
-        />
+        <Image source={require('../../assets/rec_set_item_image_sample.png')} />
         <ItemName>{name}</ItemName>
         <MinusPressable
           onPress={() => {
@@ -105,14 +103,12 @@ const Items = ({name, price, itemscount, onDecreaseItems, onIncreaseItems}) => {
         </PlusPressable>
         <FoodSetItemPriceContainer>
           <FoodSetItemSize>4인 (800g)</FoodSetItemSize>
-          <FoodSetItemPrice>
-            {price}원
-          </FoodSetItemPrice>
+          <FoodSetItemPrice>{price}원</FoodSetItemPrice>
         </FoodSetItemPriceContainer>
       </ItemsBox>
       <FoodSetBorderLine />
     </ItemsContainer>
-  )
-}
+  );
+};
 
 export default Items;
