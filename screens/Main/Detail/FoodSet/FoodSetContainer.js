@@ -1,17 +1,19 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import FoodSetPresenter from './FoodSetPresenter';
-import foodSet from '../../../../data/foodSet.json';
-
-const FoodSetComponents = [
-  {
-    name: '상품이름이...',
-    price: 16000,
-  },
-];
 
 const FoodSetContainer = () => {
   const [membercount, setMembercount] = useState(0);
-  const [componentscount, setComponentscount] = useState(0);
+  const [itemscount, setItemscount] = useState(0);
+  const [foodSet, setFoodSet] = useState([]);
+  const [items, setItems] = useState([]);
+
+  useEffect(async () => {
+    let data = await fetch('/api/detail/foodSet');
+    let foodSet = JSON.parse(data._bodyInit).foodSet;
+    let items = JSON.parse(data._bodyInit).items;
+    setFoodSet(foodSet);
+    setItems(items);
+  }, []);
 
   const onIncreaseMember = () => {
     setMembercount(membercount + 1);
@@ -21,24 +23,24 @@ const FoodSetContainer = () => {
     setMembercount(Math.max(0, membercount - 1)); // 인원수는 음수가 되면 안됨
   };
 
-  const onIncreaseComponents = () => {
-    setComponentscount(componentscount + 1);
+  const onIncreaseItems = () => {
+    setItemscount(itemscount + 1);
   };
 
-  const onDecreaseComponents = () => {
-    setComponentscount(Math.max(0, componentscount - 1));
+  const onDecreaseItems = () => {
+    setItemscount(Math.max(0, itemscount - 1));
   };
 
   return (
     <FoodSetPresenter
-      FoodSetItems={foodSet.foodSetItems}
-      FoodSetComponents={FoodSetComponents}
+      foodSet={foodSet}
       membercount={membercount}
-      componentscount={componentscount}
+      items={items}
+      itemscount={itemscount}
       onIncreaseMember={onIncreaseMember}
       onDecreaseMember={onDecreaseMember}
-      onIncreaseComponents={onIncreaseComponents}
-      onDecreaseComponents={onDecreaseComponents}
+      onIncreaseItems={onIncreaseItems}
+      onDecreaseItems={onDecreaseItems}
     />
   );
 };
