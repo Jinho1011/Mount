@@ -48,7 +48,7 @@ const ButtonText = styled.Text`
 
 export default () => {
   const navigation = useNavigation();
-  const onPress = () => navigation.navigate('SignupDetail');
+  const signupDetailPress = () => navigation.navigate('SignupDetail');
 
   return (
     <Container>
@@ -61,7 +61,7 @@ export default () => {
       <Google>
         <ButtonText>구글</ButtonText>
       </Google>
-      <EtcEmail onPress={onPress}>
+      <EtcEmail onPress={signupDetailPress}>
         <ButtonText>기타 이메일 회원가입</ButtonText>
       </EtcEmail>
     </Container>
