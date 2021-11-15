@@ -14,8 +14,7 @@ const TabsNavigator = createBottomTabNavigator();
 const Tabs = () => (
   <TabsNavigator.Navigator
     screenOptions={({route}) => ({
-      tabBarIcon: ({focused, color, size}) => {
-        let iconName = '../assets/tabs/';
+      tabBarIcon: ({focused}) => {
         let source;
 
         if (route.name === 'Homes') {
@@ -53,12 +52,12 @@ const Tabs = () => (
     <TabsNavigator.Screen
       name="Homes"
       component={Homes}
-      options={{headerShown: false}}
+      options={{headerShown: false, tabBarLabel: '홈'}}
     />
     <TabsNavigator.Screen
       name="Search"
       component={Search}
-      options={{headerShown: false}}
+      options={{headerShown: false, tabBarLabel: '검색'}}
     />
     <TabsNavigator.Group
       screenOptions={{
@@ -75,6 +74,7 @@ const Tabs = () => (
         component={Favorite}
         options={{
           headerTitle: () => <HeaderTitle title="찜한 목록" />,
+          tabBarLabel: '찜',
         }}
       />
       <TabsNavigator.Screen
@@ -82,6 +82,7 @@ const Tabs = () => (
         component={My}
         options={{
           headerTitle: () => <HeaderTitle title="마이페이지" />,
+          tabBarLabel: '마이페이지',
         }}
       />
     </TabsNavigator.Group>

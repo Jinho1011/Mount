@@ -54,11 +54,6 @@ export default ({foods}) => {
         navigate="HomeRecDetail"
         components={foods}
       />
-      <DetailContainer
-        title="레크세트 어쩌구 문구"
-        navigate=""
-        components={foods}
-      />
     </ScrollContainer>
   );
 };
