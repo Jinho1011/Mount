@@ -10,6 +10,9 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
+import TitleContainer from '../../../../components/Common/SetTitle';
+import Counter from '../../../../components/Food/Counter';
+import Items from '../../../../components/Common/Items';
 
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 
@@ -17,93 +20,6 @@ const PageWrap = styled.View``;
 
 const ScrollContainer = styled.ScrollView`
   background-color: #e5e5e5;
-`;
-
-const FoodImage = styled.Image`
-  width: 100%;
-  height: 254px;
-`;
-
-const DetailHeader = styled.View`
-  padding: 16px 20px 20px 20px;
-  background-color: #fff;
-  justify-content: space-between;
-`;
-
-const DetailTitleContainer = styled.View`
-  margin-bottom: 26px;
-`;
-
-const DetailTitle = styled.Text`
-  color: #000;
-  font-size: 18px;
-  line-height: 26px;
-  font-family: 'NotoSansKR-Bold';
-  margin-bottom: 4px;
-`;
-
-const DetailSetInfo = styled.View`
-  flex-direction: row;
-`;
-
-const DetailSetLabelContainer = styled.View`
-  padding: 2px 4px 1px 4px;
-  background-color: #f3f3f3;
-  border-radius: 6px;
-  height: 16px;
-  justify-content: center;
-  align-items: center;
-  margin-right: 4px;
-`;
-
-const DetailSetLabel = styled.Text`
-  color: #8b8b8b;
-  font-size: 8px;
-  font-family: 'NotoSansKR-Regular';
-  line-height: 12px;
-`;
-
-const DetailSetElements = styled.Text`
-  color: #777777;
-  font-size: 10px;
-  font-family: 'NotoSansKR-Regular';
-  line-height: 15px;
-`;
-
-const DetailMembers = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 14px;
-  border-radius: 8px;
-  border: 1px solid #eaeaea;
-`;
-
-const DetailMemberText = styled.Text`
-  color: #000;
-  font-size: 14px;
-  font-family: 'NotoSansKR-Bold';
-  line-height: 20px;
-`;
-
-const DetailAdjustMembers = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const DetailMemberCounter = styled.View`
-  margin: 0 14px;
-  padding: 0 22px;
-  border-radius: 6px;
-  border: 1px solid #f3f3f3;
-`;
-
-const CounterNumber = styled.Text`
-  color: #000;
-  font-size: 16px;
-  line-height: 24px;
-  font-family: 'NotoSansKR-Bold';
 `;
 
 /* 레크레이션 세트 리스트 */
@@ -115,12 +31,10 @@ const FoodSetListContainer = styled.View`
 `;
 
 const FoodSetListTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 16px;
   color: #000000;
+  font-size: 12px;
+  font-family: 'NotoSansKR-Bold';
+  line-height: 16px;
 `;
 
 const FoodSetListItemBigContainer = styled.View`
@@ -136,7 +50,7 @@ const FoodSetItem = styled.View`
 `;
 
 const FoodSetItemName = styled.Text`
-  font-family: Noto Sans KR;
+  font-family: 'NotoSansKR-Regular';
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -400,81 +314,39 @@ const LikeCount = styled.Text`
   margin-left: 3px;
 `;
 
-export default () => {
-  const navigation = useNavigation();
+const FoodSetPresenter = ({
+  foodSet,
+  membercount,
+  items,
+  itemscount,
+  onIncreaseMember,
+  onDecreaseMember,
+  onIncreaseItems,
+  onDecreaseItems,
+}) => {
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
-
       <ScrollContainer>
-        <FoodImage
-          source={require('../../../../assets/food_detail_sample.png')}
+        <TitleContainer
+          img={foodSet[0]?.img}
+          title={foodSet[0]?.title}
+          components={foodSet[0]?.components}
         />
-        <DetailHeader>
-          <DetailTitleContainer>
-            <DetailTitle>제목몇글자들어가나요</DetailTitle>
-            <DetailSetInfo>
-              <DetailSetLabelContainer>
-                <DetailSetLabel>세트</DetailSetLabel>
-              </DetailSetLabelContainer>
-              <DetailSetElements>
-                구성품1, 구성품2, 구성품3, 구성품4
-              </DetailSetElements>
-            </DetailSetInfo>
-          </DetailTitleContainer>
-          <DetailMembers>
-            <DetailMemberText>총 인원 수</DetailMemberText>
-            <DetailAdjustMembers>
-              <Pressable
-                onPress={() => {
-                  console.log('minus');
-                }}>
-                <Image source={require('../../../../assets/minus_dis.png')} />
-              </Pressable>
-              <DetailMemberCounter>
-                <CounterNumber>0</CounterNumber>
-              </DetailMemberCounter>
-              <Pressable
-                onPress={() => {
-                  console.log('plus');
-                }}>
-                <Image source={require('../../../../assets/plus_dis.png')} />
-              </Pressable>
-            </DetailAdjustMembers>
-          </DetailMembers>
-        </DetailHeader>
+        <Counter 
+          membercount={membercount}
+          onIncreaseMember={onIncreaseMember}
+          onDecreaseMember={onDecreaseMember} 
+        />
         <FoodSetListContainer>
           <FoodSetListTitle>구성품</FoodSetListTitle>
-          <FoodSetListItemBigContainer>
-            <FoodSetListItemContainer>
-              <FoodSetItem>
-                <Image
-                  source={require('../../../../assets/rec_set_item_image_sample.png')}
-                />
-                <FoodSetItemName>상품이름이...</FoodSetItemName>
-                <MinusPressable
-                  onPress={() => {
-                    console.log('plus');
-                  }}>
-                  <Image source={require('../../../../assets/minus.png')} />
-                </MinusPressable>
-                <FoodSetItemCountBlock>
-                  <FoodSetItemCount>3</FoodSetItemCount>
-                </FoodSetItemCountBlock>
-                <PlusPressable
-                  onPress={() => {
-                    console.log('plus');
-                  }}>
-                  <Image source={require('../../../../assets/plus.png')} />
-                </PlusPressable>
-                <FoodSetItemPriceContainer>
-                  <FoodSetItemSize>4인 (800g)</FoodSetItemSize>
-                  <FoodSetItemPrice>16,000원</FoodSetItemPrice>
-                </FoodSetItemPriceContainer>
-              </FoodSetItem>
-              <FoodSetBorderLine />
-            </FoodSetListItemContainer>
-          </FoodSetListItemBigContainer>
+          <Items 
+            name={items[0]?.name}
+            price={items[0]?.price}
+            itemscount={itemscount}
+            onDecreaseItems={onDecreaseItems}
+            onIncreaseItems={onIncreaseItems}
+          />
           <FoodSetTotalPriceTitle>총 예상금액</FoodSetTotalPriceTitle>
           <FoodSetTotalCalculatorContainer>
             <PriceForPersonBox>
@@ -525,3 +397,5 @@ export default () => {
     </PageWrap>
   );
 };
+
+export default FoodSetPresenter;
