@@ -2,7 +2,7 @@ import React from 'react';
 import Gate from './components/Gate';
 import {createServer} from 'miragejs';
 
-import homeFoods from './data/home.foods';
+import homeFoods from './data/home/foods';
 
 if (window.server) {
   server.shutdown();
