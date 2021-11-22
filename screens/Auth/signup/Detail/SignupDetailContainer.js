@@ -1,63 +1,55 @@
 import React, {useState} from 'react';
 import SignupDetailPresenter from './SignupDetailPresenter';
 
-//유효검사
-let emailValid = false;
-let passwordValid = false;
-let passwordCheckValid = false;
-
-//수정 여부 확인
-let emailIsEdited = false;
-let passwordIsEdited = false;
-let passwordCheckIsEdited = false;
-
 export default () => {
-  const [email, setEmail] = useState(email);
-  const [password, setPassword] = useState(password);
-  const [passwordCheck, setPasswordCheck] = useState(passwordCheck);
+  const [state, setState] = useState({
+    email: [],
+    emailIsEdited: false,
+    emailValid: false,
+    password: [],
+    passwordIsEdited: false,
+    passwordValid: false,
+    passwordCheck: [],
+    passwordCheckIsEdited: false,
+    passwordCheckValid: false,
+  });
 
-  const emailChangeHandler = email => {
-    setEmail(email);
+  const emailChangeHandler = e => {
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    emailRegex.test(email) ? (emailValid = true) : (emailValid = false);
-    emailIsEdited = true;
-    console.log(email, emailValid, emailIsEdited);
+    setState({
+      ...state,
+      email: e,
+      emailValid: emailRegex.test(e),
+      emailIsEdited: true,
+    });
   };
 
-  const passwordChangeHandler = password => {
-    setPassword(password);
+  const passwordChangeHandler = p => {
     const passwordRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-    passwordRegex.test(password)
-      ? (passwordValid = true)
-      : (passwordValid = false);
-    passwordIsEdited = true;
-    passwordCheck && password === passwordCheck
-      ? (passwordCheckValid = true)
-      : (passwordCheckValid = false);
+    setState({
+      ...state,
+      password: p,
+      passwordValid: passwordRegex.test(p),
+      passwordIsEdited: true,
+      passwordCheckValid: state.passwordCheck && state.passwordCheck === p,
+    });
   };
 
-  const passwordCheckChangeHandler = passwordCheck => {
-    password && password === passwordCheck
-      ? (passwordCheckValid = true)
-      : (passwordCheckValid = false);
-    setPasswordCheck(passwordCheck);
-    passwordCheckIsEdited = true;
+  const passwordCheckChangeHandler = pc => {
+    setState({
+      ...state,
+      passwordCheck: pc,
+      passwordCheckIsEdited: true,
+      passwordCheckValid: state.password && state.password === pc,
+    });
   };
 
   return (
     <SignupDetailPresenter
-      email={email}
-      emailValid={emailValid}
-      emailIsEdited={emailIsEdited}
+      state={state}
       emailChangeHandler={emailChangeHandler}
-      password={password}
-      passwordValid={passwordValid}
-      passwordIsEdited={passwordIsEdited}
       passwordChangeHandler={passwordChangeHandler}
-      passwordCheck={passwordCheck}
-      passwordCheckValid={passwordCheckValid}
-      passwordCheckIsEdited={passwordCheckIsEdited}
       passwordCheckChangeHandler={passwordCheckChangeHandler}
     />
   );

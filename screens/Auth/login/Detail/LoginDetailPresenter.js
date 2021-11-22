@@ -108,16 +108,7 @@ const FindText = styled.Text`
   color: #8b8b8b;
 `;
 
-export default ({
-  email,
-  emailValid,
-  emailIsEdited,
-  emailChangeHandler,
-  password,
-  passwordValid,
-  passwordIsEdited,
-  passwordChangeHandler,
-}) => {
+export default ({state, emailChangeHandler, passwordChangeHandler}) => {
   const navigation = useNavigation();
   const tutorialPress = () => navigation.navigate('Tutorial'); //다음으로 이동
 
@@ -125,39 +116,39 @@ export default ({
     <Container>
       <EmailText>이메일</EmailText>
       <EmailTextInput
-        border={!emailValid && emailIsEdited}
+        border={!state.emailValid && state.emailIsEdited}
         placeholder="이메일 주소"
         placeholderTextColor="#8B8B8B"
-        value={email}
+        value={state.email}
         onChangeText={emailChangeHandler}
         autoCapitalize={'none'}
         keyboardType={'email-address'}
         returnKeyType={'done'}
       />
-      {!emailValid && emailIsEdited ? (
+      {!state.emailValid && state.emailIsEdited ? (
         <EmailHelpText>유효하지 않은 이메일</EmailHelpText>
       ) : (
         <EmailHelpText> </EmailHelpText>
       )}
       <PasswordText>비밀번호</PasswordText>
       <PasswordTextInput
-        border={!passwordValid && passwordIsEdited}
+        border={!state.passwordValid && state.passwordIsEdited}
         placeholder="비밀번호"
         placeholderTextColor="#8B8B8B"
-        value={password}
+        value={state.password}
         onChangeText={passwordChangeHandler}
         secureTextEntry={true}
         autoCapitalize={'none'}
         returnKeyType={'done'}
       />
-      {!passwordValid && passwordIsEdited ? (
+      {!state.passwordValid && state.passwordIsEdited ? (
         <PasswordHelpText>특수문자, 숫자, 문자 포함 8~15자리</PasswordHelpText>
       ) : (
         <PasswordHelpText> </PasswordHelpText>
       )}
 
       <LoginButton
-        disabled={!emailValid || !passwordValid}
+        disabled={!state.emailValid || !state.passwordValid}
         //disabled={false} //임시
         onPress={tutorialPress}>
         <LoginText>로그인 하기</LoginText>
