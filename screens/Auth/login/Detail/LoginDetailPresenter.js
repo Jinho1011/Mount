@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
@@ -8,71 +8,64 @@ const Container = styled.View`
   background-color: #ffffff;
 `;
 
-const CommonText = styled.Text`
-  font-family: 'NotoSansKR-normal';
-  font-style: normal;
-  font-weight: 400;
-  margin-left: 23px;
-`;
-const EmailText = styled(CommonText)`
-  width: 40px;
-  height: 16px;
-  margin-top: 116px;
-  font-size: 12px;
-  line-height: 16px;
-`;
-
-const PasswordText = styled(CommonText)`
-  width: 50px;
-  height: 16px;
-  margin-top: 15px;
-  font-size: 12px;
-  line-height: 16px;
-`;
-
 const CommonTextInput = styled.TextInput`
-  position: absolute;
   background-color: #f3f3f3;
   padding-top: 13px;
   padding-bottom: 11px;
   padding-left: 18px;
-  width: 87%;
   height: 48px;
   margin-left: 23px;
+  margin-right: 23px;
   border: ${props => (props.border ? '#ff5151' : '#f3f3f3')};
-  border-radius: 5;
+  border-radius: 5px;
   color: #000000;
 `;
 
 const EmailTextInput = styled(CommonTextInput)`
-  margin-top: 137px;
+  margin-top: 5px;
 `;
 
 const PasswordTextInput = styled(CommonTextInput)`
-  margin-top: 238px;
+  margin-top: 5px;
+`;
+
+const CommonText = styled.Text`
+  height: 16px;
+  font-family: 'NotoSansKR-normal';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  margin-left: 23px;
+`;
+
+const EmailText = styled(CommonText)`
+  margin-top: 116px;
+  margin-right: 303px;
+`;
+
+const PasswordText = styled(CommonText)`
+  margin-top: 15px;
+  margin-right: 292px;
 `;
 
 const CommonHelpText = styled(CommonText)`
-  width: 100px;
   height: 15px;
   font-size: 10px;
   line-height: 15px;
+  margin-left: 23px;
+  margin-right: 200px;
   color: #ff5151;
 `;
-const EmailHelpText = styled(CommonHelpText)`
-  width: 150;
-  margin-top: 55;
-`;
-const PasswordHelpText = styled(CommonHelpText)`
-  width: 200;
-  margin-top: 55;
+const HelpText = styled(CommonHelpText)`
+  margin-top: 2px;
 `;
 
 const LoginButton = styled.TouchableOpacity`
-  width: 87%;
   height: 48px;
   margin-top: 332px;
   margin-left: 23px;
+  margin-right: 23px;
   border-radius: 5px;
   background-color: ${props => (props.disabled ? '#f3f3f3' : '#e2f955')};
   padding-top: 12px;
@@ -108,16 +101,7 @@ const FindText = styled.Text`
   color: #8b8b8b;
 `;
 
-export default ({
-  email,
-  emailValid,
-  emailIsEdited,
-  emailChangeHandler,
-  password,
-  passwordValid,
-  passwordIsEdited,
-  passwordChangeHandler,
-}) => {
+export default ({state, emailChangeHandler, passwordChangeHandler}) => {
   const navigation = useNavigation();
   const tutorialPress = () => navigation.navigate('Tutorial'); //다음으로 이동
 
@@ -125,40 +109,40 @@ export default ({
     <Container>
       <EmailText>이메일</EmailText>
       <EmailTextInput
-        border={!emailValid && emailIsEdited}
+        border={!state.emailValid && state.emailIsEdited}
         placeholder="이메일 주소"
         placeholderTextColor="#8B8B8B"
-        value={email}
+        value={state.email}
         onChangeText={emailChangeHandler}
         autoCapitalize={'none'}
         keyboardType={'email-address'}
         returnKeyType={'done'}
       />
-      {!emailValid && emailIsEdited ? (
-        <EmailHelpText>유효하지 않은 이메일</EmailHelpText>
+      {!state.emailValid && state.emailIsEdited ? (
+        <HelpText>유효하지 않은 이메일</HelpText>
       ) : (
-        <EmailHelpText> </EmailHelpText>
+        <HelpText> </HelpText>
       )}
       <PasswordText>비밀번호</PasswordText>
       <PasswordTextInput
-        border={!passwordValid && passwordIsEdited}
+        border={!state.passwordValid && state.passwordIsEdited}
         placeholder="비밀번호"
         placeholderTextColor="#8B8B8B"
-        value={password}
+        value={state.password}
         onChangeText={passwordChangeHandler}
         secureTextEntry={true}
         autoCapitalize={'none'}
         returnKeyType={'done'}
       />
-      {!passwordValid && passwordIsEdited ? (
-        <PasswordHelpText>특수문자, 숫자, 문자 포함 8~15자리</PasswordHelpText>
+      {!state.passwordValid && state.passwordIsEdited ? (
+        <HelpText>특수문자, 숫자, 문자 포함 8~15자리</HelpText>
       ) : (
-        <PasswordHelpText> </PasswordHelpText>
+        <HelpText> </HelpText>
       )}
 
       <LoginButton
-        disabled={!emailValid || !passwordValid}
-        //disabled={false} //임시
+        //disabled={!state.emailValid || !state.passwordValid}
+        disabled={false} //임시
         onPress={tutorialPress}>
         <LoginText>로그인 하기</LoginText>
       </LoginButton>

@@ -1,45 +1,41 @@
 import React, {useState} from 'react';
 import LoginDetailPresenter from './LoginDetailPresenter';
 
-//유효검사
-let emailValid = false;
-let passwordValid = false;
-
-//수정 여부 확인
-let emailIsEdited = false;
-let passwordIsEdited = false;
-
 export default () => {
-  const [email, setEmail] = useState(email);
-  const [password, setPassword] = useState(password);
+  const [state, setState] = useState({
+    email: [],
+    emailIsEdited: false,
+    emailValid: false,
+    password: [],
+    passwordIsEdited: false,
+    passwordValid: false,
+  });
 
-  const emailChangeHandler = email => {
-    setEmail(email);
+  const emailChangeHandler = e => {
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    emailRegex.test(email) ? (emailValid = true) : (emailValid = false);
-    emailIsEdited = true;
-    console.log(email, emailValid, emailIsEdited);
+    setState({
+      ...state,
+      email: e,
+      emailValid: emailRegex.test(e),
+      emailIsEdited: true,
+    });
   };
 
-  const passwordChangeHandler = password => {
-    setPassword(password);
+  const passwordChangeHandler = p => {
     const passwordRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-    passwordRegex.test(password)
-      ? (passwordValid = true)
-      : (passwordValid = false);
-    passwordIsEdited = true;
+    setState({
+      ...state,
+      password: p,
+      passwordValid: passwordRegex.test(p),
+      passwordIsEdited: true,
+    });
   };
 
   return (
     <LoginDetailPresenter
-      email={email}
-      emailValid={emailValid}
-      emailIsEdited={emailIsEdited}
+      state={state}
       emailChangeHandler={emailChangeHandler}
-      password={password}
-      passwordValid={passwordValid}
-      passwordIsEdited={passwordIsEdited}
       passwordChangeHandler={passwordChangeHandler}
     />
   );
