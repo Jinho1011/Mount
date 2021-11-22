@@ -105,31 +105,16 @@ const imageStyles = StyleSheet.create({
   },
 });
 
-export default () => {
+export default (state, AgreeButtonPress, firstCheckPress, secondCheckPress) => {
   const navigation = useNavigation();
-  const [firstCheck, setFirstCheck] = useState(false);
-  const [secondCheck, setSecondCheck] = useState(false);
-  const AgreeButtonPress = () => {
-    if (firstCheck !== secondCheck) {
-      setFirstCheck(true), setSecondCheck(true);
-    } else {
-      setFirstCheck(!firstCheck), setSecondCheck(!secondCheck);
-    }
-  };
-  const firstCheckPress = () => {
-    setFirstCheck(!firstCheck);
-  };
-  const secondCheckPress = () => {
-    setSecondCheck(!secondCheck);
-  };
   const onPress = () => navigation.navigate('LoginMain');
   return (
     <Container>
       <TitleText>이용 약관 동의</TitleText>
       <AgreeButton
         onPress={AgreeButtonPress}
-        backgroundColor={firstCheck && secondCheck}>
-        {firstCheck && secondCheck ? (
+        backgroundColor={state.firstCheck && state.secondCheck}>
+        {state.firstCheck && state.secondCheck ? (
           <Image
             style={imageStyles.image}
             source={require('../../../../assets/Check_round_on.png')}
@@ -140,12 +125,12 @@ export default () => {
             source={require('../../../../assets/Check_round_off.png')}
           />
         )}
-        <ButtonText color={firstCheck && secondCheck}>
+        <ButtonText color={state.firstCheck && state.secondCheck}>
           모두 동의합니다!
         </ButtonText>
       </AgreeButton>
-      <CheckButton onPress={firstCheckPress}>
-        {firstCheck ? (
+      <CheckButton onPress={() => firstCheckPress}>
+        {state.firstCheck ? (
           <Image
             style={imageStyles.image}
             source={require('../../../../assets/Check_.png')}
@@ -160,8 +145,8 @@ export default () => {
       <TosTextBlack>이용약관</TosTextBlack>
       <TosTextRed>(필수)</TosTextRed>
       <TosTextBox>이용 약관 내용 첨부</TosTextBox>
-      <CheckButton2 onPress={secondCheckPress}>
-        {secondCheck ? (
+      <CheckButton2 onPress={() => secondCheckPress}>
+        {state.secondCheck ? (
           <Image
             style={imageStyles.image}
             source={require('../../../../assets/Check_.png')}
@@ -176,7 +161,10 @@ export default () => {
       <TosTextBlack>이용약관</TosTextBlack>
       <TosTextRed>(필수)</TosTextRed>
       <TosTextBox>이용 약관 내용 첨부</TosTextBox>
-      <SignupButton disabled={!(firstCheck && secondCheck)} onPress={onPress}>
+      <SignupButton
+        //disabled={!(state.firstCheck && state.secondCheck)}
+        disable={false}
+        onPress={onPress}>
         <SignupText>회원가입</SignupText>
       </SignupButton>
     </Container>
