@@ -104,9 +104,14 @@ const imageStyles = StyleSheet.create({
   },
 });
 
-export default (state, AgreeButtonPress, firstCheckPress, secondCheckPress) => {
+export default ({
+  state,
+  AgreeButtonPress,
+  firstCheckPress,
+  secondCheckPress,
+}) => {
   const navigation = useNavigation();
-  const onPress = () => navigation.navigate('LoginMain');
+  const LoginMainPress = () => navigation.navigate('LoginMain');
   return (
     <Container>
       <TitleText>이용 약관 동의</TitleText>
@@ -128,7 +133,7 @@ export default (state, AgreeButtonPress, firstCheckPress, secondCheckPress) => {
           모두 동의합니다!
         </ButtonText>
       </AgreeButton>
-      <CheckButton onPress={() => firstCheckPress}>
+      <CheckButton onPress={firstCheckPress}>
         {state.firstCheck ? (
           <Image
             style={imageStyles.image}
@@ -144,7 +149,7 @@ export default (state, AgreeButtonPress, firstCheckPress, secondCheckPress) => {
       <TosTextBlack>이용약관</TosTextBlack>
       <TosTextRed>(필수)</TosTextRed>
       <TosTextBox>이용 약관 내용 첨부</TosTextBox>
-      <CheckButton2 onPress={() => secondCheckPress}>
+      <CheckButton2 onPress={secondCheckPress}>
         {state.secondCheck ? (
           <Image
             style={imageStyles.image}
@@ -161,9 +166,8 @@ export default (state, AgreeButtonPress, firstCheckPress, secondCheckPress) => {
       <TosTextRed>(필수)</TosTextRed>
       <TosTextBox>이용 약관 내용 첨부</TosTextBox>
       <SignupButton
-        //disabled={!(state.firstCheck && state.secondCheck)}
-        disable={false}
-        onPress={onPress}>
+        disabled={!(state.firstCheck && state.secondCheck)}
+        onPress={LoginMainPress}>
         <SignupText>회원가입</SignupText>
       </SignupButton>
     </Container>

@@ -15,7 +15,6 @@ export default () => {
         secondCheck: !state.secondCheck,
       });
     }
-    console.log(state.firstCheck, state.secondCheck);
   };
   const firstCheckPress = () => {
     setState({...state, firstCheck: !state.firstCheck});
