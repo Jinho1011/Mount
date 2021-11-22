@@ -7,77 +7,67 @@ const Container = styled.View`
   background-color: #ffffff;
 `;
 
-const CommonText = styled.Text`
-  font-family: 'NotoSansKR-normal';
-  font-style: normal;
-  font-weight: 400;
-  margin-left: 23px;
-`;
-const EmailText = styled(CommonText)`
-  width: 40px;
-  height: 16px;
-  margin-top: 116px;
-  font-size: 12px;
-  line-height: 16px;
-`;
-
-const PasswordText = styled(CommonText)`
-  width: 50;
-  height: 16px;
-  margin-top: 15px;
-  font-size: 12px;
-  line-height: 16px;
-`;
-
 const CommonTextInput = styled.TextInput`
-  position: absolute;
   background-color: #f3f3f3;
   padding-top: 13px;
   padding-bottom: 11px;
   padding-left: 18px;
-  width: 87%;
   height: 48px;
   margin-left: 23px;
+  margin-right: 23px;
   border: ${props => (props.border ? '#ff5151' : '#f3f3f3')};
   border-radius: 5px;
   color: #000000;
 `;
 
 const EmailTextInput = styled(CommonTextInput)`
-  margin-top: 137px;
+  margin-top: 5px;
 `;
 
 const PasswordTextInput = styled(CommonTextInput)`
-  margin-top: 238px;
+  margin-top: 5px;
 `;
 const PasswordCheckTextInput = styled(CommonTextInput)`
-  margin-top: 311px;
+  margin-top: 8px;
+`;
+
+const CommonText = styled.Text`
+  height: 16px;
+  font-family: 'NotoSansKR-normal';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  margin-left: 23px;
+`;
+
+const EmailText = styled(CommonText)`
+  margin-top: 116px;
+  margin-right: 303px;
+`;
+
+const PasswordText = styled(CommonText)`
+  margin-top: 15px;
+  margin-right: 292px;
 `;
 
 const CommonHelpText = styled(CommonText)`
-  width: 100px;
   height: 15px;
   font-size: 10px;
   line-height: 15px;
+  margin-left: 23px;
+  margin-right: 200px;
   color: #ff5151;
 `;
-const EmailHelpText = styled(CommonHelpText)`
-  width: 150px;
-  margin-top: 55px;
-`;
-const PasswordHelpText = styled(CommonHelpText)`
-  width: 200px;
-  margin-top: 55px;
-`;
-const PasswordCheckHelpText = styled(CommonHelpText)`
-  margin-top: 58px;
+const HelpText = styled(CommonHelpText)`
+  margin-top: 2px;
 `;
 
 const SignupButton = styled.TouchableOpacity`
-  width: 87%;
   height: 48px;
   margin-top: 242px;
   margin-left: 23px;
+  margin-right: 23px;
   border-radius: 5px;
   background-color: ${props => (props.disabled ? '#f3f3f3' : '#e2f955')};
   padding-top: 12px;
@@ -115,9 +105,9 @@ export default ({
         returnKeyType={'done'}
       />
       {!state.emailValid && state.emailIsEdited ? (
-        <EmailHelpText>유효하지 않은 이메일</EmailHelpText>
+        <HelpText>유효하지 않은 이메일</HelpText>
       ) : (
-        <EmailHelpText> </EmailHelpText>
+        <HelpText> </HelpText>
       )}
       <PasswordText>비밀번호</PasswordText>
       <PasswordTextInput
@@ -131,9 +121,9 @@ export default ({
         returnKeyType={'done'}
       />
       {!state.passwordValid && state.passwordIsEdited ? (
-        <PasswordHelpText>특수문자, 숫자, 문자 포함 8~15자리</PasswordHelpText>
+        <HelpText>특수문자, 숫자, 문자 포함 8~15자리</HelpText>
       ) : (
-        <PasswordHelpText> </PasswordHelpText>
+        <HelpText> </HelpText>
       )}
       <PasswordCheckTextInput
         border={!state.passwordCheckValid && state.passwordCheckIsEdited}
@@ -146,9 +136,9 @@ export default ({
         returnKeyType={'done'}
       />
       {!state.passwordCheckValid && state.passwordCheckIsEdited ? (
-        <PasswordCheckHelpText>비밀번호가 다릅니다.</PasswordCheckHelpText>
+        <HelpText>비밀번호가 다릅니다.</HelpText>
       ) : (
-        <PasswordCheckHelpText> </PasswordCheckHelpText>
+        <HelpText> </HelpText>
       )}
       <SignupButton
         //disabled={!(emailValid && passwordValid && passwordCheckValid)}

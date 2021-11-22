@@ -7,10 +7,10 @@ const Container = styled.View`
   background-color: #ffffff;
 `;
 const SignupButton = styled.TouchableOpacity`
-  width: 87%;
   height: 48px;
   margin-top: 618px;
   margin-left: 23px;
+  margin-right: 23px;
   border-radius: 5px;
   background-color: #e2f955;
   padding-top: 12px;
@@ -25,7 +25,7 @@ const LoginButton = styled.TouchableOpacity`
 `;
 
 const SignupText = styled.Text`
-  font-family: 'NotoSansKR-normal';
+  font-family: 'NotoSansKR-Bold';
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
