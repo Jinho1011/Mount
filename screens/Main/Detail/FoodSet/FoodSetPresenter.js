@@ -15,6 +15,7 @@ import Counter from '../../../../components/Food/Counter';
 import Items from '../../../../components/Common/Items';
 
 import FocusAwareStatusBar from '../../../../components/StatusBar';
+import TotalPrice from '../../../../components/Common/TotalPrice';
 
 const PageWrap = styled.View``;
 
@@ -22,214 +23,28 @@ const ScrollContainer = styled.ScrollView`
   background-color: #e5e5e5;
 `;
 
-/* 레크레이션 세트 리스트 */
 const FoodSetListContainer = styled.View`
   margin-top: 4px;
-  padding: 20px 20px 20px 20px;
-  justify-content: space-between;
   background-color: #fff;
 `;
 
 const FoodSetListTitle = styled.Text`
   color: #000000;
+  margin-top: 32px;
+  margin-left: 20px;
   font-size: 12px;
   font-family: 'NotoSansKR-Bold';
   line-height: 16px;
 `;
 
-const FoodSetListItemBigContainer = styled.View`
+const ItemsContainer = styled.View`
   margin-top: 18px;
 `;
 
-const FoodSetListItemContainer = styled.View`
-  margin: 12px 16px 20px 16px;
-`;
-
-const FoodSetItem = styled.View`
-  flex-direction: row;
-`;
-
-const FoodSetItemName = styled.Text`
-  font-family: 'NotoSansKR-Regular';
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-  color: #000000;
-
-  margin-left: 10px;
-  margin-top: 5px;
-`;
-
-const MinusPressable = styled.Pressable`
-  margin: 16px 0 16px 24px;
-`;
-
-const PlusPressable = styled.Pressable`
-  margin: 11px 0 11px 6px;
-`;
-
-const FoodSetItemCountBlock = styled.View`
-  background: #f3f3f3;
-  border-radius: 12.5px;
-  margin-top: 3px;
-  margin-left: 6px;
-  padding: 2px 16px 3px 16px;
-`;
-
-const FoodSetItemCount = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-  color: #000000;
-`;
-
-const FoodSetItemPriceContainer = styled.View`
-  flex-direction: column;
-  margin-left: 12px;
-`;
-
-const FoodSetItemSize = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 15px;
-  text-align: right;
-  color: #828282;
-`;
-
-const FoodSetItemPrice = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: right;
-
-  margin-left: 12px;
-`;
-
-const FoodSetBorderLine = styled.View`
+const BorderLine = styled.View`
   border: 0.35px solid #eaeaea;
 
   margin-top: 14px;
-`;
-
-const MoreRecButton = styled.TouchableOpacity`
-  padding: 12px 76px;
-  margin: 24px 28px 22px 28px;
-  background: #e2f955;
-  border-radius: 5px;
-`;
-
-const MoreRecButtonText = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: center;
-  color: #000000;
-`;
-
-const FoodSetTotalPriceTitle = styled.Text`
-  margin-top: 26px;
-
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 16px;
-  display: flex;
-  align-items: center;
-  color: #000000;
-`;
-
-const FoodSetTotalCalculatorContainer = styled.View`
-  flex-direction: row;
-  margin-top: 12px;
-  margin-bottom: 20px;
-  padding-left: 14px;
-`;
-
-const PriceForPersonBox = styled.View`
-  flex-direction: column;
-`;
-
-const PriceForPersonTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 15px;
-  display: flex;
-  align-items: center;
-  color: #8b8b8b;
-`;
-
-const PriceForPersonPrice = styled.Text`
-  margin-top: -5px;
-  margin-bottom: 1px;
-
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 26px;
-  display: flex;
-  align-items: center;
-  color: #8b8b8b;
-`;
-
-const CloseImageContainer = styled.View`
-  margin-top: 15px;
-  margin-left: 56px;
-  margin-bottom: 6px;
-`;
-
-const FoodSetTotalCount = styled.Text`
-  margin: 9px 0 2px 14px;
-
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 26px;
-  display: flex;
-  align-items: center;
-  color: #8b8b8b;
-`;
-
-const FoodSetTotalResultBox = styled.View`
-  flex-direction: column;
-  margin-left: 70px;
-`;
-
-const ResultTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 15px;
-  display: flex;
-  align-items: center;
-  text-align: right;
-  color: #8b8b8b;
-`;
-
-const ResultPrice = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 26px;
-  display: flex;
-  align-items: center;
-  text-align: right;
-  color: #ff5151;
 `;
 
 /* 주의사항 */
@@ -321,36 +136,29 @@ const FoodSetPresenter = ({state, setState}) => {
       <ScrollContainer>
         <TitleContainer
           img={state?.foodSet[0]?.img}
-          title={foodSet[0]?.title}
-          components={foodSet[0]?.components}
+          title={state?.foodSet[0]?.title}
+          components={state?.foodSet[0]?.components}
         />
         <Counter state={state} setState={setState} />
         <FoodSetListContainer>
           <FoodSetListTitle>구성품</FoodSetListTitle>
-          <Items
-            name={items[0]?.name}
-            price={items[0]?.price}
-            itemscount={itemscount}
-            onDecreaseItems={onDecreaseItems}
-            onIncreaseItems={onIncreaseItems}
-          />
-          <FoodSetTotalPriceTitle>총 예상금액</FoodSetTotalPriceTitle>
-          <FoodSetTotalCalculatorContainer>
-            <PriceForPersonBox>
-              <PriceForPersonTitle>1인 기준</PriceForPersonTitle>
-              <PriceForPersonPrice>12000원</PriceForPersonPrice>
-            </PriceForPersonBox>
-            <CloseImageContainer>
-              <Image source={require('../../../../assets/close.png')} />
-            </CloseImageContainer>
-            <FoodSetTotalCount>20</FoodSetTotalCount>
-            <FoodSetTotalResultBox>
-              <ResultTitle>총 금액</ResultTitle>
-              <ResultPrice>999,999원</ResultPrice>
-            </FoodSetTotalResultBox>
-          </FoodSetTotalCalculatorContainer>
+          <ItemsContainer>
+            <Items 
+              state={state} 
+              setState={setState} 
+              name={state?.items[0]?.name} 
+              price={state?.items[0]?.price} 
+            />
+            <Items 
+              state={state} 
+              setState={setState} 
+              name={state?.items[0]?.name} 
+              price={state?.items[0]?.price} 
+            />
+          </ItemsContainer>
         </FoodSetListContainer>
-        <FoodSetBorderLine />
+        <TotalPrice />
+        <BorderLine />
         <CautionContainer>
           <CautionTitle>주의 사항</CautionTitle>
           <CautionDetailContainer>
