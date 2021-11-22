@@ -1,5 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import Select from '../screens/Auth/select';
 import SignupDetail from '../screens/Auth/signup/Detail';
 import SignupMain from '../screens/Auth/signup/Main';
 import SignupTos from '../screens/Auth/signup/Tos';
@@ -12,6 +13,7 @@ const AuthNavigator = createStackNavigator();
 export default () => (
   <AuthNavigator.Navigator>
     <AuthNavigator.Group screenOptions={{headerShown: false}}>
+      <AuthNavigator.Screen name="Select" component={Select} />
       <AuthNavigator.Screen name="SignupMain" component={SignupMain} />
       <AuthNavigator.Screen name="SignupDetail" component={SignupDetail} />
       <AuthNavigator.Screen name="SignupTos" component={SignupTos} />

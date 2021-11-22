@@ -10,10 +10,9 @@ const Container = styled.View`
 const CommonTouchableOpacity = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
-  position: absolute;
-  width: 87%;
   height: 48px;
   margin-left: 23px;
+  margin-right: 23px;
   border-radius: 5px;
 `;
 
@@ -23,17 +22,17 @@ const Kakaotalk = styled(CommonTouchableOpacity)`
 `;
 
 const Naver = styled(CommonTouchableOpacity)`
-  margin-top: 506px;
+  margin-top: 8px;
   background-color: #20e41c;
 `;
 
 const Google = styled(CommonTouchableOpacity)`
-  margin-top: 562px;
+  margin-top: 8px;
   background-color: #ff5e5e;
 `;
 
 const EtcEmail = styled(CommonTouchableOpacity)`
-  margin-top: 618px;
+  margin-top: 8px;
   background-color: #f3f3f3;
 `;
 

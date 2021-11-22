@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Image, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
@@ -9,28 +9,27 @@ const Container = styled.View`
 `;
 
 const TitleText = styled.Text`
-  width: 150px;
   height: 40px;
-  margin-top: 71px;
-  margin-left: 23px;
   font-style: normal;
   font-family: 'NotoSansKR-Bold';
   font-weight: 700;
   font-size: 18px;
+  margin-top: 71px;
+  margin-left: 23px;
+  margin-right: 229px;
 `;
 
 const AgreeButton = styled.TouchableOpacity`
-  width: 87%;
   height: 48px;
   background-color: ${props => (props.backgroundColor ? '#000000' : '#f3f3f3')};
   margin-top: 16px;
   margin-left: 23px;
+  margin-right: 23px;
   padding-top: 12px;
   padding-left: 19px;
   border-radius: 5px;
 `;
 const ButtonText = styled.Text`
-  width: 70%;
   height: 20px;
   color: ${props => (props.color ? '#e2f955' : '#b4b4b4')};
   font-family: 'NotoSansKR-normal';
@@ -44,10 +43,10 @@ const ButtonText = styled.Text`
 `;
 
 const CheckButton = styled.TouchableOpacity`
-  width: 24px;
   height: 24px;
   margin-top: 33px;
   margin-left: 31px;
+  margin-right: 305px;
 `;
 
 const CheckButton2 = styled(CheckButton)`
@@ -55,34 +54,34 @@ const CheckButton2 = styled(CheckButton)`
 `;
 
 const TosTextBlack = styled.Text`
-  width: 13%;
   height: 16px;
   font-family: 'NotoSansKR-normal';
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
   margin-top: -21px;
-  margin-left: 16%;
+  margin-left: 59px;
+  margin-right: 256px;
 `;
 const TosTextRed = styled(TosTextBlack)`
-  width: 9%;
   color: #ff5151;
   margin-top: -16px;
-  margin-left: 28.5%;
+  margin-left: 110px;
+  margin-right: 224px;
 `;
 const TosTextBox = styled.Text`
   border: 1px solid #eaeaea;
   border-radius: 5px;
-  width: 87%;
   height: 95px;
   margin-top: 11px;
   margin-left: 23px;
+  margin-right: 23px;
 `;
 const SignupButton = styled.TouchableOpacity`
-  width: 87%;
   height: 48px;
   margin-top: 123px;
   margin-left: 23px;
+  margin-right: 23px;
   border-radius: 5px;
   background-color: ${props => (props.disabled ? '#f3f3f3' : '#e2f955')};
   padding-top: 12px;
@@ -105,31 +104,16 @@ const imageStyles = StyleSheet.create({
   },
 });
 
-export default () => {
+export default (state, AgreeButtonPress, firstCheckPress, secondCheckPress) => {
   const navigation = useNavigation();
-  const [firstCheck, setFirstCheck] = useState(false);
-  const [secondCheck, setSecondCheck] = useState(false);
-  const AgreeButtonPress = () => {
-    if (firstCheck !== secondCheck) {
-      setFirstCheck(true), setSecondCheck(true);
-    } else {
-      setFirstCheck(!firstCheck), setSecondCheck(!secondCheck);
-    }
-  };
-  const firstCheckPress = () => {
-    setFirstCheck(!firstCheck);
-  };
-  const secondCheckPress = () => {
-    setSecondCheck(!secondCheck);
-  };
   const onPress = () => navigation.navigate('LoginMain');
   return (
     <Container>
       <TitleText>이용 약관 동의</TitleText>
       <AgreeButton
         onPress={AgreeButtonPress}
-        backgroundColor={firstCheck && secondCheck}>
-        {firstCheck && secondCheck ? (
+        backgroundColor={state.firstCheck && state.secondCheck}>
+        {state.firstCheck && state.secondCheck ? (
           <Image
             style={imageStyles.image}
             source={require('../../../../assets/Check_round_on.png')}
@@ -140,12 +124,12 @@ export default () => {
             source={require('../../../../assets/Check_round_off.png')}
           />
         )}
-        <ButtonText color={firstCheck && secondCheck}>
+        <ButtonText color={state.firstCheck && state.secondCheck}>
           모두 동의합니다!
         </ButtonText>
       </AgreeButton>
-      <CheckButton onPress={firstCheckPress}>
-        {firstCheck ? (
+      <CheckButton onPress={() => firstCheckPress}>
+        {state.firstCheck ? (
           <Image
             style={imageStyles.image}
             source={require('../../../../assets/Check_.png')}
@@ -160,8 +144,8 @@ export default () => {
       <TosTextBlack>이용약관</TosTextBlack>
       <TosTextRed>(필수)</TosTextRed>
       <TosTextBox>이용 약관 내용 첨부</TosTextBox>
-      <CheckButton2 onPress={secondCheckPress}>
-        {secondCheck ? (
+      <CheckButton2 onPress={() => secondCheckPress}>
+        {state.secondCheck ? (
           <Image
             style={imageStyles.image}
             source={require('../../../../assets/Check_.png')}
@@ -176,7 +160,10 @@ export default () => {
       <TosTextBlack>이용약관</TosTextBlack>
       <TosTextRed>(필수)</TosTextRed>
       <TosTextBox>이용 약관 내용 첨부</TosTextBox>
-      <SignupButton disabled={!(firstCheck && secondCheck)} onPress={onPress}>
+      <SignupButton
+        //disabled={!(state.firstCheck && state.secondCheck)}
+        disable={false}
+        onPress={onPress}>
         <SignupText>회원가입</SignupText>
       </SignupButton>
     </Container>
