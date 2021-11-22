@@ -2,12 +2,20 @@ import React from 'react';
 import {Image, Pressable} from 'react-native';
 import styled from 'styled-components';
 
-const ItemsContainer = styled.View`
-  margin: 12px 16px 20px 16px;
+// 구성품 + 구분선
+const ItemsBox = styled.View`
+  margin-top: 14px;
+  flex: 1;
+  padding: 0px 35px 0px 35px;
+  width:100%;
+  height: 46px;
 `;
 
-const ItemsBox = styled.View`
+// 구성품
+const ItemsSmallBox = styled.View`
   flex-direction: row;
+  margin-bottom: 14px;
+  height: 32px;
 `;
 
 const ItemName = styled.Text`
@@ -33,81 +41,80 @@ const PlusPressable = styled.Pressable`
 const ItemsCountBlock = styled.View`
   background: #f3f3f3;
   border-radius: 12.5px;
+  height:25px;
   margin-top: 3px;
   margin-left: 6px;
   padding: 2px 16px 3px 16px;
 `;
 
 const ItemsCount = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
   color: #000000;
+  font-size: 14px;
+  font-family: 'NotoSansKR-Regular';
+  line-height: 20px;
 `;
 
-const FoodSetItemPriceContainer = styled.View`
+const SetItemPriceContainer = styled.View`
   flex-direction: column;
+  alignItems: flex-end;
   margin-left: 12px;
 `;
 
-const FoodSetItemSize = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
+const SetItemSize = styled.Text`
+  font-family: 'NotoSansKR-Normal';
   font-size: 10px;
   line-height: 15px;
   text-align: right;
   color: #828282;
 `;
 
-const FoodSetItemPrice = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+const SetItemPrice = styled.Text`
+  font-family: 'NotoSansKR-Bold';
   font-size: 14px;
   line-height: 20px;
   text-align: right;
-
-  margin-left: 12px;
 `;
 
-const FoodSetBorderLine = styled.View`
+const SetBorderLine = styled.View`
   border: 0.35px solid #eaeaea;
-
-  margin-top: 14px;
 `;
 
-const Items = ({name, price, itemscount, onDecreaseItems, onIncreaseItems}) => {
-  console.log(itemscount);
+const Items = ({state, setState, name, price}) => {
   return (
-    <ItemsContainer>
-      <ItemsBox>
+    <ItemsBox>
+      <ItemsSmallBox>
         <Image source={require('../../assets/rec_set_item_image_sample.png')} />
         <ItemName>{name}</ItemName>
         <MinusPressable
           onPress={() => {
-            onDecreaseItems();
+            let itemCnt = state.itemCnt;
+            setState(prev => ({
+              ...prev,
+              itemCnt: Math.max(0, itemCnt - 1),
+            }));
           }}>
           <Image source={require('../../assets/minus.png')} />
         </MinusPressable>
         <ItemsCountBlock>
-          <ItemsCount>{itemscount}</ItemsCount>
+          <ItemsCount>{state?.itemCnt}</ItemsCount>
         </ItemsCountBlock>
         <PlusPressable
           onPress={() => {
-            onIncreaseItems();
+            let itemCnt = state.itemCnt;
+            setState(prev => ({
+              ...prev,
+              itemCnt: Math.max(0, itemCnt + 1),
+            }));
           }}>
           <Image source={require('../../assets/plus.png')} />
         </PlusPressable>
-        <FoodSetItemPriceContainer>
-          <FoodSetItemSize>4인 (800g)</FoodSetItemSize>
-          <FoodSetItemPrice>{price}원</FoodSetItemPrice>
-        </FoodSetItemPriceContainer>
-      </ItemsBox>
-      <FoodSetBorderLine />
-    </ItemsContainer>
+        <SetItemPriceContainer>
+          <SetItemSize>4인 (800g)</SetItemSize>
+          <SetItemPrice>{price}원</SetItemPrice>
+        </SetItemPriceContainer>
+      </ItemsSmallBox>
+      <SetBorderLine />
+    </ItemsBox>
   );
 };
 
