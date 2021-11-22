@@ -52,22 +52,24 @@ const Counter = ({state, setState}) => {
         <CouterAdjustBox>
           <Pressable
             onPress={() => {
-              //   setMembercount(Math.max(0, membercount - 1)); // 인원수는 음수가 되면 안됨
-              // onDecreaseMember();
-              let memCnt = state.membercount;
+              let memCnt = state.memberCnt;
               setState(prev => ({
                 ...prev,
-                memberCnt: Math.max(0, membercount - 1),
+                memberCnt: Math.max(0, memCnt - 1),
               }));
             }}>
             <Image source={require('../../assets/minus_dis.png')} />
           </Pressable>
           <CouterNumberBox>
-            <CounterNumber>{membercount}</CounterNumber>
+            <CounterNumber>{state?.memberCnt}</CounterNumber>
           </CouterNumberBox>
           <Pressable
             onPress={() => {
-              onIncreaseMember();
+              let memCnt = state.memberCnt;
+              setState(prev => ({
+                ...prev,
+                memberCnt: Math.max(0, memCnt + 1),
+              }));
             }}>
             <Image source={require('../../assets/plus_dis.png')} />
           </Pressable>
