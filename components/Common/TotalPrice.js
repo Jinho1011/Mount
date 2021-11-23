@@ -108,7 +108,7 @@ const TotalPrice = ({state, setState}) => {
         <TotalCalculatorContainer>
           <PriceForPersonBox>
             <PriceForPersonTitle>1인 기준</PriceForPersonTitle>
-            <PriceForPersonPrice>{state?.foodSingle[0]?.price}</PriceForPersonPrice>
+            <PriceForPersonPrice>{state?.price}</PriceForPersonPrice>
           </PriceForPersonBox>
           <CloseImageContainer>
             <Image source={require('../../assets/close.png')} />

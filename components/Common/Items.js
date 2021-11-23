@@ -6,7 +6,6 @@ import styled from 'styled-components';
 const ItemsBox = styled.View`
   margin-top: 14px;
   flex: 1;
-  padding: 0px 35px 0px 35px;
   width:100%;
   height: 46px;
 `;

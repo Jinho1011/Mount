@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import TitleContainer from '../../../../components/Common/SetTitle';
 import RecreationSetContainer from './RecreationSetContainer';
 import Counter from '../../../../components/Rec/Counter';
+import Items from '../../../../components/Common/Items';
 
 const PageWrap = styled.View``;
 
@@ -32,7 +33,7 @@ const RecSetListTitle = styled.Text`
 const RecSetListItemBigContainer = styled.View`
   border: 1px solid #EAEAEA;
   border-radius: 12px;
-
+  padding: 0px 15px 0px 15px;
   margin-top: 18px;
 `;
 
@@ -45,7 +46,6 @@ const RecSetListName = styled.Text`
   color: #000000;
 
   margin-top: 14px;
-  margin-left: 14px;
 `;
 
 const RecSetListItemTitle = styled.Text`
@@ -57,78 +57,6 @@ const RecSetListItemTitle = styled.Text`
   color: #000000;
 
   margin-top: 14px;
-  margin-left: 16px;
-`;
-
-const RecSetListItemContainer = styled.View`
-  margin: 12px 16px 20px 16px;
-`;
-
-const RecSetItem = styled.View`
-  flex-direction: row;
-`;
-
-const RecSetItemName = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-  color: #000000;
-
-  margin-left: 10px;
-  margin-top: 5px;
-`;
-
-const MinusPressable = styled.Pressable`
-  margin: 16px 0 16px 24px;
-`;
-
-const PlusPressable = styled.Pressable`
-  margin: 11px 0 11px 6px;
-`;
-
-const RecSetItemCountBlock = styled.View`
-  background: #F3F3F3;
-  border-radius: 12.5px;
-  margin-top: 3px;
-  margin-left: 6px;
-  padding: 2px 16px 3px 16px;
-`;
-
-const RecSetItemCount = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-  color: #000000;
-`;
-
-const RecSetItemPriceContainer = styled.View`
-  flex-direction: column;
-  margin-left: 12px;
-`;
-
-const RecSetItemSize = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 15px;
-  text-align: right;
-  color: #828282;
-`;
-
-const RecSetItemPrice = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: right;
-
-  margin-left: 12px;
 `;
 
 const RecSetBorderLine = styled.View`
@@ -348,35 +276,20 @@ const RecreationSetPresenter = ({state, setState}) => {
           <RecSetListItemBigContainer>
             <RecSetListName>레크 이름 텍스트</RecSetListName>
             <RecSetListItemTitle>구성품</RecSetListItemTitle>
-            <RecSetListItemContainer>
-              <RecSetItem>
-                <Image source={require('../../../../assets/rec_set_item_image_sample.png')} />
-                <RecSetItemName>상품이름이...</RecSetItemName>
-                <MinusPressable
-                      onPress={() => {
-                        console.log('plus');
-                      }}>
-                      <Image source={require('../../../../assets/minus.png')} />
-                </MinusPressable>
-                <RecSetItemCountBlock>
-                  <RecSetItemCount>3</RecSetItemCount>
-                </RecSetItemCountBlock>
-                <PlusPressable
-                      onPress={() => {
-                        console.log('plus');
-                      }}>
-                      <Image source={require('../../../../assets/plus.png')} />
-                </PlusPressable>
-                <RecSetItemPriceContainer>
-                  <RecSetItemSize>4인 (800g)</RecSetItemSize>
-                  <RecSetItemPrice>16,000원</RecSetItemPrice>
-                </RecSetItemPriceContainer>          
-              </RecSetItem>
-              <RecSetBorderLine />
+            {state?.items.map((item) => {
+              return (
+                <Items 
+                  state={state}
+                  setState={setState}
+                  name={item.name}
+                  price={item.price}
+                  key={item.id}
+                />
+              )
+            })}
               <MoreRecButton>
                 <MoreRecButtonText>레크 정보 더보기</MoreRecButtonText>
               </MoreRecButton>
-            </RecSetListItemContainer>
           </RecSetListItemBigContainer>
           <RecSetTotalPriceTitle>총 예상금액</RecSetTotalPriceTitle>        
           <RecSetTotalCalculatorContainer>
