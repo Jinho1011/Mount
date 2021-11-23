@@ -11,8 +11,18 @@ export default () => {
     items: [
       {
         id: 1,
-        name: '상품이름이...',
+        name: '가나다라마바사',
         price: 16000,
+      },
+      {
+        id: 2,
+        name: '가나다라마바사',
+        price: 17000,
+      },
+      {
+        id: 3,
+        name: '가나다라마바사',
+        price: 18000,
       },
     ],
   };
