@@ -10,92 +10,17 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
+import TitleContainer from '../../../../components/Common/SingleTitle';
+
+import FocusAwareStatusBar from '../../../../components/StatusBar';
+import Counter from '../../../../components/Food/Counter';
+import TotalPrice from '../../../../components/Common/TotalPrice';
+
 
 const PageWrap = styled.View``;
 
 const ScrollContainer = styled.ScrollView`
   background-color: #e5e5e5;
-`;
-
-const FoodImage = styled.Image`
-  width: 100%;
-  height: 254px;
-`;
-
-const DetailHeader = styled.View`
-  padding: 16px 20px 20px 20px;
-  background-color: #fff;
-  justify-content: space-between;
-`;
-
-const DetailTitleContainer = styled.View`
-  margin-bottom: 26px;
-`;
-
-const DetailTitle = styled.Text`
-  color: #000;
-  font-size: 18px;
-  line-height: 26px;
-  font-family: 'NotoSansKR-Bold';
-  margin-bottom: 4px;
-`;
-
-const DetailSetInfo = styled.View`
-  flex-direction: row;
-`;
-
-const DetailSetLabel = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 15px;
-  display: flex;
-  align-items: center
-  color: #777777;
-`;
-
-const DetailMembers = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 14px;
-  border-radius: 8px;
-  border: 1px solid #eaeaea;
-`;
-
-const DetailMemberText = styled.Text`
-  color: #000;
-  font-size: 14px;
-  font-family: 'NotoSansKR-Bold';
-  line-height: 20px;
-`;
-
-const DetailAdjustMembers = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const DetailMemberCounter = styled.View`
-  margin: 0 14px;
-  padding: 0 22px;
-  border-radius: 6px;
-  border: 1px solid #f3f3f3;
-`;
-
-const CounterNumber = styled.Text`
-  color: #000;
-  font-size: 16px;
-  line-height: 24px;
-  font-family: 'NotoSansKR-Bold';
-`;
-
-const FoodSingleResultContainer = styled.View`
-  margin-top: 4px;
-  padding: 20px 20px 20px 20px;
-  justify-content: space-between;
-  background-color: #fff;
 `;
 
 const FoodSingleBorderLine = styled.View`
@@ -106,103 +31,6 @@ const FoodSingleBorderLine = styled.View`
 
 const FoodSingleSmallBorderLine = styled.View`
   border: 0.35px solid #eaeaea;
-`;
-
-const FoodSingleTotalPriceTitle = styled.Text`
-  margin-top: 26px;
-
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 16px;
-  display: flex;
-  align-items: center;
-  color: #000000;
-`;
-
-const FoodSingleTotalCalculatorContainer = styled.View`
-  flex-direction: row;
-  margin-top: 12px;
-  margin-bottom: 20px;
-  padding-left: 14px;
-`;
-
-const PriceForPersonBox = styled.View`
-  flex-direction: column;
-`;
-
-const PriceForPersonTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 15px;
-  display: flex;
-  align-items: center;
-  color: #8b8b8b;
-`;
-
-const PriceForPersonPrice = styled.Text`
-  margin-top: -5px;
-  margin-bottom: 1px;
-
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 26px;
-  display: flex;
-  align-items: center;
-  color: #8b8b8b;
-`;
-
-const CloseImageContainer = styled.View`
-  margin-top: 15px;
-  margin-left: 56px;
-  margin-bottom: 6px;
-`;
-
-const FoodSingleTotalCount = styled.Text`
-  margin: 9px 0 2px 14px;
-
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 26px;
-  display: flex;
-  align-items: center;
-  color: #8b8b8b;
-`;
-
-const FoodSingleTotalResultBox = styled.View`
-  flex-direction: column;
-  margin-left: 70px;
-`;
-
-const ResultTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 15px;
-  display: flex;
-  align-items: center;
-  text-align: right;
-  color: #8b8b8b;
-`;
-
-const ResultPrice = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 26px;
-  display: flex;
-  align-items: center;
-  text-align: right;
-  color: #ff5151;
 `;
 
 /* 마운트의 추천 */
@@ -331,59 +159,18 @@ const LikeCount = styled.Text`
   margin-left: 3px;
 `;
 
-export default () => {
-  const navigation = useNavigation();
+const FoodSinglePresenter = ({state, setState}) => {
   return (
     <PageWrap style={{flex: 1}}>
+      <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
-        <FoodImage
-          source={require('../../../../assets/food_detail_sample.png')}
+        <TitleContainer 
+          img={state?.foodSingle[0]?.img}
+          title={state?.foodSingle[0]?.title}
+          info={state?.foodSingle[0]?.info}
         />
-        <DetailHeader>
-          <DetailTitleContainer>
-            <DetailTitle>고기</DetailTitle>
-            <DetailSetInfo>
-              <DetailSetLabel>1인분 200g 기준</DetailSetLabel>
-            </DetailSetInfo>
-          </DetailTitleContainer>
-          <DetailMembers>
-            <DetailMemberText>총 인원 수</DetailMemberText>
-            <DetailAdjustMembers>
-              <Pressable
-                onPress={() => {
-                  console.log('minus');
-                }}>
-                <Image source={require('../../../../assets/minus_dis.png')} />
-              </Pressable>
-              <DetailMemberCounter>
-                <CounterNumber>0</CounterNumber>
-              </DetailMemberCounter>
-              <Pressable
-                onPress={() => {
-                  console.log('plus');
-                }}>
-                <Image source={require('../../../../assets/plus_dis.png')} />
-              </Pressable>
-            </DetailAdjustMembers>
-          </DetailMembers>
-        </DetailHeader>
-        <FoodSingleResultContainer>
-          <FoodSingleTotalPriceTitle>총 예상금액</FoodSingleTotalPriceTitle>
-          <FoodSingleTotalCalculatorContainer>
-            <PriceForPersonBox>
-              <PriceForPersonTitle>1인 기준</PriceForPersonTitle>
-              <PriceForPersonPrice>12000원</PriceForPersonPrice>
-            </PriceForPersonBox>
-            <CloseImageContainer>
-              <Image source={require('../../../../assets/close.png')} />
-            </CloseImageContainer>
-            <FoodSingleTotalCount>20</FoodSingleTotalCount>
-            <FoodSingleTotalResultBox>
-              <ResultTitle>총 금액</ResultTitle>
-              <ResultPrice>999,999원</ResultPrice>
-            </FoodSingleTotalResultBox>
-          </FoodSingleTotalCalculatorContainer>
-        </FoodSingleResultContainer>
+        <Counter state={state} setState={setState} />
+        <TotalPrice state={state} setState={setState} />
         <FoodSingleSmallBorderLine />
         <RecomendationContainer>
           <RecomendationTitle>Mount의 추천</RecomendationTitle>
@@ -434,3 +221,5 @@ export default () => {
     </PageWrap>
   );
 };
+
+export default FoodSinglePresenter;
