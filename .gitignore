@@ -60,3 +60,4 @@ buck-out/
 
 # etc
 Gate.config.js
+components/Gate.config.js
