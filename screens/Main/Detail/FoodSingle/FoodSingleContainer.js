@@ -11,7 +11,6 @@ const FoodSingleContainer = () => {
     const init = async () => {
       let data = await fetch('/api/detail/foodSingle');
       let foodSingle = JSON.parse(data._bodyInit).foodSingle;
-      console.log(foodSingle);
       setState(prev => ({
         ...prev,
         foodSingle,

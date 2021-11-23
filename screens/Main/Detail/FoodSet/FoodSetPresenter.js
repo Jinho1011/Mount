@@ -39,6 +39,7 @@ const FoodSetListTitle = styled.Text`
 
 const ItemsContainer = styled.View`
   margin-top: 18px;
+  padding: 0 35px 0 35px;
 `;
 
 const BorderLine = styled.View`
@@ -143,18 +144,17 @@ const FoodSetPresenter = ({state, setState}) => {
         <FoodSetListContainer>
           <FoodSetListTitle>구성품</FoodSetListTitle>
           <ItemsContainer>
-            <Items 
-              state={state} 
-              setState={setState} 
-              name={state?.items[0]?.name} 
-              price={state?.items[0]?.price} 
-            />
-            <Items 
-              state={state} 
-              setState={setState} 
-              name={state?.items[0]?.name} 
-              price={state?.items[0]?.price} 
-            />
+          {state?.items.map((item) => {
+            return (
+              <Items 
+                state={state}
+                setState={setState}
+                name={item.name}
+                price={item.price}
+                key={item.id}
+              />
+            )
+          })}
           </ItemsContainer>
         </FoodSetListContainer>
         <TotalPrice />
