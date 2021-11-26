@@ -1,11 +1,18 @@
 import React from 'react';
-import {View, Text, ScrollView, Image, Pressable, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  Pressable,
+  TouchableOpacity,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 import RecreationSingleContainer from './RecreationSingleContainer';
 import TitleContainer from '../../../../components/Common/SingleTitle';
 import Counter from '../../../../components/Rec/Counter';
-import Items from '../../../../components/Common/Items';
+import Item from '../../../../components/Common/Item';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 
 const PageWrap = styled.View``;
@@ -44,8 +51,8 @@ const GuideLineTitle = styled.Text`
 
 const GuideLineContainer = styled.View`
   margin-top: -20px;
-  background: #FFFFFF;
-  border: 1px solid #FF0000;
+  background: #ffffff;
+  border: 1px solid #ff0000;
 `;
 
 const GuideLineImageBox = styled.View`
@@ -67,7 +74,7 @@ const GrayCircle = styled.View`
 `;
 
 const RecSetBorderLine = styled.View`
-  border: 0.35px solid #EAEAEA;
+  border: 0.35px solid #eaeaea;
 `;
 
 const FoodSetListContainer = styled.View`
@@ -80,7 +87,7 @@ const FoodSetListTitle = styled.Text`
   font-size: 12px;
   line-height: 16px;
   color: #000000;
-  
+
   margin-left: 20px;
   margin-top: 36px;
 `;
@@ -105,14 +112,14 @@ const CautionTitle = styled.Text`
   line-height: 16px;
   display: flex;
   align-items: center;
-  color: #9E9E9E;
+  color: #9e9e9e;
 `;
 
 const CautionDetailContainer = styled.View`
   margin-top: 10px;
   padding: 14px 12px 12px 12px;
 
-  background: #F3F3F3;
+  background: #f3f3f3;
 `;
 
 const CautionDetail = styled.Text`
@@ -123,14 +130,14 @@ const CautionDetail = styled.Text`
   line-height: 15px;
   display: flex;
   align-items: center;
-  color: #8B8B8B;
+  color: #8b8b8b;
 `;
 
 /* bottom button container */
 const BottomConatiner = styled.View`
   flex-direction: row;
-  background: #FFFFFF;
-  border: 0.3px solid #B4B4B4;
+  background: #ffffff;
+  border: 0.3px solid #b4b4b4;
 
   padding: 8px 21px 8px 23px;
 `;
@@ -138,7 +145,7 @@ const BottomConatiner = styled.View`
 const ChangeCountButton = styled.TouchableOpacity`
   padding: 12px 118px;
 
-  background: #E2F955;
+  background: #e2f955;
   border-radius: 5px;
 
   height: 48px;
@@ -166,7 +173,7 @@ const LikeCount = styled.Text`
   line-height: 24px;
   display: flex;
   align-items: center;
-  color: #8B8B8B;
+  color: #8b8b8b;
 
   margin-top: 11px;
   margin-left: 3px;
@@ -174,7 +181,7 @@ const LikeCount = styled.Text`
 
 const RecreationSinglePresenter = ({state, setState}) => {
   return (
-    <PageWrap style={{ flex: 1 }}>
+    <PageWrap style={{flex: 1}}>
       <ScrollContainer>
         <TitleContainer
           img={state?.recSingle[0]?.img}
@@ -183,65 +190,69 @@ const RecreationSinglePresenter = ({state, setState}) => {
         />
         <Counter state={state} setState={setState} />
         <RecSetListContainer>
-          <RecSetListTitle>저희 레크는요</RecSetListTitle>   
+          <RecSetListTitle>저희 레크는요</RecSetListTitle>
           <GuideLineTitle>가이드라인</GuideLineTitle>
         </RecSetListContainer>
-          <GuideLineContainer>
-            <GuideLineImageBox>
-              <Image source={require('../../../../assets/guideline_sample.png')} />
-            </GuideLineImageBox>
-          </GuideLineContainer>
-          <SwipeContainer>
-            <RedCircle>
-              <Image source={require('../../../../assets/red_circle.png')} />
-            </RedCircle>
-            <GrayCircle>
-              <Image source={require('../../../../assets/gray_circle.png')} />
-            </GrayCircle>
-            <GrayCircle>
-              <Image source={require('../../../../assets/gray_circle.png')} />
-            </GrayCircle>
-            <GrayCircle>
-              <Image source={require('../../../../assets/gray_circle.png')} />
-            </GrayCircle>
-            <GrayCircle>
-              <Image source={require('../../../../assets/gray_circle.png')} />
-            </GrayCircle>
-          </SwipeContainer>
+        <GuideLineContainer>
+          <GuideLineImageBox>
+            <Image
+              source={require('../../../../assets/guideline_sample.png')}
+            />
+          </GuideLineImageBox>
+        </GuideLineContainer>
+        <SwipeContainer>
+          <RedCircle>
+            <Image source={require('../../../../assets/red_circle.png')} />
+          </RedCircle>
+          <GrayCircle>
+            <Image source={require('../../../../assets/gray_circle.png')} />
+          </GrayCircle>
+          <GrayCircle>
+            <Image source={require('../../../../assets/gray_circle.png')} />
+          </GrayCircle>
+          <GrayCircle>
+            <Image source={require('../../../../assets/gray_circle.png')} />
+          </GrayCircle>
+          <GrayCircle>
+            <Image source={require('../../../../assets/gray_circle.png')} />
+          </GrayCircle>
+        </SwipeContainer>
         <RecSetBorderLine />
         <FoodSetListContainer>
-            <FoodSetListTitle>구성품</FoodSetListTitle>
-            <FoodSetListItemBigContainer>
-            {state?.items.map((item) => {
+          <FoodSetListTitle>구성품</FoodSetListTitle>
+          <FoodSetListItemBigContainer>
+            {state?.items.map(item => {
               return (
-                <Items 
+                <Item
                   state={state}
                   setState={setState}
                   name={item.name}
                   price={item.price}
                   key={item.id}
                 />
-              )
+              );
             })}
-            </FoodSetListItemBigContainer>
-            <TotalPrice state={state} setState={setState} />  
-          </FoodSetListContainer>
-          <RecSetBorderLine />
+          </FoodSetListItemBigContainer>
+          <TotalPrice state={state} setState={setState} />
+        </FoodSetListContainer>
+        <RecSetBorderLine />
         <CautionContainer>
           <CautionTitle>주의 사항</CautionTitle>
           <CautionDetailContainer>
             <CautionDetail>
-            미인을 옷을 불어 산야에 사라지지 굳세게 얼마나 열락의 교향악이다.
-            그러므로 얼음과 지혜는 같은 내는 바이며, 그들에게 수 끓는다. 위하여,
-            노년에게서 얼마나 쓸쓸한 황금시대의 기쁘며, 같이, 아름다우냐?{"\n"}{"\n"}
-
-            않는 피어나는 이것을 인간은 인생에 청춘을 우리 못할 무엇을 있다.
-            목숨이 있는 같이, 그러므로 것이다. 장식하는 오직 그들에게 하였으며,
-            품에 인생{"\n"}{"\n"}
-
-            미인을 옷을 불어 산야에 사라지지 굳세게 얼마나 열락의 교향악이다. 
-            그러므로 얼음과 지혜는 같은 내는 바이며, 그들에게 수 끓는다. 
-            위하여, 노년에게서 얼마나 쓸쓸한 황금시대의 기쁘며, 같이, 아름다우냐? 
+              미인을 옷을 불어 산야에 사라지지 굳세게 얼마나 열락의 교향악이다.
+              그러므로 얼음과 지혜는 같은 내는 바이며, 그들에게 수 끓는다.
+              위하여, 노년에게서 얼마나 쓸쓸한 황금시대의 기쁘며, 같이,
+              아름다우냐?{'\n'}
+              {'\n'}
+              않는 피어나는 이것을 인간은 인생에 청춘을 우리 못할 무엇을 있다.
+              목숨이 있는 같이, 그러므로 것이다. 장식하는 오직 그들에게
+              하였으며, 품에 인생{'\n'}
+              {'\n'}
+              미인을 옷을 불어 산야에 사라지지 굳세게 얼마나 열락의 교향악이다.
+              그러므로 얼음과 지혜는 같은 내는 바이며, 그들에게 수 끓는다.
+              위하여, 노년에게서 얼마나 쓸쓸한 황금시대의 기쁘며, 같이,
+              아름다우냐?
             </CautionDetail>
           </CautionDetailContainer>
         </CautionContainer>
@@ -251,7 +262,7 @@ const RecreationSinglePresenter = ({state, setState}) => {
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
         <LikeButton>
-          <Image source={require('../../../../assets/Like.png')} /> 
+          <Image source={require('../../../../assets/Like.png')} />
         </LikeButton>
         <LikeCount>23</LikeCount>
       </BottomConatiner>
