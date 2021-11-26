@@ -15,6 +15,11 @@ const FoodSetContainer = () => {
       let foodSet = JSON.parse(data._bodyInit).foodSet;
       let items = JSON.parse(data._bodyInit).items;
 
+      items.map(item => {
+        item['count'] = 0;
+        return item;
+      });
+
       setState(prev => ({
         ...prev, // -> memCnt, itemCnt, isLoaded는 변하지 않음 = 이전 데이터랑 같음
         foodSet, // 변화

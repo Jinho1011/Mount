@@ -1,18 +1,10 @@
 import React from 'react';
-import {
-  Image,
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  ImageBackground,
-  Pressable,
-} from 'react-native';
+import {Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 import TitleContainer from '../../../../components/Common/SetTitle';
 import Counter from '../../../../components/Food/Counter';
-import Items from '../../../../components/Common/Items';
+import Item from '../../../../components/Common/Item';
 
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import TotalPrice from '../../../../components/Common/TotalPrice';
@@ -144,17 +136,16 @@ const FoodSetPresenter = ({state, setState}) => {
         <FoodSetListContainer>
           <FoodSetListTitle>구성품</FoodSetListTitle>
           <ItemsContainer>
-          {state?.items.map((item) => {
-            return (
-              <Items 
-                state={state}
-                setState={setState}
-                name={item.name}
-                price={item.price}
-                key={item.id}
-              />
-            )
-          })}
+            {state?.items.map(item => {
+              return (
+                <Item
+                  state={state}
+                  setState={setState}
+                  item={item}
+                  key={item.id}
+                />
+              );
+            })}
           </ItemsContainer>
         </FoodSetListContainer>
         <TotalPrice />
