@@ -1,11 +1,18 @@
 import React from 'react';
-import {View, Text, ScrollView, Image, Pressable, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  Pressable,
+  TouchableOpacity,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 import TitleContainer from '../../../../components/Common/SetTitle';
 import RecreationSetContainer from './RecreationSetContainer';
 import Counter from '../../../../components/Rec/Counter';
-import Items from '../../../../components/Common/Items';
+import Item from '../../../../components/Common/Item';
 
 const PageWrap = styled.View``;
 
@@ -31,7 +38,7 @@ const RecSetListTitle = styled.Text`
 `;
 
 const RecSetListItemBigContainer = styled.View`
-  border: 1px solid #EAEAEA;
+  border: 1px solid #eaeaea;
   border-radius: 12px;
   padding: 0px 15px 0px 15px;
   margin-top: 18px;
@@ -60,7 +67,7 @@ const RecSetListItemTitle = styled.Text`
 `;
 
 const RecSetBorderLine = styled.View`
-  border: 0.35px solid #EAEAEA;
+  border: 0.35px solid #eaeaea;
 
   margin-top: 14px;
 `;
@@ -68,7 +75,7 @@ const RecSetBorderLine = styled.View`
 const MoreRecButton = styled.TouchableOpacity`
   padding: 12px 76px;
   margin: 24px 28px 22px 28px;
-  background: #E2F955;
+  background: #e2f955;
   border-radius: 5px;
 `;
 
@@ -114,7 +121,7 @@ const PriceForPersonTitle = styled.Text`
   line-height: 15px;
   display: flex;
   align-items: center;
-  color: #8B8B8B;
+  color: #8b8b8b;
 `;
 
 const PriceForPersonPrice = styled.Text`
@@ -128,7 +135,7 @@ const PriceForPersonPrice = styled.Text`
   line-height: 26px;
   display: flex;
   align-items: center;
-  color: #8B8B8B;
+  color: #8b8b8b;
 `;
 
 const CloseImageContainer = styled.View`
@@ -147,7 +154,7 @@ const RecSetTotalCount = styled.Text`
   line-height: 26px;
   display: flex;
   align-items: center;
-  color: #8B8B8B;
+  color: #8b8b8b;
 `;
 
 const RecSetTotalResultBox = styled.View`
@@ -164,7 +171,7 @@ const ResultTitle = styled.Text`
   display: flex;
   align-items: center;
   text-align: right;
-  color: #8B8B8B;
+  color: #8b8b8b;
 `;
 
 const ResultPrice = styled.Text`
@@ -176,7 +183,7 @@ const ResultPrice = styled.Text`
   display: flex;
   align-items: center;
   text-align: right;
-  color: #FF5151;
+  color: #ff5151;
 `;
 
 /* 주의사항 */
@@ -194,14 +201,14 @@ const CautionTitle = styled.Text`
   line-height: 16px;
   display: flex;
   align-items: center;
-  color: #9E9E9E;
+  color: #9e9e9e;
 `;
 
 const CautionDetailContainer = styled.View`
   margin-top: 10px;
   padding: 14px 12px 12px 12px;
 
-  background: #F3F3F3;
+  background: #f3f3f3;
 `;
 
 const CautionDetail = styled.Text`
@@ -212,14 +219,14 @@ const CautionDetail = styled.Text`
   line-height: 15px;
   display: flex;
   align-items: center;
-  color: #8B8B8B;
+  color: #8b8b8b;
 `;
 
 /* bottom button container */
 const BottomConatiner = styled.View`
   flex-direction: row;
-  background: #FFFFFF;
-  border: 0.3px solid #B4B4B4;
+  background: #ffffff;
+  border: 0.3px solid #b4b4b4;
 
   padding: 8px 21px 8px 23px;
 `;
@@ -227,7 +234,7 @@ const BottomConatiner = styled.View`
 const ChangeCountButton = styled.TouchableOpacity`
   padding: 12px 118px;
 
-  background: #E2F955;
+  background: #e2f955;
   border-radius: 5px;
 
   height: 48px;
@@ -255,7 +262,7 @@ const LikeCount = styled.Text`
   line-height: 24px;
   display: flex;
   align-items: center;
-  color: #8B8B8B;
+  color: #8b8b8b;
 
   margin-top: 11px;
   margin-left: 3px;
@@ -263,7 +270,7 @@ const LikeCount = styled.Text`
 
 const RecreationSetPresenter = ({state, setState}) => {
   return (
-    <PageWrap style={{ flex: 1 }}>
+    <PageWrap style={{flex: 1}}>
       <ScrollContainer>
         <TitleContainer
           img={state?.recSet[0]?.img}
@@ -276,53 +283,55 @@ const RecreationSetPresenter = ({state, setState}) => {
           <RecSetListItemBigContainer>
             <RecSetListName>레크 이름 텍스트</RecSetListName>
             <RecSetListItemTitle>구성품</RecSetListItemTitle>
-            {state?.items.map((item) => {
+            {state?.items.map(item => {
               return (
-                <Items 
+                <Item
                   state={state}
                   setState={setState}
                   name={item.name}
                   price={item.price}
                   key={item.id}
                 />
-              )
+              );
             })}
-              <MoreRecButton>
-                <MoreRecButtonText>레크 정보 더보기</MoreRecButtonText>
-              </MoreRecButton>
+            <MoreRecButton>
+              <MoreRecButtonText>레크 정보 더보기</MoreRecButtonText>
+            </MoreRecButton>
           </RecSetListItemBigContainer>
-          <RecSetTotalPriceTitle>총 예상금액</RecSetTotalPriceTitle>        
+          <RecSetTotalPriceTitle>총 예상금액</RecSetTotalPriceTitle>
           <RecSetTotalCalculatorContainer>
             <PriceForPersonBox>
               <PriceForPersonTitle>1인 기준</PriceForPersonTitle>
               <PriceForPersonPrice>12000원</PriceForPersonPrice>
             </PriceForPersonBox>
             <CloseImageContainer>
-              <Image source={require('../../../../assets/close.png')} /> 
+              <Image source={require('../../../../assets/close.png')} />
             </CloseImageContainer>
-            <RecSetTotalCount>20</RecSetTotalCount>  
+            <RecSetTotalCount>20</RecSetTotalCount>
             <RecSetTotalResultBox>
               <ResultTitle>총 금액</ResultTitle>
               <ResultPrice>999,999원</ResultPrice>
-            </RecSetTotalResultBox>          
-          </RecSetTotalCalculatorContainer>    
+            </RecSetTotalResultBox>
+          </RecSetTotalCalculatorContainer>
         </RecSetListContainer>
         <RecSetBorderLine />
         <CautionContainer>
           <CautionTitle>주의 사항</CautionTitle>
           <CautionDetailContainer>
             <CautionDetail>
-            미인을 옷을 불어 산야에 사라지지 굳세게 얼마나 열락의 교향악이다.
-            그러므로 얼음과 지혜는 같은 내는 바이며, 그들에게 수 끓는다. 위하여,
-            노년에게서 얼마나 쓸쓸한 황금시대의 기쁘며, 같이, 아름다우냐?{"\n"}{"\n"}
-
-            않는 피어나는 이것을 인간은 인생에 청춘을 우리 못할 무엇을 있다.
-            목숨이 있는 같이, 그러므로 것이다. 장식하는 오직 그들에게 하였으며,
-            품에 인생{"\n"}{"\n"}
-
-            미인을 옷을 불어 산야에 사라지지 굳세게 얼마나 열락의 교향악이다. 
-            그러므로 얼음과 지혜는 같은 내는 바이며, 그들에게 수 끓는다. 
-            위하여, 노년에게서 얼마나 쓸쓸한 황금시대의 기쁘며, 같이, 아름다우냐? 
+              미인을 옷을 불어 산야에 사라지지 굳세게 얼마나 열락의 교향악이다.
+              그러므로 얼음과 지혜는 같은 내는 바이며, 그들에게 수 끓는다.
+              위하여, 노년에게서 얼마나 쓸쓸한 황금시대의 기쁘며, 같이,
+              아름다우냐?{'\n'}
+              {'\n'}
+              않는 피어나는 이것을 인간은 인생에 청춘을 우리 못할 무엇을 있다.
+              목숨이 있는 같이, 그러므로 것이다. 장식하는 오직 그들에게
+              하였으며, 품에 인생{'\n'}
+              {'\n'}
+              미인을 옷을 불어 산야에 사라지지 굳세게 얼마나 열락의 교향악이다.
+              그러므로 얼음과 지혜는 같은 내는 바이며, 그들에게 수 끓는다.
+              위하여, 노년에게서 얼마나 쓸쓸한 황금시대의 기쁘며, 같이,
+              아름다우냐?
             </CautionDetail>
           </CautionDetailContainer>
         </CautionContainer>
@@ -332,7 +341,7 @@ const RecreationSetPresenter = ({state, setState}) => {
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
         <LikeButton>
-          <Image source={require('../../../../assets/Like.png')} /> 
+          <Image source={require('../../../../assets/Like.png')} />
         </LikeButton>
         <LikeCount>23</LikeCount>
       </BottomConatiner>

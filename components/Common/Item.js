@@ -1,17 +1,18 @@
+import {isEmptyStatement} from '@babel/types';
 import React from 'react';
 import {Image, Pressable} from 'react-native';
 import styled from 'styled-components';
 
 // 구성품 + 구분선
-const ItemsBox = styled.View`
+const ItemBox = styled.View`
   margin-top: 14px;
   flex: 1;
-  width:100%;
+  width: 100%;
   height: 46px;
 `;
 
 // 구성품
-const ItemsSmallBox = styled.View`
+const ItemSmallBox = styled.View`
   flex-direction: row;
   margin-bottom: 14px;
   height: 32px;
@@ -37,16 +38,16 @@ const PlusPressable = styled.Pressable`
   margin: 11px 0 11px 6px;
 `;
 
-const ItemsCountBlock = styled.View`
+const ItemCountBlock = styled.View`
   background: #f3f3f3;
   border-radius: 12.5px;
-  height:25px;
+  height: 25px;
   margin-top: 3px;
   margin-left: 6px;
   padding: 2px 16px 3px 16px;
 `;
 
-const ItemsCount = styled.Text`
+const ItemCount = styled.Text`
   color: #000000;
   font-size: 14px;
   font-family: 'NotoSansKR-Regular';
@@ -55,11 +56,11 @@ const ItemsCount = styled.Text`
 
 const SetItemPriceContainer = styled.View`
   flex-direction: column;
-  alignItems: flex-end;
+  align-items: flex-end;
   margin-left: 12px;
 `;
 
-const SetItemSize = styled.Text`
+const SetItemize = styled.Text`
   font-family: 'NotoSansKR-Normal';
   font-size: 10px;
   line-height: 15px;
@@ -78,43 +79,67 @@ const SetBorderLine = styled.View`
   border: 0.35px solid #eaeaea;
 `;
 
-const Items = ({state, setState, name, price}) => {
+const Item = ({state, setState, item}) => {
+  const minusCount = () => {
+    if (item.count > 0) {
+      let items = state.items.map(_item => {
+        if (item.id == _item.id) {
+          return {
+            ..._item,
+            count: _item.count - 1,
+          };
+        } else {
+          return _item;
+        }
+      });
+
+      setState(prev => ({
+        ...prev,
+        items,
+      }));
+    }
+  };
+
+  const plusCount = () => {
+    let items = state.items.map(_item => {
+      if (item.id == _item.id) {
+        return {
+          ..._item,
+          count: _item.count + 1,
+        };
+      } else {
+        return _item;
+      }
+    });
+
+    setState(prev => ({
+      ...prev,
+      items,
+    }));
+  };
+
   return (
-    <ItemsBox>
-      <ItemsSmallBox>
+    <ItemBox>
+      <ItemSmallBox>
         <Image source={require('../../assets/rec_set_item_image_sample.png')} />
-        <ItemName>{name}</ItemName>
-        <MinusPressable
-          onPress={() => {
-            let itemCnt = state.itemCnt;
-            setState(prev => ({
-              ...prev,
-              itemCnt: Math.max(0, itemCnt - 1),
-            }));
-          }}>
+        <ItemName>{item.name}</ItemName>
+        <MinusPressable onPress={minusCount}>
           <Image source={require('../../assets/minus.png')} />
         </MinusPressable>
-        <ItemsCountBlock>
-          <ItemsCount>{state?.itemCnt}</ItemsCount>
-        </ItemsCountBlock>
-        <PlusPressable
-          onPress={() => {
-            let itemCnt = state.itemCnt;
-            setState(prev => ({
-              ...prev,
-              itemCnt: Math.max(0, itemCnt + 1),
-            }));
-          }}>
+        <ItemCountBlock>
+          <ItemCount>{item.count}</ItemCount>
+        </ItemCountBlock>
+        <PlusPressable onPress={plusCount}>
           <Image source={require('../../assets/plus.png')} />
         </PlusPressable>
         <SetItemPriceContainer>
-          <SetItemSize>4인 (800g)</SetItemSize>
-          <SetItemPrice>{price}원</SetItemPrice>
+          <SetItemize>4인 (800g)</SetItemize>
+          <SetItemPrice>{item.price}원</SetItemPrice>
         </SetItemPriceContainer>
-      </ItemsSmallBox>
+      </ItemSmallBox>
       <SetBorderLine />
-    </ItemsBox>
+    </ItemBox>
   );
 };
 
-export default Items;
+export default Item;
