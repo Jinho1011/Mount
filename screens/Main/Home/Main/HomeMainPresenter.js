@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import {useNavigation} from '@react-navigation/native';
 
 import FocusAwareStatusBar from '../../../../components/StatusBar';
-import DetailContainer from '../../../../components/Main/Details';
+import DetailsContainer from '../../../../components/Main/Details';
 
 const ScrollContainer = styled.ScrollView`
   background-color: #fff;
@@ -32,7 +32,7 @@ const HomeHeaderSubTitle = styled.Text`
   line-height: 24px;
 `;
 
-export default ({foods}) => {
+export default ({state, setState}) => {
   const navigation = useNavigation();
   return (
     <ScrollContainer>
@@ -44,15 +44,17 @@ export default ({foods}) => {
         </HomeHeaderSubTitle>
       </HomeHeaderContainer>
 
-      <DetailContainer
+      <DetailsContainer
         title="음식세트 어쩌구 문구"
         navigate="HomeFoodDetail"
-        components={foods}
+        items={state.foods}
+        isLoaded={state.isLoaded}
       />
-      <DetailContainer
+      <DetailsContainer
         title="레크세트 어쩌구 문구"
         navigate="HomeRecDetail"
-        components={foods}
+        items={state.foods}
+        isLoaded={state.isLoaded}
       />
     </ScrollContainer>
   );

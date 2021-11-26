@@ -8,10 +8,12 @@ export default () => {
     isLoaded: false,
   });
 
-  const _loadFoods = async () => {
-    let data = await fetch('/api/home/foods');
+  const _loadData = async () => {
+    let data = await fetch('/api/recommands');
     let foods = JSON.parse(data._bodyInit).foods;
+    let recs = JSON.parse(data._bodyInit).recs;
     setState(prev => ({...prev, foods}));
+    setState(prev => ({...prev, recs}));
   };
 
   const _setLoaded = () => {
@@ -20,15 +22,11 @@ export default () => {
 
   useEffect(() => {
     const init = async () => {
-      _loadFoods();
+      _loadData();
       _setLoaded();
     };
     init();
   }, []);
-
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
 
   return <HomePresenter state={state} setState={setState} />;
 };
