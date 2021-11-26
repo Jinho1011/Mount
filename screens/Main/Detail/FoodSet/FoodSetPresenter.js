@@ -141,8 +141,7 @@ const FoodSetPresenter = ({state, setState}) => {
                 <Item
                   state={state}
                   setState={setState}
-                  name={item.name}
-                  price={item.price}
+                  item={item}
                   key={item.id}
                 />
               );

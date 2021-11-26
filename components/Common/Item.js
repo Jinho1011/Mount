@@ -1,3 +1,4 @@
+import {isEmptyStatement} from '@babel/types';
 import React from 'react';
 import {Image, Pressable} from 'react-native';
 import styled from 'styled-components';
@@ -78,38 +79,62 @@ const SetBorderLine = styled.View`
   border: 0.35px solid #eaeaea;
 `;
 
-const Item = ({state, setState, name, price}) => {
+const Item = ({state, setState, item}) => {
+  const minusCount = () => {
+    if (item.count > 0) {
+      let items = state.items.map(_item => {
+        if (item.id == _item.id) {
+          return {
+            ..._item,
+            count: _item.count - 1,
+          };
+        } else {
+          return _item;
+        }
+      });
+
+      setState(prev => ({
+        ...prev,
+        items,
+      }));
+    }
+  };
+
+  const plusCount = () => {
+    let items = state.items.map(_item => {
+      if (item.id == _item.id) {
+        return {
+          ..._item,
+          count: _item.count + 1,
+        };
+      } else {
+        return _item;
+      }
+    });
+
+    setState(prev => ({
+      ...prev,
+      items,
+    }));
+  };
+
   return (
     <ItemBox>
       <ItemSmallBox>
         <Image source={require('../../assets/rec_set_item_image_sample.png')} />
-        <ItemName>{name}</ItemName>
-        <MinusPressable
-          onPress={() => {
-            let itemCnt = state.itemCnt;
-            setState(prev => ({
-              ...prev,
-              itemCnt: Math.max(0, itemCnt - 1),
-            }));
-          }}>
+        <ItemName>{item.name}</ItemName>
+        <MinusPressable onPress={minusCount}>
           <Image source={require('../../assets/minus.png')} />
         </MinusPressable>
         <ItemCountBlock>
-          <ItemCount>{state?.itemCnt}</ItemCount>
+          <ItemCount>{item.count}</ItemCount>
         </ItemCountBlock>
-        <PlusPressable
-          onPress={() => {
-            let itemCnt = state.itemCnt;
-            setState(prev => ({
-              ...prev,
-              itemCnt: Math.max(0, itemCnt + 1),
-            }));
-          }}>
+        <PlusPressable onPress={plusCount}>
           <Image source={require('../../assets/plus.png')} />
         </PlusPressable>
         <SetItemPriceContainer>
           <SetItemize>4인 (800g)</SetItemize>
-          <SetItemPrice>{price}원</SetItemPrice>
+          <SetItemPrice>{item.price}원</SetItemPrice>
         </SetItemPriceContainer>
       </ItemSmallBox>
       <SetBorderLine />
