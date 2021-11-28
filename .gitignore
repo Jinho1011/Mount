@@ -59,5 +59,4 @@ buck-out/
 /ios/Pods/
 
 # etc
-Gate.config.js
-components/Gate.config.js
+components/config.js
