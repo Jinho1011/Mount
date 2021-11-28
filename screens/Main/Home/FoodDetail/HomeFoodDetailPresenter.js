@@ -20,16 +20,24 @@ const SmallBoxContainer = styled.View`
   justify-content: space-between;
 `;
 
-export default () => {
-  const navigation = useNavigation();
+export default ({foods}) => {
   return (
     <ScrollContainer>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
-      <LargeBox />
-      <SmallBoxContainer>
-        <SmallBox screenWidth={screenWidth} />
-        <SmallBox screenWidth={screenWidth} />
-      </SmallBoxContainer>
+      {
+        // foods.map(food => {
+        //   if (food.isLong) {
+        //     return <LargeBox />;
+        //   } else {
+        //     return (
+        //       <SmallBoxContainer>
+        //         <SmallBox screenWidth={screenWidth} />
+        //         <SmallBox screenWidth={screenWidth} />
+        //       </SmallBoxContainer>
+        //     );
+        // }
+      }
+      }
     </ScrollContainer>
   );
 };
