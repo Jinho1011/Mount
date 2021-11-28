@@ -39,7 +39,7 @@ const DetailMoreText = styled.Text`
 
 const Details = styled.ScrollView``;
 
-const Detail = styled.View`
+const DetailReady = styled.View`
   width: 128px;
   height: 128px;
   margin-right: 10px;
@@ -47,7 +47,14 @@ const Detail = styled.View`
   background-color: #f3f3f3;
 `;
 
-const DetailContainer = ({title, navigate, components}) => {
+const Detail = styled.Image`
+  width: 128px;
+  height: 128px;
+  margin-right: 10px;
+  border-radius: 4px;
+`;
+
+const DetailsContainer = ({title, navigate, items, isLoaded}) => {
   const navigation = useNavigation();
 
   return (
@@ -67,14 +74,16 @@ const DetailContainer = ({title, navigate, components}) => {
         )}
       </DetailsHeader>
       <Details horizontal={true} showsHorizontalScrollIndicator={false}>
-        <Detail></Detail>
-        <Detail></Detail>
-        <Detail></Detail>
-        <Detail></Detail>
-        <Detail></Detail>
+        {isLoaded ? (
+          items.map(item => {
+            return <Detail source={{uri: item.imgUrl}} key={item.id} />;
+          })
+        ) : (
+          <DetailReady />
+        )}
       </Details>
     </DetailsWrapper>
   );
 };
 
-export default DetailContainer;
+export default DetailsContainer;
