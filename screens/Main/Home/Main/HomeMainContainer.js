@@ -1,7 +1,11 @@
 import React, {useState, useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+
 import HomePresenter from './HomeMainPresenter';
+import * as recommandsActions from '../../../../store/actions/recommands';
 
 export default () => {
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     foods: [],
     recs: [],
@@ -14,6 +18,8 @@ export default () => {
     let recs = JSON.parse(data._bodyInit).recs;
     setState(prev => ({...prev, foods}));
     setState(prev => ({...prev, recs}));
+    dispatch(recommandsActions.initFoods(foods));
+    dispatch(recommandsActions.initRecs(recs));
   };
 
   const _setLoaded = () => {
