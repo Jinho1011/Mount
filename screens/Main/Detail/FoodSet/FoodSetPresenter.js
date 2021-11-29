@@ -130,13 +130,14 @@ const FoodSetPresenter = ({state, setState}) => {
         <TitleContainer
           img={state?.foodSet[0]?.img}
           title={state?.foodSet[0]?.title}
-          components={state?.foodSet[0]?.components}
+          // items 배열의 name들을 map으로 받아오고 ', '으로 join
+          items={state?.foodSet[0]?.items.map(item => item.name).join(', ')}
         />
         <Counter state={state} setState={setState} />
         <FoodSetListContainer>
           <FoodSetListTitle>구성품</FoodSetListTitle>
           <ItemsContainer>
-            {state?.items.map(item => {
+            {state?.foodSet[0]?.items.map(item => {
               return (
                 <Item
                   state={state}
@@ -144,7 +145,7 @@ const FoodSetPresenter = ({state, setState}) => {
                   item={item}
                   key={item.id}
                 />
-              );
+              )
             })}
           </ItemsContainer>
         </FoodSetListContainer>
