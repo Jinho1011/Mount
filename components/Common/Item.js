@@ -1,3 +1,6 @@
+/**
+ * 플러스, 마이너스가 불가능한 구성품 컴포넌트입니다.
+ */
 import {isEmptyStatement} from '@babel/types';
 import React from 'react';
 import {Image, Pressable} from 'react-native';
@@ -13,6 +16,7 @@ const ItemBox = styled.View`
 
 // 구성품
 const ItemSmallBox = styled.View`
+  position: relative;
   flex-direction: row;
   margin-bottom: 14px;
   height: 32px;
@@ -26,25 +30,24 @@ const ItemName = styled.Text`
   line-height: 20px;
   color: #000000;
 
-  margin-left: 10px;
-  margin-top: 5px;
-`;
-
-const MinusPressable = styled.Pressable`
-  margin: 16px 0 16px 24px;
-`;
-
-const PlusPressable = styled.Pressable`
-  margin: 11px 0 11px 6px;
+  position: absolute;
+  left: 14.48%;
+  right: 58.97%;
+  top: 15.62%;
+  bottom: 21.88%;
 `;
 
 const ItemCountBlock = styled.View`
+  position: absolute;
+  left: 54.14%;
+  right: 32.41%;
+  top: 9.38%;
+  bottom: 12.5%;
+  
   background: #f3f3f3;
   border-radius: 12.5px;
   height: 25px;
-  margin-top: 3px;
-  margin-left: 6px;
-  padding: 2px 16px 3px 16px;
+  padding: 2px 16px 3px 17px;
 `;
 
 const ItemCount = styled.Text`
@@ -55,9 +58,13 @@ const ItemCount = styled.Text`
 `;
 
 const SetItemPriceContainer = styled.View`
+  position: absolute;
+  left: 77.24%;
+  right: 0.07%;
+  top: 0%;
+  bottom: -1.04%;
   flex-direction: column;
   align-items: flex-end;
-  margin-left: 12px;
 `;
 
 const SetItemize = styled.Text`
@@ -80,58 +87,14 @@ const SetBorderLine = styled.View`
 `;
 
 const Item = ({state, setState, item}) => {
-  const minusCount = () => {
-    if (item.count > 0) {
-      let items = state.items.map(_item => {
-        if (item.id == _item.id) {
-          return {
-            ..._item,
-            count: _item.count - 1,
-          };
-        } else {
-          return _item;
-        }
-      });
-
-      setState(prev => ({
-        ...prev,
-        items,
-      }));
-    }
-  };
-
-  const plusCount = () => {
-    let items = state.items.map(_item => {
-      if (item.id == _item.id) {
-        return {
-          ..._item,
-          count: _item.count + 1,
-        };
-      } else {
-        return _item;
-      }
-    });
-
-    setState(prev => ({
-      ...prev,
-      items,
-    }));
-  };
-
   return (
     <ItemBox>
       <ItemSmallBox>
         <Image source={require('../../assets/rec_set_item_image_sample.png')} />
         <ItemName>{item.name}</ItemName>
-        <MinusPressable onPress={minusCount}>
-          <Image source={require('../../assets/minus.png')} />
-        </MinusPressable>
         <ItemCountBlock>
           <ItemCount>{item.count}</ItemCount>
         </ItemCountBlock>
-        <PlusPressable onPress={plusCount}>
-          <Image source={require('../../assets/plus.png')} />
-        </PlusPressable>
         <SetItemPriceContainer>
           <SetItemize>4인 (800g)</SetItemize>
           <SetItemPrice>{item.price}원</SetItemPrice>

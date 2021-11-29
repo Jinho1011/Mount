@@ -50,7 +50,7 @@ const SetElements = styled.Text`
   line-height: 15px;
 `;
 
-const TitleContainer = ({title, components, img}) => {
+const TitleContainer = ({img, title, items}) => {
   return (
     <SetTitleContainer>
       <SetImage source={{uri: img}} />
@@ -59,7 +59,7 @@ const TitleContainer = ({title, components, img}) => {
         <SetLabelContainer>
           <SetLabel>세트</SetLabel>
         </SetLabelContainer>
-        <SetElements>{components}</SetElements>
+        <SetElements>{items}</SetElements>
       </SetInfo>
     </SetTitleContainer>
   );
