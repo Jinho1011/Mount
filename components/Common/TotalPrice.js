@@ -4,11 +4,10 @@ import styled from "styled-components";
 
 const TotalPriceContainer = styled.View`
   background: #ffffff;
-  padding: 0px 26px 39px 20px;
+  padding: 25px 26px 19px 20px;
 `;
 
 const TotalPriceTitle = styled.Text`
-  margin-top: 26px;
   font-family: 'NotoSansKR-Bold';
   font-size: 12px;
   line-height: 16px;
@@ -25,17 +24,12 @@ const TotalCalculatorContainer = styled.View`
 
 const PriceForPersonBox = styled.View`
   position: absolute;
-  left: 4.14%;
-  right: 72.29%;
-  top: 43.08%;
-  bottom: 1.54%;
+  margin: 11px 0px 1px 13px;
   flex-direction: column;
 `;
 
 const PriceForPersonTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
+  font-family: 'NotoSansKR-Normal';
   font-size: 10px;
   line-height: 15px;
   display: flex;
@@ -44,9 +38,7 @@ const PriceForPersonTitle = styled.Text`
 `;
 
 const PriceForPersonPrice = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+  font-family: 'NotoSansKR-Bold';
   font-size: 18px;
   line-height: 26px;
   display: flex;
@@ -55,19 +47,14 @@ const PriceForPersonPrice = styled.Text`
 `;
 
 const CloseImageContainer = styled.View`
+  margin: 29px 0px 6px 142px;
   position: absolute;
-  left: 45.22%;
-  right: 49.68%;
-  top: 66.15%;
-  bottom: 9.23%;
-
-  padding-top: 15px;
 `;
 
 const TotalCount = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+  margin: 13px 0px 2px 172px;
+
+  font-family: 'NotoSansKR-Bold';
   font-size: 18px;
   line-height: 26px;
   display: flex;
@@ -86,9 +73,7 @@ const TotalResultBox = styled.View`
 `;
 
 const ResultTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
+  font-family: 'NotoSansKR-Normal';
   font-size: 10px;
   line-height: 15px;
   display: flex;
@@ -98,9 +83,7 @@ const ResultTitle = styled.Text`
 `;
 
 const ResultPrice = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+  font-family: 'NotoSansKR-Bold';
   font-size: 18px;
   line-height: 26px;
   display: flex;
@@ -121,7 +104,7 @@ const TotalPrice = ({state, setState}) => {
           <CloseImageContainer>
             <Image source={require('../../assets/close.png')} />
           </CloseImageContainer>
-          <TotalCount>{state?.memberCnt}</TotalCount>
+          <TotalCount>20</TotalCount>
           <TotalResultBox>
             <ResultTitle>총 금액</ResultTitle>
             <ResultPrice>999,999원</ResultPrice>
