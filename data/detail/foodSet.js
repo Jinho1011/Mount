@@ -3,6 +3,7 @@ const foodSet = [
     id: 1,
     img: 'https://dummyimage.com/600x253/000/fff',
     title: '제목몇글자들어가나요',
+    caution: '주의사항입니다',
     items: [
       {
         id: 1,
