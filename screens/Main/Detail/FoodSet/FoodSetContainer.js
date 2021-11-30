@@ -16,7 +16,6 @@ const FoodSetContainer = () => {
         item['count'] = 0;
         return item;
       });
-      console.log(items);
 
       setState(prev => ({
         ...prev, // -> memCnt, itemCnt, isLoaded는 변하지 않음 = 이전 데이터랑 같음
