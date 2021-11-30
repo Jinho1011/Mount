@@ -88,6 +88,8 @@ const LikeCount = styled.Text`
 `;
 
 const FoodSetPresenter = ({state, setState}) => {
+  const navigation = useNavigation();
+  const ChangeCountButtonPress = () => navigation.navigate('FoodSetChangeCount');
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
@@ -119,7 +121,7 @@ const FoodSetPresenter = ({state, setState}) => {
         <Caution state={state} setState={setState} caution={state?.foodSet[0]?.caution} />
       </ScrollContainer>
       <BottomConatiner>
-        <ChangeCountButton>
+        <ChangeCountButton onPress={ChangeCountButtonPress} >
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
         <LikeButton>
