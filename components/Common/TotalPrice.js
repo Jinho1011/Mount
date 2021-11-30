@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const TotalPriceContainer = styled.View`
   background: #ffffff;
-  padding: 0px 26px 0px 20px;
+  padding: 0px 26px 39px 20px;
 `;
 
 const TotalPriceTitle = styled.Text`
@@ -18,13 +18,17 @@ const TotalPriceTitle = styled.Text`
 `;
 
 const TotalCalculatorContainer = styled.View`
+  position: relative;
   flex-direction: row;
-  margin-top: 12px;
-  margin-bottom: 20px;
-  padding-left: 14px;
+  padding: 12px 0px 0px 14px;
 `;
 
 const PriceForPersonBox = styled.View`
+  position: absolute;
+  left: 4.14%;
+  right: 72.29%;
+  top: 43.08%;
+  bottom: 1.54%;
   flex-direction: column;
 `;
 
@@ -40,9 +44,6 @@ const PriceForPersonTitle = styled.Text`
 `;
 
 const PriceForPersonPrice = styled.Text`
-  margin-top: -5px;
-  margin-bottom: 1px;
-
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
@@ -54,14 +55,16 @@ const PriceForPersonPrice = styled.Text`
 `;
 
 const CloseImageContainer = styled.View`
-  margin-top: 15px;
-  margin-left: 56px;
-  margin-bottom: 6px;
+  position: absolute;
+  left: 45.22%;
+  right: 49.68%;
+  top: 66.15%;
+  bottom: 9.23%;
+
+  padding-top: 15px;
 `;
 
 const TotalCount = styled.Text`
-  margin: 9px 0 2px 14px;
-
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
@@ -73,8 +76,13 @@ const TotalCount = styled.Text`
 `;
 
 const TotalResultBox = styled.View`
+  position: absolute;
+  left: 72.29%;
+  right: 0%;
+  top: 43.08%;
+  bottom: 1.54%;
+
   flex-direction: column;
-  margin-left: 70px;
 `;
 
 const ResultTitle = styled.Text`
@@ -108,7 +116,7 @@ const TotalPrice = ({state, setState}) => {
         <TotalCalculatorContainer>
           <PriceForPersonBox>
             <PriceForPersonTitle>1인 기준</PriceForPersonTitle>
-            <PriceForPersonPrice>{state?.price}</PriceForPersonPrice>
+            <PriceForPersonPrice>12000원</PriceForPersonPrice>
           </PriceForPersonBox>
           <CloseImageContainer>
             <Image source={require('../../assets/close.png')} />
@@ -116,7 +124,7 @@ const TotalPrice = ({state, setState}) => {
           <TotalCount>{state?.memberCnt}</TotalCount>
           <TotalResultBox>
             <ResultTitle>총 금액</ResultTitle>
-            <ResultPrice></ResultPrice>
+            <ResultPrice>999,999원</ResultPrice>
           </TotalResultBox>
         </TotalCalculatorContainer> 
       </TotalPriceContainer>
