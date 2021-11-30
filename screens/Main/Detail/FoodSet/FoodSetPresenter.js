@@ -116,7 +116,7 @@ const FoodSetPresenter = ({state, setState}) => {
         </FoodSetListContainer>
         <TotalPrice />
         <BorderLine />
-        <Caution />
+        <Caution state={state} setState={setState} caution={state?.foodSet[0]?.caution} />
       </ScrollContainer>
       <BottomConatiner>
         <ChangeCountButton>
