@@ -4,11 +4,10 @@ import styled from "styled-components";
 
 const TotalPriceContainer = styled.View`
   background: #ffffff;
-  padding: 0px 26px 0px 20px;
+  padding: 25px 26px 19px 20px;
 `;
 
 const TotalPriceTitle = styled.Text`
-  margin-top: 26px;
   font-family: 'NotoSansKR-Bold';
   font-size: 12px;
   line-height: 16px;
@@ -18,20 +17,19 @@ const TotalPriceTitle = styled.Text`
 `;
 
 const TotalCalculatorContainer = styled.View`
+  position: relative;
   flex-direction: row;
-  margin-top: 12px;
-  margin-bottom: 20px;
-  padding-left: 14px;
+  padding: 12px 0px 0px 14px;
 `;
 
 const PriceForPersonBox = styled.View`
+  position: absolute;
+  margin: 11px 0px 1px 13px;
   flex-direction: column;
 `;
 
 const PriceForPersonTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
+  font-family: 'NotoSansKR-Normal';
   font-size: 10px;
   line-height: 15px;
   display: flex;
@@ -40,12 +38,7 @@ const PriceForPersonTitle = styled.Text`
 `;
 
 const PriceForPersonPrice = styled.Text`
-  margin-top: -5px;
-  margin-bottom: 1px;
-
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+  font-family: 'NotoSansKR-Bold';
   font-size: 18px;
   line-height: 26px;
   display: flex;
@@ -54,17 +47,14 @@ const PriceForPersonPrice = styled.Text`
 `;
 
 const CloseImageContainer = styled.View`
-  margin-top: 15px;
-  margin-left: 56px;
-  margin-bottom: 6px;
+  margin: 29px 0px 6px 142px;
+  position: absolute;
 `;
 
 const TotalCount = styled.Text`
-  margin: 9px 0 2px 14px;
+  margin: 13px 0px 2px 172px;
 
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+  font-family: 'NotoSansKR-Bold';
   font-size: 18px;
   line-height: 26px;
   display: flex;
@@ -73,14 +63,17 @@ const TotalCount = styled.Text`
 `;
 
 const TotalResultBox = styled.View`
+  position: absolute;
+  left: 72.29%;
+  right: 0%;
+  top: 43.08%;
+  bottom: 1.54%;
+
   flex-direction: column;
-  margin-left: 70px;
 `;
 
 const ResultTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
+  font-family: 'NotoSansKR-Normal';
   font-size: 10px;
   line-height: 15px;
   display: flex;
@@ -90,9 +83,7 @@ const ResultTitle = styled.Text`
 `;
 
 const ResultPrice = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+  font-family: 'NotoSansKR-Bold';
   font-size: 18px;
   line-height: 26px;
   display: flex;
@@ -108,15 +99,15 @@ const TotalPrice = ({state, setState}) => {
         <TotalCalculatorContainer>
           <PriceForPersonBox>
             <PriceForPersonTitle>1인 기준</PriceForPersonTitle>
-            <PriceForPersonPrice>{state?.price}</PriceForPersonPrice>
+            <PriceForPersonPrice>12000원</PriceForPersonPrice>
           </PriceForPersonBox>
           <CloseImageContainer>
             <Image source={require('../../assets/close.png')} />
           </CloseImageContainer>
-          <TotalCount>{state?.memberCnt}</TotalCount>
+          <TotalCount>20</TotalCount>
           <TotalResultBox>
             <ResultTitle>총 금액</ResultTitle>
-            <ResultPrice></ResultPrice>
+            <ResultPrice>999,999원</ResultPrice>
           </TotalResultBox>
         </TotalCalculatorContainer> 
       </TotalPriceContainer>
