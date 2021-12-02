@@ -10,7 +10,7 @@ const FoodSingleContainer = () => {
   useEffect(() => {
     const init = async () => {
       let data = await fetch('/api/detail/foodSingle');
-      let foodSingle = JSON.parse(data._bodyInit).foodSingle;
+      let foodSingle = JSON.parse(data._bodyInit);
       setState(prev => ({
         ...prev,
         foodSingle,

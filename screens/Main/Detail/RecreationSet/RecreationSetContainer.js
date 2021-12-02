@@ -6,19 +6,22 @@ const RecreationSetContainer = () => {
     memberCnt: 0,
     teamCnt: 0,
     recSet: [],
-    items: [],
   })
 
   useEffect(() => {
     const init = async () => {
       let data = await fetch('api/detail/recSet');
-      let recSet = JSON.parse(data._bodyInit).recSet;
-      let items = JSON.parse(data._bodyInit).items;
+      let recSet = JSON.parse(data._bodyInit);
+      let items = recSet[0].items;
+      items.map(item => {
+        item['count'] = 0;
+        return item;
+      });
 
       setState(prev => ({
         ...prev,
         recSet,
-        items,
+        items
       }));
     };
     init();

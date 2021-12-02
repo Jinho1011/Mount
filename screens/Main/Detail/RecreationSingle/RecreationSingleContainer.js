@@ -12,12 +12,10 @@ const RecreationSingleContainer = () => {
   useEffect(() => {
     const init = async () => {
       let data = await fetch('/api/detail/recSingle');
-      let recSingle = JSON.parse(data._bodyInit).recSingle;
-      let items = JSON.parse(data._bodyInit).items;
+      let recSingle = JSON.parse(data._bodyInit);
       setState(prev => ({
         ...prev,
         recSingle,
-        items,
       }));
     };
     init();
