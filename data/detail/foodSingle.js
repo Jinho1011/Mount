@@ -16,7 +16,7 @@ const foodSingle = [
     price: 14000,
     description: '음식설명입니다',
     caution: '주의사항입니다',
-  }
-]
+  },
+];
 
 export default foodSingle;

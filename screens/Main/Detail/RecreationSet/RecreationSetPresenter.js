@@ -292,7 +292,7 @@ const RecreationSetPresenter = ({state, setState}) => {
                   item={item}
                   key={item.id}
                 />
-              )
+              );
             })}
             <MoreRecButton>
               <MoreRecButtonText>레크 정보 더보기</MoreRecButtonText>
