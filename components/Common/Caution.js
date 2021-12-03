@@ -10,13 +10,9 @@ const CautionContainer = styled.View`
 `;
 
 const CautionTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+  font-family: 'NotoSansKR-Bold';
   font-size: 12px;
   line-height: 16px;
-  display: flex;
-  align-items: center;
   color: #9e9e9e;
 `;
 
@@ -28,13 +24,9 @@ const CautionDetailContainer = styled.View`
 `;
 
 const CautionDetail = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
+  font-family: 'NotoSansKR-Regular';
   font-size: 10px;
   line-height: 15px;
-  display: flex;
-  align-items: center;
   color: #8b8b8b;
 `;
 

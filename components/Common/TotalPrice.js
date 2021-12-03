@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const TotalContainer = styled.View`
   background: #ffffff;
-  padding-bottom: 19px;
 `;
 
 const StyledTitle = styled.Text`
