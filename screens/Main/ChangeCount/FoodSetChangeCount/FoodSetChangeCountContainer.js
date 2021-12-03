@@ -1,10 +1,8 @@
-import React from "react";
-import FoodSetChangeCountPresenter from "./FoodSetChangeCountPresenter";
+import React from 'react';
+import FoodSetChangeCountPresenter from './FoodSetChangeCountPresenter';
 
-const FoodSetChangeCounterContainer = () => {
-    return (
-        <FoodSetChangeCountPresenter />
-    )
-}
+const FoodSetChangeCounterContainer = ({navigation, route}) => {
+  return <FoodSetChangeCountPresenter {...route.params} />;
+};
 
 export default FoodSetChangeCounterContainer;

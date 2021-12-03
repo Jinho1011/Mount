@@ -1,117 +1,100 @@
-import React from "react";
-import { Image, View } from "react-native";
-import styled from "styled-components";
+import React from 'react';
+import {Image, View, Text} from 'react-native';
+import styled from 'styled-components';
 
-const TotalPriceContainer = styled.View`
+const TotalContainer = styled.View`
   background: #ffffff;
-  padding: 25px 26px 19px 20px;
+  padding-bottom: 19px;
 `;
 
-const TotalPriceTitle = styled.Text`
+const StyledTitle = styled.Text`
   font-family: 'NotoSansKR-Bold';
   font-size: 12px;
   line-height: 16px;
-  display: flex;
-  align-items: center;
-  color: #000000;
 `;
 
-const TotalCalculatorContainer = styled.View`
-  position: relative;
+const SmallContainer = styled.View`
+  flex: 1;
   flex-direction: row;
-  padding: 12px 0px 0px 14px;
+  padding-left: 13px;
+  align-items: center;
 `;
 
-const PriceForPersonBox = styled.View`
-  position: absolute;
-  margin: 11px 0px 1px 13px;
+const PriceBox = styled.View`
   flex-direction: column;
+  margin-top: 11px;
 `;
 
-const PriceForPersonTitle = styled.Text`
-  font-family: 'NotoSansKR-Normal';
+const PriceBoxTitle = styled.Text`
+  font-family: 'NotoSansKR-Regular';
   font-size: 10px;
   line-height: 15px;
-  display: flex;
-  align-items: center;
   color: #8b8b8b;
 `;
 
-const PriceForPersonPrice = styled.Text`
+const Price = styled.Text`
+  margin-top: -5px;
   font-family: 'NotoSansKR-Bold';
   font-size: 18px;
   line-height: 26px;
-  display: flex;
-  align-items: center;
   color: #8b8b8b;
 `;
 
-const CloseImageContainer = styled.View`
-  margin: 29px 0px 6px 142px;
-  position: absolute;
+const MultiplyImg = styled.Image`
+  width: 16px;
+  height: 16px;
+  margin-left: 55px;
+  margin-top: 24px;
 `;
 
-const TotalCount = styled.Text`
-  margin: 13px 0px 2px 172px;
-
+const Count = styled.Text`
   font-family: 'NotoSansKR-Bold';
   font-size: 18px;
   line-height: 26px;
-  display: flex;
-  align-items: center;
   color: #8b8b8b;
+  margin-left: 14px;
+  margin-top: 20px;
 `;
 
-const TotalResultBox = styled.View`
-  position: absolute;
-  left: 72.29%;
-  right: 0%;
-  top: 43.08%;
-  bottom: 1.54%;
-
-  flex-direction: column;
+const TotalPriceBox = styled.View`
+  margin-left: 33px;
+  margin-top: 11px;
 `;
 
-const ResultTitle = styled.Text`
-  font-family: 'NotoSansKR-Normal';
+const TotalPriceTitle = styled.Text`
+  font-family: 'NotoSansKR-Regular';
   font-size: 10px;
   line-height: 15px;
-  display: flex;
-  align-items: center;
-  text-align: right;
   color: #8b8b8b;
+  text-align: right;
 `;
 
-const ResultPrice = styled.Text`
+const TotalPriceText = styled.Text`
   font-family: 'NotoSansKR-Bold';
   font-size: 18px;
   line-height: 26px;
-  display: flex;
-  align-items: center;
-  text-align: right;
   color: #ff5151;
+  text-align: right;
 `;
 
 const TotalPrice = ({state, setState}) => {
   return (
-      <TotalPriceContainer>
-        <TotalPriceTitle>총 예상금액</TotalPriceTitle>
-        <TotalCalculatorContainer>
-          <PriceForPersonBox>
-            <PriceForPersonTitle>1인 기준</PriceForPersonTitle>
-            <PriceForPersonPrice>12000원</PriceForPersonPrice>
-          </PriceForPersonBox>
-          <CloseImageContainer>
-            <Image source={require('../../assets/close.png')} />
-          </CloseImageContainer>
-          <TotalCount>20</TotalCount>
-          <TotalResultBox>
-            <ResultTitle>총 금액</ResultTitle>
-            <ResultPrice>999,999원</ResultPrice>
-          </TotalResultBox>
-        </TotalCalculatorContainer> 
-      </TotalPriceContainer>
-  )
-}
+    <TotalContainer>
+      <StyledTitle>총 예상금액</StyledTitle>
+      <SmallContainer>
+        <PriceBox>
+          <PriceBoxTitle>1인 기준</PriceBoxTitle>
+          <Price>12000 원</Price>
+        </PriceBox>
+        <MultiplyImg source={require('../../assets/close.png')} />
+        <Count>20</Count>
+        <TotalPriceBox>
+          <TotalPriceTitle>총 금액</TotalPriceTitle>
+          <TotalPriceText>999,999원</TotalPriceText>
+        </TotalPriceBox>
+      </SmallContainer>
+    </TotalContainer>
+  );
+};
 
 export default TotalPrice;

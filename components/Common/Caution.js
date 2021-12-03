@@ -1,10 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 /* 주의사항 */
 const CautionContainer = styled.View`
   margin-top: -10px;
-  padding: 24px 20px 92px 20px;
+  padding-top: 24px;
+  padding-bottom: 92px;
   background: #ffffff;
 `;
 
@@ -38,16 +39,14 @@ const CautionDetail = styled.Text`
 `;
 
 const Caution = ({state, setState, caution}) => {
-    return (
-        <CautionContainer>
-          <CautionTitle>주의 사항</CautionTitle>
-          <CautionDetailContainer>
-            <CautionDetail>
-              {caution}
-            </CautionDetail>
-          </CautionDetailContainer>
-        </CautionContainer>
-    )
-}
+  return (
+    <CautionContainer>
+      <CautionTitle>주의 사항</CautionTitle>
+      <CautionDetailContainer>
+        <CautionDetail>{caution}</CautionDetail>
+      </CautionDetailContainer>
+    </CautionContainer>
+  );
+};
 
 export default Caution;
