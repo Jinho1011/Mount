@@ -82,12 +82,11 @@ const LikeCount = styled.Text`
 
 const ContentContainer = styled.View`
   padding-left: 20px;
-  display: flex;
-  justify-content: center;
 `;
 
 const TotalPriceContainer = styled.View`
-  margin-top: 11px;
+  padding-top: 25px;
+  padding-bottom: 19px;
 `;
 
 const CautionContainer = styled.View`

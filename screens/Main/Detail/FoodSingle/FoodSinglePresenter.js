@@ -17,7 +17,6 @@ import Counter from '../../../../components/Food/Counter';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
 
-
 const PageWrap = styled.View``;
 
 const ScrollContainer = styled.ScrollView`
@@ -124,19 +123,25 @@ const LikeCount = styled.Text`
   margin-left: 3px;
 `;
 
+const TotalPriceContainer = styled.View`
+  padding-top: 25px;
+  padding-bottom: 19px;
+`;
+
 const FoodSinglePresenter = ({state, setState}) => {
-  console.log(state?.foodSingle[0]);
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
-        <TitleContainer 
+        <TitleContainer
           img={state?.foodSingle[0]?.img}
           title={state?.foodSingle[0]?.name}
           info={state?.foodSingle[0]?.detail}
         />
         <Counter state={state} setState={setState} />
-        <TotalPrice state={state} setState={setState} />
+        <TotalPriceContainer>
+          <TotalPrice state={state} setState={setState} />
+        </TotalPriceContainer>
         <FoodSingleSmallBorderLine />
         <RecomendationContainer>
           <RecomendationTitle>Mount의 추천</RecomendationTitle>

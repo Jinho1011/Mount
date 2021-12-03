@@ -109,6 +109,7 @@ const TotalPriceContainer = styled.View`
 `;
 
 const FoodSetChangeCountPresenter = ({state, setState}) => {
+  console.log(state?.memberCnt);
   return (
     <PageWrap>
       <StyledScrollView>
@@ -126,13 +127,27 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
               </SetTitle>
             </SetTitleContainer>
             <CounterContainer>
-              <MinusPressable>
+              <MinusPressable
+                onPress={() => {
+                  let memCnt = state.memberCnt;
+                  setState(prev => ({
+                    ...prev,
+                    memberCnt: Math.max(0, memCnt - 1),
+                  }));
+                }}>
                 <Image source={require('../../../../assets/minus_dis.png')} />
               </MinusPressable>
               <CounterNumberBox>
-                <CounterNumber>0</CounterNumber>
+                <CounterNumber>{state?.memberCnt}</CounterNumber>
               </CounterNumberBox>
-              <PlusPressable>
+              <PlusPressable
+                onPress={() => {
+                  let memCnt = state.memberCnt;
+                  setState(prev => ({
+                    ...prev,
+                    memberCnt: Math.max(0, memCnt + 1),
+                  }));
+                }}>
                 <Image source={require('../../../../assets/plus_.png')} />
               </PlusPressable>
             </CounterContainer>
