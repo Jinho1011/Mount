@@ -57,6 +57,10 @@ const Counter = ({state, setState}) => {
                 ...prev,
                 memberCnt: Math.max(0, memCnt - 1),
               }));
+              state.items.map(item => {
+                item.count = Math.max(0, memCnt - 1);
+                return item;
+              });
             }}>
             <Image source={require('../../assets/minus_dis.png')} />
           </Pressable>
@@ -70,6 +74,10 @@ const Counter = ({state, setState}) => {
                 ...prev,
                 memberCnt: Math.max(0, memCnt + 1),
               }));
+              state.items.map(item => {
+                item.count = Math.max(0, memCnt + 1);
+                return item;
+              });
             }}>
             <Image source={require('../../assets/plus_dis.png')} />
           </Pressable>
