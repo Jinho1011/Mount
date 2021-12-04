@@ -2,26 +2,26 @@ export default {
   foods: {
     recomms: [
       {
-        id: 'foodSet-1',
+        id: 'foodSets-1',
       },
       {
-        id: 'foodSingle-1',
+        id: 'foodSingles-1',
       },
       {
-        id: 'foodSingle-2',
+        id: 'foodSingles-2',
       },
     ],
   },
   recs: {
     recomms: [
       {
-        id: 'recSet-1',
+        id: 'recSets-1',
       },
       {
-        id: 'recSingle-1',
+        id: 'recSingles-1',
       },
       {
-        id: 'recSingle-2',
+        id: 'recSingles-2',
       },
     ],
   },
