@@ -3,6 +3,7 @@ import {View, Text, Pressable, Image} from 'react-native';
 import {HeaderTitle} from '../../../../components/Header/Header';
 import styled from 'styled-components';
 import Item from '../../../../components/Common/Item';
+import ItemMuttable from '../../../../components/Common/ItemMuttable';
 import foodSet from '../../../../data/detail/foodSet';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import ProposalButton from '../../../../components/Common/ProposalButton';
@@ -109,7 +110,6 @@ const TotalPriceContainer = styled.View`
 `;
 
 const FoodSetChangeCountPresenter = ({state, setState}) => {
-  console.log();
   return (
     <PageWrap>
       <StyledScrollView>
@@ -120,7 +120,7 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
                 source={require('../../../../assets/food_detail_sample.png')}
               />
               <SetTitle>
-                <SetName>{state?.foodSet[0].title}</SetName>
+                <SetName>{state?.foodSet[0]?.title}</SetName>
                 <SetItem>
                   {state?.items?.map(item => item.name).join(', ')}
                 </SetItem>
@@ -130,14 +130,11 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
               <MinusPressable
                 onPress={() => {
                   let memCnt = state.memberCnt;
+                  console.log(memCnt);
                   setState(prev => ({
                     ...prev,
                     memberCnt: Math.max(0, memCnt - 1),
                   }));
-                  state.items.map(item => {
-                    item.count = Math.max(0, memCnt - 1);
-                    return item;
-                  });
                 }}>
                 <Image source={require('../../../../assets/minus_dis.png')} />
               </MinusPressable>
@@ -151,10 +148,6 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
                     ...prev,
                     memberCnt: Math.max(0, memCnt + 1),
                   }));
-                  state.items.map(item => {
-                    item.count = Math.max(0, memCnt + 1);
-                    return item;
-                  });
                 }}>
                 <Image source={require('../../../../assets/plus_.png')} />
               </PlusPressable>
@@ -164,7 +157,7 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
           <ListContainer>
             {state?.items?.map(item => {
               return (
-                <Item
+                <ItemMuttable
                   state={state}
                   setState={setState}
                   item={item}

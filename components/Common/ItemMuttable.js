@@ -148,7 +148,7 @@ const Item = ({state, setState, item}) => {
               <Image source={require('../../assets/minus.png')} />
             </MinusPressable>
             <ItemCountBlock>
-              <ItemCount>0</ItemCount>
+              <ItemCount>{item.count}</ItemCount>
             </ItemCountBlock>
             <PlusPressable onPress={plusCount}>
               <Image source={require('../../assets/plus.png')} />
