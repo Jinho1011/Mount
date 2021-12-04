@@ -53,14 +53,15 @@ const Counter = ({state, setState}) => {
           <Pressable
             onPress={() => {
               let memCnt = state.memberCnt;
-              setState(prev => ({
-                ...prev,
-                memberCnt: Math.max(0, memCnt - 1),
-              }));
-              state.items.map(item => {
+              let items = state.items.map(item => {
                 item.count = Math.max(0, memCnt - 1);
                 return item;
               });
+              setState(prev => ({
+                ...prev,
+                memberCnt: Math.max(0, memCnt - 1),
+                items,
+              }));
             }}>
             <Image source={require('../../assets/minus_dis.png')} />
           </Pressable>
@@ -70,14 +71,15 @@ const Counter = ({state, setState}) => {
           <Pressable
             onPress={() => {
               let memCnt = state.memberCnt;
-              setState(prev => ({
-                ...prev,
-                memberCnt: Math.max(0, memCnt + 1),
-              }));
-              state.items.map(item => {
+              let items = state.items.map(item => {
                 item.count = Math.max(0, memCnt + 1);
                 return item;
               });
+              setState(prev => ({
+                ...prev,
+                memberCnt: Math.max(0, memCnt + 1),
+                items,
+              }));
             }}>
             <Image source={require('../../assets/plus_dis.png')} />
           </Pressable>

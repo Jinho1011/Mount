@@ -13,7 +13,6 @@ const StyledTitle = styled.Text`
 `;
 
 const SmallContainer = styled.View`
-  flex: 1;
   flex-direction: row;
   padding-left: 13px;
   align-items: center;
@@ -42,7 +41,7 @@ const Price = styled.Text`
 const MultiplyImg = styled.Image`
   width: 16px;
   height: 16px;
-  margin-left: 55px;
+  margin-left: 80px;
   margin-top: 24px;
 `;
 
