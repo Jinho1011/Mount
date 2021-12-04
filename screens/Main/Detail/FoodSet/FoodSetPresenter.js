@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, CommonActions} from '@react-navigation/native';
 import styled from 'styled-components';
 import TitleContainer from '../../../../components/Common/SetTitle';
 import Counter from '../../../../components/Food/Counter';
@@ -144,11 +144,17 @@ const FoodSetPresenter = ({state, setState}) => {
       <BottomConatiner>
         <ChangeCountButton
           onPress={() => {
-            navigation.navigate(
-              'FoodSetChangeCount',
-              {state: state},
-              {setState: setState},
-            );
+            const _state = state;
+            let items = state.items.map(item => {
+              item.count = 0;
+              return item;
+            });
+            navigation.navigate('FoodSetChangeCount', {_state});
+            setState(prev => ({
+              ...prev,
+              memberCnt: 0,
+              items,
+            }));
           }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>

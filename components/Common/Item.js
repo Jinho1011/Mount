@@ -8,15 +8,15 @@ import styled from 'styled-components';
 
 // 구성품 + 구분선
 const ItemBox = styled.View`
-  margin-bottom: 14px;
+  padding-bottom: 14px;
 `;
 
 // 구성품
 const ItemSmallBox = styled.View`
-  flex: 1;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  padding-bottom: 14px;
 `;
 
 const ItemName = styled.Text`
@@ -25,15 +25,15 @@ const ItemName = styled.Text`
   font-size: 14px;
   line-height: 20px;
   color: #000000;
-  margin-left: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
 `;
 
 const ItemCountBlock = styled.View`
-  position: absolute;
-  left: 54.14%;
   background: #f3f3f3;
   border-radius: 12.5px;
-  padding: 2px 16px 3px 17px;
+  padding: 2px 15px 3px 16px;
+  justify-content: center;
 `;
 
 const ItemCount = styled.Text`
@@ -44,14 +44,12 @@ const ItemCount = styled.Text`
 `;
 
 const SetItemPriceContainer = styled.View`
-  position: absolute;
-  left: 77.24%;
-  right: 0.07%;
+  padding-left: 28px;
   flex-direction: column;
   align-items: flex-end;
 `;
 
-const SetItemize = styled.Text`
+const SetItemSize = styled.Text`
   font-family: 'NotoSansKR-Regular';
   font-size: 10px;
   line-height: 15px;
@@ -70,19 +68,39 @@ const SetBorderLine = styled.View`
   border: 0.35px solid #eaeaea;
 `;
 
+const ItemLeft = styled.View`
+  flex-direction: row;
+`;
+
+const ItemRight = styled.View`
+  flex-direction: row;
+`;
+
+const Counter = styled.View`
+  flex-direction: row;
+`;
+
 const Item = ({state, setState, item}) => {
   return (
     <ItemBox>
       <ItemSmallBox>
-        <Image source={require('../../assets/rec_set_item_image_sample.png')} />
-        <ItemName>{item.name}</ItemName>
-        <ItemCountBlock>
-          <ItemCount>{item.count}</ItemCount>
-        </ItemCountBlock>
-        <SetItemPriceContainer>
-          <SetItemize>4인 (800g)</SetItemize>
-          <SetItemPrice>{item.price}원</SetItemPrice>
-        </SetItemPriceContainer>
+        <ItemLeft>
+          <Image
+            source={require('../../assets/rec_set_item_image_sample.png')}
+          />
+          <ItemName>{item.name}</ItemName>
+        </ItemLeft>
+        <ItemRight>
+          <Counter>
+            <ItemCountBlock>
+              <ItemCount>{item.count}</ItemCount>
+            </ItemCountBlock>
+          </Counter>
+          <SetItemPriceContainer>
+            <SetItemSize>4인 (800g)</SetItemSize>
+            <SetItemPrice>{item.price}원</SetItemPrice>
+          </SetItemPriceContainer>
+        </ItemRight>
       </ItemSmallBox>
       <SetBorderLine />
     </ItemBox>
