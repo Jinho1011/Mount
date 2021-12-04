@@ -53,7 +53,7 @@ export default ({state, setState}) => {
       <DetailsContainer
         title="레크세트 어쩌구 문구"
         navigate="HomeRecDetail"
-        items={state.foods}
+        items={state.recs}
         isLoaded={state.isLoaded}
       />
     </ScrollContainer>
