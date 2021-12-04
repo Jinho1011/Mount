@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {signupUser} from '../../../../store/actions/recommands';
 import SignupDetailPresenter from './SignupDetailPresenter';
 
 export default () => {
+  const dispatch = useDispatch();
+
   const [state, setState] = useState({
     email: [],
     emailIsEdited: false,
@@ -45,12 +49,29 @@ export default () => {
     });
   };
 
+  const submitHandler = e => {
+    e.preventDefault();
+    let body = {
+      email: state.email,
+      password: state.password,
+    };
+    dispatch(signupUser(body)); //디스패치 액션
+  };
+
   return (
     <SignupDetailPresenter
       state={state}
       emailChangeHandler={emailChangeHandler}
       passwordChangeHandler={passwordChangeHandler}
       passwordCheckChangeHandler={passwordCheckChangeHandler}
+      submitHandler={submitHandler}
     />
   );
 };
+//.then(response => {
+//  if (response.payload.signupSuccess) {
+//    console.log('success');
+// } else {
+//    console.log('fail');
+//  }
+//});

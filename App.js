@@ -7,6 +7,7 @@ import Gate from './components/Gate';
 
 import recommandsReducer from './store/reducers/recommands';
 
+import signup from './data/auth/signup';
 import recommands from './data/recommands/recommands';
 import foods from './data/foods/foods';
 import foodSet from './data/detail/foodSet';
@@ -26,6 +27,7 @@ if (window.server) {
 
 window.server = createServer({
   routes() {
+    this.get('/api/signup/', signup);
     this.get('/api/recommands/', recommands);
     this.get('/api/foods', foods);
     this.get('/api/detail/foodSet', foodSet);
