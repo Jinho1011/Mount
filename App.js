@@ -6,7 +6,8 @@ import {createStore, combineReducers} from 'redux';
 import Gate from './components/Gate';
 
 import recommandsReducer from './store/reducers/recommands';
-
+import usersReducer from './store/reducers/users';
+import users from './data/auth/users';
 import recommands from './data/recommands/recommands';
 import foods from './data/foods/foods';
 import foodSet from './data/detail/foodSet';
@@ -16,6 +17,7 @@ import recSingle from './data/detail/recSingle';
 
 const rootReducer = combineReducers({
   recommands: recommandsReducer,
+  users: usersReducer,
 });
 
 const store = createStore(rootReducer);
@@ -26,6 +28,7 @@ if (window.server) {
 
 window.server = createServer({
   routes() {
+    this.get('/api/user/', users);
     this.get('/api/recommands/', recommands);
     this.get('/api/foods', foods);
     this.get('/api/detail/foodSet', foodSet);

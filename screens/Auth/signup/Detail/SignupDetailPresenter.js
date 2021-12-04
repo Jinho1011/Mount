@@ -1,5 +1,4 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
 const Container = styled.View`
@@ -87,10 +86,8 @@ export default ({
   emailChangeHandler,
   passwordChangeHandler,
   passwordCheckChangeHandler,
+  onPressHandler,
 }) => {
-  const navigation = useNavigation();
-  const signupTosPress = () => navigation.navigate('SignupTos'); //다음으로 이동
-
   return (
     <Container>
       <EmailText>이메일</EmailText>
@@ -143,7 +140,7 @@ export default ({
       <SignupButton
         //disabled={!(emailValid && passwordValid && passwordCheckValid)}
         disabled={false} //임시
-        onPress={signupTosPress}>
+        onPress={onPressHandler}>
         <SignupText>회원가입</SignupText>
       </SignupButton>
     </Container>
