@@ -76,10 +76,20 @@ const DetailsContainer = ({title, navigate, items, isLoaded}) => {
       <Details horizontal={true} showsHorizontalScrollIndicator={false}>
         {isLoaded ? (
           items.map(item => {
-            return <Detail source={{uri: item.imgUrl}} key={item.id} />;
+            console.log(item);
+            return (
+              <Detail source={{uri: item.img}} key={item.type + item.id} />
+            );
           })
         ) : (
-          <DetailReady />
+          <>
+            <DetailReady />
+            <DetailReady />
+            <DetailReady />
+            <DetailReady />
+            <DetailReady />
+            <DetailReady />
+          </>
         )}
       </Details>
     </DetailsWrapper>
