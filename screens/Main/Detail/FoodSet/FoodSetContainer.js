@@ -5,6 +5,7 @@ const FoodSetContainer = () => {
   const [state, setState] = useState({
     memberCnt: 0,
     foodSet: [],
+    items: [],
   });
 
   useEffect(() => {
@@ -13,14 +14,14 @@ const FoodSetContainer = () => {
       let foodSet = JSON.parse(data._bodyInit);
       let items = foodSet[0].items;
       items.map(item => {
-        item['count'] = 0;
+        item.count = 0;
         return item;
       });
 
       setState(prev => ({
         ...prev, // -> memCnt, itemCnt, isLoaded는 변하지 않음 = 이전 데이터랑 같음
         foodSet, // 변화
-        items
+        items,
       }));
     };
     init();
