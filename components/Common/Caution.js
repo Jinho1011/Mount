@@ -1,21 +1,18 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 /* 주의사항 */
 const CautionContainer = styled.View`
   margin-top: -10px;
-  padding: 24px 20px 92px 20px;
+  padding-top: 24px;
+  padding-bottom: 92px;
   background: #ffffff;
 `;
 
 const CautionTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+  font-family: 'NotoSansKR-Bold';
   font-size: 12px;
   line-height: 16px;
-  display: flex;
-  align-items: center;
   color: #9e9e9e;
 `;
 
@@ -27,27 +24,21 @@ const CautionDetailContainer = styled.View`
 `;
 
 const CautionDetail = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
+  font-family: 'NotoSansKR-Regular';
   font-size: 10px;
   line-height: 15px;
-  display: flex;
-  align-items: center;
   color: #8b8b8b;
 `;
 
 const Caution = ({state, setState, caution}) => {
-    return (
-        <CautionContainer>
-          <CautionTitle>주의 사항</CautionTitle>
-          <CautionDetailContainer>
-            <CautionDetail>
-              {caution}
-            </CautionDetail>
-          </CautionDetailContainer>
-        </CautionContainer>
-    )
-}
+  return (
+    <CautionContainer>
+      <CautionTitle>주의 사항</CautionTitle>
+      <CautionDetailContainer>
+        <CautionDetail>{caution}</CautionDetail>
+      </CautionDetailContainer>
+    </CautionContainer>
+  );
+};
 
 export default Caution;

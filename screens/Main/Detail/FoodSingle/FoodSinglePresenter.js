@@ -17,17 +17,10 @@ import Counter from '../../../../components/Food/Counter';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
 
-
 const PageWrap = styled.View``;
 
 const ScrollContainer = styled.ScrollView`
-  background-color: #e5e5e5;
-`;
-
-const FoodSingleBorderLine = styled.View`
-  border: 0.35px solid #eaeaea;
-
-  margin-top: 14px;
+  background-color: #fff;
 `;
 
 const FoodSingleSmallBorderLine = styled.View`
@@ -111,32 +104,45 @@ const LikeButton = styled.TouchableOpacity`
 `;
 
 const LikeCount = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
+  font-family: 'NotoSansKR-Regular';
   font-size: 16px;
   line-height: 24px;
-  display: flex;
-  align-items: center;
   color: #8b8b8b;
-
   margin-top: 11px;
   margin-left: 3px;
 `;
 
+const TotalPriceContainer = styled.View`
+  padding-left: 20px;
+  padding-top: 25px;
+  padding-bottom: 19px;
+`;
+
+const BorderLine = styled.View`
+  height: 4px;
+  border: 0.35px solid #eaeaea;
+  background: #f3f3f3;
+`;
+
+const CautionContainer = styled.View`
+  padding: 24px 20px 17px 20px;
+`;
+
 const FoodSinglePresenter = ({state, setState}) => {
-  console.log(state?.foodSingle[0]);
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
-        <TitleContainer 
+        <TitleContainer
           img={state?.foodSingle[0]?.img}
           title={state?.foodSingle[0]?.name}
           info={state?.foodSingle[0]?.detail}
         />
         <Counter state={state} setState={setState} />
-        <TotalPrice state={state} setState={setState} />
+        <BorderLine />
+        <TotalPriceContainer>
+          <TotalPrice state={state} setState={setState} />
+        </TotalPriceContainer>
         <FoodSingleSmallBorderLine />
         <RecomendationContainer>
           <RecomendationTitle>Mount의 추천</RecomendationTitle>
@@ -147,8 +153,14 @@ const FoodSinglePresenter = ({state, setState}) => {
             </RecomendationDetail>
           </RecomendationDetailBox>
         </RecomendationContainer>
-        <FoodSingleBorderLine />
-        <Caution caution={state?.foodSingle[0]?.caution} />
+        <BorderLine />
+        <CautionContainer>
+          <Caution
+            state={state}
+            setState={setState}
+            caution={state?.foodSingle[0]?.caution}
+          />
+        </CautionContainer>
       </ScrollContainer>
       <BottomConatiner>
         <ChangeCountButton>
