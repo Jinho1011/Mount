@@ -6,8 +6,10 @@ import Gate from './components/Gate';
 import recommandsReducer from './store/reducers/recommands';
 import api from './api';
 
+
 const rootReducer = combineReducers({
   recommands: recommandsReducer,
+  users: usersReducer,
 });
 
 const store = createStore(rootReducer);
@@ -17,6 +19,7 @@ if (window.server) {
 }
 
 window.server = api;
+
 
 export default function App() {
   return (
