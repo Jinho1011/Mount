@@ -1,17 +1,41 @@
 import {createServer, Model} from 'miragejs';
 
 import recommands from './data/recommands/recommands';
-import foodSet from './data/detail/foodSet';
-import foodSingle from './data/detail/foodSingle';
-import recSet from './data/detail/recSet';
-import recSingle from './data/detail/recSingle';
+import foodSets from './data/detail/foodSet';
+import foodSingles from './data/detail/foodSingle';
+import recSets from './data/detail/recSet';
+import recSingles from './data/detail/recSingle';
 
 export default createServer({
+  models: {
+    foodSet: Model,
+    foodSingle: Model,
+    recSet: Model,
+    recSingle: Model,
+  },
+
+  fixtures: {
+    foodSets,
+    foodSingles,
+    recSets,
+    recSingles,
+  },
+
   routes() {
-    this.get('/api/recommands/', recommands, {timing: 3000});
-    this.get('/api/detail/foodSet', foodSet);
-    this.get('/api/detail/foodSingle', foodSingle);
-    this.get('/api/detail/recSet', recSet);
-    this.get('/api/detail/recSingle', recSingle);
+    this.namespace = 'api';
+
+    this.get('/recommands', recommands, {timing: 1000});
+
+    this.get('/foodSets');
+    this.get('/foodSets/:id');
+
+    this.get('/foodSingles');
+    this.get('/foodSingles/:id');
+
+    this.get('/recSets');
+    this.get('/recSets/:id');
+
+    this.get('/recSingles');
+    this.get('/recSingles/:id');
   },
 });
