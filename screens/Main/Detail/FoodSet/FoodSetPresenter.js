@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, CommonActions} from '@react-navigation/native';
 import styled from 'styled-components';
 import TitleContainer from '../../../../components/Common/SetTitle';
 import Counter from '../../../../components/Food/Counter';
@@ -13,32 +13,25 @@ import Caution from '../../../../components/Common/Caution';
 const PageWrap = styled.View``;
 
 const ScrollContainer = styled.ScrollView`
-  background-color: #e5e5e5;
+  background-color: #fff;
 `;
 
 const FoodSetListContainer = styled.View`
-  margin-top: 4px;
   background-color: #fff;
 `;
 
 const FoodSetListTitle = styled.Text`
-  color: #000000;
-  margin-top: 32px;
-  margin-left: 20px;
-  font-size: 12px;
   font-family: 'NotoSansKR-Bold';
   line-height: 16px;
+  font-size: 12px;
+  color: #000000;
+  margin-top: 32px;
 `;
 
 const ItemsContainer = styled.View`
   margin-top: 18px;
-  padding: 0 35px 0 35px;
-`;
-
-const BorderLine = styled.View`
-  border: 0.35px solid #eaeaea;
-
-  margin-top: 14px;
+  padding-left: 15px;
+  padding-right: 35px;
 `;
 
 /* bottom button container */
@@ -87,9 +80,28 @@ const LikeCount = styled.Text`
   margin-left: 3px;
 `;
 
+const ContentContainer = styled.View`
+  padding-left: 20px;
+`;
+
+const TotalPriceContainer = styled.View`
+  padding-top: 25px;
+  padding-bottom: 19px;
+`;
+
+const CautionContainer = styled.View`
+  padding: 24px 20px 17px 20px;
+`;
+
+const BorderLine = styled.View`
+  height: 4px;
+  border: 0.35px solid #eaeaea;
+  background: #f3f3f3;
+`;
+
 const FoodSetPresenter = ({state, setState}) => {
   const navigation = useNavigation();
-  const ChangeCountButtonPress = () => navigation.navigate('FoodSetChangeCount');
+
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
@@ -98,13 +110,14 @@ const FoodSetPresenter = ({state, setState}) => {
           img={state?.foodSet[0]?.img}
           title={state?.foodSet[0]?.title}
           // items 배열의 name들을 map으로 받아오고 ', '으로 join
-          items={state?.foodSet[0]?.items.map(item => item.name).join(', ')}
+          items={state?.items?.map(item => item.name).join(', ')}
         />
         <Counter state={state} setState={setState} />
-        <FoodSetListContainer>
+        <BorderLine />
+        <ContentContainer>
           <FoodSetListTitle>구성품</FoodSetListTitle>
           <ItemsContainer>
-            {state?.foodSet[0]?.items.map(item => {
+            {state?.items?.map(item => {
               return (
                 <Item
                   state={state}
@@ -112,16 +125,37 @@ const FoodSetPresenter = ({state, setState}) => {
                   item={item}
                   key={item.id}
                 />
-              )
+              );
             })}
           </ItemsContainer>
-        </FoodSetListContainer>
-        <TotalPrice />
+          <TotalPriceContainer>
+            <TotalPrice />
+          </TotalPriceContainer>
+        </ContentContainer>
         <BorderLine />
-        <Caution state={state} setState={setState} caution={state?.foodSet[0]?.caution} />
+        <CautionContainer>
+          <Caution
+            state={state}
+            setState={setState}
+            caution={state?.foodSet[0]?.caution}
+          />
+        </CautionContainer>
       </ScrollContainer>
       <BottomConatiner>
-        <ChangeCountButton onPress={ChangeCountButtonPress} >
+        <ChangeCountButton
+          onPress={() => {
+            const _state = state;
+            let items = state.items.map(item => {
+              item.count = 0;
+              return item;
+            });
+            navigation.navigate('FoodSetChangeCount', {_state});
+            setState(prev => ({
+              ...prev,
+              memberCnt: 0,
+              items,
+            }));
+          }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
         <LikeButton>
