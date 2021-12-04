@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {signupUser} from '../../../../store/actions/recommands';
+import {useNavigation} from '@react-navigation/native';
+import {signupUser} from '../../../../store/actions/users';
 import SignupDetailPresenter from './SignupDetailPresenter';
 
 export default () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const [state, setState] = useState({
     email: [],
@@ -49,13 +51,25 @@ export default () => {
     });
   };
 
-  const submitHandler = e => {
+  const signupSuccessHandler = e => {
     e.preventDefault();
     let body = {
       email: state.email,
       password: state.password,
     };
-    dispatch(signupUser(body)); //디스패치 액션
+    const signup = dispatch(signupUser(body));
+    if (signup.payload === true) {
+      console.log('success');
+    } else {
+      console.log('fail');
+    }
+  };
+
+  const signupTosPress = () => navigation.navigate('SignupTos'); //다음으로 이동
+
+  const onPressHandler = e => {
+    signupSuccessHandler(e);
+    signupTosPress();
   };
 
   return (
@@ -64,7 +78,7 @@ export default () => {
       emailChangeHandler={emailChangeHandler}
       passwordChangeHandler={passwordChangeHandler}
       passwordCheckChangeHandler={passwordCheckChangeHandler}
-      submitHandler={submitHandler}
+      onPressHandler={onPressHandler}
     />
   );
 };

@@ -101,10 +101,12 @@ const FindText = styled.Text`
   color: #8b8b8b;
 `;
 
-export default ({state, emailChangeHandler, passwordChangeHandler}) => {
-  const navigation = useNavigation();
-  const tutorialPress = () => navigation.navigate('Tutorial'); //다음으로 이동
-
+export default ({
+  state,
+  emailChangeHandler,
+  passwordChangeHandler,
+  onPressHandler,
+}) => {
   return (
     <Container>
       <EmailText>이메일</EmailText>
@@ -143,7 +145,7 @@ export default ({state, emailChangeHandler, passwordChangeHandler}) => {
       <LoginButton
         //disabled={!state.emailValid || !state.passwordValid}
         disabled={false} //임시
-        onPress={tutorialPress}>
+        onPress={onPressHandler}>
         <LoginText>로그인 하기</LoginText>
       </LoginButton>
 
