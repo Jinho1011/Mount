@@ -4,8 +4,8 @@ import {createStore, combineReducers} from 'redux';
 
 import Gate from './components/Gate';
 import recommandsReducer from './store/reducers/recommands';
+import usersReducer from './store/reducers/users';
 import api from './api';
-
 
 const rootReducer = combineReducers({
   recommands: recommandsReducer,
@@ -19,7 +19,6 @@ if (window.server) {
 }
 
 window.server = api;
-
 
 export default function App() {
   return (
