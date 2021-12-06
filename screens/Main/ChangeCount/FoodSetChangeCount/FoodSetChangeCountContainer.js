@@ -6,6 +6,7 @@ const FoodSetChangeCounterContainer = ({navigation, route}) => {
   const [state, setState] = useState({
     isLoaded: false,
   });
+  console.log(route.params._state.items);
 
   useEffect(() => {
     setState({
@@ -13,6 +14,11 @@ const FoodSetChangeCounterContainer = ({navigation, route}) => {
       ...route.params._state,
     });
   }, []);
+  // useEffect(() => {
+  //   state?.items?.map(item => (item.count = state?.memberCnt));
+  // });
+
+  // console.log(route.params._state);
 
   return (
     <>

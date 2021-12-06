@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, Pressable, Image} from 'react-native';
 import {HeaderTitle} from '../../../../components/Header/Header';
 import styled from 'styled-components';

@@ -14,7 +14,7 @@ const FoodSetContainer = () => {
       let foodSet = JSON.parse(data._bodyInit).foodSets;
       // console.log(foodSet);
       let items = foodSet[0].items;
-      console.log(items);
+      // console.log(items);
       items.map(item => {
         item.count = 0;
         return item;
