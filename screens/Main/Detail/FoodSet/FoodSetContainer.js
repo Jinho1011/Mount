@@ -10,9 +10,11 @@ const FoodSetContainer = () => {
 
   useEffect(() => {
     const init = async () => {
-      let data = await fetch('api/detail/foodSet');
-      let foodSet = JSON.parse(data._bodyInit);
+      let data = await fetch('/api/foodSets');
+      let foodSet = JSON.parse(data._bodyInit).foodSets;
+      // console.log(foodSet);
       let items = foodSet[0].items;
+      console.log(items);
       items.map(item => {
         item.count = 0;
         return item;

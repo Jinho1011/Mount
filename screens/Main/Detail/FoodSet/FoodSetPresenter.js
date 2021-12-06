@@ -16,10 +16,6 @@ const ScrollContainer = styled.ScrollView`
   background-color: #fff;
 `;
 
-const FoodSetListContainer = styled.View`
-  background-color: #fff;
-`;
-
 const FoodSetListTitle = styled.Text`
   font-family: 'NotoSansKR-Bold';
   line-height: 16px;
