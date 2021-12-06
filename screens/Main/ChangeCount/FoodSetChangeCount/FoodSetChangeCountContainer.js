@@ -5,8 +5,9 @@ import FoodSetChangeCountPresenter from './FoodSetChangeCountPresenter';
 const FoodSetChangeCounterContainer = ({navigation, route}) => {
   const [state, setState] = useState({
     isLoaded: false,
+    ...route.params._state,
   });
-  console.log(route.params._state.items);
+  // console.log(route.params._state.items);
 
   useEffect(() => {
     setState({
@@ -17,8 +18,6 @@ const FoodSetChangeCounterContainer = ({navigation, route}) => {
   // useEffect(() => {
   //   state?.items?.map(item => (item.count = state?.memberCnt));
   // });
-
-  // console.log(route.params._state);
 
   return (
     <>

@@ -145,16 +145,11 @@ const FoodSetPresenter = ({state, setState}) => {
             //   item.count = 0;
             //   return item;
             // });
-            // console.log(_state.items);
+            console.log(_state.items[0].count);
             navigation.navigate('FoodSetChangeCount', {_state});
-            let items = state.items.map(item => {
-              item.count = 0;
-              return item;
-            });
             setState(prev => ({
               ...prev,
-              memberCnt: 0,
-              items,
+              // memberCnt: 0,
             }));
           }}>
           <ChangeCountText>수량변경</ChangeCountText>
