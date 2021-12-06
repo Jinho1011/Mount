@@ -18,7 +18,7 @@ import Caution from '../../../../components/Common/Caution';
 const PageWrap = styled.View``;
 
 const ScrollContainer = styled.ScrollView`
-  background-color: #e5e5e5;
+  background-color: #fff;
 `;
 
 /* 레크레이션 세트 리스트 */
@@ -30,9 +30,7 @@ const RecSetListContainer = styled.View`
 `;
 
 const RecSetListTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+  font-family: 'NotoSansKR-Bold';
   font-size: 12px;
   line-height: 16px;
   color: #000000;
@@ -40,13 +38,11 @@ const RecSetListTitle = styled.Text`
 
 /* 가이드라인 */
 const GuideLineTitle = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
+  font-family: 'NotoSansKR-Regular';
   font-size: 12px;
   line-height: 17px;
   color: #000000;
-  margin-left: 152px;
+  padding-left: auto;
 `;
 
 const GuideLineContainer = styled.View`
@@ -59,28 +55,14 @@ const GuideLineImageBox = styled.View`
   padding: 28px 44px 17px 39px;
 `;
 
-const RecSetBorderLine = styled.View`
-  border: 0.35px solid #eaeaea;
-`;
-
-const FoodSetListContainer = styled.View`
-  margin-top: 4px;
-  background-color: #fff;
-`;
-
 const FoodSetListTitle = styled.Text`
   font-family: 'NotoSansKR-Bold';
   font-size: 12px;
   line-height: 16px;
   color: #000000;
 
-  margin-left: 20px;
-  margin-top: 36px;
-`;
-
-const FoodSetListItemBigContainer = styled.View`
-  margin-top: 9px;
-  padding: 0 35px 0 35px;
+  padding-left: 20px;
+  padding-top: 36px;
 `;
 
 /* bottom button container */
@@ -129,6 +111,27 @@ const LikeCount = styled.Text`
   margin-left: 3px;
 `;
 
+const TotalPriceContainer = styled.View`
+  padding-top: 25px;
+  padding-bottom: 19px;
+`;
+
+const BorderLine = styled.View`
+  height: 4px;
+  border: 0.35px solid #eaeaea;
+  background: #f3f3f3;
+`;
+
+const ContentContainer = styled.View`
+  padding-left: 20px;
+`;
+
+const ItemsContainer = styled.View`
+  margin-top: 18px;
+  padding-left: 15px;
+  padding-right: 35px;
+`;
+
 const RecreationSinglePresenter = ({state, setState}) => {
   return (
     <PageWrap style={{flex: 1}}>
@@ -139,6 +142,7 @@ const RecreationSinglePresenter = ({state, setState}) => {
           info={state?.recSingle[0]?.info}
         />
         <Counter state={state} setState={setState} />
+        <BorderLine />
         <RecSetListContainer>
           <RecSetListTitle>저희 레크는요...</RecSetListTitle>
           <GuideLineTitle>가이드라인</GuideLineTitle>
@@ -150,25 +154,25 @@ const RecreationSinglePresenter = ({state, setState}) => {
             />
           </GuideLineImageBox>
         </GuideLineContainer>
-        <RecSetBorderLine />
-        <FoodSetListContainer>
+        <BorderLine />
+        <ContentContainer>
           <FoodSetListTitle>구성품</FoodSetListTitle>
-          <FoodSetListItemBigContainer>
-            {state?.items.map(item => {
+          <ItemsContainer>
+            {state?.items?.map(item => {
               return (
                 <Item
                   state={state}
                   setState={setState}
-                  name={item.name}
-                  price={item.price}
+                  item={item}
                   key={item.id}
                 />
               );
             })}
-          </FoodSetListItemBigContainer>
-          <TotalPrice state={state} setState={setState} />
-        </FoodSetListContainer>
-        <RecSetBorderLine />
+          </ItemsContainer>
+          <TotalPriceContainer>
+            <TotalPrice />
+          </TotalPriceContainer>
+        </ContentContainer>
         <Caution caution={state?.recSingle[0]?.caution} />
       </ScrollContainer>
       <BottomConatiner>
