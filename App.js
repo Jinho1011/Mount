@@ -5,7 +5,7 @@ import {createStore, combineReducers} from 'redux';
 import Gate from './components/Gate';
 import recommandsReducer from './store/reducers/recommands';
 import usersReducer from './store/reducers/users';
-import api from './api';
+import api from './mock';
 
 const rootReducer = combineReducers({
   recommands: recommandsReducer,
