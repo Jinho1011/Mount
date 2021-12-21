@@ -134,9 +134,9 @@ const FoodSinglePresenter = ({state, setState}) => {
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
         <TitleContainer
-          img={state?.foodSingle[0]?.img}
-          title={state?.foodSingle[0]?.name}
-          info={state?.foodSingle[0]?.detail}
+          img={state?.foodSingle?.img}
+          title={state?.foodSingle?.name}
+          info={state?.foodSingle?.detail}
         />
         <Counter state={state} setState={setState} />
         <BorderLine />
@@ -149,7 +149,7 @@ const FoodSinglePresenter = ({state, setState}) => {
           <RecomendationDetailBox>
             <RecomendationDetailTitle>음식 설명</RecomendationDetailTitle>
             <RecomendationDetail>
-              {state?.foodSingle[0]?.description}
+              {state?.foodSingle?.description}
             </RecomendationDetail>
           </RecomendationDetailBox>
         </RecomendationContainer>
@@ -158,7 +158,7 @@ const FoodSinglePresenter = ({state, setState}) => {
           <Caution
             state={state}
             setState={setState}
-            caution={state?.foodSingle[0]?.caution}
+            caution={state?.foodSingle?.caution}
           />
         </CautionContainer>
       </ScrollContainer>
