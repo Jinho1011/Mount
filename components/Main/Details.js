@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import {useNavigation} from '@react-navigation/native';
@@ -76,7 +76,6 @@ const DetailsContainer = ({title, navigate, items, isLoaded}) => {
       <Details horizontal={true} showsHorizontalScrollIndicator={false}>
         {isLoaded ? (
           items.map(item => {
-            console.log(item);
             return (
               <Detail source={{uri: item.img}} key={item.type + item.id} />
             );
