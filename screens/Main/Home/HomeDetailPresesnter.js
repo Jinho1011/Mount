@@ -1,12 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, Dimensions} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 
-import FocusAwareStatusBar from '../../../../components/StatusBar';
-import {LargeBox, SmallBox} from '../../../../components/Main/Box';
-
-const screenWidth = Dimensions.get('window').width;
+import FocusAwareStatusBar from '../../../components/StatusBar';
+import Box from '../../../components/Main/Box';
 
 const ScrollContainer = styled.ScrollView`
   background-color: #fff;
@@ -20,16 +18,19 @@ const SmallBoxContainer = styled.View`
   justify-content: space-between;
 `;
 
-export default () => {
-  const navigation = useNavigation();
+export default ({state}) => {
   return (
     <ScrollContainer>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
-      <LargeBox />
-      <SmallBoxContainer>
-        <SmallBox screenWidth={screenWidth} />
-        <SmallBox screenWidth={screenWidth} />
-      </SmallBoxContainer>
+      {/* {state?.items.map(itemArr => {
+        if (itemArr.length == 1) {
+          const item = itemArr[0];
+          return <Box item={item} key={item.type + item.id} />;
+        } else {
+          const item = itemArr[0];
+          return <Box item={item} key={item.type + item.id} />;
+        }
+      })} */}
     </ScrollContainer>
   );
 };
