@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import {useNavigation} from '@react-navigation/native';
+import {TouchableOpacity} from 'react-native';
 
 const DetailsWrapper = styled.View`
   margin-top: 20px;
@@ -57,6 +58,10 @@ const Detail = styled.Image`
 const DetailsContainer = ({title, navigate, items, isLoaded}) => {
   const navigation = useNavigation();
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <DetailsWrapper>
       <DetailsHeader>
@@ -77,7 +82,16 @@ const DetailsContainer = ({title, navigate, items, isLoaded}) => {
         {isLoaded ? (
           items.map(item => {
             return (
-              <Detail source={{uri: item.img}} key={item.type + item.id} />
+              <TouchableOpacity
+                key={item.type + item.id}
+                onPress={() => {
+                  navigation.navigate('Details', {
+                    screen: capitalizeFirstLetter(item.type),
+                    params: {id: item.id},
+                  });
+                }}>
+                <Detail source={{uri: item.img}} key={item.type + item.id} />
+              </TouchableOpacity>
             );
           })
         ) : (
