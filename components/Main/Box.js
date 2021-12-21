@@ -1,16 +1,25 @@
 import React from 'react';
+import {View, Text, Dimensions, LogBox} from 'react-native';
 import styled from 'styled-components';
+import {useNavigation} from '@react-navigation/native';
 
-const SmallBoxContainer = styled.View`
-  width: ${props => parseInt((props.screenWidth - 40) / 2 - 8)}px;
+LogBox.ignoreAllLogs(true);
+
+const screenWidth = Dimensions.get('window').width;
+
+const BoxContainer = styled.Pressable`
+  width: ${props => {
+    if (props.type == 'long') return '100%';
+    else return `${parseInt((screenWidth - 40) / 2 - 8)}}px`;
+  }};
   margin-bottom: 20px;
 `;
 
-const BoxContainer = styled.View`
-  margin-bottom: 20px;
-`;
-
-const BoxImage = styled.View`
+const BoxImage = styled.Image`
+  width: ${props => {
+    if (props.type == 'long') return '100%';
+    else return `${parseInt((screenWidth - 40) / 2 - 8)}}px`;
+  }};
   height: 150px;
   background-color: #f3f3f3;
   border-radius: 4px;
@@ -53,40 +62,35 @@ const BoxHeartCount = styled.Text`
   line-height: 15px;
 `;
 
-function LargeBox() {
+const Box = ({item}) => {
+  const navigation = useNavigation();
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
-    <BoxContainer>
-      <BoxImage></BoxImage>
+    <BoxContainer
+      type={item.displayType}
+      onPress={() => {
+        navigation.navigate('Details', {
+          screen: capitalizeFirstLetter(item.type),
+          params: {id: item.id},
+        });
+      }}>
+      <BoxImage source={{uri: item.img}} type={item.displayType}></BoxImage>
       <BoxInfoContainer>
         <BoxLeft>
-          <BoxTitle>제목몇글자들어가나요여기</BoxTitle>
-          <BoxSubtitle>세트설명어쩌구저쩌구어쩌..</BoxSubtitle>
+          <BoxTitle>{item.title}</BoxTitle>
+          <BoxSubtitle>{item.subtitle}</BoxSubtitle>
         </BoxLeft>
         <BoxRight>
           <BoxHeart></BoxHeart>
-          <BoxHeartCount>23</BoxHeartCount>
+          <BoxHeartCount>{item.like}</BoxHeartCount>
         </BoxRight>
       </BoxInfoContainer>
     </BoxContainer>
   );
-}
-
-const SmallBox = ({screenWidth}) => {
-  return (
-    <SmallBoxContainer screenWidth={screenWidth}>
-      <BoxImage></BoxImage>
-      <BoxInfoContainer>
-        <BoxLeft>
-          <BoxTitle>제목몇글자들어가</BoxTitle>
-          <BoxSubtitle>세트설명어쩌구저쩌구어쩌..</BoxSubtitle>
-        </BoxLeft>
-        <BoxRight>
-          <BoxHeart></BoxHeart>
-          <BoxHeartCount>23</BoxHeartCount>
-        </BoxRight>
-      </BoxInfoContainer>
-    </SmallBoxContainer>
-  );
 };
 
-export {LargeBox, SmallBox};
+export default Box;

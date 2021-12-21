@@ -1,20 +1,21 @@
 import React, {useEffect, useState} from 'react';
+
+import {getDetail} from '../../../../api/api';
 import FoodSetPresenter from './FoodSetPresenter';
 
-const FoodSetContainer = () => {
+const FoodSetContainer = ({navigation, route}) => {
   const [state, setState] = useState({
     memberCnt: 0,
-    foodSet: [],
+    foodSet: {},
     items: [],
   });
 
   useEffect(() => {
     const init = async () => {
-      let data = await fetch('/api/foodSets');
-      let foodSet = JSON.parse(data._bodyInit).foodSets;
-      // console.log(foodSet);
-      let items = foodSet[0].items;
-      // console.log(items);
+      let data = await getDetail('foodSets', route.params?.id);
+      let foodSet = data.foodSet;
+      let items = foodSet.items;
+
       items.map(item => {
         item.count = 0;
         return item;
