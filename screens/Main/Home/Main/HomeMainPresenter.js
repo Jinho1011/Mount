@@ -34,6 +34,7 @@ const HomeHeaderSubTitle = styled.Text`
 
 export default ({state, setState}) => {
   const navigation = useNavigation();
+
   return (
     <ScrollContainer>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />

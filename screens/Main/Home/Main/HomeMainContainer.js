@@ -14,27 +14,34 @@ export default () => {
 
   const _loadData = async () => {
     const data = await fetch('/api/recommands');
-    const foods = JSON.parse(data._bodyInit).foods.recomms;
-    const recs = JSON.parse(data._bodyInit).recs.recomms;
+    const _foods = JSON.parse(data._bodyInit).foods.recomms;
+    const _recs = JSON.parse(data._bodyInit).recs.recomms;
 
-    _loadItems(foods, 'foods');
-    _loadItems(recs, 'recs');
+    const foods = await _loadItems(_foods, 'foods');
+    const recs = await _loadItems(_recs, 'recs');
 
-    dispatch(recommandsActions.initFoods(foods));
-    dispatch(recommandsActions.initRecs(recs));
+    setState(prev => ({
+      ...prev,
+      foods,
+      recs,
+    }));
 
     _setLoaded();
   };
 
-  const _loadItems = async (items, label) => {
-    items.map(async _item => {
-      const id = _item.id.split('-');
-      const type = id[0].slice(0, -1);
-      const data = await fetch(`/api/${id[0]}/${id[1]}`);
-      const item = JSON.parse(data._bodyInit)[type];
-      item['type'] = type;
-      setState(prev => ({...prev, [label]: [...prev[label], item]}));
-    });
+  const _loadItems = async items => {
+    return await Promise.all(
+      items.map(async function (_item) {
+        const id = _item.id.split('-');
+        const displayType = _item.displayType;
+        const type = id[0].slice(0, -1);
+        const data = await fetch(`/api/${id[0]}/${id[1]}`);
+        const item = JSON.parse(data._bodyInit)[type];
+        item['type'] = type;
+        item['displayType'] = displayType;
+        return item;
+      }),
+    );
   };
 
   const _setLoaded = () => {
@@ -47,6 +54,13 @@ export default () => {
     };
     init();
   }, []);
+
+  useEffect(() => {
+    if (state.foods.length > 0 && state.recs.length > 0) {
+      dispatch(recommandsActions.initFoods(state.foods));
+      dispatch(recommandsActions.initRecs(state.recs));
+    }
+  }, [state]);
 
   return <HomePresenter state={state} setState={setState} />;
 };
