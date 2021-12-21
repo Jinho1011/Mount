@@ -5,25 +5,23 @@ import HomeFoodDetailPresenter from './HomeFoodDetailPresenter';
 
 export default () => {
   const [state, setState] = useState({
-    foods: [],
+    items: [],
   });
 
   const foods = useSelector(state => state.recommands.foods);
 
   useEffect(() => {
-    let arr = [];
-
     for (let i = 0; i < foods.length; i++) {
-      const item = foods[i];
+      let newItem;
 
-      if (item.displayType == 'long') {
-        arr.push([item]);
+      if (foods[i].displayType == 'long') {
+        newItem = [foods[i]];
       } else {
-        arr.push([item, foods[++i]]);
+        newItem = [foods[i], foods[++i]];
       }
-    }
 
-    setState(prev => ({...prev, foods: arr}));
+      setState(prev => ({...prev, items: [...prev.items, newItem]}));
+    }
   }, []);
 
   return <HomeFoodDetailPresenter state={state} />;
