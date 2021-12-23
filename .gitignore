@@ -60,3 +60,4 @@ buck-out/
 
 # etc
 components/config.js
+.vscode/settings.json
