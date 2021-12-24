@@ -9,17 +9,18 @@ const screenWidth = Dimensions.get('window').width;
 
 const BoxContainer = styled.Pressable`
   width: ${props => {
-    if (props.type == 'long') return '100%';
-    else return `${parseInt((screenWidth - 40) / 2 - 8)}}px`;
+    if (props.type == 'short')
+      return `${parseInt((screenWidth - 40) / 2 - 8)}px`;
+    else return `${parseInt(screenWidth - 40)}px`;
   }};
   margin-bottom: 20px;
 `;
 
 const BoxImage = styled.Image`
-  width: ${props => {
+  /* width: ${props => {
     if (props.type == 'long') return '100%';
     else return `${parseInt((screenWidth - 40) / 2 - 8)}}px`;
-  }};
+  }}; */
   height: 150px;
   background-color: #f3f3f3;
   border-radius: 4px;
