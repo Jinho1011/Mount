@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {HeaderRight, HeaderTitle} from '../components/Header/Header';
 
+import TabBar from '../components/Header/TabBar';
 import HomeMain from '../screens/Main/Home/Main';
 import FoodDetail from '../screens/Main/Home/FoodDetail';
 import RecDetail from '../screens/Main/Home/RecDetail';
@@ -17,35 +18,37 @@ const HomeNavigator = createStackNavigator();
 const HomeTab = createMaterialTopTabNavigator();
 
 function HomeTabs(navigation) {
+  const TabNavigatorOption = {
+    tabBarActiveTintColor: '#E2F955',
+    tabBarInactiveTintColor: '#8B8B8B',
+    tabBarLabelStyle: {
+      fontSize: 16,
+      fontFamily: 'NotoSansKR-Bold',
+      lineHeight: 24,
+    },
+    tabBarStyle: {
+      shadowColor: '#fff',
+      backgroundColor: '#000000',
+      paddingLeft: 22,
+      paddingRight: 22,
+    },
+    tabBarItemStyle: {width: 60},
+    tabBarIndicatorContainerStyle: {
+      marginLeft: 27,
+      width: 100,
+    },
+    tabBarIndicatorStyle: {
+      paddingLeft: 22,
+      backgroundColor: '#E2F955',
+      height: 4,
+      elevation: 0,
+    },
+  };
+
   return (
     <HomeTab.Navigator
       initialRouteName={navigation.route.params.initialRoute}
-      screenOptions={{
-        tabBarActiveTintColor: '#E2F955',
-        tabBarInactiveTintColor: '#8B8B8B',
-        tabBarLabelStyle: {
-          fontSize: 16,
-          fontFamily: 'NotoSansKR-Bold',
-          lineHeight: 24,
-        },
-        tabBarStyle: {
-          shadowColor: '#fff',
-          backgroundColor: '#000000',
-          paddingLeft: 22,
-          paddingRight: 22,
-        },
-        tabBarItemStyle: {width: 60},
-        tabBarIndicatorContainerStyle: {
-          marginLeft: 27,
-          width: 100,
-        },
-        tabBarIndicatorStyle: {
-          paddingLeft: 22,
-          backgroundColor: '#E2F955',
-          height: 4,
-          elevation: 0,
-        },
-      }}>
+      tabBar={props => <TabBar {...props} />}>
       <HomeTab.Screen
         name="HomeFoodDetail"
         component={FoodDetail}
