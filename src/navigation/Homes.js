@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/stack';
 import styled from 'styled-components';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {HeaderRight, HeaderTitle} from '../components/Header/Header';
+import {Header, HeaderRight, HeaderTitle} from '../components/Header/Header';
 
 import TabBar from '../components/Header/TabBar';
 import HomeMain from '../screens/Main/Home/Main';
@@ -71,20 +71,26 @@ const Homes = () => {
       }}>
       <HomeNavigator.Group
         screenOptions={{
-          headerTitle: () => <HeaderTitle title="Home" />,
-          headerStyle: {
-            backgroundColor: '#000000',
-            height: 58,
-            shadowColor: 'transparent',
-            elevation: 0,
-          },
-          headerTitleAlign: 'center',
-          headerTintColor: '#fff',
-          headerRight: () => <HeaderRight />,
+          header: ({navigation, route, options, back}) => (
+            <Header
+              navigation={navigation}
+              route={route}
+              options={options}
+              back={back}
+            />
+          ),
           headerShadowVisible: false,
         }}>
-        <HomeNavigator.Screen name="HomeMain" component={HomeMain} />
-        <HomeNavigator.Screen name="HomeTabs" component={HomeTabs} />
+        <HomeNavigator.Screen
+          name="HomeMain"
+          component={HomeMain}
+          options={{title: '홈'}}
+        />
+        <HomeNavigator.Screen
+          name="HomeTabs"
+          component={HomeTabs}
+          options={{title: '홈'}}
+        />
       </HomeNavigator.Group>
     </HomeNavigator.Navigator>
   );

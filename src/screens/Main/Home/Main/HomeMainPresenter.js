@@ -37,7 +37,7 @@ export default ({state, setState}) => {
 
   return (
     <ScrollContainer>
-      <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
+      <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
       <HomeHeaderContainer>
         <HomeHeaderTitle>입력된 문장</HomeHeaderTitle>
         <HomeHeaderSubTitle>
