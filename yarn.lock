@@ -5217,7 +5217,7 @@
     "metro-transform-plugins" "0.66.2"
     "nullthrows" "^1.1.1"
 
-"metro@^0.66.1", "metro@0.66.2":
+"metro@^0.66.1", "metro@^0.66.2", "metro@0.66.2":
   "integrity" "sha512-uNsISfcQ3iKKSHoN5Q+LAh0l3jeeg7ZcNZ/4BAHGsk02erA0OP+l2m+b5qYVoPptHz9Oc3KyG5oGJoTu41pWjg=="
   "resolved" "https://registry.npmjs.org/metro/-/metro-0.66.2.tgz"
   "version" "0.66.2"
