@@ -8,7 +8,7 @@ import Box from '../../../../components/Main/Box';
 
 const ScrollContainer = styled.ScrollView`
   background-color: #fff;
-  padding-top: 20px;
+  padding-top: 116px;
   padding-left: 23px;
   padding-right: 23px;
 `;
@@ -19,8 +19,14 @@ const SmallBoxContainer = styled.View`
 `;
 
 export default ({state}) => {
+  const navigation = useNavigation();
+
+  const onScroll = e => {
+    navigation.setParams({offsetY: e.nativeEvent.contentOffset.y});
+  };
+
   return (
-    <ScrollContainer>
+    <ScrollContainer onScroll={onScroll}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       {state?.items.map(itemArr => {
         if (itemArr.length == 1) {
