@@ -125,7 +125,7 @@ const FoodSetPresenter = ({state, setState}) => {
             })}
           </ItemsContainer>
           <TotalPriceContainer>
-            <TotalPrice />
+            <TotalPrice state={state} setState={setState} />
           </TotalPriceContainer>
         </ContentContainer>
         <BorderLine />
