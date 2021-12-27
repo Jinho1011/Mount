@@ -22,7 +22,7 @@ function HomeTabs(navigation) {
   return (
     <HomeTab.Navigator
       initialRouteName={navigation.route.params.initialRoute}
-      tabBar={props => <TabBar {...props} offsetY={offsetY_F} />}>
+      tabBar={props => <TabBar {...props} />}>
       <HomeTab.Screen
         name="HomeFoodDetail"
         component={FoodDetail}
@@ -59,12 +59,12 @@ const Homes = () => {
         <HomeNavigator.Screen
           name="HomeMain"
           component={HomeMain}
-          options={{title: '홈'}}
+          options={{tabBarLabel: '홈'}}
         />
         <HomeNavigator.Screen
           name="HomeTabs"
           component={HomeTabs}
-          options={{title: '홈', headerShown: false}}
+          options={{tabBarLabel: '홈', headerShown: false}}
         />
       </HomeNavigator.Group>
     </HomeNavigator.Navigator>
