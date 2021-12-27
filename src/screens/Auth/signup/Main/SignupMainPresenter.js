@@ -7,33 +7,15 @@ const Container = styled.View`
   background-color: #ffffff;
 `;
 
-const CommonTouchableOpacity = styled.TouchableOpacity`
+const TouchableOpacity = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   height: 48px;
   margin-left: 23px;
   margin-right: 23px;
+  margin-top: ${props => props.marginTop || '8px'}
   border-radius: 5px;
-`;
-
-const Kakaotalk = styled(CommonTouchableOpacity)`
-  margin-top: 450px;
-  background-color: #ffe600;
-`;
-
-const Naver = styled(CommonTouchableOpacity)`
-  margin-top: 8px;
-  background-color: #20e41c;
-`;
-
-const Google = styled(CommonTouchableOpacity)`
-  margin-top: 8px;
-  background-color: #ff5e5e;
-`;
-
-const EtcEmail = styled(CommonTouchableOpacity)`
-  margin-top: 8px;
-  background-color: #f3f3f3;
+  background-color: ${props => props.bgColor}
 `;
 
 const ButtonText = styled.Text`
@@ -51,18 +33,18 @@ export default () => {
 
   return (
     <Container>
-      <Kakaotalk>
-        <ButtonText>카카오톡</ButtonText>
-      </Kakaotalk>
-      <Naver>
-        <ButtonText>네이버 아이디연동</ButtonText>
-      </Naver>
-      <Google>
-        <ButtonText>구글</ButtonText>
-      </Google>
-      <EtcEmail onPress={signupDetailPress}>
-        <ButtonText>기타 이메일 회원가입</ButtonText>
-      </EtcEmail>
+      <TouchableOpacity marginTop="450px" bgColor="#FFE600">
+        <ButtonText>카카오로 등록</ButtonText>
+      </TouchableOpacity>
+      <TouchableOpacity bgColor="#20E41C">
+        <ButtonText>네이버로 등록</ButtonText>
+      </TouchableOpacity>
+      <TouchableOpacity bgColor="#FF5E5E">
+        <ButtonText>구글로 등록</ButtonText>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={signupDetailPress} bgColor="#F3F3F3">
+        <ButtonText>기타 이메일로 등록</ButtonText>
+      </TouchableOpacity>
     </Container>
   );
 };
