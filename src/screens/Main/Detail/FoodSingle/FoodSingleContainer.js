@@ -15,6 +15,7 @@ const FoodSingleContainer = ({navigation, route}) => {
       let data = await getDetail('foodSingles', route.params?.id);
       let foodSingle = data.foodSingle;
       let items = foodSingle.items;
+      console.log(items);
 
       items.map(item => {
         item.count = 0;

@@ -120,7 +120,7 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
                 source={require('../../../../../assets/food_detail_sample.png')}
               />
               <SetTitle>
-                <SetName>{state?.foodSet[0]?.title}</SetName>
+                <SetName>{state?.foodSet.title}</SetName>
                 <SetItem>
                   {state?.items?.map(item => item.name).join(', ')}
                 </SetItem>
@@ -130,10 +130,14 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
               <MinusPressable
                 onPress={() => {
                   let memCnt = state.memberCnt;
-                  console.log(memCnt);
+                  let items = state.items.map(item => {
+                    item.count = Math.max(1, memCnt - 1);
+                    return item;
+                  });
                   setState(prev => ({
                     ...prev,
-                    memberCnt: Math.max(0, memCnt - 1),
+                    memberCnt: Math.max(1, memCnt - 1),
+                    items,
                   }));
                 }}>
                 <Image
@@ -146,9 +150,14 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
               <PlusPressable
                 onPress={() => {
                   let memCnt = state.memberCnt;
+                  let items = state.items.map(item => {
+                    item.count = Math.max(1, memCnt + 1);
+                    return item;
+                  });
                   setState(prev => ({
                     ...prev,
-                    memberCnt: Math.max(0, memCnt + 1),
+                    memberCnt: Math.max(1, memCnt + 1),
+                    items,
                   }));
                 }}>
                 <Image source={require('../../../../../assets/plus_.png')} />
@@ -169,7 +178,7 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
             })}
           </ListContainer>
           <TotalPriceContainer>
-            <TotalPrice />
+            <TotalPrice state={state} setState={setState} />
           </TotalPriceContainer>
         </ContentContainer>
         <BorderLine />
