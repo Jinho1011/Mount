@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useState, useRef, useEffect} from 'react';
+import {Animated} from 'react-native';
 import styled from 'styled-components/native';
+import {Header} from './Header';
 
 const Container = styled.View`
   padding-left: 23px;
@@ -34,34 +36,90 @@ const TabText = styled.Text`
 `;
 
 export default function TabBar({state, descriptors, navigation}) {
-  return (
-    <Container>
-      <TabWrapper>
-        {state.routes.map((route, index) => {
-          const {options} = descriptors[route.key];
-          const label = options.title;
-          const isFocused = state.index === index;
+  const [height, setHeight] = useState(0);
+  const headerHeight = 58 * 2;
+  let index = descriptors[state.routes[0].key].navigation.isFocused() ? 0 : 1;
 
-          const onPress = () => {
-            const event = navigation.emit({
-              type: 'tabPress',
-              target: route.key,
-              canPreventDefault: true,
-            });
-            if (!isFocused && !event.defaultPrevented) {
-              navigation.navigate(route.name);
-            }
-          };
-          return (
-            <TabButton
-              isFocused={isFocused}
-              onPress={onPress}
-              key={`tab_${index}`}>
-              <TabText isFocused={isFocused}>{label}</TabText>
-            </TabButton>
-          );
-        })}
-      </TabWrapper>
-    </Container>
+  // console.log(
+  //   '🚀 ~ file: TabBar.js ~ line 38 ~ TabBar ~ state',
+  //   state.routes[index].params.offsetY,
+  // );
+
+  const scrollY = useRef(new Animated.Value(0));
+
+  useEffect(() => {
+    console.log(state.routes[index].params.offsetY);
+    scrollY.current.setValue(state.routes[index].params.offsetY);
+  }, [state]);
+
+  // const handleScroll = Animated.event(
+  //   [
+  //     {
+  //       nativeEvent: {
+  //         contentOffset: {y: scrollY.current},
+  //       },
+  //     },
+  //   ],
+  //   {
+  //     useNativeDriver: true,
+  //   },
+  // );
+
+  const scrollYClamped = Animated.diffClamp(scrollY.current, 0, headerHeight);
+
+  const translateY = scrollYClamped.interpolate({
+    inputRange: [0, headerHeight],
+    outputRange: [0, -(headerHeight / 2)],
+  });
+  const translateYNumber = useRef();
+  translateY.addListener(({value}) => {
+    translateYNumber.current = value;
+  });
+
+  return (
+    <>
+      <Animated.View
+        style={[
+          {
+            position: 'absolute',
+            backgroundColor: '#1c1c1c',
+            left: 0,
+            right: 0,
+            width: '100%',
+            zIndex: 1,
+          },
+          {transform: [{translateY}]},
+        ]}>
+        <Header navigation={navigation} options={{title: '홈'}} />
+        <Container>
+          <TabWrapper>
+            {state.routes.map((route, index) => {
+              const {options} = descriptors[route.key];
+              const label = options.title;
+              const isFocused = state.index === index;
+
+              const onPress = () => {
+                const event = navigation.emit({
+                  type: 'tabPress',
+                  target: route.key,
+                  canPreventDefault: true,
+                });
+                if (!isFocused && !event.defaultPrevented) {
+                  navigation.navigate(route.name);
+                }
+              };
+              return (
+                <TabButton
+                  isFocused={isFocused}
+                  onPress={onPress}
+                  key={`tab_${index}`}>
+                  <TabText isFocused={isFocused}>{label}</TabText>
+                </TabButton>
+              );
+            })}
+          </TabWrapper>
+        </Container>
+      </Animated.View>
+    </>
   );
 }

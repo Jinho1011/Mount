@@ -71,11 +71,11 @@ export const HeaderRight = () => {
   );
 };
 
-export const Header = ({navigation, route, options, back}) => {
+export const Header = ({navigation, options}) => {
   return (
     <HeaderContainer>
       <HeaderLeft canGoBack={navigation.canGoBack()} />
-      <HeaderTitle title={options.title} />
+      <HeaderTitle title={options?.title} />
       <HeaderRight />
     </HeaderContainer>
   );
