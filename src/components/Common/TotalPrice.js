@@ -1,9 +1,9 @@
 import React from 'react';
-import {Image, View, Text} from 'react-native';
 import styled from 'styled-components';
 
 const TotalContainer = styled.View`
   background: #ffffff;
+  padding-right: 26px;
 `;
 
 const StyledTitle = styled.Text`
@@ -50,13 +50,13 @@ const Count = styled.Text`
   font-size: 18px;
   line-height: 26px;
   color: #8b8b8b;
-  margin-left: 14px;
-  margin-top: 20px;
+  padding-left: 14px;
+  padding-top: 20px;
 `;
 
 const TotalPriceBox = styled.View`
-  margin-left: 33px;
-  margin-top: 11px;
+  padding-left: 33px;
+  padding-top: 11px;
 `;
 
 const TotalPriceTitle = styled.Text`
@@ -78,7 +78,10 @@ const TotalPriceText = styled.Text`
 const TotalPrice = ({state, setState}) => {
   let price = 0;
   for (let i = 0; i < state.items.length; i++) {
-    price = price + state.items[i].price;
+    price = parseInt(
+      (price + state.items[i].count * state.items[i].price) / state.memberCnt,
+      10,
+    );
   }
   let total = state.memberCnt * price;
   return (
@@ -93,7 +96,7 @@ const TotalPrice = ({state, setState}) => {
         <Count>{state.memberCnt}</Count>
         <TotalPriceBox>
           <TotalPriceTitle>총 금액</TotalPriceTitle>
-          <TotalPriceText>{total}</TotalPriceText>
+          <TotalPriceText>{total} 원</TotalPriceText>
         </TotalPriceBox>
       </SmallContainer>
     </TotalContainer>
