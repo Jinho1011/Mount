@@ -13,6 +13,18 @@ export default {
         id: 'foodSingles-2',
         displayType: 'short',
       },
+      {
+        id: 'foodSets-3',
+        displayType: 'long',
+      },
+      {
+        id: 'foodSets-4',
+        displayType: 'long',
+      },
+      {
+        id: 'foodSets-5',
+        displayType: 'long',
+      },
     ],
   },
   recs: {
