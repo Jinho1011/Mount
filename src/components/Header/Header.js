@@ -80,7 +80,7 @@ export const Header = ({navigation, options}) => {
   return (
     <HeaderContainer>
       <HeaderLeft canGoBack={navigation.canGoBack()} />
-      <HeaderTitle title={options?.title} />
+      <HeaderTitle title={options?.tabBarLabel} />
       <HeaderRight />
     </HeaderContainer>
   );

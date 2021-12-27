@@ -90,7 +90,7 @@ export default function TabBar({state, descriptors, navigation}) {
           },
           {transform: [{translateY}]},
         ]}>
-        <Header navigation={navigation} options={{title: '홈'}} />
+        <Header navigation={navigation} options={{tabBarLabel: '홈'}} />
         <Container>
           <TabWrapper>
             {state.routes.map((route, index) => {
