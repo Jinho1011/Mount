@@ -5,7 +5,7 @@ import FoodSetPresenter from './FoodSetPresenter';
 
 const FoodSetContainer = ({navigation, route}) => {
   const [state, setState] = useState({
-    memberCnt: 0,
+    memberCnt: 1,
     foodSet: {},
     items: [],
   });
@@ -17,7 +17,7 @@ const FoodSetContainer = ({navigation, route}) => {
       let items = foodSet.items;
 
       items.map(item => {
-        item.count = 0;
+        item.count = 1;
         return item;
       });
 

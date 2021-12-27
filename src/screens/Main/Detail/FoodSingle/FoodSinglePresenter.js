@@ -129,6 +129,7 @@ const CautionContainer = styled.View`
 `;
 
 const FoodSinglePresenter = ({state, setState}) => {
+  console.log(state.items);
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />

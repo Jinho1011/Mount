@@ -2,7 +2,7 @@ export default [
   {
     id: 1,
     img: 'https://dummyimage.com/600x253/000/fff',
-    title: '고기',
+    title: '돼지고기',
     subtitle: '세트설명어쩌구저쩌구어쩌..',
     detail: '1인분 200g 기준',
     price: 12000,

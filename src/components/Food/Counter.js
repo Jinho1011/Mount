@@ -73,13 +73,13 @@ const Counter = ({state, setState}) => {
             onPress={() => {
               let memCnt = state.memberCnt;
               let items = state.items.map(item => {
-                item.count = Math.max(0, memCnt + 1);
+                item.count = Math.max(1, memCnt + 1);
                 return item;
               });
               // console.log(items);
               setState(prev => ({
                 ...prev,
-                memberCnt: Math.max(0, memCnt + 1),
+                memberCnt: Math.max(1, memCnt + 1),
                 items,
               }));
               // console.log(items);
