@@ -1,13 +1,23 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {Animated} from 'react-native';
 import styled from 'styled-components/native';
-import {Header} from './Header';
+import {Header, HeaderLeft, HeaderTitle, HeaderRight} from './Header';
 
 const Container = styled.View`
   padding-left: 23px;
   background-color: #ffffff;
   border-bottom-width: 0.3px;
   border-bottom-color: #b4b4b4;
+`;
+
+const HeaderContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 58px;
 `;
 
 const TabWrapper = styled.View`
@@ -36,34 +46,14 @@ const TabText = styled.Text`
 `;
 
 export default function TabBar({state, descriptors, navigation}) {
-  const [height, setHeight] = useState(0);
   const headerHeight = 58 * 2;
   let index = descriptors[state.routes[0].key].navigation.isFocused() ? 0 : 1;
-
-  // console.log(
-  //   '🚀 ~ file: TabBar.js ~ line 38 ~ TabBar ~ state',
-  //   state.routes[index].params.offsetY,
-  // );
 
   const scrollY = useRef(new Animated.Value(0));
 
   useEffect(() => {
-    // console.log(state.routes[index].params.offsetY);
     scrollY.current.setValue(state.routes[index].params.offsetY);
   }, [state]);
-
-  // const handleScroll = Animated.event(
-  //   [
-  //     {
-  //       nativeEvent: {
-  //         contentOffset: {y: scrollY.current},
-  //       },
-  //     },
-  //   ],
-  //   {
-  //     useNativeDriver: true,
-  //   },
-  // );
 
   const scrollYClamped = Animated.diffClamp(scrollY.current, 0, headerHeight);
 
@@ -90,7 +80,11 @@ export default function TabBar({state, descriptors, navigation}) {
           },
           {transform: [{translateY}]},
         ]}>
-        <Header navigation={navigation} options={{tabBarLabel: '홈'}} />
+        <HeaderContainer>
+          <HeaderLeft canGoBack={navigation.canGoBack()} />
+          <HeaderTitle title={'홈'} />
+          <HeaderRight />
+        </HeaderContainer>
         <Container>
           <TabWrapper>
             {state.routes.map((route, index) => {

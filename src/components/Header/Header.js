@@ -11,6 +11,7 @@ const HeaderContainer = styled.View`
   padding-left: 15px;
   padding-right: 15px;
   height: 58px;
+  elevation: 1;
 `;
 
 const HeaderBackButton = styled.Image`
