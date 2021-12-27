@@ -76,19 +76,24 @@ const TotalPriceText = styled.Text`
 `;
 
 const TotalPrice = ({state, setState}) => {
+  let price = 0;
+  for (let i = 0; i < state.items.length; i++) {
+    price = price + state.items[i].price;
+  }
+  let total = state.memberCnt * price;
   return (
     <TotalContainer>
       <StyledTitle>총 예상금액</StyledTitle>
       <SmallContainer>
         <PriceBox>
           <PriceBoxTitle>1인 기준</PriceBoxTitle>
-          <Price>12000 원</Price>
+          <Price>{price} 원</Price>
         </PriceBox>
         <MultiplyImg source={require('../../../assets/close.png')} />
-        <Count>20</Count>
+        <Count>{state.memberCnt}</Count>
         <TotalPriceBox>
           <TotalPriceTitle>총 금액</TotalPriceTitle>
-          <TotalPriceText>999,999원</TotalPriceText>
+          <TotalPriceText>{total}</TotalPriceText>
         </TotalPriceBox>
       </SmallContainer>
     </TotalContainer>
