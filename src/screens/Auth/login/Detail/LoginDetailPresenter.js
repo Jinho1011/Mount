@@ -1,6 +1,4 @@
 import React from 'react';
-import {View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
 const Container = styled.View`
@@ -8,25 +6,21 @@ const Container = styled.View`
   background-color: #ffffff;
 `;
 
-const CommonTextInput = styled.TextInput`
+const TextInput = styled.TextInput`
   background-color: #f3f3f3;
-  padding-top: 13px;
-  padding-bottom: 11px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   padding-left: 18px;
   height: 48px;
   margin-left: 23px;
   margin-right: 23px;
-  border: ${props => (props.border ? '#ff5151' : '#f3f3f3')};
+  margin-top: ${props => props.marginTop || '5px'}
+  border: ${props => (props.border ? '#f3f3f3' : '#ff5151')};
   border-radius: 5px;
   color: #000000;
-`;
-
-const EmailTextInput = styled(CommonTextInput)`
-  margin-top: 5px;
-`;
-
-const PasswordTextInput = styled(CommonTextInput)`
-  margin-top: 5px;
+  font-family: 'NotoSansKR-normal';
+  font-size: 16px;
+  line-height: 24px;
 `;
 
 const CommonText = styled.Text`
@@ -49,21 +43,19 @@ const PasswordText = styled(CommonText)`
   margin-right: 292px;
 `;
 
-const CommonHelpText = styled(CommonText)`
+const HelpText = styled(CommonText)`
   height: 15px;
   font-size: 10px;
   line-height: 15px;
+  margin-top: 2px;
   margin-left: 23px;
   margin-right: 200px;
-  color: #ff5151;
-`;
-const HelpText = styled(CommonHelpText)`
-  margin-top: 2px;
+  color: ${props => (props.color ? '#b4b4b4' : '#ff5151')};
 `;
 
 const LoginButton = styled.TouchableOpacity`
   height: 48px;
-  margin-top: 332px;
+  margin-top: 315px;
   margin-left: 23px;
   margin-right: 23px;
   border-radius: 5px;
@@ -80,17 +72,13 @@ const LoginText = styled.Text`
   text-align: center;
 `;
 
-const FindId = styled.TouchableOpacity`
-  width: 16.1%;
+const FindPassword = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
   height: 18px;
-  margin-top: 19px;
-  margin-left: 20%;
-`;
-
-const FindPassword = styled(FindId)`
-  width: 25%;
-  margin-top: -16px;
-  margin-left: 61%;
+  margin-top: 16px;
+  margin-left: 151px;
+  margin-right: 151px;
 `;
 
 const FindText = styled.Text`
@@ -110,9 +98,9 @@ export default ({
   return (
     <Container>
       <EmailText>이메일</EmailText>
-      <EmailTextInput
-        border={!state.emailValid && state.emailIsEdited}
-        placeholder="이메일 주소"
+      <TextInput
+        border={state.emailBlank === state.emailValid}
+        placeholder="이메일 주소를 입력해주세요"
         placeholderTextColor="#8B8B8B"
         value={state.email}
         onChangeText={emailChangeHandler}
@@ -120,15 +108,15 @@ export default ({
         keyboardType={'email-address'}
         returnKeyType={'done'}
       />
-      {!state.emailValid && state.emailIsEdited ? (
-        <HelpText>유효하지 않은 이메일</HelpText>
+      {state.emailBlank === state.emailValid ? (
+        <HelpText color={true}> </HelpText>
       ) : (
-        <HelpText> </HelpText>
+        <HelpText color={false}>유효하지 않은 이메일 </HelpText>
       )}
       <PasswordText>비밀번호</PasswordText>
-      <PasswordTextInput
-        border={!state.passwordValid && state.passwordIsEdited}
-        placeholder="비밀번호"
+      <TextInput
+        border={state.passwordBlank === state.passwordValid}
+        placeholder="비밀번호를 설정해주세요"
         placeholderTextColor="#8B8B8B"
         value={state.password}
         onChangeText={passwordChangeHandler}
@@ -136,32 +124,19 @@ export default ({
         autoCapitalize={'none'}
         returnKeyType={'done'}
       />
-      {!state.passwordValid && state.passwordIsEdited ? (
-        <HelpText>특수문자, 숫자, 문자 포함 8~15자리</HelpText>
+      {state.passwordBlank === state.passwordValid ? (
+        <HelpText color={true}>특수문자, 영문, 문자 포함 최소 8자리</HelpText>
       ) : (
-        <HelpText> </HelpText>
+        <HelpText color={false}>오류 원인 기재</HelpText>
       )}
-
       <LoginButton
-        //disabled={!state.emailValid || !state.passwordValid}
+        // disabled={
+        //   !(state.emailValid && state.passwordValid && state.passwordCheckValid)
+        // }
         disabled={false} //임시
         onPress={onPressHandler}>
         <LoginText>로그인 하기</LoginText>
       </LoginButton>
-
-      <FindId>
-        <FindText>아이디 찾기</FindText>
-      </FindId>
-
-      <View
-        style={{
-          height: 16,
-          width: 1.3,
-          backgroundColor: '#B4B4B4',
-          marginTop: -18,
-          marginLeft: '50%',
-        }}
-      />
       <FindPassword>
         <FindText>비밀번호 찾기</FindText>
       </FindPassword>

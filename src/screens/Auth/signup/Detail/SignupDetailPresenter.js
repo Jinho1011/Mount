@@ -6,28 +6,21 @@ const Container = styled.View`
   background-color: #ffffff;
 `;
 
-const CommonTextInput = styled.TextInput`
+const TextInput = styled.TextInput`
   background-color: #f3f3f3;
-  padding-top: 13px;
-  padding-bottom: 11px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   padding-left: 18px;
   height: 48px;
   margin-left: 23px;
   margin-right: 23px;
-  border: ${props => (props.border ? '#ff5151' : '#f3f3f3')};
+  margin-top: ${props => props.marginTop || '5px'}
+  border: ${props => (props.border ? '#f3f3f3' : '#ff5151')};
   border-radius: 5px;
   color: #000000;
-`;
-
-const EmailTextInput = styled(CommonTextInput)`
-  margin-top: 5px;
-`;
-
-const PasswordTextInput = styled(CommonTextInput)`
-  margin-top: 5px;
-`;
-const PasswordCheckTextInput = styled(CommonTextInput)`
-  margin-top: 8px;
+  font-family: 'NotoSansKR-normal';
+  font-size: 16px;
+  line-height: 24px;
 `;
 
 const CommonText = styled.Text`
@@ -46,25 +39,23 @@ const EmailText = styled(CommonText)`
 `;
 
 const PasswordText = styled(CommonText)`
-  margin-top: 15px;
+  margin-top: 32px;
   margin-right: 292px;
 `;
 
-const CommonHelpText = styled(CommonText)`
+const HelpText = styled(CommonText)`
   height: 15px;
   font-size: 10px;
   line-height: 15px;
+  margin-top: 2px;
   margin-left: 23px;
   margin-right: 200px;
-  color: #ff5151;
-`;
-const HelpText = styled(CommonHelpText)`
-  margin-top: 2px;
+  color: ${props => (props.color ? '#b4b4b4' : '#ff5151')};
 `;
 
 const SignupButton = styled.TouchableOpacity`
   height: 48px;
-  margin-top: 242px;
+  margin-top: 259px;
   margin-left: 23px;
   margin-right: 23px;
   border-radius: 5px;
@@ -91,9 +82,9 @@ export default ({
   return (
     <Container>
       <EmailText>이메일</EmailText>
-      <EmailTextInput
-        border={!state.emailValid && state.emailIsEdited}
-        placeholder="이메일 주소"
+      <TextInput
+        border={state.emailBlank === state.emailValid}
+        placeholder="이메일 주소를 입력해주세요"
         placeholderTextColor="#8B8B8B"
         value={state.email}
         onChangeText={emailChangeHandler}
@@ -101,15 +92,15 @@ export default ({
         keyboardType={'email-address'}
         returnKeyType={'done'}
       />
-      {!state.emailValid && state.emailIsEdited ? (
-        <HelpText>유효하지 않은 이메일</HelpText>
+      {state.emailBlank === state.emailValid ? (
+        <HelpText color={true}> </HelpText>
       ) : (
-        <HelpText> </HelpText>
+        <HelpText color={false}>유효하지 않은 이메일 </HelpText>
       )}
       <PasswordText>비밀번호</PasswordText>
-      <PasswordTextInput
-        border={!state.passwordValid && state.passwordIsEdited}
-        placeholder="비밀번호"
+      <TextInput
+        border={state.passwordBlank === state.passwordValid}
+        placeholder="비밀번호를 설정해주세요"
         placeholderTextColor="#8B8B8B"
         value={state.password}
         onChangeText={passwordChangeHandler}
@@ -117,14 +108,15 @@ export default ({
         autoCapitalize={'none'}
         returnKeyType={'done'}
       />
-      {!state.passwordValid && state.passwordIsEdited ? (
-        <HelpText>특수문자, 숫자, 문자 포함 8~15자리</HelpText>
+      {state.passwordBlank === state.passwordValid ? (
+        <HelpText color={true}>특수문자, 영문, 문자 포함 최소 8자리</HelpText>
       ) : (
-        <HelpText> </HelpText>
+        <HelpText color={false}>오류 원인 기재</HelpText>
       )}
-      <PasswordCheckTextInput
-        border={!state.passwordCheckValid && state.passwordCheckIsEdited}
-        placeholder="비밀번호 확인"
+      <TextInput
+        marginTop="8px"
+        border={state.passwordCheckBlank === state.passwordCheckValid}
+        placeholder="비밀번호를 재입력해주세요"
         placeholderTextColor="#8B8B8B"
         value={state.passwordCheck}
         onChangeText={passwordCheckChangeHandler}
@@ -132,13 +124,15 @@ export default ({
         autoCapitalize={'none'}
         returnKeyType={'done'}
       />
-      {!state.passwordCheckValid && state.passwordCheckIsEdited ? (
-        <HelpText>비밀번호가 다릅니다.</HelpText>
+      {state.passwordCheckBlank === state.passwordCheckValid ? (
+        <HelpText color={true}>도움말 텍스트</HelpText>
       ) : (
-        <HelpText> </HelpText>
+        <HelpText color={false}>오류 원인 기재</HelpText>
       )}
       <SignupButton
-        //disabled={!(emailValid && passwordValid && passwordCheckValid)}
+        // disabled={
+        //   !(state.emailValid && state.passwordValid && state.passwordCheckValid)
+        // }
         disabled={false} //임시
         onPress={onPressHandler}>
         <SignupText>회원가입</SignupText>
