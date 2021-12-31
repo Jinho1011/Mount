@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 import FocusAwareStatusBar from '../../../components/StatusBar';
 
+import PlanItemsContainer from '../../../components/Plan/PlanItems';
+
 const Container = styled.ScrollView`
   background: #ffffff;
 `;
@@ -54,6 +56,7 @@ export default () => {
         </PlanEditBtn>
       </PlanTitleContainer>
       <Divider></Divider>
+      <PlanItemsContainer />
     </Container>
   );
 };
