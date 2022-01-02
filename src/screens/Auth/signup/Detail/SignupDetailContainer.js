@@ -10,13 +10,13 @@ export default () => {
 
   const [state, setState] = useState({
     email: [],
-    emailIsEdited: false,
+    emailBlank: false,
     emailValid: false,
     password: [],
-    passwordIsEdited: false,
+    passwordBlank: false,
     passwordValid: false,
     passwordCheck: [],
-    passwordCheckIsEdited: false,
+    passwordCheckBlank: false,
     passwordCheckValid: false,
   });
 
@@ -25,8 +25,8 @@ export default () => {
     setState({
       ...state,
       email: e,
+      emailBlank: e.trim() !== '',
       emailValid: emailRegex.test(e),
-      emailIsEdited: true,
     });
   };
 
@@ -36,8 +36,8 @@ export default () => {
     setState({
       ...state,
       password: p,
+      passwordBlank: p.trim() !== '',
       passwordValid: passwordRegex.test(p),
-      passwordIsEdited: true,
       passwordCheckValid: state.passwordCheck && state.passwordCheck === p,
     });
   };
@@ -46,7 +46,7 @@ export default () => {
     setState({
       ...state,
       passwordCheck: pc,
-      passwordCheckIsEdited: true,
+      passwordCheckBlank: pc.trim() !== '',
       passwordCheckValid: state.password && state.password === pc,
     });
   };
