@@ -10,6 +10,7 @@ const FoodSetChangeCounterContainer = ({navigation, route}) => {
   // console.log(route.params._state.items);
 
   useEffect(() => {
+    console.log(route.params._state);
     setState({
       isLoaded: true,
       ...route.params._state,

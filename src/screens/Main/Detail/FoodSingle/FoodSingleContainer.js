@@ -5,31 +5,22 @@ import FoodSinglePresenter from './FoodSinglePresenter';
 
 const FoodSingleContainer = ({navigation, route}) => {
   const [state, setState] = useState({
-    memberCnt: 0,
+    memberCnt: 1,
     foodSingle: {},
-    items: [],
   });
 
   useEffect(() => {
     const init = async () => {
       let data = await getDetail('foodSingles', route.params?.id);
       let foodSingle = data.foodSingle;
-      let items = foodSingle.items;
-      console.log(items);
-
-      items.map(item => {
-        item.count = 0;
-        return item;
-      });
-
+      console.log(foodSingle);
       setState(prev => ({
-        ...prev, // -> memCnt, itemCnt, isLoaded는 변하지 않음 = 이전 데이터랑 같음
+        ...prev,
         foodSingle, // 변화
-        items,
       }));
     };
     init();
-  }, []);
+  }, [route.params?.id]);
 
   return (
     <>
