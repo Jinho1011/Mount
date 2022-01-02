@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TotalContainer = styled.View`
+  justify-content: space-between;
   background: #ffffff;
-  padding-right: 26px;
 `;
 
 const StyledTitle = styled.Text`
@@ -14,8 +14,8 @@ const StyledTitle = styled.Text`
 
 const SmallContainer = styled.View`
   flex-direction: row;
+  justify-content: space-between;
   padding-left: 13px;
-  align-items: center;
 `;
 
 const PriceBox = styled.View`
@@ -38,11 +38,14 @@ const Price = styled.Text`
   color: #8b8b8b;
 `;
 
+const MultiplyImgBox = styled.View`
+  padding-left: 55px;
+  padding-top: 28px;
+`;
+
 const MultiplyImg = styled.Image`
   width: 16px;
   height: 16px;
-  margin-left: 80px;
-  margin-top: 24px;
 `;
 
 const Count = styled.Text`
@@ -57,6 +60,7 @@ const Count = styled.Text`
 const TotalPriceBox = styled.View`
   padding-left: 33px;
   padding-top: 11px;
+  padding-right: 6px;
 `;
 
 const TotalPriceTitle = styled.Text`
@@ -92,7 +96,9 @@ const TotalPrice = ({state, setState}) => {
           <PriceBoxTitle>1인 기준</PriceBoxTitle>
           <Price>{price} 원</Price>
         </PriceBox>
-        <MultiplyImg source={require('../../../assets/close.png')} />
+        <MultiplyImgBox>
+          <MultiplyImg source={require('../../../assets/close.png')} />
+        </MultiplyImgBox>
         <Count>{state.memberCnt}</Count>
         <TotalPriceBox>
           <TotalPriceTitle>총 금액</TotalPriceTitle>

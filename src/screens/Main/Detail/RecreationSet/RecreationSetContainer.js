@@ -15,6 +15,7 @@ const RecreationSetContainer = ({route}) => {
       let data = await getDetail('recSets', route.parmas?.id);
       let recSet = JSON.parse(data._bodyInit);
       let items = recSet[0].items;
+      console.log(items);
       items.map(item => {
         item.count = 0;
         return item;

@@ -84,6 +84,7 @@ const ContentContainer = styled.View`
 const TotalPriceContainer = styled.View`
   padding-top: 25px;
   padding-bottom: 19px;
+  padding-right: 20px;
 `;
 
 const CautionContainer = styled.View`
@@ -98,7 +99,6 @@ const BorderLine = styled.View`
 
 const FoodSetPresenter = ({state, setState}) => {
   const navigation = useNavigation();
-
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
