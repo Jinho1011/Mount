@@ -54,7 +54,7 @@ const Counter = ({state, setState}) => {
             onPress={() => {
               let memCnt = state.memberCnt;
               let items = state.items.map(item => {
-                item.count = Math.max(1, memCnt - 1);
+                item.count = Math.max(1, item.count - 1);
                 return item;
               });
               setState(prev => ({
@@ -62,7 +62,6 @@ const Counter = ({state, setState}) => {
                 memberCnt: Math.max(1, memCnt - 1),
                 items,
               }));
-              // console.log(items);
             }}>
             <Image source={require('../../../assets/minus_dis.png')} />
           </Pressable>
@@ -73,16 +72,14 @@ const Counter = ({state, setState}) => {
             onPress={() => {
               let memCnt = state.memberCnt;
               let items = state.items.map(item => {
-                item.count = Math.max(1, memCnt + 1);
+                item.count = Math.max(1, item.count + 1);
                 return item;
               });
-              // console.log(items);
               setState(prev => ({
                 ...prev,
                 memberCnt: Math.max(1, memCnt + 1),
                 items,
               }));
-              // console.log(items);
             }}>
             <Image source={require('../../../assets/plus_dis.png')} />
           </Pressable>

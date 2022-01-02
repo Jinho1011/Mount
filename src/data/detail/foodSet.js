@@ -6,6 +6,7 @@ export default [
     caution: '주의사항입니다',
     subtitle: '세트설명어쩌구저쩌구어쩌..',
     like: 222,
+    memberCnt: 1,
     items: [
       {
         id: 1,
