@@ -142,15 +142,9 @@ const FoodSetPresenter = ({state, setState}) => {
         <ChangeCountButton
           onPress={() => {
             const _state = state;
-            // let items = state.items.map(item => {
-            //   item.count = 0;
-            //   return item;
-            // });
-            console.log(_state.items[0].count);
             navigation.navigate('FoodSetChangeCount', {_state});
             setState(prev => ({
               ...prev,
-              // memberCnt: 0,
             }));
           }}>
           <ChangeCountText>수량변경</ChangeCountText>
