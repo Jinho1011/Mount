@@ -33,6 +33,7 @@ const ItemsContainer = styled.View`
 /* bottom button container */
 const BottomConatiner = styled.View`
   flex-direction: row;
+  justify-content: space-between;
   background: #ffffff;
   border: 0.3px solid #b4b4b4;
 
@@ -40,7 +41,7 @@ const BottomConatiner = styled.View`
 `;
 
 const ChangeCountButton = styled.TouchableOpacity`
-  padding: 12px 118px;
+  padding: 12px 102px;
 
   background: #e2f955;
   border-radius: 5px;
@@ -49,7 +50,7 @@ const ChangeCountButton = styled.TouchableOpacity`
 `;
 
 const ChangeCountText = styled.Text`
-  font-family: Noto Sans KR;
+  font-family: 'NotoSansKR-Regular';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -58,22 +59,22 @@ const ChangeCountText = styled.Text`
   color: #000000;
 `;
 
-const LikeButton = styled.TouchableOpacity`
-  margin: 14.5px 0 14.5px 13px;
+const LikeView = styled.View`
+  flex-direction: row;
+  padding-top: 13px;
+  padding-left: 13px;
 `;
 
+const LikeButton = styled.TouchableOpacity``;
+
 const LikeCount = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
+  font-family: 'NotoSansKR-Regular';
   font-size: 16px;
   line-height: 24px;
   display: flex;
   align-items: center;
   color: #8b8b8b;
-
-  margin-top: 11px;
-  margin-left: 3px;
+  padding-left: 3px;
 `;
 
 const ContentContainer = styled.View`
@@ -154,10 +155,12 @@ const FoodSetPresenter = ({state, setState}) => {
           }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
-        <LikeButton>
-          <Image source={require('../../../../../assets/Like.png')} />
-        </LikeButton>
-        <LikeCount>23</LikeCount>
+        <LikeView>
+          <LikeButton>
+            <Image source={require('../../../../../assets/Like.png')} />
+          </LikeButton>
+          <LikeCount>23</LikeCount>
+        </LikeView>
       </BottomConatiner>
     </PageWrap>
   );
