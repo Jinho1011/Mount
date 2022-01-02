@@ -22,13 +22,13 @@ const FoodSetContainer = ({navigation, route}) => {
       });
 
       setState(prev => ({
-        ...prev, // -> memCnt, itemCnt, isLoaded는 변하지 않음 = 이전 데이터랑 같음
-        foodSet, // 변화
+        ...prev,
+        foodSet,
         items,
       }));
     };
     init();
-  }, []);
+  }, [route.params?.id]);
 
   return (
     <>
