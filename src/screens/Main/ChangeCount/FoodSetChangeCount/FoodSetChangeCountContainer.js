@@ -7,17 +7,26 @@ const FoodSetChangeCounterContainer = ({navigation, route}) => {
     isLoaded: false,
     ...route.params._state,
   });
-  // console.log(route.params._state.items);
 
   useEffect(() => {
-    setState({
-      isLoaded: true,
-      ...route.params._state,
-    });
+    const init = () => {
+      let foodSet = route.params._state.foodSet;
+      let memberCnt = route.params._state.memberCnt;
+      let items = foodSet.items;
+
+      items.map(item => {
+        item.count = memberCnt;
+        return item;
+      });
+
+      console.log(foodSet.items[0].count);
+      setState({
+        isLoaded: true,
+        ...route.params._state,
+      });
+    };
+    init();
   }, []);
-  // useEffect(() => {
-  //   state?.items?.map(item => (item.count = state?.memberCnt));
-  // });
 
   return (
     <>

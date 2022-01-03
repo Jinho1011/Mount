@@ -5,7 +5,7 @@ import FoodSetPresenter from './FoodSetPresenter';
 
 const FoodSetContainer = ({navigation, route}) => {
   const [state, setState] = useState({
-    memberCnt: 0,
+    // memberCnt: 1,
     foodSet: {},
     items: [],
   });
@@ -15,20 +15,22 @@ const FoodSetContainer = ({navigation, route}) => {
       let data = await getDetail('foodSets', route.params?.id);
       let foodSet = data.foodSet;
       let items = foodSet.items;
+      let memberCnt = foodSet.memberCnt;
 
       items.map(item => {
-        item.count = 0;
+        item.count = memberCnt;
         return item;
       });
 
       setState(prev => ({
-        ...prev, // -> memCnt, itemCnt, isLoaded는 변하지 않음 = 이전 데이터랑 같음
-        foodSet, // 변화
+        ...prev,
+        foodSet,
         items,
+        memberCnt,
       }));
     };
     init();
-  }, []);
+  }, [route.params?.id]);
 
   return (
     <>

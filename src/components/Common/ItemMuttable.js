@@ -1,7 +1,6 @@
 /**
  * 플러스, 마이너스가 가능한 구성품 컴포넌트입니다.
  */
-import {isEmptyStatement} from '@babel/types';
 import React from 'react';
 import {Image, Pressable} from 'react-native';
 import styled from 'styled-components';

@@ -74,7 +74,7 @@ const DetailsContainer = ({title, navigate, items, isLoaded}) => {
               navigation.navigate('HomeTabs', {initialRoute: navigate});
             }}>
             <DetailMoreText>더보기</DetailMoreText>
-            <Icon name="arrow-right" size={12} color="#8b8b8b"></Icon>
+            <Icon name="arrow-right" size={12} color="#8b8b8b" />
           </DetailMore>
         )}
       </DetailsHeader>

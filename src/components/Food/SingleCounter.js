@@ -44,7 +44,7 @@ const CounterNumber = styled.Text`
   font-family: 'NotoSansKR-Bold';
 `;
 
-const Counter = ({state, setState}) => {
+const SingleCounter = ({state, setState}) => {
   return (
     <CounterContainer>
       <CounterBox>
@@ -53,14 +53,9 @@ const Counter = ({state, setState}) => {
           <Pressable
             onPress={() => {
               let memCnt = state.memberCnt;
-              let items = state.items.map(item => {
-                item.count = Math.max(1, item.count - 1);
-                return item;
-              });
               setState(prev => ({
                 ...prev,
                 memberCnt: Math.max(1, memCnt - 1),
-                items,
               }));
             }}>
             <Image source={require('../../../assets/minus_dis.png')} />
@@ -71,14 +66,9 @@ const Counter = ({state, setState}) => {
           <Pressable
             onPress={() => {
               let memCnt = state.memberCnt;
-              let items = state.items.map(item => {
-                item.count = Math.max(1, item.count + 1);
-                return item;
-              });
               setState(prev => ({
                 ...prev,
                 memberCnt: Math.max(1, memCnt + 1),
-                items,
               }));
             }}>
             <Image source={require('../../../assets/plus_dis.png')} />
@@ -89,4 +79,4 @@ const Counter = ({state, setState}) => {
   );
 };
 
-export default Counter;
+export default SingleCounter;

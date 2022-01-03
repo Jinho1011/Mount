@@ -9,6 +9,7 @@ import Item from '../../../../components/Common/Item';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
+import _ from 'lodash';
 
 const PageWrap = styled.View``;
 
@@ -33,6 +34,7 @@ const ItemsContainer = styled.View`
 /* bottom button container */
 const BottomConatiner = styled.View`
   flex-direction: row;
+  justify-content: space-between;
   background: #ffffff;
   border: 0.3px solid #b4b4b4;
 
@@ -40,7 +42,7 @@ const BottomConatiner = styled.View`
 `;
 
 const ChangeCountButton = styled.TouchableOpacity`
-  padding: 12px 118px;
+  padding: 12px 102px;
 
   background: #e2f955;
   border-radius: 5px;
@@ -49,7 +51,7 @@ const ChangeCountButton = styled.TouchableOpacity`
 `;
 
 const ChangeCountText = styled.Text`
-  font-family: Noto Sans KR;
+  font-family: 'NotoSansKR-Regular';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -58,22 +60,22 @@ const ChangeCountText = styled.Text`
   color: #000000;
 `;
 
-const LikeButton = styled.TouchableOpacity`
-  margin: 14.5px 0 14.5px 13px;
+const LikeView = styled.View`
+  flex-direction: row;
+  padding-top: 13px;
+  padding-left: 13px;
 `;
 
+const LikeButton = styled.TouchableOpacity``;
+
 const LikeCount = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
+  font-family: 'NotoSansKR-Regular';
   font-size: 16px;
   line-height: 24px;
   display: flex;
   align-items: center;
   color: #8b8b8b;
-
-  margin-top: 11px;
-  margin-left: 3px;
+  padding-left: 3px;
 `;
 
 const ContentContainer = styled.View`
@@ -83,6 +85,7 @@ const ContentContainer = styled.View`
 const TotalPriceContainer = styled.View`
   padding-top: 25px;
   padding-bottom: 19px;
+  padding-right: 20px;
 `;
 
 const CautionContainer = styled.View`
@@ -97,7 +100,6 @@ const BorderLine = styled.View`
 
 const FoodSetPresenter = ({state, setState}) => {
   const navigation = useNavigation();
-
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
@@ -125,7 +127,7 @@ const FoodSetPresenter = ({state, setState}) => {
             })}
           </ItemsContainer>
           <TotalPriceContainer>
-            <TotalPrice />
+            <TotalPrice state={state} setState={setState} />
           </TotalPriceContainer>
         </ContentContainer>
         <BorderLine />
@@ -140,24 +142,20 @@ const FoodSetPresenter = ({state, setState}) => {
       <BottomConatiner>
         <ChangeCountButton
           onPress={() => {
-            const _state = state;
-            // let items = state.items.map(item => {
-            //   item.count = 0;
-            //   return item;
-            // });
-            console.log(_state.items[0].count);
+            const _state = _.cloneDeep(state);
             navigation.navigate('FoodSetChangeCount', {_state});
-            setState(prev => ({
-              ...prev,
-              // memberCnt: 0,
-            }));
+            // setState(prev => ({
+            //   ...prev,
+            // }));
           }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
-        <LikeButton>
-          <Image source={require('../../../../../assets/Like.png')} />
-        </LikeButton>
-        <LikeCount>23</LikeCount>
+        <LikeView>
+          <LikeButton>
+            <Image source={require('../../../../../assets/Like.png')} />
+          </LikeButton>
+          <LikeCount>23</LikeCount>
+        </LikeView>
       </BottomConatiner>
     </PageWrap>
   );
