@@ -4,20 +4,19 @@ import RecreationSetPresenter from './RecreationSetPresenter';
 
 const RecreationSetContainer = ({route}) => {
   const [state, setState] = useState({
-    memberCnt: 0,
+    memberCnt: 1,
     teamCnt: 0,
     recSet: [],
   });
 
   useEffect(() => {
     const init = async () => {
-      console.log(route.parmas);
-      let data = await getDetail('recSets', route.parmas?.id);
-      let recSet = JSON.parse(data._bodyInit);
-      let items = recSet[0].items;
-      console.log(items);
+      let data = await getDetail('recSets', route.params?.id);
+      let recSet = data.recSet;
+      let items = recSet.items;
+
       items.map(item => {
-        item.count = 0;
+        item.count = 1;
         return item;
       });
 
@@ -28,7 +27,7 @@ const RecreationSetContainer = ({route}) => {
       }));
     };
     init();
-  }, []);
+  }, [route.params?.id]);
 
   return (
     <>

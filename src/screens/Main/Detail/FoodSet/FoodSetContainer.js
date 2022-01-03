@@ -16,7 +16,6 @@ const FoodSetContainer = ({navigation, route}) => {
       let foodSet = data.foodSet;
       let items = foodSet.items;
       let memberCnt = foodSet.memberCnt;
-      console.log(memberCnt);
 
       items.map(item => {
         item.count = memberCnt;

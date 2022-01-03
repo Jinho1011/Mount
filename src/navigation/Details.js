@@ -25,11 +25,8 @@ const Details = () => (
     }}>
     <DetailNavigator.Screen name="FoodSet" component={FoodSet} />
     <DetailNavigator.Screen name="FoodSingle" component={FoodSingle} />
-    <DetailNavigator.Screen name="RecreationSet" component={RecreationSet} />
-    <DetailNavigator.Screen
-      name="RecreationSingle"
-      component={RecreationSingle}
-    />
+    <DetailNavigator.Screen name="RecSet" component={RecreationSet} />
+    <DetailNavigator.Screen name="RecSingle" component={RecreationSingle} />
     <DetailNavigator.Screen
       name="FoodSetChangeCount"
       component={FoodSetChangeCount}
