@@ -6,6 +6,8 @@ import SignupMain from '../screens/Auth/signup/Main';
 import SignupTos from '../screens/Auth/signup/Tos';
 import LoginDetail from '../screens/Auth/login/Detail';
 import LoginMain from '../screens/Auth/login/Main';
+import PwdFindDetail from '../screens/Auth/pwdFind/Detail';
+import PwdFindMain from '../screens/Auth/pwdFind/Main';
 import Tutorial from '../screens/Auth/tutorial';
 
 const AuthNavigator = createStackNavigator();
@@ -19,11 +21,9 @@ export default () => (
       <AuthNavigator.Screen name="SignupTos" component={SignupTos} />
       <AuthNavigator.Screen name="LoginMain" component={LoginMain} />
       <AuthNavigator.Screen name="LoginDetail" component={LoginDetail} />
-      <AuthNavigator.Screen
-        name="Tutorial"
-        component={Tutorial}
-        options={{headerShown: false}}
-      />
+      <AuthNavigator.Screen name="PwdFindMain" component={PwdFindMain} />
+      <AuthNavigator.Screen name="PwdFindDetail" component={PwdFindDetail} />
+      <AuthNavigator.Screen name="Tutorial" component={Tutorial} />
     </AuthNavigator.Group>
   </AuthNavigator.Navigator>
 );
