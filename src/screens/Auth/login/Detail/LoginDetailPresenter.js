@@ -1,4 +1,5 @@
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
 const Container = styled.View`
@@ -95,6 +96,8 @@ export default ({
   passwordChangeHandler,
   onPressHandler,
 }) => {
+  const navigation = useNavigation();
+  const loginFindPress = () => navigation.navigate('PwdFindMain');
   return (
     <Container>
       <EmailText>이메일</EmailText>
@@ -137,7 +140,7 @@ export default ({
         onPress={onPressHandler}>
         <LoginText>로그인 하기</LoginText>
       </LoginButton>
-      <FindPassword>
+      <FindPassword onPress={loginFindPress}>
         <FindText>비밀번호 찾기</FindText>
       </FindPassword>
     </Container>
