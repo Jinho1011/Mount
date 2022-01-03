@@ -2,44 +2,32 @@ import React from 'react';
 import {View, Pressable, Image} from 'react-native';
 import styled from 'styled-components';
 
-const RecSetHeader = styled.View`
-  padding: 16px 20px 20px 20px;
+const Base = styled.View`
   justify-content: space-between;
   background-color: #fff;
 `;
 
-const RecElementsRecoContainer = styled.View`
-  width: 100%;
-  height: 172px;
-  margin-top: 16px;
-  justify-content: space-between;
-`;
-
-const RecMemberResultBlock = styled.View`
-  height: 52px;
+const ResultBlock = styled.View`
+  padding: 14px 22px;
   border-radius: 8px;
   background-color: #e2f955;
 `;
 
-const RecMemberResult = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+const ResultText = styled.Text`
+  font-family: 'NotoSansKR-Bold';
   font-size: 16px;
   line-height: 24px;
-  margin-left: 22px;
-  margin-top: 14px;
   color: #000000;
 `;
 
-const RecMemberOptionContainer = styled.View`
+const OptionContainer = styled.View`
   flex-direction: row;
-  margin-top: 10px;
-  margin-right: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
   height: 110px;
 `;
 
-const RecMembersBox = styled.View`
+const MembersBox = styled.View`
   width: 50%;
   margin-right: 10px;
   border: 1px solid #eaeaea;
@@ -52,19 +40,16 @@ const RecTeamsBox = styled.View`
   border-radius: 8px;
 `;
 
-const RecMembersQue = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+const MembersText = styled.Text`
+  font-family: 'NotoSansKR-Bold';
   font-size: 14px;
   line-height: 20px;
   color: #000000;
-
-  margin-left: 12px;
+  padding-left: 12px;
   margin-top: -21px;
 `;
 
-const RecMembersQueHighlight = styled.View`
+const MembersHighlight = styled.View`
   background: #e2f955;
   width: 48px;
   height: 10px;
@@ -73,33 +58,30 @@ const RecMembersQueHighlight = styled.View`
 `;
 
 const RecTeamsQue = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
+  font-family: 'NotoSansKR-Bold';
   font-size: 14px;
   line-height: 20px;
   color: #000000;
-
   margin-left: 12px;
   margin-top: -21px;
 `;
 
 const RecTeamsQueHighlight = styled.View`
   background: #e2f955;
-  width: 48px;
+  width: 32px;
   height: 10px;
   margin-left: 10px;
   margin-top: 24px;
 `;
 
-const DetailAdjustMembers = styled.View`
+const AdjustMembers = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin: 18px 12px 16px 12px;
 `;
 
-const DetailMemberCounter = styled.View`
+const MemberCounter = styled.View`
   margin: 0 14px;
   padding: 0 22px;
   border-radius: 6px;
@@ -115,77 +97,71 @@ const CounterNumber = styled.Text`
 
 const Counter = ({state, setState}) => {
   return (
-    <RecSetHeader>
-      <View>
-        <RecElementsRecoContainer>
-          <RecMemberResultBlock>
-            <RecMemberResult>
-              0명이 한 팀으로 총 0팀이 만들어져요!
-            </RecMemberResult>
-          </RecMemberResultBlock>
-          <RecMemberOptionContainer>
-            <RecMembersBox>
-              <RecMembersQueHighlight />
-              <RecMembersQue>총 몇 명이{'\n'}함께 하나요?</RecMembersQue>
-              <DetailAdjustMembers>
-                <Pressable
-                  onPress={() => {
-                    let memCnt = state.memberCnt;
-                    setState(prev => ({
-                      ...prev,
-                      memberCnt: Math.max(0, memCnt - 1),
-                    }));
-                  }}>
-                  <Image source={require('../../../assets/minus_dis.png')} />
-                </Pressable>
-                <DetailMemberCounter>
-                  <CounterNumber>{state?.memberCnt}</CounterNumber>
-                </DetailMemberCounter>
-                <Pressable
-                  onPress={() => {
-                    let memCnt = state.memberCnt;
-                    setState(prev => ({
-                      ...prev,
-                      memberCnt: Math.max(0, memCnt + 1),
-                    }));
-                  }}>
-                  <Image source={require('../../../assets/plus_dis.png')} />
-                </Pressable>
-              </DetailAdjustMembers>
-            </RecMembersBox>
-            <RecTeamsBox>
-              <RecTeamsQueHighlight />
-              <RecTeamsQue>몇 팀으로{'\n'}나누고 싶나요?</RecTeamsQue>
-              <DetailAdjustMembers>
-                <Pressable
-                  onPress={() => {
-                    let teamCnt = state.teamCnt;
-                    setState(prev => ({
-                      ...prev,
-                      teamCnt: Math.max(0, teamCnt - 1),
-                    }));
-                  }}>
-                  <Image source={require('../../../assets/minus_dis.png')} />
-                </Pressable>
-                <DetailMemberCounter>
-                  <CounterNumber>{state.teamCnt}</CounterNumber>
-                </DetailMemberCounter>
-                <Pressable
-                  onPress={() => {
-                    let teamCnt = state.teamCnt;
-                    setState(prev => ({
-                      ...prev,
-                      teamCnt: Math.max(0, teamCnt + 1),
-                    }));
-                  }}>
-                  <Image source={require('../../../assets/plus_dis.png')} />
-                </Pressable>
-              </DetailAdjustMembers>
-            </RecTeamsBox>
-          </RecMemberOptionContainer>
-        </RecElementsRecoContainer>
-      </View>
-    </RecSetHeader>
+    <Base>
+      <ResultBlock>
+        <ResultText>0명이 한 팀으로 총 0팀이 만들어져요!</ResultText>
+      </ResultBlock>
+      <OptionContainer>
+        <MembersBox>
+          <MembersHighlight />
+          <MembersText>총 몇 명이{'\n'}함께 하나요?</MembersText>
+          <AdjustMembers>
+            <Pressable
+              onPress={() => {
+                let memCnt = state.memberCnt;
+                setState(prev => ({
+                  ...prev,
+                  memberCnt: Math.max(1, memCnt - 1),
+                }));
+              }}>
+              <Image source={require('../../../assets/minus_dis.png')} />
+            </Pressable>
+            <MemberCounter>
+              <CounterNumber>{state?.memberCnt}</CounterNumber>
+            </MemberCounter>
+            <Pressable
+              onPress={() => {
+                let memCnt = state.memberCnt;
+                setState(prev => ({
+                  ...prev,
+                  memberCnt: Math.max(0, memCnt + 1),
+                }));
+              }}>
+              <Image source={require('../../../assets/plus_dis.png')} />
+            </Pressable>
+          </AdjustMembers>
+        </MembersBox>
+        <RecTeamsBox>
+          <RecTeamsQueHighlight />
+          <RecTeamsQue>몇 팀으로{'\n'}나누고 싶나요?</RecTeamsQue>
+          <AdjustMembers>
+            <Pressable
+              onPress={() => {
+                let teamCnt = state.teamCnt;
+                setState(prev => ({
+                  ...prev,
+                  teamCnt: Math.max(0, teamCnt - 1),
+                }));
+              }}>
+              <Image source={require('../../../assets/minus_dis.png')} />
+            </Pressable>
+            <MemberCounter>
+              <CounterNumber>{state.teamCnt}</CounterNumber>
+            </MemberCounter>
+            <Pressable
+              onPress={() => {
+                let teamCnt = state.teamCnt;
+                setState(prev => ({
+                  ...prev,
+                  teamCnt: Math.max(0, teamCnt + 1),
+                }));
+              }}>
+              <Image source={require('../../../assets/plus_dis.png')} />
+            </Pressable>
+          </AdjustMembers>
+        </RecTeamsBox>
+      </OptionContainer>
+    </Base>
   );
 };
 

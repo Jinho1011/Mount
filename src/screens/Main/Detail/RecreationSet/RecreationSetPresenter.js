@@ -121,6 +121,11 @@ const LikeCount = styled.Text`
   margin-left: 3px;
 `;
 
+const CounterContainer = styled.View`
+  background: #ffffff;
+  padding: 16px 20px 23px 20px;
+`;
+
 const RecreationSetPresenter = ({state, setState}) => {
   return (
     <PageWrap style={{flex: 1}}>
@@ -131,7 +136,9 @@ const RecreationSetPresenter = ({state, setState}) => {
           // items 배열의 name들을 map으로 받아오고 ', '으로 join
           items={state?.recSet?.items.map(item => item.name).join(', ')}
         />
-        <Counter state={state} setState={setState} />
+        <CounterContainer>
+          <Counter state={state} setState={setState} />
+        </CounterContainer>
         <RecSetListContainer>
           <RecSetListTitle>세트 리스트</RecSetListTitle>
           <RecSetListItemBigContainer>
