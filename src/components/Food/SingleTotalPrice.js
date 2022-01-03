@@ -79,22 +79,15 @@ const TotalPriceText = styled.Text`
   text-align: right;
 `;
 
-const TotalPrice = ({state, setState}) => {
-  let price = 0;
-  for (let i = 0; i < state.items.length; i++) {
-    price = parseInt(
-      (price + state.items[i].count * state.items[i].price) / state.memberCnt,
-      10,
-    );
-  }
-  let total = state.memberCnt * price;
+const SingleTotalPrice = ({state, setState}) => {
+  let total = state.memberCnt * state.foodSingle.price;
   return (
     <TotalContainer>
       <StyledTitle>총 예상금액</StyledTitle>
       <SmallContainer>
         <PriceBox>
           <PriceBoxTitle>1인 기준</PriceBoxTitle>
-          <Price>{price} 원</Price>
+          <Price>{state.foodSingle.price} 원</Price>
         </PriceBox>
         <MultiplyImgBox>
           <MultiplyImg source={require('../../../assets/close.png')} />
@@ -109,4 +102,4 @@ const TotalPrice = ({state, setState}) => {
   );
 };
 
-export default TotalPrice;
+export default SingleTotalPrice;
