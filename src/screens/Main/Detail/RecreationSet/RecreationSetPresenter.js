@@ -134,7 +134,7 @@ const RecreationSetPresenter = ({state, setState}) => {
           img={state?.recSet?.img}
           title={state?.recSet?.title}
           // items 배열의 name들을 map으로 받아오고 ', '으로 join
-          items={state?.recSet?.items.map(item => item.name).join(', ')}
+          items={state?.recSet?.items?.map(item => item.name).join(', ')}
         />
         <CounterContainer>
           <Counter state={state} setState={setState} />
@@ -144,7 +144,7 @@ const RecreationSetPresenter = ({state, setState}) => {
           <RecSetListItemBigContainer>
             <RecSetListName>{state.recSet.title}</RecSetListName>
             <RecSetListItemTitle>구성품</RecSetListItemTitle>
-            {state?.recSet?.items.map(item => {
+            {state?.recSet?.items?.map(item => {
               return (
                 <Item
                   state={state}

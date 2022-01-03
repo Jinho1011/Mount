@@ -9,6 +9,7 @@ import Item from '../../../../components/Common/Item';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
+import _ from 'lodash';
 
 const PageWrap = styled.View``;
 
@@ -141,11 +142,11 @@ const FoodSetPresenter = ({state, setState}) => {
       <BottomConatiner>
         <ChangeCountButton
           onPress={() => {
-            const _state = state;
+            const _state = _.cloneDeep(state);
             navigation.navigate('FoodSetChangeCount', {_state});
-            setState(prev => ({
-              ...prev,
-            }));
+            // setState(prev => ({
+            //   ...prev,
+            // }));
           }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
