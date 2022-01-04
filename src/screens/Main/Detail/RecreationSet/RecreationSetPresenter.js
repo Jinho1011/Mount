@@ -32,8 +32,8 @@ const RecSetListTitle = styled.Text`
 const RecSetListItemBigContainer = styled.View`
   border: 1px solid #eaeaea;
   border-radius: 12px;
-  padding: 0px 15px 0px 15px;
-  padding-top: 18px;
+  margin-top: 17px;
+  padding: 14px 15px 0px 15px;
 `;
 
 const RecSetListName = styled.Text`
@@ -50,6 +50,7 @@ const RecSetListItemTitle = styled.Text`
   line-height: 17px;
   color: #000000;
   padding-top: 14px;
+  margin-bottom: 13px;
 `;
 
 const RecSetBorderLine = styled.View`
@@ -126,6 +127,10 @@ const CounterContainer = styled.View`
   padding: 16px 20px 23px 20px;
 `;
 
+const TotalPriceContainer = styled.View`
+  padding-top: 25px;
+`;
+
 const RecreationSetPresenter = ({state, setState}) => {
   return (
     <PageWrap style={{flex: 1}}>
@@ -158,7 +163,9 @@ const RecreationSetPresenter = ({state, setState}) => {
               <MoreRecButtonText>레크 정보 더보기</MoreRecButtonText>
             </MoreRecButton>
           </RecSetListItemBigContainer>
-          <TotalPrice state={state} setState={setState} />
+          <TotalPriceContainer>
+            <TotalPrice state={state} setState={setState} />
+          </TotalPriceContainer>
         </RecSetListContainer>
         <RecSetBorderLine />
         <CautionContainer>
