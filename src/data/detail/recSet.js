@@ -9,19 +9,19 @@ export default [
     items: [
       {
         id: 1,
-        name: '가나다라마바사',
+        name: '포커',
         price: 16000,
         description: '4인(800g)',
       },
       {
         id: 2,
-        name: '가나다라마바사',
+        name: '할리갈리',
         price: 17000,
         description: '4인(800g)',
       },
       {
         id: 3,
-        name: '가나다라마바사',
+        name: '인생게임',
         price: 18000,
         description: '4인(800g)',
       },
