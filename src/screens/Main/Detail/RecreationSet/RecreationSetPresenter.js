@@ -41,7 +41,6 @@ const RecSetListName = styled.Text`
   font-size: 16px;
   line-height: 24px;
   color: #000000;
-  padding-top: 14px;
 `;
 
 const RecSetListItemTitle = styled.Text`
