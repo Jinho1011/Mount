@@ -64,20 +64,20 @@ const ItemDesc = styled.Text`
   line-height: 15px;
 `;
 
-const Item = () => {
+const Item = ({item}) => {
   const navigation = useNavigation();
 
   return (
     <Container>
       <ContainerLeft>
         <ItemImg />
-        <ItemTitle>상품이름이...</ItemTitle>
+        <ItemTitle>{item?.title.slice(0, 5).concat('...')}</ItemTitle>
       </ContainerLeft>
       <ContainerRight>
-        <ItemCount>3</ItemCount>
+        <ItemCount>{item?.count}</ItemCount>
         <ItemPriceContainer>
-          <ItemDesc>4인 (800g)</ItemDesc>
-          <ItemPrice>16,000원</ItemPrice>
+          <ItemDesc>{item?.desc}</ItemDesc>
+          <ItemPrice>{item?.price}원</ItemPrice>
         </ItemPriceContainer>
       </ContainerRight>
     </Container>
