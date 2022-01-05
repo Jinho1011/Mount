@@ -1,18 +1,25 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import logger from 'redux-logger';
 
 import Gate from './components/Gate';
 import recommandsReducer from './store/reducers/recommands';
 import usersReducer from './store/reducers/users';
+import plannersReducer from './store/reducers/planners';
 import api from './mock';
 
 const rootReducer = combineReducers({
   recommands: recommandsReducer,
   users: usersReducer,
+  planners: plannersReducer,
 });
 
-const store = createStore(rootReducer);
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(logger)),
+);
 
 if (window.server) {
   server.shutdown();

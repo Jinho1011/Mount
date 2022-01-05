@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {HeaderRight, HeaderTitle} from '../components/Header/Header';
+import {Header} from '../components/Header/Header';
 
 import Homes from './Homes';
 import Search from '../screens/Main/Search';
@@ -61,19 +61,19 @@ const Tabs = () => (
     />
     <TabsNavigator.Group
       screenOptions={{
-        headerStyle: {
-          backgroundColor: '#000000',
-          height: 58,
-        },
-        headerTitleAlign: 'center',
-        headerTintColor: '#fff',
-        headerRight: () => <HeaderRight />,
+        header: ({navigation, route, options, back}) => (
+          <Header
+            navigation={navigation}
+            route={route}
+            options={options}
+            back={back}
+          />
+        ),
       }}>
       <TabsNavigator.Screen
         name="Fav"
         component={Favorite}
         options={{
-          headerTitle: () => <HeaderTitle title="찜한 목록" />,
           tabBarLabel: '찜',
         }}
       />
@@ -81,7 +81,6 @@ const Tabs = () => (
         name="MyPage"
         component={My}
         options={{
-          headerTitle: () => <HeaderTitle title="마이페이지" />,
           tabBarLabel: '마이페이지',
         }}
       />
