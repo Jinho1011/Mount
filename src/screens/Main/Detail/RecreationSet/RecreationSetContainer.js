@@ -5,7 +5,7 @@ import RecreationSetPresenter from './RecreationSetPresenter';
 const RecreationSetContainer = ({route}) => {
   const [state, setState] = useState({
     memberCnt: 1,
-    teamCnt: 0,
+    teamCnt: 1,
     recSet: [],
     items: [],
   });
