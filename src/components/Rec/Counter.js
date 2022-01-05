@@ -109,9 +109,14 @@ const Counter = ({state, setState}) => {
             <Pressable
               onPress={() => {
                 let memCnt = state.memberCnt;
+                let items = state.items.map(item => {
+                  item.count = Math.max(1, item.count - 1);
+                  return item;
+                });
                 setState(prev => ({
                   ...prev,
                   memberCnt: Math.max(1, memCnt - 1),
+                  items,
                 }));
               }}>
               <Image source={require('../../../assets/minus_dis.png')} />
@@ -122,9 +127,14 @@ const Counter = ({state, setState}) => {
             <Pressable
               onPress={() => {
                 let memCnt = state.memberCnt;
+                let items = state.items.map(item => {
+                  item.count = Math.max(1, item.count + 1);
+                  return item;
+                });
                 setState(prev => ({
                   ...prev,
-                  memberCnt: Math.max(0, memCnt + 1),
+                  memberCnt: Math.max(1, memCnt + 1),
+                  items,
                 }));
               }}>
               <Image source={require('../../../assets/plus_dis.png')} />
@@ -140,7 +150,7 @@ const Counter = ({state, setState}) => {
                 let teamCnt = state.teamCnt;
                 setState(prev => ({
                   ...prev,
-                  teamCnt: Math.max(0, teamCnt - 1),
+                  teamCnt: Math.max(1, teamCnt - 1),
                 }));
               }}>
               <Image source={require('../../../assets/minus_dis.png')} />
@@ -153,7 +163,7 @@ const Counter = ({state, setState}) => {
                 let teamCnt = state.teamCnt;
                 setState(prev => ({
                   ...prev,
-                  teamCnt: Math.max(0, teamCnt + 1),
+                  teamCnt: Math.max(1, teamCnt + 1),
                 }));
               }}>
               <Image source={require('../../../assets/plus_dis.png')} />
