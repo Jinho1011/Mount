@@ -30,14 +30,14 @@ const SingleInfo = styled.Text`
   margin-top: 4px;
 `;
 
-const TitleContainer = ({title, img, info}) => {
-    return (
-        <SingleTitleContainer>
-            <SingleImage source={{uri: img}} />
-            <SingleTitle>{title}</SingleTitle>
-            <SingleInfo>{info}</SingleInfo>
-        </SingleTitleContainer>
-    );
+const TitleContainer = ({title, img, detail}) => {
+  return (
+    <SingleTitleContainer>
+      <SingleImage source={{uri: img}} />
+      <SingleTitle>{title}</SingleTitle>
+      <SingleInfo>{detail}</SingleInfo>
+    </SingleTitleContainer>
+  );
 };
 
 export default TitleContainer;
