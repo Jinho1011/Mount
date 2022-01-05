@@ -46,7 +46,9 @@
     "metro-react-native-babel-preset": "^0.66.2",
     "miragejs": "^0.1.42",
     "react-native-codegen": "^0.0.7",
-    "react-test-renderer": "17.0.2"
+    "react-test-renderer": "17.0.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6"
   },
   "jest": {
     "preset": "react-native"

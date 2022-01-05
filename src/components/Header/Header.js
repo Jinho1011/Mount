@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import styled from 'styled-components';
+import {useNavigation} from '@react-navigation/native';
 
 const HeaderContainer = styled.View`
   flex-direction: row;
@@ -10,6 +11,7 @@ const HeaderContainer = styled.View`
   padding-left: 15px;
   padding-right: 15px;
   height: 58px;
+  elevation: 1;
 `;
 
 const HeaderBackButton = styled.Image`
@@ -21,7 +23,7 @@ const HeaderTitleImage = styled.Image`
   width: 127px;
 `;
 
-const HeaderProgram = styled.View`
+const HeaderProgram = styled.Pressable`
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -61,8 +63,12 @@ export const HeaderTitle = ({title}) => {
 };
 
 export const HeaderRight = () => {
+  const navigation = useNavigation();
   return (
-    <HeaderProgram>
+    <HeaderProgram
+      onPress={() => {
+        navigation.navigate('Planner');
+      }}>
       <HeaderProgramImage
         source={require('../../../assets/projectfile_w.png')}
       />
@@ -75,7 +81,7 @@ export const Header = ({navigation, options}) => {
   return (
     <HeaderContainer>
       <HeaderLeft canGoBack={navigation.canGoBack()} />
-      <HeaderTitle title={options?.title} />
+      <HeaderTitle title={options?.tabBarLabel} />
       <HeaderRight />
     </HeaderContainer>
   );

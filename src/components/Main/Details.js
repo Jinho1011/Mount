@@ -83,6 +83,13 @@ const DetailsContainer = ({title, navigate, items, isLoaded}) => {
           items.map(item => {
             return (
               <TouchableOpacity
+                style={{
+                  backgroundColor: '#f3f3f3',
+                  width: 128,
+                  height: 128,
+                  marginRight: 10,
+                  borderRadius: 4,
+                }}
                 key={item.type + item.id}
                 onPress={() => {
                   navigation.navigate('Details', {
