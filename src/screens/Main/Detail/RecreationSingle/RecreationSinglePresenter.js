@@ -1,20 +1,13 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  Image,
-  Pressable,
-  TouchableOpacity,
-} from 'react-native';
+import {Image, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
-import RecreationSingleContainer from './RecreationSingleContainer';
 import TitleContainer from '../../../../components/Common/SingleTitle';
 import Counter from '../../../../components/Rec/Counter';
-import Item from '../../../../components/Common/Item';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
+import SingleCounter from '../../../../components/Rec/SingleCounter';
+import {Carousel} from '@ant-design/react-native';
 const PageWrap = styled.View``;
 
 const ScrollContainer = styled.ScrollView`
@@ -29,11 +22,12 @@ const RecSetListContainer = styled.View`
   background-color: #fff;
 `;
 
-const RecSetListTitle = styled.Text`
+const RecTitle = styled.Text`
   font-family: 'NotoSansKR-Bold';
   font-size: 12px;
   line-height: 16px;
   color: #000000;
+  padding-left: 20px;
 `;
 
 /* 가이드라인 */
@@ -42,13 +36,13 @@ const GuideLineTitle = styled.Text`
   font-size: 12px;
   line-height: 17px;
   color: #000000;
-  padding-left: auto;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const GuideLineContainer = styled.View`
-  margin-top: -20px;
+  padding-top: 25px;
   background: #ffffff;
-  border: 1px solid #ff0000;
 `;
 
 const GuideLineImageBox = styled.View`
@@ -132,50 +126,40 @@ const ItemsContainer = styled.View`
   padding-right: 35px;
 `;
 
+const CounterContainer = styled.View`
+  padding: 17px 20px 24px 20px;
+`;
+
 const RecreationSinglePresenter = ({state, setState}) => {
   return (
     <PageWrap style={{flex: 1}}>
       <ScrollContainer>
         <TitleContainer
-          img={state?.recSingle[0]?.img}
-          title={state?.recSingle[0]?.title}
-          info={state?.recSingle[0]?.info}
+          img={state?.recSingle?.img}
+          title={state?.recSingle?.title}
+          detail={state?.recSingle?.detail}
         />
-        <Counter state={state} setState={setState} />
+        <CounterContainer>
+          <SingleCounter state={state} setState={setState} />
+        </CounterContainer>
         <BorderLine />
-        <RecSetListContainer>
-          <RecSetListTitle>저희 레크는요...</RecSetListTitle>
-          <GuideLineTitle>가이드라인</GuideLineTitle>
-        </RecSetListContainer>
         <GuideLineContainer>
-          <GuideLineImageBox>
-            <Image
-              source={require('../../../../../assets/guideline_sample.png')}
-            />
-          </GuideLineImageBox>
-        </GuideLineContainer>
-        <BorderLine />
-        <ContentContainer>
-          <FoodSetListTitle>구성품</FoodSetListTitle>
-          <ItemsContainer>
-            {state?.items?.map(item => {
+          <RecTitle>저희 레크는요...</RecTitle>
+          <GuideLineTitle>가이드라인</GuideLineTitle>
+          <Carousel autoplay infinite>
+            {state?.recSingle?.guideImages?.map(image => {
               return (
-                <Item
-                  state={state}
-                  setState={setState}
-                  item={item}
-                  key={item.id}
-                />
+                <View>
+                  <Text>Carousel 1</Text>
+                </View>
               );
             })}
-          </ItemsContainer>
-          <TotalPriceContainer>
-            <TotalPrice />
-          </TotalPriceContainer>
-        </ContentContainer>
-        <Caution caution={state?.recSingle[0]?.caution} />
+          </Carousel>
+          {/* <SliderBox images={state?.recSingle?.guideImages} autoplay /> */}
+        </GuideLineContainer>
+        <BorderLine />
       </ScrollContainer>
-      <BottomConatiner>
+      {/* <BottomConatiner>
         <ChangeCountButton>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
@@ -183,7 +167,7 @@ const RecreationSinglePresenter = ({state, setState}) => {
           <Image source={require('../../../../../assets/Like.png')} />
         </LikeButton>
         <LikeCount>23</LikeCount>
-      </BottomConatiner>
+      </BottomConatiner> */}
     </PageWrap>
   );
 };
