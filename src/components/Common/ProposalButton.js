@@ -12,7 +12,7 @@ const BottomConatiner = styled.View`
   padding: 8px 23px;
 `;
 
-const ChangeCountButton = styled.TouchableOpacity`
+const PlannerButton = styled.TouchableOpacity`
   flex: 1;
   padding: 12px 135px;
   background: #e2f955;
@@ -21,7 +21,7 @@ const ChangeCountButton = styled.TouchableOpacity`
   border-radius: 5px;
 `;
 
-const ChangeCountText = styled.Text`
+const PlannerText = styled.Text`
   font-family: 'NotoSansKR-Regular';
   font-size: 16px;
   line-height: 24px;
@@ -29,12 +29,12 @@ const ChangeCountText = styled.Text`
   color: #000000;
 `;
 
-const ProposalButton = () => {
+const ProposalButton = ({isClicked, setIsClicked}) => {
   return (
     <BottomConatiner>
-      <ChangeCountButton>
-        <ChangeCountText>기획서</ChangeCountText>
-      </ChangeCountButton>
+      <PlannerButton onPress={() => setIsClicked(!isClicked)}>
+        <PlannerText>기획서</PlannerText>
+      </PlannerButton>
     </BottomConatiner>
   );
 };

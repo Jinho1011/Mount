@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {View, Text, Pressable, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, Pressable, Image, Dimensions} from 'react-native';
 import {HeaderTitle} from '../../../../components/Header/Header';
 import styled from 'styled-components';
 import Item from '../../../../components/Common/Item';
@@ -8,21 +8,31 @@ import foodSet from '../../../../data/detail/foodSet';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import ProposalButton from '../../../../components/Common/ProposalButton';
 import {ScrollView} from 'react-native-gesture-handler';
+import PlannerTitle from '../../../../components/PlannerTitle';
+import Modal from '../../../../components/Modal';
 
 const PageWrap = styled.View`
   flex: 1;
 `;
 
+const ModalWrap = styled.View`
+  flex: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(139, 139, 139, 0.3);
+`;
+
 const StyledScrollView = styled(ScrollView)`
+  padding: 20px 20px 4px 20px;
   background: #ffffff;
 `;
 
-const ContentContainer = styled.View`
-  padding: 20px 20px 4px 20px;
-`;
+const ContentContainer = styled.View``;
 
 const SetContainer = styled.View`
-  background: #ffffff;
   border: 1px solid #eaeaea;
   border-radius: 12px;
   height: 144px;
@@ -110,6 +120,7 @@ const TotalPriceContainer = styled.View`
 `;
 
 const FoodSetChangeCountPresenter = ({state, setState}) => {
+  const [isClicked, setIsClicked] = useState(false);
   return (
     <PageWrap>
       <StyledScrollView>
@@ -183,7 +194,15 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
         </ContentContainer>
         <BorderLine />
       </StyledScrollView>
-      <ProposalButton />
+      {isClicked ? (
+        <>
+          <ModalWrap isClicked={isClicked} />
+          <Modal isClicked={isClicked} />
+        </>
+      ) : (
+        <></>
+      )}
+      <ProposalButton isClicked={isClicked} setIsClicked={setIsClicked} />
     </PageWrap>
   );
 };
