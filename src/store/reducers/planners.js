@@ -2,15 +2,42 @@ const initialState = {
   planners: [],
 };
 
-export default (state = initialState, action) => {
-  console.log(action);
+const initialPlanner = {
+  title: '',
+  items: [
+    // {id: 1, type:rec, title: '음식1', price: 12000, count: 3, desc: 'asd', img: '123'},
+  ],
+};
 
+export default (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_PLANNER': {
-      const planner = action.planner;
+    case 'CREATE_PLANNER': {
+      let planner = initialPlanner;
+      planner.title = action.title;
+      console.log('🚀 ~ file: planners.js ~ line 16 ~ planner', planner);
+
       return {
         ...state,
-        planners: [...planners, planner],
+        planners: [...state.planners, planner], //
+      };
+    }
+    case 'ADD_ITEM': {
+      const title = action.title;
+      const newItem = action.item;
+      const addedPlanners = state.planners.map(item => {
+        if (item.title == title) {
+          return {
+            ...item,
+            items: [...item.items, newItem],
+          };
+        } else {
+          return item;
+        }
+      });
+
+      return {
+        ...state,
+        planners: addedPlanners,
       };
     }
     case 'DELETE_PLANNER': {
