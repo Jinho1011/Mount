@@ -1,6 +1,8 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import logger from 'redux-logger';
 
 import Gate from './components/Gate';
 import recommandsReducer from './store/reducers/recommands';
@@ -12,7 +14,10 @@ const rootReducer = combineReducers({
   users: usersReducer,
 });
 
-const store = createStore(rootReducer);
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(logger)),
+);
 
 if (window.server) {
   server.shutdown();
