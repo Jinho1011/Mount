@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@ant-design/react-native": "^4.2.0",
     "@react-navigation/bottom-tabs": "^6.0.7",
     "@react-navigation/elements": "^1.2.1",
     "@react-navigation/material-top-tabs": "^6.0.6",
@@ -23,6 +24,7 @@
     "react-native": "0.65.1",
     "react-native-collapsible-tab-view": "^4.4.0",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-image-slider-box": "^1.1.14",
     "react-native-pager-view": "^5.4.9",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.7.2",

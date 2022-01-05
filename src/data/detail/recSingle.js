@@ -7,6 +7,11 @@ export default [
     detail: '한줄설명',
     caution: '주의사항입니다',
     like: 22,
+    guideImages: [
+      'https://dummyimage.com/600x253/000/fff',
+      'https://dummyimage.com/600x253/000/fff',
+      'https://dummyimage.com/600x253/000/fff',
+    ],
   },
   {
     id: 2,
@@ -16,5 +21,10 @@ export default [
     detail: '한줄설명',
     caution: '주의사항입니다',
     like: 22,
+    guideImages: [
+      'https://dummyimage.com/600x253/000/fff',
+      'https://dummyimage.com/600x253/000/fff',
+      'https://dummyimage.com/600x253/000/fff',
+    ],
   },
 ];
