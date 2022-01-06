@@ -2,23 +2,18 @@ const initialState = {
   planners: [],
 };
 
-const initialPlanner = {
-  title: '',
-  items: [
-    // {id: 1, type:rec, title: '음식1', price: 12000, count: 3, desc: 'asd', img: '123'},
-  ],
-};
-
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'CREATE_PLANNER': {
-      let planner = initialPlanner;
+      let planner = {
+        title: '',
+        items: [],
+      };
       planner.title = action.title;
-      console.log('🚀 ~ file: planners.js ~ line 16 ~ planner', planner);
 
       return {
         ...state,
-        planners: [...state.planners, planner], //
+        planners: [...state.planners, planner],
       };
     }
     case 'ADD_ITEM': {
