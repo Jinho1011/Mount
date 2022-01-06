@@ -6,16 +6,16 @@ import Item from '../../../../components/Common/Item';
 import ItemMuttable from '../../../../components/Common/ItemMuttable';
 import foodSet from '../../../../data/detail/foodSet';
 import TotalPrice from '../../../../components/Common/TotalPrice';
-import ProposalButton from '../../../../components/Common/ProposalButton';
+import PlannerButton from '../../../../components/Common/ProposalButton';
 import {ScrollView} from 'react-native-gesture-handler';
-import PlannerTitle from '../../../../components/PlannerTitle';
+import FocusAwareStatusBar from '../../../../components/StatusBar';
 import Modal from '../../../../components/Modal';
 
 const PageWrap = styled.View`
   flex: 1;
 `;
 
-const ModalWrap = styled.View`
+const ModalWrap = styled.Pressable`
   flex: 1;
   position: absolute;
   top: 0;
@@ -121,8 +121,12 @@ const TotalPriceContainer = styled.View`
 
 const FoodSetChangeCountPresenter = ({state, setState}) => {
   const [isClicked, setIsClicked] = useState(false);
+  const [selectedPlanner, setSelectedPlanner] = useState('');
+
   return (
     <PageWrap>
+      <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+
       <StyledScrollView>
         <ContentContainer>
           <SetContainer>
@@ -196,15 +200,40 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
       </StyledScrollView>
       {isClicked ? (
         <>
-          <ModalWrap isClicked={isClicked} />
-          <Modal isClicked={isClicked} />
+          <ModalWrap
+            isClicked={isClicked}
+            onPress={() => {
+              setIsClicked(false);
+              setSelectedPlanner('');
+            }}
+          />
+          <Modal
+            isClicked={isClicked}
+            setIsClicked={setIsClicked}
+            selectedPlanner={selectedPlanner}
+            setSelectedPlanner={setSelectedPlanner}
+          />
         </>
       ) : (
         <></>
       )}
-      <ProposalButton isClicked={isClicked} setIsClicked={setIsClicked} />
+      <PlannerButton
+        isClicked={isClicked}
+        setIsClicked={setIsClicked}
+        selectedPlanner={selectedPlanner}
+        setSelectedPlanner={setSelectedPlanner}
+      />
     </PageWrap>
   );
 };
+
+// isClicked == true && selectedPlanner == ''
+// => 기획서 버튼 비활성화
+
+// isClicked == true && selectedPlanner == '최강산디MT'
+// => 기획서 버튼 활성화 + 버튼 클릭 시 planer로 navigate
+
+// isClicked == false
+// => do nothing
 
 export default FoodSetChangeCountPresenter;

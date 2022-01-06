@@ -15,7 +15,8 @@ const BottomConatiner = styled.View`
 const PlannerButton = styled.TouchableOpacity`
   flex: 1;
   padding: 12px 135px;
-  background: #e2f955;
+  background: ${props =>
+    props.selectedPlanner == '' && props.isClicked ? '#F3F3F3' : '#e2f955'};
   align-content: center;
   justify-content: center;
   border-radius: 5px;
@@ -29,10 +30,18 @@ const PlannerText = styled.Text`
   color: #000000;
 `;
 
-const ProposalButton = ({isClicked, setIsClicked}) => {
+const ProposalButton = ({
+  isClicked,
+  setIsClicked,
+  selectedPlanner,
+  setSelectedPlanner,
+}) => {
   return (
     <BottomConatiner>
-      <PlannerButton onPress={() => setIsClicked(!isClicked)}>
+      <PlannerButton
+        selectedPlanner={selectedPlanner}
+        isClicked={isClicked}
+        onPress={() => setIsClicked(!isClicked)}>
         <PlannerText>기획서</PlannerText>
       </PlannerButton>
     </BottomConatiner>
