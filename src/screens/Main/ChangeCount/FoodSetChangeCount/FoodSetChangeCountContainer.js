@@ -19,7 +19,6 @@ const FoodSetChangeCounterContainer = ({navigation, route}) => {
         return item;
       });
 
-      console.log(foodSet.items[0].count);
       setState({
         isLoaded: true,
         ...route.params._state,

@@ -13,7 +13,7 @@ const FoodSingleContainer = ({navigation, route}) => {
     const init = async () => {
       let data = await getDetail('foodSingles', route.params?.id);
       let foodSingle = data.foodSingle;
-      console.log(foodSingle);
+
       setState(prev => ({
         ...prev,
         foodSingle, // 변화
