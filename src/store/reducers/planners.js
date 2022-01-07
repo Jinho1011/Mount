@@ -19,14 +19,30 @@ export default (state = initialState, action) => {
     case 'ADD_ITEM': {
       const title = action.title;
       const newItem = action.item;
-      const addedPlanners = state.planners.map(item => {
-        if (item.title == title) {
+      const addedPlanners = state.planners.map(planner => {
+        if (planner.title == title) {
           return {
-            ...item,
-            items: [...item.items, newItem],
+            ...planner,
+            items: [...planner.items, newItem],
           };
         } else {
-          return item;
+          return planner;
+        }
+      });
+
+      return {
+        ...state,
+        planners: addedPlanners,
+      };
+    }
+    case 'ADD_ITEMS': {
+      const title = action.title;
+      const newItems = action.items;
+      const addedPlanners = state.planners.map(planner => {
+        if (planner.title == title) {
+          return {...planner, items: [...planner.items, ...newItems]};
+        } else {
+          return planner;
         }
       });
 
