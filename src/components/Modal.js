@@ -46,18 +46,9 @@ const Modal = ({
       for (var i = 0; i < planners.length; i++) {
         if (planners[i].title === `기획서${index}`) isExist = true;
       }
-      console.log(
-        '🚀 ~ file: Modal.js ~ line 50 ~ getDefultPlannerTitle ~ isExist',
-        isExist,
-      );
       if (isExist) index++;
       else break;
     }
-
-    console.log(
-      '🚀 ~ file: Modal.js ~ line 54 ~ getDefultPlannerTitle ~ index',
-      index,
-    );
 
     return `기획서${index}`;
   };
