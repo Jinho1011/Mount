@@ -218,6 +218,7 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
         <></>
       )}
       <PlannerButton
+        state={state}
         isClicked={isClicked}
         setIsClicked={setIsClicked}
         selectedPlanner={selectedPlanner}
