@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image} from 'react-native';
 import styled from 'styled-components';
+import {useNavigation} from '@react-navigation/native';
 
 /* bottom button container */
 const BottomConatiner = styled.View`
@@ -36,12 +37,20 @@ const ProposalButton = ({
   selectedPlanner,
   setSelectedPlanner,
 }) => {
+  const navigation = useNavigation();
+
   return (
     <BottomConatiner>
       <PlannerButton
         selectedPlanner={selectedPlanner}
         isClicked={isClicked}
-        onPress={() => setIsClicked(!isClicked)}>
+        onPress={() => {
+          if (selectedPlanner == '') {
+            setIsClicked(!isClicked);
+          } else {
+            navigation.navigate('Planner', {title: selectedPlanner});
+          }
+        }}>
         <PlannerText>기획서</PlannerText>
       </PlannerButton>
     </BottomConatiner>
