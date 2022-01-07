@@ -1,28 +1,38 @@
-import React, {useEffect} from 'react';
-import {View, Text, Pressable, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, Pressable, Image, Dimensions} from 'react-native';
 import {HeaderTitle} from '../../../../components/Header/Header';
 import styled from 'styled-components';
 import Item from '../../../../components/Common/Item';
 import ItemMuttable from '../../../../components/Common/ItemMuttable';
 import foodSet from '../../../../data/detail/foodSet';
 import TotalPrice from '../../../../components/Common/TotalPrice';
-import ProposalButton from '../../../../components/Common/ProposalButton';
+import PlannerButton from '../../../../components/Common/ProposalButton';
 import {ScrollView} from 'react-native-gesture-handler';
+import FocusAwareStatusBar from '../../../../components/StatusBar';
+import Modal from '../../../../components/Modal';
 
 const PageWrap = styled.View`
   flex: 1;
 `;
 
+const ModalWrap = styled.Pressable`
+  flex: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(139, 139, 139, 0.3);
+`;
+
 const StyledScrollView = styled(ScrollView)`
+  padding: 20px 20px 4px 20px;
   background: #ffffff;
 `;
 
-const ContentContainer = styled.View`
-  padding: 20px 20px 4px 20px;
-`;
+const ContentContainer = styled.View``;
 
 const SetContainer = styled.View`
-  background: #ffffff;
   border: 1px solid #eaeaea;
   border-radius: 12px;
   height: 144px;
@@ -110,8 +120,13 @@ const TotalPriceContainer = styled.View`
 `;
 
 const FoodSetChangeCountPresenter = ({state, setState}) => {
+  const [isClicked, setIsClicked] = useState(false);
+  const [selectedPlanner, setSelectedPlanner] = useState('');
+
   return (
     <PageWrap>
+      <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+
       <StyledScrollView>
         <ContentContainer>
           <SetContainer>
@@ -183,9 +198,43 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
         </ContentContainer>
         <BorderLine />
       </StyledScrollView>
-      <ProposalButton />
+      {isClicked ? (
+        <>
+          <ModalWrap
+            isClicked={isClicked}
+            onPress={() => {
+              setIsClicked(false);
+              setSelectedPlanner('');
+            }}
+          />
+          <Modal
+            isClicked={isClicked}
+            setIsClicked={setIsClicked}
+            selectedPlanner={selectedPlanner}
+            setSelectedPlanner={setSelectedPlanner}
+          />
+        </>
+      ) : (
+        <></>
+      )}
+      <PlannerButton
+        state={state}
+        isClicked={isClicked}
+        setIsClicked={setIsClicked}
+        selectedPlanner={selectedPlanner}
+        setSelectedPlanner={setSelectedPlanner}
+      />
     </PageWrap>
   );
 };
+
+// isClicked == true && selectedPlanner == ''
+// => 기획서 버튼 비활성화
+
+// isClicked == true && selectedPlanner == '최강산디MT'
+// => 기획서 버튼 활성화 + 버튼 클릭 시 planer로 navigate
+
+// isClicked == false
+// => do nothing
 
 export default FoodSetChangeCountPresenter;

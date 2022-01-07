@@ -7,11 +7,13 @@ import logger from 'redux-logger';
 import Gate from './components/Gate';
 import recommandsReducer from './store/reducers/recommands';
 import usersReducer from './store/reducers/users';
+import plannersReducer from './store/reducers/planners';
 import api from './mock';
 
 const rootReducer = combineReducers({
   recommands: recommandsReducer,
   users: usersReducer,
+  planners: plannersReducer,
 });
 
 const store = createStore(

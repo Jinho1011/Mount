@@ -128,7 +128,7 @@ export default () => {
         <Divider></Divider>
         <PlanItemsContainer items={items} />
         <TotalPriceContainer>
-          <TotalPrice />
+          {/* <TotalPrice state={state} setState={setState} /> */}
         </TotalPriceContainer>
         <Divider></Divider>
         <CautionContainer>
