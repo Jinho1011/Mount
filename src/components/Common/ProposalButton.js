@@ -1,9 +1,9 @@
 import React from 'react';
-import {Image} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {addItems} from '../../store/actions/planners';
 
-/* bottom button container */
 const BottomConatiner = styled.View`
   flex-direction: row;
   align-content: center;
@@ -32,11 +32,13 @@ const PlannerText = styled.Text`
 `;
 
 const ProposalButton = ({
+  state,
   isClicked,
   setIsClicked,
   selectedPlanner,
   setSelectedPlanner,
 }) => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   return (
@@ -48,6 +50,7 @@ const ProposalButton = ({
           if (selectedPlanner == '') {
             setIsClicked(!isClicked);
           } else {
+            dispatch(addItems(selectedPlanner, state.items));
             navigation.navigate('Planner', {title: selectedPlanner});
           }
         }}>
