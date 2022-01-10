@@ -135,7 +135,7 @@ export default function FoodPlanPresenter({state, setState}) {
         </CountBox>
         <FoodsContainer>
           {state?.items.map(item => {
-            return <Foods state={state} setState={setState} key={item.id} />;
+            return <Foods item={item} key={item.id} />;
           })}
         </FoodsContainer>
       </ScrollContainer>
