@@ -101,12 +101,8 @@ const ChangeCountButtonText = styled.Text`
   margin: auto;
 `;
 
-const MemberPlus = memberCnt => memberCnt + 1;
-
-const MemberMinus = memberCnt => memberCnt - 1;
-
 export default function FoodPlanPresenter({state, setState}) {
-  console.log(state?.memberCnt);
+  let memCnt = state?.memberCnt;
   return (
     <>
       <ScrollContainer>
@@ -122,13 +118,25 @@ export default function FoodPlanPresenter({state, setState}) {
             </CountBoxTitle>
           </TitleBox>
           <Counter>
-            <MinusButton onPress={() => MemberMinus(state?.memberCnt)}>
+            <MinusButton
+              onPress={() => {
+                setState(prev => ({
+                  ...prev,
+                  memberCnt: Math.max(1, memCnt - 1),
+                }));
+              }}>
               <Minus source={require('../../../../assets/plan_minus.png')} />
             </MinusButton>
             <NumberBox>
               <Number>{state?.memberCnt}</Number>
             </NumberBox>
-            <PlusButton onPress={() => MemberPlus(state?.memberCnt)}>
+            <PlusButton
+              onPress={() => {
+                setState(prev => ({
+                  ...prev,
+                  memberCnt: Math.max(1, memCnt + 1),
+                }));
+              }}>
               <Plus source={require('../../../../assets/plan_plus.png')} />
             </PlusButton>
           </Counter>
