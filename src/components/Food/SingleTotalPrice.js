@@ -59,7 +59,7 @@ const Count = styled.Text`
 
 const TotalPriceBox = styled.View`
   padding-left: 33px;
-  padding-top: 11px;
+  padding-top: 6px;
   padding-right: 6px;
 `;
 
