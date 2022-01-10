@@ -10,6 +10,7 @@ const Container = styled.View`
   padding: 8px 13px 8px 7px;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 9px;
 `;
 
 const CheckBox = styled.Pressable`
@@ -99,6 +100,20 @@ const HeartCount = styled.Text`
   line-height: 15px;
   color: #8b8b8b;
   padding-left: 2px;
+`;
+
+const Footer = styled.View`
+  padding: 8px 23px;
+`;
+
+const ChangeCountButton = styled.View`
+  padding: 12px 128px;
+`;
+
+const ChangeCountButtonText = styled.Text`
+  font-family: 'NotoSansKR-Regular'
+  font-size: 16px;
+  line-height: 24px;
 `;
 
 export default function Foods() {
