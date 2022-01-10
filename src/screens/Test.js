@@ -30,6 +30,18 @@ export default () => {
           navigation.navigate('Details', {screen: 'RecreationSingle'});
         }}
       />
+      <Button
+        title="음식 직접"
+        onPress={() => {
+          navigation.navigate('Details', {screen: 'FoodPlan'});
+        }}
+      />
+      <Button
+        title="레크 직접"
+        onPress={() => {
+          navigation.navigate('Details', {screen: 'RecPlan'});
+        }}
+      />
     </View>
   );
 };

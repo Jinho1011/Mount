@@ -8,4 +8,10 @@ const getDetail = (label, id) => {
   });
 };
 
-export {getDetail};
+const getDetails = label => {
+  return axios.get(`${namespace}/${label}`).then(response => {
+    return response.data;
+  });
+};
+
+export {getDetail, getDetails};
