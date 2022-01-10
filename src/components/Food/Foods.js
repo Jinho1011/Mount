@@ -116,7 +116,7 @@ const ChangeCountButtonText = styled.Text`
   line-height: 24px;
 `;
 
-export default function Foods({state, key}) {
+export default function Foods({item}) {
   const [isPress, setIsPress] = useState(false);
   const checkToggle = () => {
     setIsPress(!isPress);
@@ -135,11 +135,11 @@ export default function Foods({state, key}) {
         )}
       </CheckBox>
       <FoodImageBox>
-        <FoodImage source={require('../../../assets/food_detail_sample.png')} />
+        <FoodImage source={{uri: item.img}} />
       </FoodImageBox>
       <ContentBox>
-        <NameText>{state}</NameText>
-        <DescriptionText>옵션 설명</DescriptionText>
+        <NameText>{item.title}</NameText>
+        <DescriptionText>{item.subtitle}</DescriptionText>
         <DetailNavBox>
           <DetailNavText>상세보기</DetailNavText>
           <DetailNavImageBox>
