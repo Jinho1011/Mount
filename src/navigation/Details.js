@@ -7,6 +7,7 @@ import FoodSingle from '../screens/Main/Detail/FoodSingle';
 import RecreationSet from '../screens/Main/Detail/RecreationSet';
 import RecreationSingle from '../screens/Main/Detail/RecreationSingle';
 import FoodSetChangeCount from '../screens/Main/ChangeCount/FoodSetChangeCount';
+import FoodPlan from '../screens/Main/FoodPlan';
 
 const DetailNavigator = createStackNavigator();
 
@@ -31,6 +32,7 @@ const Details = () => (
       name="FoodSetChangeCount"
       component={FoodSetChangeCount}
     />
+    <DetailNavigator.Screen name="FoodPlan" component={FoodPlan} />
     {/* <DetailNavigator.Screen name="FoodSingleChangeCount" component={FoodSingleChangeCount} />
     <DetailNavigator.Screen name="RecSetChangeCount" component={RecSetChangeCount} />
     <DetailNavigator.Screen name="RecSingleChangeCount" component={RecSingleChangeCount} /> */}
