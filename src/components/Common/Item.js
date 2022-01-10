@@ -32,9 +32,18 @@ const ItemName = styled.Text`
 const ItemCountBlock = styled.View`
   background: #f3f3f3;
   border-radius: 12.5px;
-  padding: 2px 15px 3px 16px;
-  justify-content: center;
+  height: 25px;
+  margin-top: 3px;
+  margin-left: 6px;
+  padding: 2px 16px 3px 16px;
 `;
+
+// const ItemCountBlock = styled.View`
+//   background: #f3f3f3;
+//   border-radius: 12.5px;
+//   padding: 2px 15px 3px 16px;
+//   justify-content: center;
+// `;
 
 const ItemCount = styled.Text`
   color: #000000;
