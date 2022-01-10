@@ -29,11 +29,11 @@ const CheckedCheckImage = styled.Image`
   margin: auto;
 `;
 
-const FoodImageBox = styled.View`
+const ImageBox = styled.View`
   padding-left: 14px;
 `;
 
-const FoodImage = styled.Image`
+const Image = styled.Image`
   border-radius: 4px;
   width: 89px;
   height: 89px;
@@ -116,7 +116,7 @@ const ChangeCountButtonText = styled.Text`
   line-height: 24px;
 `;
 
-export default function Foods({item}) {
+export default function Item({item}) {
   const [isPress, setIsPress] = useState(false);
   const checkToggle = () => {
     setIsPress(!isPress);
@@ -134,9 +134,9 @@ export default function Foods({item}) {
           />
         )}
       </CheckBox>
-      <FoodImageBox>
-        <FoodImage source={{uri: item.img}} />
-      </FoodImageBox>
+      <ImageBox>
+        <Image source={{uri: item.img}} />
+      </ImageBox>
       <ContentBox>
         <NameText>{item.title}</NameText>
         <DescriptionText>{item.subtitle}</DescriptionText>
