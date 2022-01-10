@@ -95,11 +95,34 @@ const CounterNumber = styled.Text`
   font-family: 'NotoSansKR-Bold';
 `;
 
+const getRemainder = (memberCnt, teamCnt) => {
+  return memberCnt % teamCnt;
+};
+
+// const getRemainder = (memberCnt, teamCnt) => {
+//   let remainder = memberCnt % teamCnt;
+//   let _memberCnt = memberCnt / teamCnt;
+//   for (let i = 0; i < remainder; i++) {
+//   }
+// }
+
 const Counter = ({state, setState}) => {
+  let quotient = state?.memberCnt / state?.teamCnt;
+  let remainder = getRemainder(state?.memberCnt, state?.teamCnt);
+  let totalTeam = state?.teamCnt;
   return (
     <Base>
       <ResultBlock>
-        <ResultText>0명이 한 팀으로 총 0팀이 만들어져요!</ResultText>
+        <ResultText>
+          {remainder === 0
+            ? `${quotient}명이 한 팀으로 총 ${totalTeam} 팀이 만들어져요!`
+            : `${parseInt(quotient, 10) + 1}명 ${remainder}팀, ${parseInt(
+                quotient,
+                10,
+              )}명 ${
+                totalTeam - remainder
+              }팀으로 총 ${totalTeam} 팀이 만들어져요!`}
+        </ResultText>
       </ResultBlock>
       <OptionContainer>
         <MembersBox>
