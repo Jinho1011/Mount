@@ -30,6 +30,12 @@ export default () => {
           navigation.navigate('Details', {screen: 'RecreationSingle'});
         }}
       />
+      <Button
+        title="개발중"
+        onPress={() => {
+          navigation.navigate('Details', {screen: 'FoodPlan'});
+        }}
+      />
     </View>
   );
 };
