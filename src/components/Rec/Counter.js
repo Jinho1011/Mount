@@ -22,9 +22,9 @@ const ResultText = styled.Text`
 
 const OptionContainer = styled.View`
   flex-direction: row;
+  align-items: center;
   padding-top: 10px;
   padding-right: 10px;
-  height: 110px;
 `;
 
 const MembersBox = styled.View`
