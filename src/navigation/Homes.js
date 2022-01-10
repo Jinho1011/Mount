@@ -19,6 +19,7 @@ const HomeTab = createMaterialTopTabNavigator();
 
 function HomeTabs(navigation) {
   let offsetY_F = 0;
+  let offsetY_R = 0;
   return (
     <HomeTab.Navigator
       initialRouteName={navigation.route.params.initialRoute}
@@ -33,6 +34,7 @@ function HomeTabs(navigation) {
         name="HomeRecDetail"
         component={RecDetail}
         options={{title: '레크'}}
+        initialParams={{offsetY: offsetY_R}}
       />
     </HomeTab.Navigator>
   );
