@@ -82,35 +82,66 @@ const TitleBox = styled.View`
   flex-direction: row;
 `;
 
+const Footer = styled.View`
+  padding: 8px 23px;
+  background: #ffffff;
+  border: 0.3px solid #b4b4b4;
+`;
+
+const ChangeCountButton = styled.Pressable`
+  padding: 12px 128px;
+  background: #e2f955;
+  border-radius: 5px;
+`;
+
+const ChangeCountButtonText = styled.Text`
+  font-family: 'NotoSansKR-Regular'
+  font-size: 16px;
+  line-height: 24px;
+  margin: auto;
+`;
+
 export default function FoodPlanPresenter() {
   return (
-    <ScrollContainer>
-      <CountBox>
-        <TitleBox>
-          {/* <MountLogoBox>
+    <>
+      <ScrollContainer>
+        <CountBox>
+          <TitleBox>
+            {/* <MountLogoBox>
             <MountLogoImage
               source={require('../../../../assets/plan_mount.png')}
             />
           </MountLogoBox> */}
-          <CountBoxTitle>
-            mount 의 정확한 음식량 추천을 위해 인원 수를 입력해주세요 😃
-          </CountBoxTitle>
-        </TitleBox>
-        <Counter>
-          <MinusButton>
-            <Minus source={require('../../../../assets/plan_minus.png')} />
-          </MinusButton>
-          <NumberBox>
-            <Number>0</Number>
-          </NumberBox>
-          <PlusButton>
-            <Plus source={require('../../../../assets/plan_plus.png')} />
-          </PlusButton>
-        </Counter>
-      </CountBox>
-      <FoodsContainer>
-        <Foods />
-      </FoodsContainer>
-    </ScrollContainer>
+            <CountBoxTitle>
+              mount 의 정확한 음식량 추천을 위해 인원 수를 입력해주세요 😃
+            </CountBoxTitle>
+          </TitleBox>
+          <Counter>
+            <MinusButton>
+              <Minus source={require('../../../../assets/plan_minus.png')} />
+            </MinusButton>
+            <NumberBox>
+              <Number>0</Number>
+            </NumberBox>
+            <PlusButton>
+              <Plus source={require('../../../../assets/plan_plus.png')} />
+            </PlusButton>
+          </Counter>
+        </CountBox>
+        <FoodsContainer>
+          <Foods />
+          <Foods />
+          <Foods />
+          <Foods />
+          <Foods />
+          <Foods />
+        </FoodsContainer>
+      </ScrollContainer>
+      <Footer>
+        <ChangeCountButton onPress={() => console.log('press')}>
+          <ChangeCountButtonText>수량변경</ChangeCountButtonText>
+        </ChangeCountButton>
+      </Footer>
+    </>
   );
 }
