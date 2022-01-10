@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import styled from 'styled-components';
-import Foods from '../../../components/Food/Foods';
+import Item from '../../../components/Food/Item';
 
 const ScrollContainer = styled.ScrollView`
   background-color: #fff;
@@ -143,7 +143,7 @@ export default function FoodPlanPresenter({state, setState}) {
         </CountBox>
         <FoodsContainer>
           {state?.items.map(item => {
-            return <Foods item={item} key={item.id} />;
+            return <Item item={item} key={item.id} />;
           })}
         </FoodsContainer>
       </ScrollContainer>
