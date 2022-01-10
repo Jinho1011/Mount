@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 
 import HomeRecsDetailPresenter from './HomeRecsDetailPresenter';
 
-export default () => {
+export default ({navigation, route}) => {
   const [state, setState] = useState({
     items: [],
   });
