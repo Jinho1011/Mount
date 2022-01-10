@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 import styled from 'styled-components';
+import Item from '../../../components/Food/Item';
 import Counter from '../../../components/Rec/Counter';
 
 const ScrollContainer = styled.ScrollView`
@@ -8,7 +9,7 @@ const ScrollContainer = styled.ScrollView`
   padding: 18px 20px 0 20px;
 `;
 
-const FoodsContainer = styled.View`
+const ItemsContainer = styled.View`
   padding-top: 26px;
 `;
 
@@ -35,8 +36,12 @@ export default function RecPlanPresenter({state, setState}) {
   return (
     <>
       <ScrollContainer>
-        <Counter />
-        <FoodsContainer />
+        <Counter state={state} setState={setState} />
+        <ItemsContainer>
+          {state?.items.map(item => {
+            return <Item item={item} key={item.id} />;
+          })}
+        </ItemsContainer>
       </ScrollContainer>
       <Footer>
         <ChangeCountButton onPress={() => console.log('press')}>
