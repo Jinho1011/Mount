@@ -31,9 +31,15 @@ export default () => {
         }}
       />
       <Button
-        title="개발중"
+        title="음식 직접"
         onPress={() => {
           navigation.navigate('Details', {screen: 'FoodPlan'});
+        }}
+      />
+      <Button
+        title="레크 직접"
+        onPress={() => {
+          navigation.navigate('Details', {screen: 'RecPlan'});
         }}
       />
     </View>
