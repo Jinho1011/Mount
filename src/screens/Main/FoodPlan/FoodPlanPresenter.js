@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, Pressable} from 'react-native';
 import styled from 'styled-components';
 import Item from '../../../components/Food/Item';
 
@@ -88,9 +88,9 @@ const Footer = styled.View`
   border: 0.3px solid #b4b4b4;
 `;
 
-const ChangeCountButton = styled.Pressable`
+const ChangeCountButton = styled(Pressable)`
   padding: 12px 128px;
-  background: #e2f955;
+  background: ${prop => (prop.touchable ? '#e2f955' : '#f3f3f3')} 
   border-radius: 5px;
 `;
 
@@ -102,6 +102,7 @@ const ChangeCountButtonText = styled.Text`
 `;
 
 export default function FoodPlanPresenter({state, setState}) {
+  const [touchable, setTouchable] = useState(false);
   let memCnt = state?.memberCnt;
   return (
     <>
@@ -148,7 +149,10 @@ export default function FoodPlanPresenter({state, setState}) {
         </FoodsContainer>
       </ScrollContainer>
       <Footer>
-        <ChangeCountButton onPress={() => console.log('press')}>
+        <ChangeCountButton
+          touchable={touchable}
+          disabled={false}
+          onPress={() => console.log('press')}>
           <ChangeCountButtonText>수량변경</ChangeCountButtonText>
         </ChangeCountButton>
       </Footer>
