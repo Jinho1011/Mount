@@ -58,7 +58,7 @@ export default ({state}) => {
           }
         })}
       </ScrollContainer>
-      <Floaters onPressTouch={onPressTouch} />
+      <Floaters onPressTouch={onPressTouch} navigate={'FoodPlan'} />
     </>
   );
 };
