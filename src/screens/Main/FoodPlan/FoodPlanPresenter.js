@@ -90,7 +90,7 @@ const Footer = styled.View`
 
 const ChangeCountButton = styled(Pressable)`
   padding: 12px 128px;
-  background: ${prop => (prop.touchable ? '#e2f955' : '#f3f3f3')} 
+  background: ${prop => (prop.disabled ? '#f3f3f3' : '#e2f955')} 
   border-radius: 5px;
 `;
 
@@ -101,8 +101,25 @@ const ChangeCountButtonText = styled.Text`
   margin: auto;
 `;
 
-export default function FoodPlanPresenter({state, setState}) {
-  const [touchable, setTouchable] = useState(false);
+const anyonePressed = items => {
+  let arr = items.filter(item => item.isPress === true);
+  // console.log(arr);
+  if (arr.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export default function FoodPlanPresenter({
+  state,
+  setState,
+  disabled,
+  setDisabled,
+  isPress,
+  setIsPress,
+}) {
+  console.log(state?.items);
   let memCnt = state?.memberCnt;
   return (
     <>
@@ -144,17 +161,32 @@ export default function FoodPlanPresenter({state, setState}) {
         </CountBox>
         <FoodsContainer>
           {state?.items.map(item => {
-            return <Item item={item} key={item.id} />;
+            return (
+              <Item
+                item={item}
+                key={item.id}
+                // toggleIsPress={toggleIsPress}
+                isPress={isPress}
+                setIsPress={setIsPress}
+              />
+            );
           })}
         </FoodsContainer>
       </ScrollContainer>
       <Footer>
-        <ChangeCountButton
-          touchable={touchable}
-          disabled={false}
-          onPress={() => console.log('press')}>
-          <ChangeCountButtonText>수량변경</ChangeCountButtonText>
-        </ChangeCountButton>
+        {anyonePressed(state?.items) ? (
+          <ChangeCountButton
+            disabled={setDisabled(!disabled)}
+            onPress={() => console.log('press')}>
+            <ChangeCountButtonText>수량변경</ChangeCountButtonText>
+          </ChangeCountButton>
+        ) : (
+          <ChangeCountButton
+            disabled={disabled}
+            onPress={() => console.log('press')}>
+            <ChangeCountButtonText>수량변경</ChangeCountButtonText>
+          </ChangeCountButton>
+        )}
       </Footer>
     </>
   );

@@ -102,15 +102,13 @@ const HeartCount = styled.Text`
   padding-left: 2px;
 `;
 
-export default function Item({item}) {
-  console.log(item);
-  const [isPress, setIsPress] = useState(false);
+export default function Item({item, isPress, setIsPress}) {
+  // console.log(isPress);
   return (
     <Container isPress={isPress}>
       <CheckBox
         onPress={() => {
           setIsPress(!isPress);
-          item.isPress = !isPress;
         }}
         isPress={isPress}>
         {isPress ? (
