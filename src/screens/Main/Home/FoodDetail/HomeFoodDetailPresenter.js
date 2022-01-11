@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {View, Text, Dimensions} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
@@ -26,9 +26,18 @@ export default ({state}) => {
     navigation.setParams({offsetY: e.nativeEvent.contentOffset.y});
   };
 
+  const scrollRef = useRef();
+
+  const onPressTouch = () => {
+    scrollRef.current?.scrollTo({
+      y: 0,
+      animated: true,
+    });
+  };
+
   return (
     <>
-      <ScrollContainer onScroll={onScroll}>
+      <ScrollContainer onScroll={onScroll} ref={scrollRef}>
         <FocusAwareStatusBar
           barStyle="light-content"
           backgroundColor="#000000"
@@ -49,7 +58,7 @@ export default ({state}) => {
           }
         })}
       </ScrollContainer>
-      <Floaters />
+      <Floaters onPressTouch={onPressTouch} />
     </>
   );
 };

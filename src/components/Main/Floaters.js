@@ -11,9 +11,18 @@ const FloaterContainer = styled.View`
   align-items: center;
 `;
 
-const TopButtonContainer = styled.View``;
+const TopButtonContainer = styled.Pressable`
+  justify-content: center;
+  align-items: center;
+  width: 33px;
+  height: 29px;
+  border-radius: 5px;
+  background-color: #f3f3f3;
+  elevation: 4;
+  margin-bottom: 11px;
+`;
 
-const PlannerButtonContainer = styled.View`
+const PlannerButtonContainer = styled.Pressable`
   justify-content: center;
   align-items: center;
   width: 52px;
@@ -23,15 +32,16 @@ const PlannerButtonContainer = styled.View`
   elevation: 4;
 `;
 
-const Floaters = () => {
+const Floaters = ({onPressTouch}) => {
   const navigation = useNavigation();
 
   return (
     <FloaterContainer>
-      <TopButtonContainer>
-        <Text>👆</Text>
+      <TopButtonContainer onPress={onPressTouch}>
+        <Text style={{color: '#555555', fontSize: 20}}>🔝</Text>
       </TopButtonContainer>
-      <PlannerButtonContainer>
+      <PlannerButtonContainer
+        onPress={() => navigation.navigate('Details', {screen: 'FoodPlan'})}>
         <Text style={{color: 'yellow', fontSize: 36}}>+</Text>
       </PlannerButtonContainer>
     </FloaterContainer>
