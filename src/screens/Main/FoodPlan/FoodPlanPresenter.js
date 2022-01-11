@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Pressable} from 'react-native';
 import styled from 'styled-components';
 import Item from '../../../components/Food/Item';
@@ -88,9 +88,9 @@ const Footer = styled.View`
   border: 0.3px solid #b4b4b4;
 `;
 
-const ChangeCountButton = styled(Pressable)`
+const ChangeCountButton = styled.Pressable`
   padding: 12px 128px;
-  background: ${prop => (prop.disabled ? '#f3f3f3' : '#e2f955')} 
+  background: ${prop => (prop.pressedCnt > 0 ? '#e2f955' : '#f3f3f3')} 
   border-radius: 5px;
 `;
 
@@ -119,7 +119,8 @@ export default function FoodPlanPresenter({
   isPress,
   setIsPress,
 }) {
-  console.log(state?.items);
+  useEffect(() => {}, [state]);
+
   let memCnt = state?.memberCnt;
   return (
     <>
@@ -164,26 +165,26 @@ export default function FoodPlanPresenter({
             return (
               <Item
                 item={item}
+                state={state}
+                setState={setState}
                 key={item.id}
                 // toggleIsPress={toggleIsPress}
-                isPress={isPress}
-                setIsPress={setIsPress}
               />
             );
           })}
         </FoodsContainer>
       </ScrollContainer>
       <Footer>
-        {anyonePressed(state?.items) ? (
+        {state.pressedCnt > 0 ? (
           <ChangeCountButton
-            disabled={setDisabled(!disabled)}
-            onPress={() => console.log('press')}>
+            onPress={() => console.log('눌림')}
+            pressedCnt={state.pressedCnt}>
             <ChangeCountButtonText>수량변경</ChangeCountButtonText>
           </ChangeCountButton>
         ) : (
           <ChangeCountButton
-            disabled={disabled}
-            onPress={() => console.log('press')}>
+            onPress={() => console.log('안눌림')}
+            pressedCnt={state.pressedCnt}>
             <ChangeCountButtonText>수량변경</ChangeCountButtonText>
           </ChangeCountButton>
         )}

@@ -6,10 +6,12 @@ const FoodPlanContainer = () => {
   const [state, setState] = useState({
     memberCnt: 1,
     items: [],
+    pressedCnt: 0,
   });
 
   const [disabled, setDisabled] = useState(true);
   const [isPress, setIsPress] = useState(false);
+
   // const toggleIsPress = () => {
   //   setIsPress(!isPress);
   // };
@@ -20,7 +22,8 @@ const FoodPlanContainer = () => {
       let items = data.foodSingles;
 
       items.map(item => {
-        item.isPress = isPress;
+        // item.isPress = isPress;
+        item.isPressed = false;
         item.count = 0;
         return item;
       });
