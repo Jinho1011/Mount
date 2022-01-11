@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 const Container = styled.View`
@@ -102,28 +102,17 @@ const HeartCount = styled.Text`
   padding-left: 2px;
 `;
 
-const Footer = styled.View`
-  padding: 8px 23px;
-`;
-
-const ChangeCountButton = styled.View`
-  padding: 12px 128px;
-`;
-
-const ChangeCountButtonText = styled.Text`
-  font-family: 'NotoSansKR-Regular'
-  font-size: 16px;
-  line-height: 24px;
-`;
-
 export default function Item({item}) {
+  console.log(item);
   const [isPress, setIsPress] = useState(false);
-  const checkToggle = () => {
-    setIsPress(!isPress);
-  };
   return (
     <Container isPress={isPress}>
-      <CheckBox onPress={checkToggle} isPress={isPress}>
+      <CheckBox
+        onPress={() => {
+          setIsPress(!isPress);
+          item.isPress = !isPress;
+        }}
+        isPress={isPress}>
         {isPress ? (
           <CheckedCheckImage
             source={require('../../../assets/plan_checked.png')}
