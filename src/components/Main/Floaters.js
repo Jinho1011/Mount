@@ -32,7 +32,7 @@ const PlannerButtonContainer = styled.Pressable`
   elevation: 4;
 `;
 
-const Floaters = ({onPressTouch, navigate}) => {
+const Floaters = ({onPressTouch, target}) => {
   const navigation = useNavigation();
 
   return (
@@ -41,7 +41,12 @@ const Floaters = ({onPressTouch, navigate}) => {
         <Text style={{color: '#555555', fontSize: 20}}>🔝</Text>
       </TopButtonContainer>
       <PlannerButtonContainer
-        onPress={() => navigation.navigate('Details', {screen: navigate})}>
+        onPress={() =>
+          navigation.navigate('Details', {
+            screen: 'DetailTabs',
+            params: {initialRoute: target},
+          })
+        }>
         <Text style={{color: 'yellow', fontSize: 36}}>+</Text>
       </PlannerButtonContainer>
     </FloaterContainer>
