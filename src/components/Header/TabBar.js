@@ -82,7 +82,7 @@ export default function TabBar({state, descriptors, navigation}) {
         ]}>
         <HeaderContainer>
           <HeaderLeft canGoBack={navigation.canGoBack()} />
-          <HeaderTitle title={'홈'} />
+          <HeaderTitle title={'직접 기획'} />
           <HeaderRight />
         </HeaderContainer>
         <Container>
