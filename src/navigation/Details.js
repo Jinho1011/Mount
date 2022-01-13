@@ -2,7 +2,7 @@ import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {Platform} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {HeaderRight, HeaderTitle} from '../components/Header/TransparentHeader';
+import {TransparentHeader} from '../components/Header/TransparentHeader';
 import {Header} from '../components/Header/Header';
 import TabBar from '../components/Header/PlanTabBar';
 import FoodSet from '../screens/Main/Detail/FoodSet';
@@ -18,7 +18,6 @@ const DetailNavigator = createStackNavigator();
 const DetailTab = createMaterialTopTabNavigator();
 
 const DetailTabs = navigation => {
-  console.log('🚀 ~ file: Details.js ~ line 21 ~ navigation', navigation.route);
   return (
     <DetailTab.Navigator
       tabBar={props => <TabBar {...props} />}
@@ -38,26 +37,33 @@ const DetailTabs = navigation => {
 };
 
 const Details = () => (
-  <DetailNavigator.Navigator
-    screenOptions={{
-      headerTitle: () => <HeaderTitle title="Home" />,
-      headerRight: () => <HeaderRight />,
-      headerMode: 'float',
-      headerStyle: {
-        height: 54,
-      },
-      headerTitleAlign: 'center',
-      headerTintColor: '#fff',
-      headerTransparent: true,
-    }}>
-    <DetailNavigator.Screen name="FoodSet" component={FoodSet} />
-    <DetailNavigator.Screen name="FoodSingle" component={FoodSingle} />
-    <DetailNavigator.Screen name="RecSet" component={RecreationSet} />
-    <DetailNavigator.Screen name="RecSingle" component={RecreationSingle} />
-    <DetailNavigator.Screen
-      name="FoodSetChangeCount"
-      component={FoodSetChangeCount}
-    />
+  <DetailNavigator.Navigator>
+    <DetailNavigator.Group
+      screenOptions={{
+        headerShown: false,
+        //   header: ({navigation, route, options, back}) => (
+        //     <TransparentHeader
+        //       navigation={navigation}
+        //       route={route}
+        //       options={options}
+        //       back={back}
+        //     />
+        //   ),
+        // headerTitle: () => <HeaderTitle title="Home" />,
+        // headerRight: () => <HeaderRight />,
+        // headerStyle: {
+        //   height: 54,
+        // },
+        // headerTitleAlign: 'center',
+        // headerTintColor: '#fff',
+        // headerTransparent: true,
+      }}>
+      <DetailNavigator.Screen name="FoodSet" component={FoodSet} />
+      <DetailNavigator.Screen name="FoodSingle" component={FoodSingle} />
+      <DetailNavigator.Screen name="RecSet" component={RecreationSet} />
+      <DetailNavigator.Screen name="RecSingle" component={RecreationSingle} />
+    </DetailNavigator.Group>
+
     <DetailNavigator.Group
       screenOptions={{
         header: ({navigation, route, options, back}) => (
@@ -69,6 +75,10 @@ const Details = () => (
           />
         ),
       }}>
+      <DetailNavigator.Screen
+        name="FoodSetChangeCount"
+        component={FoodSetChangeCount}
+      />
       <DetailNavigator.Screen
         name="DetailTabs"
         component={DetailTabs}
