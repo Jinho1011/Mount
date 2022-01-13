@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Pressable} from 'react-native';
 import styled from 'styled-components';
 import Item from '../../../components/Food/Item';
@@ -12,6 +12,7 @@ const CountBox = styled.View`
   background-color: #e2f955;
   border-radius: 12px;
   padding: 25px 30px 25px 30px;
+  align-items: center;
 `;
 
 const CountBoxTitle = styled.Text`
@@ -70,8 +71,9 @@ const FoodsContainer = styled.View`
   padding-top: 26px;
 `;
 
-const MountLogoBox = styled.View`
-  align-items: flex-start;
+const TopView = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const MountLogoImage = styled.Image`
@@ -79,7 +81,7 @@ const MountLogoImage = styled.Image`
 `;
 
 const TitleBox = styled.View`
-  flex-direction: row;
+  justify-content: center;
 `;
 
 const Footer = styled.View`
@@ -88,9 +90,9 @@ const Footer = styled.View`
   border: 0.3px solid #b4b4b4;
 `;
 
-const ChangeCountButton = styled(Pressable)`
+const ChangeCountButton = styled.Pressable`
   padding: 12px 128px;
-  background: ${prop => (prop.touchable ? '#e2f955' : '#f3f3f3')} 
+  background: ${prop => (prop.pressedCnt > 0 ? '#e2f955' : '#f3f3f3')} 
   border-radius: 5px;
 `;
 
@@ -102,21 +104,22 @@ const ChangeCountButtonText = styled.Text`
 `;
 
 export default function FoodPlanPresenter({state, setState}) {
-  const [touchable, setTouchable] = useState(false);
+  // useEffect(() => {}, [state]);
   let memCnt = state?.memberCnt;
   return (
     <>
       <ScrollContainer>
         <CountBox>
           <TitleBox>
-            {/* <MountLogoBox>
-            <MountLogoImage
-              source={require('../../../../assets/plan_mount.png')}
-            />
-          </MountLogoBox> */}
-            <CountBoxTitle>
-              mount 의 정확한 음식량 추천을 위해 인원 수를 입력해주세요 😃
-            </CountBoxTitle>
+            <TopView>
+              <MountLogoImage
+                source={require('../../../../assets/plan_mount.png')}
+              />
+              <CountBoxTitle> 의 정확한 음식량 추천을</CountBoxTitle>
+            </TopView>
+            <TopView>
+              <CountBoxTitle>위해 인원 수를 입력해주세요 😃</CountBoxTitle>
+            </TopView>
           </TitleBox>
           <Counter>
             <MinusButton
@@ -144,17 +147,31 @@ export default function FoodPlanPresenter({state, setState}) {
         </CountBox>
         <FoodsContainer>
           {state?.items.map(item => {
-            return <Item item={item} key={item.id} />;
+            return (
+              <Item
+                item={item}
+                state={state}
+                setState={setState}
+                key={item.id}
+              />
+            );
           })}
         </FoodsContainer>
       </ScrollContainer>
       <Footer>
-        <ChangeCountButton
-          touchable={touchable}
-          disabled={false}
-          onPress={() => console.log('press')}>
-          <ChangeCountButtonText>수량변경</ChangeCountButtonText>
-        </ChangeCountButton>
+        {state.pressedCnt > 0 ? (
+          <ChangeCountButton
+            onPress={() => console.log('눌림')}
+            pressedCnt={state.pressedCnt}>
+            <ChangeCountButtonText>수량변경</ChangeCountButtonText>
+          </ChangeCountButton>
+        ) : (
+          <ChangeCountButton
+            onPress={() => console.log('안눌림')}
+            pressedCnt={state.pressedCnt}>
+            <ChangeCountButtonText>수량변경</ChangeCountButtonText>
+          </ChangeCountButton>
+        )}
       </Footer>
     </>
   );

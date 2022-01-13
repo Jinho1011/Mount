@@ -6,6 +6,7 @@ const FoodPlanContainer = () => {
   const [state, setState] = useState({
     memberCnt: 1,
     items: [],
+    pressedCnt: 0,
   });
 
   useEffect(() => {
@@ -14,6 +15,8 @@ const FoodPlanContainer = () => {
       let items = data.foodSingles;
 
       items.map(item => {
+        item.isPressed = false;
+        item.type = 'foodSingle';
         item.count = 0;
         return item;
       });

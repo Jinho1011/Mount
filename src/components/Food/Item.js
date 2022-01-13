@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {Pressable} from 'react-native';
 import styled from 'styled-components';
 
 const Container = styled.View`
   background: ${props =>
-    props.isPress ? 'rgba(226, 249, 85, 0.2)' : '#ffffff'} 
+    props.isPressed ? 'rgba(226, 249, 85, 0.2)' : '#ffffff'} 
   border: ${props =>
-    props.isPress ? '1px solid #e2f955' : '1px solid #f3f3f3'} 
+    props.isPressed ? '1px solid #e2f955' : '1px solid #f3f3f3'} 
   border-radius: 5px;
   padding: 8px 13px 8px 7px;
   flex-direction: row;
@@ -15,7 +17,7 @@ const Container = styled.View`
 
 const CheckBox = styled.Pressable`
   border: 1px solid #b4b4b4;
-  background: ${props => (props.isPress ? '#373737' : '#ffffff')}
+  background: ${props => (props.isPressed ? '#373737' : '#ffffff')}
   border-radius: 5px;
   width: 24px;
   height: 24px;
@@ -58,7 +60,7 @@ const DescriptionText = styled.Text`
   color: #8b8b8b;
 `;
 
-const DetailNavBox = styled.View`
+const DetailNavBox = styled(Pressable)`
   background: #f3f3f3;
   border-radius: 5px;
   margin-top: 26px;
@@ -102,29 +104,46 @@ const HeartCount = styled.Text`
   padding-left: 2px;
 `;
 
-const Footer = styled.View`
-  padding: 8px 23px;
-`;
-
-const ChangeCountButton = styled.View`
-  padding: 12px 128px;
-`;
-
-const ChangeCountButtonText = styled.Text`
-  font-family: 'NotoSansKR-Regular'
-  font-size: 16px;
-  line-height: 24px;
-`;
-
-export default function Item({item}) {
-  const [isPress, setIsPress] = useState(false);
-  const checkToggle = () => {
-    setIsPress(!isPress);
-  };
+export default function Item({item, state, setState}) {
+  console.log(item.type);
+  const navigation = useNavigation();
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   return (
-    <Container isPress={isPress}>
-      <CheckBox onPress={checkToggle} isPress={isPress}>
-        {isPress ? (
+    <Container isPressed={item.isPressed}>
+      <CheckBox
+        onPress={() => {
+          setState(prev => {
+            const modifiedItems = prev.items.map(e => {
+              if (e.id === item.id) {
+                return {
+                  ...e,
+                  isPressed: !item.isPressed,
+                };
+              } else {
+                return e;
+              }
+            });
+
+            // console.log(
+            //   '🚀 ~ file: Item.js ~ line 124 ~ Item ~ item.isPressed ? prev.pressedCnt - 1 : prev.pressedCnt + 1',
+            //   item.isPressed ? prev.pressedCnt - 1 : prev.pressedCnt + 1,
+            // );
+
+            return {
+              ...prev,
+              items: modifiedItems,
+              pressedCnt: item.isPressed
+                ? prev.pressedCnt - 1
+                : prev.pressedCnt + 1,
+            };
+          });
+
+          // setIsPress(!isPress);
+        }}
+        isPressed={item.isPressed}>
+        {item.isPressed ? (
           <CheckedCheckImage
             source={require('../../../assets/plan_checked.png')}
           />
@@ -140,7 +159,16 @@ export default function Item({item}) {
       <ContentBox>
         <NameText>{item.title}</NameText>
         <DescriptionText>{item.subtitle}</DescriptionText>
-        <DetailNavBox>
+        <DetailNavBox
+          key={item.type + item.id}
+          onPress={() => {
+            navigation.navigate('Details', {
+              screen: capitalizeFirstLetter(item.type),
+              params: {id: item.id},
+            });
+          }}
+          state={state}
+          setState={setState}>
           <DetailNavText>상세보기</DetailNavText>
           <DetailNavImageBox>
             <DetailNavImage source={require('../../../assets/plan_more.png')} />
