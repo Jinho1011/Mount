@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {TransparentHeader} from '../Header/TransparentHeader';
 
 const SetTitleContainer = styled.View`
   background: white;
@@ -54,6 +55,8 @@ const TitleContainer = ({img, title, items}) => {
   return (
     <SetTitleContainer>
       <SetImage source={{uri: img}} />
+      <TransparentHeader style={{position: 'absolute', top: 0, right: 0}} />
+
       <SetTitle>{title}</SetTitle>
       <SetInfo>
         <SetLabelContainer>
