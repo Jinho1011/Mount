@@ -1,7 +1,7 @@
 export default [
   {
     id: 1,
-    img: 'https://dummyimage.com/600x253/000/fff',
+    img: 'https://dummyimage.com/600x253/ccc/000',
     title: '제목몇글자들어가나요',
     subtitle: '세트설명어쩌구저쩌구어쩌..',
     detail: '한줄설명',
