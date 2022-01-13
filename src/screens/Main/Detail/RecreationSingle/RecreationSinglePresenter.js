@@ -7,7 +7,8 @@ import Counter from '../../../../components/Rec/Counter';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
 import SingleCounter from '../../../../components/Rec/SingleCounter';
-import {Carousel} from '@ant-design/react-native';
+import Swiper from '../../../../components/Rec/Swiper';
+
 const PageWrap = styled.View``;
 
 const ScrollContainer = styled.ScrollView`
@@ -146,17 +147,8 @@ const RecreationSinglePresenter = ({state, setState}) => {
         <GuideLineContainer>
           <RecTitle>저희 레크는요...</RecTitle>
           <GuideLineTitle>가이드라인</GuideLineTitle>
-          <Carousel autoplay infinite>
-            {state?.recSingle?.guideImages?.map(image => {
-              return (
-                <View>
-                  <Text>Carousel 1</Text>
-                </View>
-              );
-            })}
-          </Carousel>
-          {/* <SliderBox images={state?.recSingle?.guideImages} autoplay /> */}
         </GuideLineContainer>
+        <Swiper />
         <BorderLine />
       </ScrollContainer>
       {/* <BottomConatiner>
