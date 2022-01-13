@@ -7,6 +7,7 @@ const RecPlanContainer = () => {
     teamCnt: 1,
     memberCnt: 1,
     items: [],
+    pressedCnt: 0,
   });
 
   useEffect(() => {
@@ -15,6 +16,7 @@ const RecPlanContainer = () => {
       let items = data.recSingles;
 
       items.map(item => {
+        item.isPressed = false;
         item.count = 0;
         return item;
       });
