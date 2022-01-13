@@ -12,6 +12,7 @@ const CountBox = styled.View`
   background-color: #e2f955;
   border-radius: 12px;
   padding: 25px 30px 25px 30px;
+  align-items: center;
 `;
 
 const CountBoxTitle = styled.Text`
@@ -70,8 +71,9 @@ const FoodsContainer = styled.View`
   padding-top: 26px;
 `;
 
-const MountLogoBox = styled.View`
-  align-items: flex-start;
+const TopView = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const MountLogoImage = styled.Image`
@@ -79,7 +81,7 @@ const MountLogoImage = styled.Image`
 `;
 
 const TitleBox = styled.View`
-  flex-direction: row;
+  justify-content: center;
 `;
 
 const Footer = styled.View`
@@ -101,40 +103,23 @@ const ChangeCountButtonText = styled.Text`
   margin: auto;
 `;
 
-const anyonePressed = items => {
-  let arr = items.filter(item => item.isPress === true);
-  // console.log(arr);
-  if (arr.length > 0) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-export default function FoodPlanPresenter({
-  state,
-  setState,
-  disabled,
-  setDisabled,
-  isPress,
-  setIsPress,
-}) {
-  useEffect(() => {}, [state]);
-
+export default function FoodPlanPresenter({state, setState}) {
+  // useEffect(() => {}, [state]);
   let memCnt = state?.memberCnt;
   return (
     <>
       <ScrollContainer>
         <CountBox>
           <TitleBox>
-            {/* <MountLogoBox>
-            <MountLogoImage
-              source={require('../../../../assets/plan_mount.png')}
-            />
-          </MountLogoBox> */}
-            <CountBoxTitle>
-              mount 의 정확한 음식량 추천을 위해 인원 수를 입력해주세요 😃
-            </CountBoxTitle>
+            <TopView>
+              <MountLogoImage
+                source={require('../../../../assets/plan_mount.png')}
+              />
+              <CountBoxTitle> 의 정확한 음식량 추천을</CountBoxTitle>
+            </TopView>
+            <TopView>
+              <CountBoxTitle>위해 인원 수를 입력해주세요 😃</CountBoxTitle>
+            </TopView>
           </TitleBox>
           <Counter>
             <MinusButton
@@ -168,7 +153,6 @@ export default function FoodPlanPresenter({
                 state={state}
                 setState={setState}
                 key={item.id}
-                // toggleIsPress={toggleIsPress}
               />
             );
           })}

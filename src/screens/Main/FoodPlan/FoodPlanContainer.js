@@ -9,20 +9,12 @@ const FoodPlanContainer = () => {
     pressedCnt: 0,
   });
 
-  const [disabled, setDisabled] = useState(true);
-  const [isPress, setIsPress] = useState(false);
-
-  // const toggleIsPress = () => {
-  //   setIsPress(!isPress);
-  // };
-
   useEffect(() => {
     const init = async () => {
       let data = await getDetails('foodSingles');
       let items = data.foodSingles;
 
       items.map(item => {
-        // item.isPress = isPress;
         item.isPressed = false;
         item.count = 0;
         return item;
@@ -36,16 +28,7 @@ const FoodPlanContainer = () => {
     init();
   }, []);
 
-  return (
-    <FoodPlanPresenter
-      state={state}
-      setState={setState}
-      disabled={disabled}
-      setDisabled={setDisabled}
-      isPress={isPress}
-      setIsPress={setIsPress}
-    />
-  );
+  return <FoodPlanPresenter state={state} setState={setState} />;
 };
 
 export default FoodPlanContainer;
