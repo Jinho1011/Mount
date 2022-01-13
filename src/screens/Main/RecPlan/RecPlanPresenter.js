@@ -1,5 +1,4 @@
 import React from 'react';
-import {Text} from 'react-native';
 import styled from 'styled-components';
 import Item from '../../../components/Food/Item';
 import Counter from '../../../components/Rec/Counter';
@@ -21,7 +20,7 @@ const Footer = styled.View`
 
 const ChangeCountButton = styled.Pressable`
   padding: 12px 128px;
-  background: #e2f955;
+  background: ${prop => (prop.pressedCnt > 0 ? '#e2f955' : '#f3f3f3')} 
   border-radius: 5px;
 `;
 
@@ -39,14 +38,31 @@ export default function RecPlanPresenter({state, setState}) {
         <Counter state={state} setState={setState} />
         <ItemsContainer>
           {state?.items.map(item => {
-            return <Item item={item} key={item.id} />;
+            return (
+              <Item
+                item={item}
+                state={state}
+                setState={setState}
+                key={item.id}
+              />
+            );
           })}
         </ItemsContainer>
       </ScrollContainer>
       <Footer>
-        <ChangeCountButton onPress={() => console.log('press')}>
-          <ChangeCountButtonText>수량변경</ChangeCountButtonText>
-        </ChangeCountButton>
+        {state.pressedCnt > 0 ? (
+          <ChangeCountButton
+            onPress={() => console.log('눌림')}
+            pressedCnt={state.pressedCnt}>
+            <ChangeCountButtonText>수량변경</ChangeCountButtonText>
+          </ChangeCountButton>
+        ) : (
+          <ChangeCountButton
+            onPress={() => console.log('안눌림')}
+            pressedCnt={state.pressedCnt}>
+            <ChangeCountButtonText>수량변경</ChangeCountButtonText>
+          </ChangeCountButton>
+        )}
       </Footer>
     </>
   );

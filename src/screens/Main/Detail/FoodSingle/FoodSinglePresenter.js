@@ -130,7 +130,7 @@ const FoodSinglePresenter = ({state, setState}) => {
         <TitleContainer
           img={state?.foodSingle?.img}
           title={state?.foodSingle?.title}
-          info={state?.foodSingle?.detail}
+          detail={state?.foodSingle?.detail}
         />
         <SingleCounter state={state} setState={setState} />
         <BorderLine />
