@@ -17,6 +17,7 @@ const RecPlanContainer = () => {
 
       items.map(item => {
         item.isPressed = false;
+        item.type = 'recSingle';
         item.count = 0;
         return item;
       });
