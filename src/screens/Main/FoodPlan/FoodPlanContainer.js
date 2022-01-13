@@ -16,6 +16,7 @@ const FoodPlanContainer = () => {
 
       items.map(item => {
         item.isPressed = false;
+        item.type = 'foodSingle';
         item.count = 0;
         return item;
       });

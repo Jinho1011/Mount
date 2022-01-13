@@ -153,6 +153,7 @@ export default function FoodPlanPresenter({state, setState}) {
                 state={state}
                 setState={setState}
                 key={item.id}
+                // type={'foodSingle'}
               />
             );
           })}
