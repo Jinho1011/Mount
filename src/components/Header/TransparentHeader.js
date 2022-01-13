@@ -1,12 +1,20 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import styled from 'styled-components';
+import LinearGradient from 'react-native-linear-gradient';
+import {useNavigation} from '@react-navigation/native';
 
-const HeaderContainer = styled.View`
-  flex: 1;
+const HeaderContainer = styled(LinearGradient)`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 58px;
+  padding-left: 15px;
+  padding-right: 29px;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  opacity: 0;
+  justify-content: space-between;
 `;
 
 const HeaderProgram = styled.View`
@@ -23,29 +31,41 @@ const HeaderProgramText = styled.Text`
   font-size: 10px;
 `;
 
-const HeaderText = styled.Text`
-  color: #ffffff;
-  font-size: 18px;
-  font-family: 'NotoSansKR-Bold';
+const HeaderBackButton = styled.Image`
+  width: 24px;
+  height: 24px;
 `;
 
+const HeaderProgramImage = styled.Image`
+  width: 24px;
+  height: 24px;
+`;
+
+export const HeaderLeft = () => {
+  return <HeaderBackButton source={require('../../../assets/back_w.png')} />;
+};
+
 export const HeaderRight = () => {
+  const navigation = useNavigation();
   return (
-    <HeaderProgram>
-      <Image source={require('../../../assets/projectfile_w.png')} />
+    <HeaderProgram
+      onPress={() => {
+        navigation.navigate('Planner');
+      }}>
+      <HeaderProgramImage
+        source={require('../../../assets/projectfile_w.png')}
+      />
       <HeaderProgramText>기획서</HeaderProgramText>
     </HeaderProgram>
   );
 };
 
-export const HeaderTitle = ({title}) => {
+export const TransparentHeader = props => {
   return (
-    <HeaderContainer>
-      {title == 'Home' ? (
-        <Image source={require('../../../assets/mount.png')} />
-      ) : (
-        <HeaderText>{title}</HeaderText>
-      )}
+    <HeaderContainer
+      colors={['rgba(0,0,0,0.8)', 'rgba(0,0,0,0.3)', 'rgba(0,0,0,0.0)']}>
+      <HeaderLeft />
+      <HeaderRight />
     </HeaderContainer>
   );
 };
