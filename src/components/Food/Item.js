@@ -1,4 +1,6 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
+import {Pressable} from 'react-native';
 import styled from 'styled-components';
 
 const Container = styled.View`
@@ -58,7 +60,7 @@ const DescriptionText = styled.Text`
   color: #8b8b8b;
 `;
 
-const DetailNavBox = styled.View`
+const DetailNavBox = styled(Pressable)`
   background: #f3f3f3;
   border-radius: 5px;
   margin-top: 26px;
@@ -103,13 +105,18 @@ const HeartCount = styled.Text`
 `;
 
 export default function Item({item, state, setState}) {
+  console.log(item.type);
+  const navigation = useNavigation();
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   return (
     <Container isPressed={item.isPressed}>
       <CheckBox
         onPress={() => {
           setState(prev => {
             const modifiedItems = prev.items.map(e => {
-              if (e.id == item.id) {
+              if (e.id === item.id) {
                 return {
                   ...e,
                   isPressed: !item.isPressed,
@@ -119,10 +126,10 @@ export default function Item({item, state, setState}) {
               }
             });
 
-            console.log(
-              '🚀 ~ file: Item.js ~ line 124 ~ Item ~ item.isPressed ? prev.pressedCnt - 1 : prev.pressedCnt + 1',
-              item.isPressed ? prev.pressedCnt - 1 : prev.pressedCnt + 1,
-            );
+            // console.log(
+            //   '🚀 ~ file: Item.js ~ line 124 ~ Item ~ item.isPressed ? prev.pressedCnt - 1 : prev.pressedCnt + 1',
+            //   item.isPressed ? prev.pressedCnt - 1 : prev.pressedCnt + 1,
+            // );
 
             return {
               ...prev,
@@ -152,7 +159,16 @@ export default function Item({item, state, setState}) {
       <ContentBox>
         <NameText>{item.title}</NameText>
         <DescriptionText>{item.subtitle}</DescriptionText>
-        <DetailNavBox>
+        <DetailNavBox
+          key={item.type + item.id}
+          onPress={() => {
+            navigation.navigate('Details', {
+              screen: capitalizeFirstLetter(item.type),
+              params: {id: item.id},
+            });
+          }}
+          state={state}
+          setState={setState}>
           <DetailNavText>상세보기</DetailNavText>
           <DetailNavImageBox>
             <DetailNavImage source={require('../../../assets/plan_more.png')} />

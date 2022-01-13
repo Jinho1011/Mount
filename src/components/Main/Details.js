@@ -66,7 +66,7 @@ const DetailsContainer = ({title, navigate, items, isLoaded}) => {
     <DetailsWrapper>
       <DetailsHeader>
         <DetailsTitle>{title}</DetailsTitle>
-        {navigate == '' ? (
+        {navigate === '' ? (
           <></>
         ) : (
           <DetailMore

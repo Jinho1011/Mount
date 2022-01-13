@@ -14,7 +14,7 @@ export default ({navigation, route}) => {
     for (let i = 0; i < foods.length; i++) {
       let newItem;
 
-      if (foods[i].displayType == 'long') {
+      if (foods[i].displayType === 'long') {
         newItem = [foods[i]];
       } else {
         newItem = [foods[i], foods[++i]];
