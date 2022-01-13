@@ -21,11 +21,7 @@ const RecreationSingleContainer = ({route}) => {
     init();
   }, [route.params?.id]);
 
-  return (
-    <>
-      <RecreationSinglePresenter state={state} setState={setState} />
-    </>
-  );
+  return <RecreationSinglePresenter state={state} setState={setState} />;
 };
 
 export default RecreationSingleContainer;
