@@ -3,29 +3,28 @@ import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
 const Container = styled.View`
-  flex: 1;
   background-color: #ffffff;
+  flex: 1;
 `;
 
 const TextInput = styled.TextInput`
   background-color: #f3f3f3;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 18px;
-  height: 48px;
-  margin-left: 23px;
-  margin-right: 23px;
-  margin-top: ${props => props.marginTop || '5px'}
   border: ${props => (props.border ? '#f3f3f3' : '#ff5151')};
   border-radius: 5px;
   color: #000000;
   font-family: 'NotoSansKR-normal';
   font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 48px;
   line-height: 24px;
+  margin-left: 23px;
+  margin-right: 23px;
+  margin-top: ${props => props.marginTop || '5px'};
+  padding: 12px 112px 12px 18px;
 `;
 
 const CommonText = styled.Text`
-  height: 16px;
   font-family: 'NotoSansKR-normal';
   font-size: 12px;
   font-style: normal;
@@ -35,59 +34,54 @@ const CommonText = styled.Text`
 `;
 
 const EmailText = styled(CommonText)`
-  margin-top: 116px;
   margin-right: 303px;
+  margin-top: 92px;
 `;
 
 const PasswordText = styled(CommonText)`
-  margin-top: 15px;
   margin-right: 292px;
+  margin-top: 15px;
 `;
 
 const HelpText = styled(CommonText)`
-  height: 15px;
+  align-items: center;
+  color: ${props => (props.color ? '#b4b4b4' : '#ff5151')};
   font-size: 10px;
   line-height: 15px;
-  margin-top: 2px;
-  margin-left: 23px;
-  margin-right: 200px;
-  color: ${props => (props.color ? '#b4b4b4' : '#ff5151')};
+  margin: 2px 200px 0px 23px;
 `;
 
 const LoginButton = styled.TouchableOpacity`
-  height: 48px;
-  margin-top: 315px;
-  margin-left: 23px;
-  margin-right: 23px;
-  border-radius: 5px;
   background-color: ${props => (props.disabled ? '#f3f3f3' : '#e2f955')};
-  padding-top: 12px;
-  padding-bottom: 12px;
+  border-radius: 5px;
+  height: 48px;
+  justify-content: center;
+  margin: 315px 23px 0px 23px;
 `;
 
 const LoginText = styled.Text`
+  align-items: center;
   font-family: 'NotoSansKR-Bold';
   font-weight: 500;
   font-size: 16px;
+  font-style: normal;
   line-height: 24px;
   text-align: center;
 `;
 
 const FindPassword = styled.TouchableOpacity`
   align-items: center;
-  justify-content: center;
   height: 18px;
-  margin-top: 16px;
-  margin-left: 151px;
-  margin-right: 151px;
+  justify-content: center;
+  margin: 16px 151px 0px 151px;
 `;
 
 const FindText = styled.Text`
+  color: #8b8b8b;
   font-family: 'NotoSansKR-normal';
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  color: #8b8b8b;
 `;
 
 export default ({

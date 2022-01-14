@@ -3,28 +3,28 @@ import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
 const Container = styled.View`
-  flex: 1;
   background-color: #ffffff;
+  flex: 1;
 `;
 
 const TouchableOpacity = styled.TouchableOpacity`
   align-items: center;
-  justify-content: center;
+  background-color: #f3f3f3;
+  border-radius: 5px;
   height: 48px;
+  justify-content: center;
   margin-left: 23px;
   margin-right: 23px;
-  margin-top: ${props => props.marginTop || '8px'}
-  border-radius: 5px;
-  background-color: #F3F3F3;
+  margin-top: ${props => props.marginTop || '8px'};
 `;
 
 const ButtonText = styled.Text`
-  text-align: center;
-  font-family: 'NotoSansKR-normal';
+  font-family: 'NotoSansKR-Normal';
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
   line-height: 24px;
+  text-align: center;
 `;
 
 export default () => {
@@ -33,7 +33,7 @@ export default () => {
 
   return (
     <Container>
-      <TouchableOpacity marginTop="450px">
+      <TouchableOpacity marginTop="426px">
         <ButtonText>카카오톡 로그인</ButtonText>
       </TouchableOpacity>
       <TouchableOpacity>

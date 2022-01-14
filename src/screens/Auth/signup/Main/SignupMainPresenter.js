@@ -3,28 +3,28 @@ import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
 const Container = styled.View`
-  flex: 1;
   background-color: #ffffff;
+  flex: 1;
 `;
 
 const TouchableOpacity = styled.TouchableOpacity`
   align-items: center;
-  justify-content: center;
+  background-color: ${props => props.bgColor};
+  border-radius: 5px;
   height: 48px;
+  justify-content: center;
   margin-left: 23px;
   margin-right: 23px;
-  margin-top: ${props => props.marginTop || '8px'}
-  border-radius: 5px;
-  background-color: ${props => props.bgColor}
+  margin-top: ${props => props.marginTop || '8px'};
 `;
 
 const ButtonText = styled.Text`
-  text-align: center;
   font-family: 'NotoSansKR-Bold';
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
   line-height: 24px;
+  text-align: center;
 `;
 
 export default () => {
@@ -33,7 +33,7 @@ export default () => {
 
   return (
     <Container>
-      <TouchableOpacity marginTop="450px" bgColor="#FFE600">
+      <TouchableOpacity marginTop="426px" bgColor="#FFE600">
         <ButtonText>카카오로 등록</ButtonText>
       </TouchableOpacity>
       <TouchableOpacity bgColor="#20E41C">
