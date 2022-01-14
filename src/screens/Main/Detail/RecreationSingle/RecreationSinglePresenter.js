@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
+import FocusAwareStatusBar from '../../../../components/StatusBar';
 import TitleContainer from '../../../../components/Common/SingleTitle';
 import Counter from '../../../../components/Rec/Counter';
 import TotalPrice from '../../../../components/Common/TotalPrice';
@@ -133,6 +134,7 @@ const CounterContainer = styled.View`
 const RecreationSinglePresenter = ({state, setState}) => {
   return (
     <PageWrap style={{flex: 1}}>
+      <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
         <TitleContainer
           img={state?.recSingle?.img}
@@ -146,7 +148,7 @@ const RecreationSinglePresenter = ({state, setState}) => {
         <GuideLineContainer>
           <RecTitle>저희 레크는요...</RecTitle>
           <GuideLineTitle>가이드라인</GuideLineTitle>
-          <Carousel autoplay infinite>
+          {/* <Carousel autoplay infinite>
             {state?.recSingle?.guideImages?.map(image => {
               return (
                 <View>
@@ -154,7 +156,7 @@ const RecreationSinglePresenter = ({state, setState}) => {
                 </View>
               );
             })}
-          </Carousel>
+          </Carousel> */}
           {/* <SliderBox images={state?.recSingle?.guideImages} autoplay /> */}
         </GuideLineContainer>
         <BorderLine />

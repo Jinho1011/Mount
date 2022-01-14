@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-
 import {getDetail} from '../../../../api/api';
+import {TransparentHeader} from '../../../../components/Header/TransparentHeader';
 import FoodSetPresenter from './FoodSetPresenter';
 
 const FoodSetContainer = ({navigation, route}) => {
