@@ -1,31 +1,54 @@
 import React from 'react';
+import {Image, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
 const Container = styled.View`
-  flex: 1;
   background-color: #ffffff;
+  flex: 1;
 `;
+
+const TitleContainer = styled.View`
+  align-items: center;
+`;
+
+const TitleText = styled.Text`
+  color: #555555;
+  font-family: 'NotoSansKR-Regular';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 273px 110px 0px 110px;
+  text-align: center;
+`;
+
+const imageStyles = StyleSheet.create({
+  image: {
+    width: 154,
+    height: 25,
+    marginTop: 10,
+    marginLeft: 103,
+    marginRight: 103,
+    resizeMode: 'stretch',
+  },
+});
+
 const SignupButton = styled.TouchableOpacity`
-  height: 48px;
-  margin-top: 618px;
-  margin-left: 23px;
-  margin-right: 23px;
-  border-radius: 5px;
   background-color: #e2f955;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  border-radius: 5px;
+  height: 48px;
+  justify-content: center;
+  margin: 262px 23px 0px 23px;
 `;
 
 const LoginButton = styled.TouchableOpacity`
   height: 24px;
-  margin-top: 14px;
-  margin-left: 119px;
-  margin-right: 111px;
+  margin: 14px 111px 56px 119px;
 `;
 
 const SignupText = styled.Text`
-  font-family: 'NotoSansKR-Bold';
+  font-family: 'NotoSansKR-Medium';
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -42,6 +65,13 @@ export default () => {
   const LoginMainPress = () => navigation.navigate('LoginMain');
   return (
     <Container>
+      <TitleContainer>
+        <TitleText>당신이 필요한 그만큼</TitleText>
+        <Image
+          style={imageStyles.image}
+          source={require('../../../../assets/mount.png')}
+        />
+      </TitleContainer>
       <SignupButton onPress={signupMainPress}>
         <SignupText>회원가입</SignupText>
       </SignupButton>
