@@ -11,7 +11,6 @@ const Container = styled.View`
 const HomeHeaderContainer = styled.View`
   flex-direction: row;
   height: 58px;
-  background-color: #ffffff;
 `;
 
 const HomeHeaderButton = styled.TouchableOpacity`
@@ -62,6 +61,17 @@ const TextInput = styled.TextInput`
   padding: 12px 68px 12px 18px;
 `;
 
+const HelpText = styled.Text`
+  align-items: center;
+  color: ${props => (props.color ? '#b4b4b4' : '#ff5151')};
+  font-family: 'NotoSansKR-normal';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 15px;
+  margin: 2px 200px 0px 23px;
+`;
+
 const SendText = styled.Text`
   font-family: 'NotoSansKR-normal';
   font-style: normal;
@@ -90,10 +100,9 @@ const ChangePwdText = styled.Text`
   text-align: center;
 `;
 
-export default () => {
+export default ({state, emailChangeHandler, onPressHandler}) => {
   const navigation = useNavigation();
   const loginDetailPress = () => navigation.navigate('LoginDetail');
-  const pwdFindDetailPress = () => navigation.navigate('PwdFindDetail');
   return (
     <Container>
       <HomeHeaderContainer>
@@ -112,12 +121,18 @@ export default () => {
         placeholderTextColor="#8B8B8B"
         autoCapitalize={'none'}
         keyboardType={'email-address'}
+        onChangeText={emailChangeHandler}
         returnKeyType={'done'}
       />
+      {state.emailBlank === state.emailValid ? (
+        <HelpText color={true}> </HelpText>
+      ) : (
+        <HelpText color={false}>유효하지 않은 이메일 </HelpText>
+      )}
       <SendText>
         입력하신 이메일로{'\n'}비밀번호 재설정 링크를 전송합니다.
       </SendText>
-      <ChangePwdButton backgroundColor={true} onPress={pwdFindDetailPress}>
+      <ChangePwdButton backgroundColor={true} onPress={onPressHandler}>
         <ChangePwdText>비밀번호 재설정하기</ChangePwdText>
       </ChangePwdButton>
     </Container>

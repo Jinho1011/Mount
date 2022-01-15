@@ -14,39 +14,30 @@ const TitleText = styled.Text`
   font-family: 'NotoSansKR-Bold';
   font-weight: 700;
   font-size: 18px;
-  margin-top: 71px;
-  margin-left: 23px;
-  margin-right: 229px;
+  margin: 71px 229px 0px 23px;
 `;
 
 const AgreeButton = styled.TouchableOpacity`
+  border-radius: 5px;
   height: 48px;
   background-color: ${props => (props.backgroundColor ? '#000000' : '#f3f3f3')};
-  margin-top: 16px;
-  margin-left: 23px;
-  margin-right: 23px;
+  margin: 16px 23px 0px 23px;
   padding-top: 12px;
   padding-left: 19px;
-  border-radius: 5px;
 `;
 const ButtonText = styled.Text`
-  height: 20px;
   color: ${props => (props.color ? '#e2f955' : '#b4b4b4')};
   font-family: 'NotoSansKR-normal';
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
+  height: 20px;
   line-height: 20px;
-  align-items: center;
-  margin-top: -22px;
-  margin-left: 31%;
+  margin: -22px 103px 0px 113px;
 `;
 
 const CheckButton = styled.TouchableOpacity`
-  height: 24px;
-  margin-top: 33px;
-  margin-left: 31px;
-  margin-right: 305px;
+  margin: 33px 305px 0px 31px;
 `;
 
 const CheckButton2 = styled(CheckButton)`
@@ -54,38 +45,31 @@ const CheckButton2 = styled(CheckButton)`
 `;
 
 const TosTextBlack = styled.Text`
-  height: 16px;
   font-family: 'NotoSansKR-normal';
   font-weight: 400;
   font-size: 12px;
+  height: 16px;
   line-height: 16px;
-  margin-top: -21px;
-  margin-left: 59px;
-  margin-right: 256px;
+  margin: -21px 256px 0px 59px;
 `;
 const TosTextRed = styled(TosTextBlack)`
   color: #ff5151;
-  margin-top: -16px;
-  margin-left: 110px;
-  margin-right: 224px;
+  margin: -16px 224px 0px 110px;
 `;
+
 const TosTextBox = styled.Text`
   border: 1px solid #eaeaea;
   border-radius: 5px;
   height: 95px;
-  margin-top: 11px;
-  margin-left: 23px;
-  margin-right: 23px;
+  margin: 11px 23px 0px 23px;
 `;
+
 const SignupButton = styled.TouchableOpacity`
-  height: 48px;
-  margin-top: 123px;
-  margin-left: 23px;
-  margin-right: 23px;
-  border-radius: 5px;
   background-color: ${props => (props.disabled ? '#f3f3f3' : '#e2f955')};
-  padding-top: 12px;
-  padding-bottom: 12px;
+  border-radius: 5px;
+  height: 48px;
+  justify-content: center;
+  margin: 123px 23px 0px 23px;
 `;
 
 const SignupText = styled.Text`
