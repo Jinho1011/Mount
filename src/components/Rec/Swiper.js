@@ -7,7 +7,6 @@ const StyledSwiper = styled(Swiper)``;
 
 const SlideView = styled(View)`
   align-items: center;
-  justify-content: center;
   background: #ffffff;
 `;
 
