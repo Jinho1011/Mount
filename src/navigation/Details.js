@@ -41,22 +41,6 @@ const Details = () => (
     <DetailNavigator.Group
       screenOptions={{
         headerShown: false,
-        //   header: ({navigation, route, options, back}) => (
-        //     <TransparentHeader
-        //       navigation={navigation}
-        //       route={route}
-        //       options={options}
-        //       back={back}
-        //     />
-        //   ),
-        // headerTitle: () => <HeaderTitle title="Home" />,
-        // headerRight: () => <HeaderRight />,
-        // headerStyle: {
-        //   height: 54,
-        // },
-        // headerTitleAlign: 'center',
-        // headerTintColor: '#fff',
-        // headerTransparent: true,
       }}>
       <DetailNavigator.Screen name="FoodSet" component={FoodSet} />
       <DetailNavigator.Screen name="FoodSingle" component={FoodSingle} />
@@ -78,6 +62,7 @@ const Details = () => (
       <DetailNavigator.Screen
         name="FoodSetChangeCount"
         component={FoodSetChangeCount}
+        options={{tabBarLabel: '수량 변경'}}
       />
       <DetailNavigator.Screen
         name="DetailTabs"
