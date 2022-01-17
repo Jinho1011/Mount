@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {Animated} from 'react-native';
 import styled from 'styled-components/native';
-import {Header, HeaderLeft, HeaderTitle, HeaderRight} from './Header';
+import {HeaderLeft, HeaderTitle, HeaderRight} from './Header';
 
 const Container = styled.View`
   padding-left: 23px;
@@ -82,7 +82,7 @@ export default function TabBar({state, descriptors, navigation}) {
         ]}>
         <HeaderContainer>
           <HeaderLeft canGoBack={navigation.canGoBack()} />
-          <HeaderTitle title={'직접 기획'} />
+          <HeaderTitle title={'홈'} />
           <HeaderRight />
         </HeaderContainer>
         <Container>
