@@ -24,7 +24,7 @@ export default createServer({
   routes() {
     this.namespace = 'api';
 
-    this.get('/recommands', recommands, {timing: 1000});
+    this.get('/recommands', recommands);
 
     this.get('/foodSets');
     this.get('/foodSets/:id');
