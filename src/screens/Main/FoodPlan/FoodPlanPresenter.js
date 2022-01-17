@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState, useEffect} from 'react';
 import {View, Text, Pressable} from 'react-native';
 import styled from 'styled-components';
@@ -104,7 +105,11 @@ const ChangeCountButtonText = styled.Text`
 `;
 
 export default function FoodPlanPresenter({state, setState}) {
-  // useEffect(() => {}, [state]);
+  function isPressed(value) {
+    return value.isPressed === true;
+  }
+  const isPressedArr = state?.items.filter(isPressed);
+  const navigation = useNavigation();
   let memCnt = state?.memberCnt;
   return (
     <>
@@ -161,7 +166,9 @@ export default function FoodPlanPresenter({state, setState}) {
       <Footer>
         {state.pressedCnt > 0 ? (
           <ChangeCountButton
-            onPress={() => console.log('눌림')}
+            onPress={() => {
+              navigation.navigate('FoodPlanChange', {isPressedArr});
+            }}
             pressedCnt={state.pressedCnt}>
             <ChangeCountButtonText>수량변경</ChangeCountButtonText>
           </ChangeCountButton>
