@@ -5,7 +5,6 @@ import ItemMuttable from '../../../components/Plan/ItemMuttable';
 import TotalPrice from '../../../components/Common/TotalPrice';
 import Modal from '../../../components/Modal';
 import PlannerButton from '../../../components/Common/ProposalButton';
-import Item from '../../../components/Food/Item';
 import FocusAwareStatusBar from '../../../components/StatusBar';
 
 const ScrollContainer = styled.ScrollView`
