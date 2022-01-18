@@ -1,11 +1,16 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Dimensions} from 'react-native';
+import {useDispatch} from 'react-redux';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
+import {modifyPlannerTitle} from '../../../store/actions/planners';
+
 import FocusAwareStatusBar from '../../../components/StatusBar';
 import PlanItemsContainer from '../../../components/Plan/PlanItems';
 import TotalPrice from '../../../components/Common/TotalPrice';
 import Caution from '../../../components/Common/Caution';
+
+const windowWidth = Dimensions.get('window').width;
 
 const Container = styled.View`
   flex: 1;
@@ -37,6 +42,34 @@ const PlanEditBtn = styled.Pressable`
 `;
 
 const PlanEditBtnText = styled.Text`
+  color: #000000;
+  font-size: 14px;
+  font-family: 'NotoSansKR-Regular';
+  line-height: 20px;
+`;
+
+const PlanTitleInput = styled.TextInput`
+  width: ${windowWidth - 105}px;
+  height: 33px;
+  background: #f3f3f3;
+  border-radius: 5px;
+  padding: 6px 0 7px 18px;
+  color: #8b8b8b;
+  font-size: 14px;
+  font-family: 'NotoSansKR-Regular';
+  line-height: 20px;
+`;
+
+const PlanSaveBtn = styled.Pressable`
+  width: 55px;
+  height: 33px;
+  background: ${props => (props.title.length === 0 ? '#f3f3f3' : '#E2f955')};
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+`;
+
+const PlanSaveBtnText = styled.Text`
   color: #000000;
   font-size: 14px;
   font-family: 'NotoSansKR-Regular';
@@ -75,55 +108,50 @@ const FooterButton = styled.Pressable`
 const FooterButtonText = styled.Text``;
 
 export default ({state, setState}) => {
+  const [title, setTitle] = useState(state.plan.title);
+  const [isEditing, setIsEditing] = useState(false);
+
   const navigation = useNavigation();
-  const items = [
-    {
-      id: 1,
-      title: '상품이름이몇글자들어가나요',
-      count: 3,
-      price: 16000,
-      desc: '4인 (800g)',
-    },
-    {
-      id: 2,
-      title: '상품이름이몇글자들어가나요',
-      count: 3,
-      price: 16000,
-      desc: '4인 (800g)',
-    },
-    {
-      id: 3,
-      title: '상품이름이몇글자들어가나요',
-      count: 3,
-      price: 16000,
-      desc: '4인 (800g)',
-    },
-    {
-      id: 4,
-      title: '상품이름이몇글자들어가나요',
-      count: 3,
-      price: 16000,
-      desc: '4인 (800g)',
-    },
-    {
-      id: 5,
-      title: '상품이름이몇글자들어가나요',
-      count: 3,
-      price: 16000,
-      desc: '4인 (800g)',
-    },
-  ];
+  const dispatch = useDispatch();
+
+  const onEditBtnPressed = () => {
+    setIsEditing(true);
+    setTitle('');
+  };
+
+  const onSaveBtnPressed = () => {
+    dispatch(modifyPlannerTitle(state.plan, title));
+    setTitle(title);
+    setIsEditing(false);
+  };
+
+  const onChangeTitle = e => {
+    setTitle(e);
+  };
 
   return (
     <Container>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
       <ScrollContainer>
-        <PlanTitleContainer>
-          <PlanTitle>{state?.plan.title}</PlanTitle>
-          <PlanEditBtn>
-            <PlanEditBtnText>편집</PlanEditBtnText>
-          </PlanEditBtn>
-        </PlanTitleContainer>
+        {isEditing ? (
+          <PlanTitleContainer>
+            <PlanTitleInput
+              value={title}
+              onChangeText={onChangeTitle}
+              placeholder="기획서 이름을 입력해주세요"
+            />
+            <PlanSaveBtn title={title} onPress={onSaveBtnPressed}>
+              <PlanSaveBtnText>저장</PlanSaveBtnText>
+            </PlanSaveBtn>
+          </PlanTitleContainer>
+        ) : (
+          <PlanTitleContainer>
+            <PlanTitle>{state?.plan.title}</PlanTitle>
+            <PlanEditBtn onPress={onEditBtnPressed}>
+              <PlanEditBtnText>편집</PlanEditBtnText>
+            </PlanEditBtn>
+          </PlanTitleContainer>
+        )}
         <Divider></Divider>
         <PlanItemsContainer category={'레크'} items={state?.plan.items} />
         <Divider></Divider>

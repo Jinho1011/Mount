@@ -8,7 +8,12 @@ export default ({navigation, route}) => {
     plan: planners.filter(plan => plan.title === route.params.title)[0],
   });
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setState(prev => ({
+      ...prev,
+      plan: planners.filter(plan => plan.title === route.params.title)[0],
+    }));
+  }, [planners]);
 
   return <PlanPresenter state={state} setState={setState} />;
 };
