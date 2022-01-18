@@ -105,7 +105,6 @@ const HeartCount = styled.Text`
 `;
 
 export default function Item({item, state, setState}) {
-  console.log(item.type);
   const navigation = useNavigation();
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
