@@ -50,7 +50,13 @@ const ProposalButton = ({
           if (selectedPlanner == '') {
             setIsClicked(!isClicked);
           } else {
-            dispatch(addItems(selectedPlanner, state.items));
+            const category =
+              state.hasOwnProperty('foodSet') ||
+              state.hasOwnProperty('foodSingle')
+                ? 'food'
+                : 'rec';
+
+            dispatch(addItems(selectedPlanner, state.items, category));
             navigation.navigate('Planner', {title: selectedPlanner});
           }
         }}>
