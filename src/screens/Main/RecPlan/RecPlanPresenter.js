@@ -1,3 +1,4 @@
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import React from 'react';
 import styled from 'styled-components';
 import Item from '../../../components/Food/Item';
@@ -32,6 +33,11 @@ const ChangeCountButtonText = styled.Text`
 `;
 
 export default function RecPlanPresenter({state, setState}) {
+  function isPressed(value) {
+    return value.isPressed === true;
+  }
+  const isPressedArr = state?.items.filter(isPressed);
+  const navigation = useNavigation();
   return (
     <>
       <ScrollContainer>
@@ -52,7 +58,9 @@ export default function RecPlanPresenter({state, setState}) {
       <Footer>
         {state.pressedCnt > 0 ? (
           <ChangeCountButton
-            onPress={() => console.log('눌림')}
+            onPress={() => {
+              navigation.navigate('RecPlanChange', {isPressedArr});
+            }}
             pressedCnt={state.pressedCnt}>
             <ChangeCountButtonText>수량변경</ChangeCountButtonText>
           </ChangeCountButton>

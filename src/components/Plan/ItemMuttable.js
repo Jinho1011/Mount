@@ -96,6 +96,7 @@ const Counter = styled.View`
 `;
 
 const Item = ({state, setState, item}) => {
+  console.log(item);
   const minusCount = () => {
     let items = state.items.map(_item => {
       if (item.id === _item.id) {
