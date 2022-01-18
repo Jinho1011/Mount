@@ -96,6 +96,41 @@ const Counter = styled.View`
 `;
 
 const Item = ({state, setState, item}) => {
+  const minusCount = () => {
+    let items = state.items.map(_item => {
+      if (item.id === _item.id) {
+        return {
+          ..._item,
+          count: _item.count - 1,
+        };
+      } else {
+        return _item;
+      }
+    });
+
+    setState(prev => ({
+      ...prev,
+      items,
+    }));
+  };
+
+  const plusCount = () => {
+    let items = state.items.map(_item => {
+      if (item.id === _item.id) {
+        return {
+          ..._item,
+          count: _item.count + 1,
+        };
+      } else {
+        return _item;
+      }
+    });
+
+    setState(prev => ({
+      ...prev,
+      items,
+    }));
+  };
   return (
     <ItemBox>
       <ItemSmallBox>
@@ -107,13 +142,13 @@ const Item = ({state, setState, item}) => {
         </ItemLeft>
         <ItemRight>
           <Counter>
-            <MinusPressable>
+            <MinusPressable onPress={minusCount}>
               <Image source={require('../../../assets/minus.png')} />
             </MinusPressable>
             <ItemCountBlock>
               <ItemCount>{item?.count}</ItemCount>
             </ItemCountBlock>
-            <PlusPressable>
+            <PlusPressable onPress={plusCount}>
               <Image source={require('../../../assets/plus.png')} />
             </PlusPressable>
           </Counter>
