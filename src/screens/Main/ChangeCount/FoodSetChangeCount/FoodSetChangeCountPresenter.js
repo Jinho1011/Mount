@@ -126,7 +126,6 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
   return (
     <PageWrap>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-
       <StyledScrollView>
         <ContentContainer>
           <SetContainer>

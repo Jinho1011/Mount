@@ -6,6 +6,7 @@ import TotalPrice from '../../../components/Common/TotalPrice';
 import Modal from '../../../components/Modal';
 import PlannerButton from '../../../components/Common/ProposalButton';
 import Item from '../../../components/Food/Item';
+import FocusAwareStatusBar from '../../../components/StatusBar';
 
 const ScrollContainer = styled.ScrollView`
   background-color: #fff;
@@ -95,22 +96,64 @@ const ModalWrap = styled.Pressable`
   background: rgba(139, 139, 139, 0.3);
 `;
 
+const HighLighter = styled(View)`
+  position: absolute;
+  background: #e2f955;
+  width: 58px;
+  height: 10px;
+  margin-top: 20px;
+  margin-left: -1px;
+`;
+
+const TitleBox = styled(View)`
+  position: relative;
+`;
+
 export default function FoodPlanChangePresenter({state, setState}) {
+  console.log(state.items[0].count);
   const [isClicked, setIsClicked] = useState(false);
   const [selectedPlanner, setSelectedPlanner] = useState('');
   return (
     <>
+      <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
       <ScrollContainer>
         <CountBox>
-          <CountBoxTitle>총 인원 수를 입력해주세요</CountBoxTitle>
+          <TitleBox>
+            <HighLighter />
+            <CountBoxTitle>총 인원 수를 입력해주세요</CountBoxTitle>
+          </TitleBox>
           <Counter>
-            <MinusButton>
+            <MinusButton
+              onPress={() => {
+                let memCnt = state.memberCnt;
+                let items = state.items.map(item => {
+                  item.count = Math.max(1, memCnt - 1);
+                  return item;
+                });
+                setState(prev => ({
+                  ...prev,
+                  memberCnt: Math.max(1, memCnt - 1),
+                  items,
+                }));
+              }}>
               <Minus source={require('../../../../assets/plan_minus.png')} />
             </MinusButton>
             <NumberBox>
               <Number>{state?.memberCnt}</Number>
             </NumberBox>
-            <PlusButton>
+            <PlusButton
+              onPress={() => {
+                let memCnt = state.memberCnt;
+                let items = state.items.map(item => {
+                  item.count = Math.max(1, memCnt + 1);
+                  return item;
+                });
+                setState(prev => ({
+                  ...prev,
+                  memberCnt: Math.max(1, memCnt + 1),
+                  items,
+                }));
+              }}>
               <Plus source={require('../../../../assets/plan_plus.png')} />
             </PlusButton>
           </Counter>
