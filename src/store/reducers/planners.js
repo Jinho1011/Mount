@@ -77,7 +77,7 @@ export default (state = initialState, action) => {
     }
     case 'MODIFY_TITLE': {
       const planner = action.planner;
-      const newTitle = action.newTitle;
+      const newTitle = action.title;
       const modifiedPlanners = state.planners.map(item => {
         if (item.id == planner.id && item.type == planner.type) {
           return {...item, title: newTitle};
