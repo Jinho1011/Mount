@@ -75,7 +75,6 @@ const FooterButton = styled.Pressable`
 const FooterButtonText = styled.Text``;
 
 export default ({state, setState}) => {
-  console.log('🚀 ~ file: PlanPresenter.js ~ line 78 ~ state', state);
   const navigation = useNavigation();
   const items = [
     {
@@ -138,10 +137,7 @@ export default ({state, setState}) => {
         </CautionContainer>
       </ScrollContainer>
       <FooterContainer>
-        <FooterButton
-          onPress={() => {
-            console.log('기획서로 다운받기');
-          }}>
+        <FooterButton onPress={() => {}}>
           <FooterButtonText>기획서로 다운받기</FooterButtonText>
         </FooterButton>
       </FooterContainer>
