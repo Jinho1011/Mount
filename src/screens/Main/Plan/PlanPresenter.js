@@ -74,7 +74,8 @@ const FooterButton = styled.Pressable`
 
 const FooterButtonText = styled.Text``;
 
-export default () => {
+export default ({state, setState}) => {
+  console.log('🚀 ~ file: PlanPresenter.js ~ line 78 ~ state', state);
   const navigation = useNavigation();
   const items = [
     {
@@ -113,20 +114,21 @@ export default () => {
       desc: '4인 (800g)',
     },
   ];
+
   return (
     <Container>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
       <ScrollContainer>
         <PlanTitleContainer>
-          <PlanTitle>최강산디 엠티 기획서</PlanTitle>
+          <PlanTitle>{state?.plan.title}</PlanTitle>
           <PlanEditBtn>
             <PlanEditBtnText>편집</PlanEditBtnText>
           </PlanEditBtn>
         </PlanTitleContainer>
         <Divider></Divider>
-        <PlanItemsContainer items={items} />
+        <PlanItemsContainer category={'레크'} items={state?.plan.items} />
         <Divider></Divider>
-        <PlanItemsContainer items={items} />
+        <PlanItemsContainer category={'음식'} items={state?.plan.items} />
         <TotalPriceContainer>
           {/* <TotalPrice state={state} setState={setState} /> */}
         </TotalPriceContainer>

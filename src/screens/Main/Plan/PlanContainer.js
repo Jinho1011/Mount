@@ -5,7 +5,7 @@ import PlanPresenter from './PlanPresenter';
 export default ({navigation, route}) => {
   const planners = useSelector(state => state.planners.planners);
   const [state, setState] = useState({
-    plan: planners.filter(plan => plan.title === route.params.title),
+    plan: planners.filter(plan => plan.title === route.params.title)[0],
   });
 
   useEffect(() => {}, []);
