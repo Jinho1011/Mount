@@ -8,12 +8,12 @@ export const createPlanner = title => {
   return {type: CREATE_PLANNER, title};
 };
 
-export const addItem = (title, item) => {
-  return {type: ADD_ITEM, title, item};
+export const addItem = (title, item, category) => {
+  return {type: ADD_ITEM, title, item, category};
 };
 
-export const addItems = (title, items) => {
-  return {type: ADD_ITEMS, title, items};
+export const addItems = (title, items, category) => {
+  return {type: ADD_ITEMS, title, items, category};
 };
 
 export const modifyPlannerTitle = (planner, title) => {
