@@ -73,7 +73,7 @@ const Details = () => (
       <DetailNavigator.Screen
         name="FoodPlanChange"
         component={FoodPlanChange}
-        options={{tabBarLabel: '직접 기획 수량 변경', headerShown: false}}
+        options={{tabBarLabel: '수량 변경', headerShown: true}}
       />
     </DetailNavigator.Group>
 
