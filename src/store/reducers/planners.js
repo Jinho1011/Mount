@@ -5,31 +5,31 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'CREATE_PLANNER': {
-      let planner = {
-        title: '',
+      const newPlanner = {
+        title: action.title,
         items: {
           rec: [],
           food: [],
         },
       };
-      planner.title = action.title;
 
       return {
         ...state,
-        planners: [...state.planners, planner],
+        planners: [...state.planners, newPlanner],
       };
     }
     case 'ADD_ITEM': {
       const title = action.title;
       const category = action.category;
       const newItem = action.item;
+
       const addedPlanners = state.planners.map(planner => {
         if (planner.title == title) {
           return {
             ...planner,
             items: {
               ...planner.items,
-              [category]: [...planner.items, newItem],
+              [category]: [...planner.items[category], newItem],
             },
           };
         } else {
@@ -52,7 +52,7 @@ export default (state = initialState, action) => {
             ...planner,
             items: {
               ...planner.items,
-              [category]: [...planner.items, ...newItems],
+              [category]: [...planner.items[category], ...newItems],
             },
           };
         } else {
