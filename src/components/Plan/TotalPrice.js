@@ -79,16 +79,17 @@ const TotalPriceText = styled.Text`
   text-align: right;
 `;
 
-const TotalPrice = ({state, setState}) => {
+const TotalPrice = ({isPressedArr, memberCnt, setMemberCnt}) => {
+  console.log(isPressedArr[0].count);
   let price = 0;
-  for (let i = 0; i < state?.items?.length; i++) {
+  for (let i = 0; i < isPressedArr.length; i++) {
     price = parseInt(
-      (price + state?.items[i]?.count * state?.items[i]?.price) /
-        state?.memberCnt,
+      (price + isPressedArr[i].count * isPressedArr[i].price) / memberCnt,
       10,
     );
   }
-  let total = state?.memberCnt * price;
+  console.log(price);
+  let total = memberCnt * price;
   return (
     <TotalContainer>
       <StyledTitle>총 예상금액</StyledTitle>
@@ -100,7 +101,7 @@ const TotalPrice = ({state, setState}) => {
         <MultiplyImgBox>
           <MultiplyImg source={require('../../../assets/close.png')} />
         </MultiplyImgBox>
-        <Count>{state.memberCnt}</Count>
+        <Count>{memberCnt}</Count>
         <TotalPriceBox>
           <TotalPriceTitle>총 금액</TotalPriceTitle>
           <TotalPriceText>{total} 원</TotalPriceText>
