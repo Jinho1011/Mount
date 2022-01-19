@@ -108,7 +108,7 @@ const FooterButton = styled.Pressable`
 const FooterButtonText = styled.Text``;
 
 export default ({state, setState}) => {
-  const [title, setTitle] = useState(state.plan.title);
+  const [title, setTitle] = useState(state?.planner.title);
   const [isEditing, setIsEditing] = useState(false);
 
   const navigation = useNavigation();
@@ -120,7 +120,7 @@ export default ({state, setState}) => {
   };
 
   const onSaveBtnPressed = () => {
-    dispatch(modifyPlannerTitle(state.plan, title));
+    dispatch(modifyPlannerTitle(state.planner, title));
     setTitle(title);
     setIsEditing(false);
   };
@@ -128,6 +128,14 @@ export default ({state, setState}) => {
   const onChangeTitle = e => {
     setTitle(e);
   };
+
+  useEffect(() => {
+    console.log('🚀 ~ file: PlanPresenter.js ~ line 139 ~ title', title);
+  }, [title]);
+
+  useEffect(() => {
+    console.log('🚀 ~ file: PlanPresenter.js ~ line 143 ~ state', state);
+  }, [state]);
 
   return (
     <Container>
@@ -146,16 +154,16 @@ export default ({state, setState}) => {
           </PlanTitleContainer>
         ) : (
           <PlanTitleContainer>
-            <PlanTitle>{state?.plan.title}</PlanTitle>
+            <PlanTitle>{title}</PlanTitle>
             <PlanEditBtn onPress={onEditBtnPressed}>
               <PlanEditBtnText>편집</PlanEditBtnText>
             </PlanEditBtn>
           </PlanTitleContainer>
         )}
         <Divider></Divider>
-        <PlanItemsContainer category={'레크'} items={state?.plan.items} />
+        <PlanItemsContainer category={'레크'} items={state?.planner.items} />
         <Divider></Divider>
-        <PlanItemsContainer category={'음식'} items={state?.plan.items} />
+        <PlanItemsContainer category={'음식'} items={state?.planner.items} />
         <TotalPriceContainer>
           {/* <TotalPrice state={state} setState={setState} /> */}
         </TotalPriceContainer>
