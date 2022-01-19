@@ -6,6 +6,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case 'CREATE_PLANNER': {
       const newPlanner = {
+        id: state.planners.length,
         title: action.title,
         items: {
           rec: [],
@@ -19,12 +20,12 @@ export default (state = initialState, action) => {
       };
     }
     case 'ADD_ITEM': {
-      const title = action.title;
+      const id = action.id;
       const category = action.category;
       const newItem = action.item;
 
       const addedPlanners = state.planners.map(planner => {
-        if (planner.title == title) {
+        if (planner.id == id) {
           return {
             ...planner,
             items: {
@@ -43,11 +44,11 @@ export default (state = initialState, action) => {
       };
     }
     case 'ADD_ITEMS': {
-      const title = action.title;
+      const id = action.id;
       const category = action.category;
       const newItems = action.items;
       const addedPlanners = state.planners.map(planner => {
-        if (planner.title == title) {
+        if (planner.id == id) {
           return {
             ...planner,
             items: {
@@ -68,7 +69,7 @@ export default (state = initialState, action) => {
     case 'DELETE_PLANNER': {
       const planner = action.planner;
       const deletedPlanners = state.planners.filter((value, index, arr) => {
-        return value.id != planner.id && value.type != planner.type;
+        return value.id != planner.id;
       });
       return {
         ...state,
@@ -79,7 +80,7 @@ export default (state = initialState, action) => {
       const planner = action.planner;
       const newTitle = action.title;
       const modifiedPlanners = state.planners.map(item => {
-        if (item.id == planner.id && item.type == planner.type) {
+        if (item.id === planner.id) {
           return {...item, title: newTitle};
         } else {
           return item;
@@ -93,7 +94,7 @@ export default (state = initialState, action) => {
     case 'UPDATE_PLANNER': {
       const planner = action.planner;
       const modifiedPlanners = state.planners.map(item => {
-        if (item.id == planner.id && item.type == planner.type) {
+        if (item.id == planner.id) {
           return planner;
         } else {
           return item;
