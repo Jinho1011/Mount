@@ -16,9 +16,7 @@ export default ({navigation, route}) => {
     }));
   }, [planners]);
 
-  useEffect(() => {
-    console.log('🚀 ~ file: PlanContainer.js ~ line 20 ~ state', state);
-  }, [state]);
+  // useEffect(() => {}, [state]);
 
   return <PlanPresenter state={state} setState={setState} />;
 };

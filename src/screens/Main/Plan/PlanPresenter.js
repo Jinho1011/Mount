@@ -7,7 +7,7 @@ import {modifyPlannerTitle} from '../../../store/actions/planners';
 
 import FocusAwareStatusBar from '../../../components/StatusBar';
 import PlanItemsContainer from '../../../components/Plan/PlanItems';
-import TotalPrice from '../../../components/Common/TotalPrice';
+import TotalPrice from '../../../components/Plan/TotalPrice';
 import Caution from '../../../components/Common/Caution';
 
 const windowWidth = Dimensions.get('window').width;
@@ -129,13 +129,13 @@ export default ({state, setState}) => {
     setTitle(e);
   };
 
-  useEffect(() => {
-    console.log('🚀 ~ file: PlanPresenter.js ~ line 139 ~ title', title);
-  }, [title]);
+  // useEffect(() => {
+  //   console.log('🚀 ~ file: PlanPresenter.js ~ line 139 ~ title', title);
+  // }, [title]);
 
-  useEffect(() => {
-    console.log('🚀 ~ file: PlanPresenter.js ~ line 143 ~ state', state);
-  }, [state]);
+  // useEffect(() => {
+  //   console.log('🚀 ~ file: PlanPresenter.js ~ line 143 ~ state', state);
+  // }, [state]);
 
   return (
     <Container>
@@ -165,7 +165,7 @@ export default ({state, setState}) => {
         <Divider></Divider>
         <PlanItemsContainer category={'음식'} items={state?.planner.items} />
         <TotalPriceContainer>
-          {/* <TotalPrice state={state} setState={setState} /> */}
+          <TotalPrice state={state?.planner} />
         </TotalPriceContainer>
         <Divider></Divider>
         <CautionContainer>
