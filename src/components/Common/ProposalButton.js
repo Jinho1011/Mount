@@ -56,10 +56,11 @@ const ProposalButton = ({
               state.hasOwnProperty('foodSingle')
                 ? 'food'
                 : 'rec';
-            dispatch(addItems(selectedPlanner, state.items, category));
             const planner = planners.find(
               planner => planner.title === selectedPlanner,
             );
+
+            dispatch(addItems(planner.id, state.items, category));
             navigation.navigate('Planner', {id: planner.id});
           }
         }}>
