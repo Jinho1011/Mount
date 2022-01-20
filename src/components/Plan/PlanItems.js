@@ -89,11 +89,7 @@ const PlanItemsContainer = ({category, items}) => {
       <ItemContainer>
         {items[type]?.map((item, i, items) => {
           if (i + 1 === items.length) {
-            return (
-              <>
-                <Item item={item} key={item.id} />
-              </>
-            );
+            return <Item item={item} key={item.id} />;
           } else {
             return (
               <View key={item.id}>
