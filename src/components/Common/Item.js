@@ -106,7 +106,7 @@ const Item = ({state, setState, item}) => {
             </ItemCountBlock>
           </Counter>
           <SetItemPriceContainer>
-            <SetItemSize>4인 (800g)</SetItemSize>
+            <SetItemSize>1팀당 가격</SetItemSize>
             <SetItemPrice>{item.price}원</SetItemPrice>
           </SetItemPriceContainer>
         </ItemRight>
