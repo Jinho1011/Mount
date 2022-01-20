@@ -9,6 +9,7 @@ import FocusAwareStatusBar from '../../../components/StatusBar';
 import PlanItemsContainer from '../../../components/Plan/PlanItems';
 import TotalPrice from '../../../components/Plan/TotalPrice';
 import Caution from '../../../components/Common/Caution';
+import PlanModal from '../../../components/Plan/PlanModal';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -110,6 +111,7 @@ const FooterButtonText = styled.Text``;
 export default ({state, setState}) => {
   const [title, setTitle] = useState(state?.planner.title);
   const [isEditing, setIsEditing] = useState(false);
+  const [toggleModal, setToggleModal] = useState(false);
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -173,10 +175,15 @@ export default ({state, setState}) => {
         </CautionContainer>
       </ScrollContainer>
       <FooterContainer>
-        <FooterButton onPress={() => {}}>
+        <FooterButton onPress={() => setToggleModal(!toggleModal)}>
           <FooterButtonText>기획서로 다운받기</FooterButtonText>
         </FooterButton>
       </FooterContainer>
+      <PlanModal
+        toggleModal={toggleModal}
+        setToggleModal={setToggleModal}
+        items={state?.planner}
+      />
     </Container>
   );
 };
