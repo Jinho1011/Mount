@@ -7,6 +7,7 @@ import Counter from '../../../../components/Rec/Counter';
 import Item from '../../../../components/Common/Item';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
+import _ from 'lodash';
 
 const PageWrap = styled.View``;
 
@@ -131,6 +132,7 @@ const TotalPriceContainer = styled.View`
 `;
 
 const RecreationSetPresenter = ({state, setState}) => {
+  const navigation = useNavigation();
   return (
     <PageWrap style={{flex: 1}}>
       <ScrollContainer>
@@ -176,7 +178,11 @@ const RecreationSetPresenter = ({state, setState}) => {
         </CautionContainer>
       </ScrollContainer>
       <BottomConatiner>
-        <ChangeCountButton>
+        <ChangeCountButton
+          onPress={() => {
+            const _state = _.cloneDeep(state);
+            navigation.navigate('RecSetChangeCount', {_state});
+          }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
         <LikeButton>
