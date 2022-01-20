@@ -65,6 +65,20 @@ const ItemPrice = styled.Text`
   line-height: 24px;
 `;
 
+const EmptyContainer = styled.View`
+  padding-top: 25px;
+  padding-bottom: 44px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const EmptyText = styled.Text`
+  color: #b4b4b4;
+  font-size: 14px;
+  font-family: 'NotoSansKR-Regular';
+  line-height: 20px;
+`;
+
 const PlanItemsContainer = ({category, items}) => {
   const navigation = useNavigation();
   const type = category === '레크' ? 'rec' : 'food';
@@ -87,18 +101,24 @@ const PlanItemsContainer = ({category, items}) => {
         <Subtitle>구성품</Subtitle>
       </TitleContainer>
       <ItemContainer>
-        {items[type]?.map((item, i, items) => {
-          if (i + 1 === items.length) {
-            return <Item item={item} key={item.id} />;
-          } else {
-            return (
-              <View key={item.id}>
-                <Item item={item} />
-                <ItemDivider />
-              </View>
-            );
-          }
-        })}
+        {items[type].length > 0 ? (
+          items[type]?.map((item, i, items) => {
+            if (i + 1 === items.length) {
+              return <Item item={item} key={item.id} />;
+            } else {
+              return (
+                <View key={item.id}>
+                  <Item item={item} />
+                  <ItemDivider />
+                </View>
+              );
+            }
+          })
+        ) : (
+          <EmptyContainer>
+            <EmptyText>구성품이 없습니다.</EmptyText>
+          </EmptyContainer>
+        )}
       </ItemContainer>
       <ItemPriceContainer>
         <ItemPriceLabel>{category} 합계금액</ItemPriceLabel>
