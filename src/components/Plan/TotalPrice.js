@@ -79,23 +79,21 @@ const TotalPriceText = styled.Text`
   text-align: right;
 `;
 
-const TotalPrice = ({state, setState}) => {
-  const [price, setPrice] = useState(0);
-  const [member, setMember] = useState({
-    count: 0,
-    total: 0,
-  });
-
-  useEffect(() => {
-    ['food', 'rec'].map(category => {
-      state?.items[category].map(item => {});
-    });
-  }, []);
-
+const TotalPrice = ({isPressedArr, memberCnt, setMemberCnt}) => {
+  console.log(isPressedArr[0].count);
+  let price = 0;
+  for (let i = 0; i < isPressedArr.length; i++) {
+    price = parseInt(
+      (price + isPressedArr[i].count * isPressedArr[i].price) / memberCnt,
+      10,
+    );
+  }
+  console.log(price);
+  let total = memberCnt * price;
   return (
     <TotalContainer>
       <StyledTitle>총 예상금액</StyledTitle>
-      {/* <SmallContainer>
+      <SmallContainer>
         <PriceBox>
           <PriceBoxTitle>1인 기준</PriceBoxTitle>
           <Price>{price} 원</Price>
@@ -103,12 +101,12 @@ const TotalPrice = ({state, setState}) => {
         <MultiplyImgBox>
           <MultiplyImg source={require('../../../assets/close.png')} />
         </MultiplyImgBox>
-        <Count>{state.memberCnt}</Count>
+        <Count>{memberCnt}</Count>
         <TotalPriceBox>
           <TotalPriceTitle>총 금액</TotalPriceTitle>
           <TotalPriceText>{total} 원</TotalPriceText>
         </TotalPriceBox>
-      </SmallContainer> */}
+      </SmallContainer>
     </TotalContainer>
   );
 };

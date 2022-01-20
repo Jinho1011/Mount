@@ -96,6 +96,7 @@ const Counter = styled.View`
 `;
 
 const Item = ({state, setState, item}) => {
+  console.log(item);
   const minusCount = () => {
     let items = state.items.map(_item => {
       if (item.id === _item.id) {
@@ -131,7 +132,6 @@ const Item = ({state, setState, item}) => {
       items,
     }));
   };
-
   return (
     <ItemBox>
       <ItemSmallBox>
@@ -139,7 +139,7 @@ const Item = ({state, setState, item}) => {
           <Image
             source={require('../../../assets/rec_set_item_image_sample.png')}
           />
-          <ItemName>{item.name}</ItemName>
+          <ItemName>{item?.title}</ItemName>
         </ItemLeft>
         <ItemRight>
           <Counter>
@@ -147,7 +147,7 @@ const Item = ({state, setState, item}) => {
               <Image source={require('../../../assets/minus.png')} />
             </MinusPressable>
             <ItemCountBlock>
-              <ItemCount>{item.count}</ItemCount>
+              <ItemCount>{item?.count}</ItemCount>
             </ItemCountBlock>
             <PlusPressable onPress={plusCount}>
               <Image source={require('../../../assets/plus.png')} />
@@ -155,7 +155,7 @@ const Item = ({state, setState, item}) => {
           </Counter>
           <SetItemPriceContainer>
             <SetItemize>4인 (800g)</SetItemize>
-            <SetItemPrice>{item.price}원</SetItemPrice>
+            <SetItemPrice>{item?.price}원</SetItemPrice>
           </SetItemPriceContainer>
         </ItemRight>
       </ItemSmallBox>

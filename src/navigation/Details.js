@@ -15,6 +15,8 @@ import RecSetChangeCount from '../screens/Main/ChangeCount/RecSetChnageCount';
 import RecSingleChangeCount from '../screens/Main/ChangeCount/RecSingleChangeCount';
 import FoodPlan from '../screens/Main/FoodPlan';
 import RecPlan from '../screens/Main/RecPlan';
+import FoodPlanChange from '../screens/Main/FoodPlanChange';
+import RecPlanChange from '../screens/Main/RecPlanChange';
 
 const DetailNavigator = createStackNavigator();
 
@@ -86,6 +88,16 @@ const Details = () => (
         name="DetailTabs"
         component={DetailTabs}
         options={{tabBarLabel: '직접 기획', headerShown: false}}
+      />
+      <DetailNavigator.Screen
+        name="FoodPlanChange"
+        component={FoodPlanChange}
+        options={{tabBarLabel: '수량 변경', headerShown: true}}
+      />
+      <DetailNavigator.Screen
+        name="RecPlanChange"
+        component={RecPlanChange}
+        options={{tabBarLabel: '수량 변경', headerShown: true}}
       />
     </DetailNavigator.Group>
   </DetailNavigator.Navigator>
