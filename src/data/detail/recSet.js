@@ -20,7 +20,7 @@ export default [
           '어떤 단어의 초성만을 알려주고 그 단어를 알아맞히는 놀이',
       },
       {
-        id: 1,
+        id: 2,
         name: '몸으로 말해요',
         price: 1460,
         recommendMemberCnt: '4인 ~ 10인',
@@ -31,7 +31,7 @@ export default [
         oneLineDescription: '몸으로 단어를 설명해서 맞추는 게임',
       },
       {
-        id: 1,
+        id: 3,
         name: '스피드 퀴즈',
         price: 1460,
         recommendMemberCnt: '4인 ~ 10인',
