@@ -109,7 +109,6 @@ const TitleBox = styled(View)`
 `;
 
 export default function FoodPlanChangePresenter({state, setState}) {
-  console.log(state.items[0].count);
   const [isClicked, setIsClicked] = useState(false);
   const [selectedPlanner, setSelectedPlanner] = useState('');
   return (

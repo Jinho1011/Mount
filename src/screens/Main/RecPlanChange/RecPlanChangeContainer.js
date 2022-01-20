@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import FoodPlanChangePresenter from './FoodPlanChangePresenter';
+import RecPlanChangePresenter from './RecPlanChangePresenter';
 
-const FoodPlanChangeContainer = ({navigation, route}) => {
+const RecPlanChangeContainer = ({navigation, route}) => {
   const [state, setState] = useState({
     memberCnt: 1,
+    teamCnt: 1,
     ...route.params.isPressedArr,
   });
-  // const [memberCnt, setMemberCnt] = useState(1);
   useEffect(() => {
     const init = () => {
       let items = route.params.isPressedArr;
@@ -22,7 +22,7 @@ const FoodPlanChangeContainer = ({navigation, route}) => {
     };
     init();
   }, []);
-  return <FoodPlanChangePresenter state={state} setState={setState} />;
+  return <RecPlanChangePresenter state={state} setState={setState} />;
 };
 
-export default FoodPlanChangeContainer;
+export default RecPlanChangeContainer;
