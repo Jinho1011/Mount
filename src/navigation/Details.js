@@ -12,7 +12,7 @@ import RecreationSingle from '../screens/Main/Detail/RecreationSingle';
 import FoodSetChangeCount from '../screens/Main/ChangeCount/FoodSetChangeCount';
 import FoodSingleChangeCount from '../screens/Main/ChangeCount/FoodSingleChangeCount';
 import RecSetChangeCount from '../screens/Main/ChangeCount/RecSetChnageCount';
-import RecreationSingleChangeCount from '../screens/Main/ChangeCount/RecSingleChangeCount';
+import RecSingleChangeCount from '../screens/Main/ChangeCount/RecSingleChangeCount';
 import FoodPlan from '../screens/Main/FoodPlan';
 import RecPlan from '../screens/Main/RecPlan';
 
@@ -67,7 +67,7 @@ const Details = () => (
         component={FoodSetChangeCount}
         options={{tabBarLabel: '수량 변경'}}
       />
-      <DetailNavigator.Screen
+      {/* <DetailNavigator.Screen
         name="FoodSingleChangeCount"
         component={FoodSingleChangeCount}
         options={{tabBarLabel: '수량 변경'}}
@@ -81,7 +81,7 @@ const Details = () => (
         name="RecSingleChangeCount"
         component={RecSingleChangeCount}
         options={{tabBarLabel: '수량 변경'}}
-      />
+      /> */}
       <DetailNavigator.Screen
         name="DetailTabs"
         component={DetailTabs}
