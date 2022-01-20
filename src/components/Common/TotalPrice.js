@@ -81,13 +81,14 @@ const TotalPriceText = styled.Text`
 
 const TotalPrice = ({state, setState}) => {
   let price = 0;
-  for (let i = 0; i < state.items.length; i++) {
+  for (let i = 0; i < state?.items?.length; i++) {
     price = parseInt(
-      (price + state.items[i].count * state.items[i].price) / state.memberCnt,
+      (price + state?.items[i]?.count * state?.items[i]?.price) /
+        state?.memberCnt,
       10,
     );
   }
-  let total = state.memberCnt * price;
+  let total = state?.memberCnt * price;
   return (
     <TotalContainer>
       <StyledTitle>총 예상금액</StyledTitle>
