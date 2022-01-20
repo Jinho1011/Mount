@@ -144,9 +144,6 @@ const FoodSetPresenter = ({state, setState}) => {
           onPress={() => {
             const _state = _.cloneDeep(state);
             navigation.navigate('FoodSetChangeCount', {_state});
-            // setState(prev => ({
-            //   ...prev,
-            // }));
           }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>

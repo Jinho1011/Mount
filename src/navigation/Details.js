@@ -14,6 +14,7 @@ import FoodPlan from '../screens/Main/FoodPlan';
 import RecPlan from '../screens/Main/RecPlan';
 import FoodPlanChange from '../screens/Main/FoodPlanChange';
 import RecPlanChange from '../screens/Main/RecPlanChange';
+import RecSetChangeCount from '../screens/Main/ChangeCount/RecSetChangeCount';
 
 const DetailNavigator = createStackNavigator();
 
@@ -64,6 +65,11 @@ const Details = () => (
       <DetailNavigator.Screen
         name="FoodSetChangeCount"
         component={FoodSetChangeCount}
+        options={{tabBarLabel: '수량 변경'}}
+      />
+      <DetailNavigator.Screen
+        name="RecSetChangeCount"
+        component={RecSetChangeCount}
         options={{tabBarLabel: '수량 변경'}}
       />
       <DetailNavigator.Screen
