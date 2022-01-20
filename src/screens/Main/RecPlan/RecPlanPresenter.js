@@ -1,4 +1,4 @@
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import styled from 'styled-components';
 import Item from '../../../components/Food/Item';
