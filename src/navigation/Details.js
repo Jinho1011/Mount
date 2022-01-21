@@ -11,13 +11,12 @@ import RecreationSet from '../screens/Main/Detail/RecreationSet';
 import RecreationSingle from '../screens/Main/Detail/RecreationSingle';
 import FoodSetChangeCount from '../screens/Main/ChangeCount/FoodSetChangeCount';
 import FoodSingleChangeCount from '../screens/Main/ChangeCount/FoodSingleChangeCount';
-import RecSetChangeCount from '../screens/Main/ChangeCount/RecSetChnageCount';
+import RecSetChangeCount from '../screens/Main/ChangeCount/RecSetChangeCount';
 import RecSingleChangeCount from '../screens/Main/ChangeCount/RecSingleChangeCount';
 import FoodPlan from '../screens/Main/FoodPlan';
 import RecPlan from '../screens/Main/RecPlan';
 import FoodPlanChange from '../screens/Main/FoodPlanChange';
 import RecPlanChange from '../screens/Main/RecPlanChange';
-import RecSetChangeCount from '../screens/Main/ChangeCount/RecSetChangeCount';
 
 const DetailNavigator = createStackNavigator();
 
