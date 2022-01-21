@@ -89,7 +89,7 @@ const Counter = styled.View`
   flex-direction: row;
 `;
 
-const Item = ({state, setState, item}) => {
+const Items = ({state, setState, item}) => {
   return (
     <ItemBox>
       <ItemSmallBox>
@@ -116,4 +116,4 @@ const Item = ({state, setState, item}) => {
   );
 };
 
-export default Item;
+export default Items;

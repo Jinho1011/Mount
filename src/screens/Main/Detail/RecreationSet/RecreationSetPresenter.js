@@ -4,10 +4,11 @@ import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 import TitleContainer from '../../../../components/Common/SetTitle';
 import Counter from '../../../../components/Rec/Counter';
-import Item from '../../../../components/Common/Item';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
+import Components from '../../../../components/Rec/Components';
 import _ from 'lodash';
+import Items from '../../../../components/Rec/Items';
 
 const PageWrap = styled.View``;
 
@@ -85,16 +86,13 @@ const BottomConatiner = styled.View`
   flex-direction: row;
   background: #ffffff;
   border: 0.3px solid #b4b4b4;
-
   padding: 8px 21px 8px 23px;
 `;
 
 const ChangeCountButton = styled.TouchableOpacity`
   padding: 12px 118px;
-
   background: #e2f955;
   border-radius: 5px;
-
   height: 48px;
 `;
 
@@ -152,7 +150,7 @@ const RecreationSetPresenter = ({state, setState}) => {
             <RecSetListItemTitle>구성품</RecSetListItemTitle>
             {state?.recSet?.items?.map(item => {
               return (
-                <Item
+                <Items
                   state={state}
                   setState={setState}
                   item={item}

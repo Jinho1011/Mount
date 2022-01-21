@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, Pressable, Image, Dimensions} from 'react-native';
 import {HeaderTitle} from '../../../../components/Header/Header';
 import styled from 'styled-components';
-import Item from '../../../../components/Common/Item';
 import ItemMuttable from '../../../../components/Common/ItemMuttable';
 import foodSet from '../../../../data/detail/foodSet';
 import TotalPrice from '../../../../components/Common/TotalPrice';

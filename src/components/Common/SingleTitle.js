@@ -31,13 +31,13 @@ const SingleInfo = styled.Text`
   margin-top: 4px;
 `;
 
-const TitleContainer = ({title, img, detail}) => {
+const TitleContainer = ({name, img, oneLineDescription}) => {
   return (
     <SingleTitleContainer>
       <SingleImage source={{uri: img}} />
       <TransparentHeader style={{position: 'absolute', top: 0, right: 0}} />
-      <SingleTitle>{title}</SingleTitle>
-      <SingleInfo>{detail}</SingleInfo>
+      <SingleTitle>{name}</SingleTitle>
+      <SingleInfo>{oneLineDescription}</SingleInfo>
     </SingleTitleContainer>
   );
 };

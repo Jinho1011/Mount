@@ -2,7 +2,7 @@ export default [
   {
     id: 1,
     img: 'https://dummyimage.com/600x253/000/fff',
-    title: '첫번째세트',
+    title: 'All-in-one',
     caution: '주의사항입니다',
     subtitle: '세트설명어쩌구저쩌구어쩌..',
     like: 222,
@@ -10,14 +10,14 @@ export default [
     items: [
       {
         id: 1,
-        name: '고기',
-        price: 16000,
-        description: '4인(800g)',
+        name: '삼다수(2L)',
+        price: 1000,
+        description: '1인 1병',
       },
       {
         id: 2,
-        name: '밥',
-        price: 17000,
+        name: '파워에이드(1.5L)',
+        price: 1700,
         description: '4인(800g)',
       },
       {

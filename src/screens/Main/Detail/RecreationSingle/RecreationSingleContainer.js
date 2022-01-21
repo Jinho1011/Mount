@@ -6,16 +6,24 @@ const RecreationSingleContainer = ({route}) => {
   const [state, setState] = useState({
     memberCnt: 1,
     teamCnt: 1,
-    recSingle: {},
+    recSingle: [],
+    components: [],
   });
 
   useEffect(() => {
     const init = async () => {
       let data = await getDetail('recSingles', route.params?.id);
       let recSingle = data.recSingle;
+      let components = recSingle.components;
+
+      components.map(component => {
+        component.count = 1;
+        return component;
+      });
       setState(prev => ({
         ...prev,
         recSingle,
+        components,
       }));
     };
     init();
