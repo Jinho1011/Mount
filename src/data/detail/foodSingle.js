@@ -2,8 +2,8 @@ export default [
   {
     id: 1,
     img: 'https://dummyimage.com/600x253/000/fff',
-    title: '돼지고기',
-    subtitle: '세트설명어쩌구저쩌구어쩌..',
+    name: '삼다수(2L)',
+    recommendPerPerson: '1병',
     detail: '1인분 200g 기준',
     price: 12000,
     description: '음식설명입니다',
