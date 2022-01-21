@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {Pressable} from 'react-native';
 import styled from 'styled-components';
 import LinearGradient from 'react-native-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
@@ -42,7 +42,13 @@ const HeaderProgramImage = styled.Image`
 `;
 
 export const HeaderLeft = () => {
-  return <HeaderBackButton source={require('../../../assets/back_w.png')} />;
+  const navigation = useNavigation();
+
+  return (
+    <Pressable onPress={() => navigation.goBack()}>
+      <HeaderBackButton source={require('../../../assets/back_w.png')} />
+    </Pressable>
+  );
 };
 
 export const HeaderRight = () => {
