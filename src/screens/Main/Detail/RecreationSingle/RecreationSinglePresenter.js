@@ -1,5 +1,6 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
+import {useNavigation, CommonActions} from '@react-navigation/native';
 import styled from 'styled-components';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import SingleCounter from '../../../../components/Rec/SingleCounter';
@@ -7,6 +8,7 @@ import Components from '../../../../components/Rec/Components';
 import RecSingleTotalPrice from '../../../../components/Rec/RecSingleTotalPrice';
 import Swiper from 'react-native-swiper';
 import SingleTitle from '../../../../components/Rec/SingleTitle';
+import _ from 'lodash';
 
 const PageWrap = styled.View``;
 
@@ -150,6 +152,7 @@ const SwiperImage = styled(Image)`
 
 const RecreationSinglePresenter = ({state, setState}) => {
   // console.log(state?.recSingle?.guideImages);
+  const navigation = useNavigation();
   const guideImages = state?.recSingle?.guideImages;
   return (
     <PageWrap style={{flex: 1}}>
@@ -195,7 +198,11 @@ const RecreationSinglePresenter = ({state, setState}) => {
         </PriceContainer>
       </ScrollContainer>
       <BottomConatiner>
-        <ChangeCountButton>
+        <ChangeCountButton
+          onPress={() => {
+            const _state = _.cloneDeep(state);
+            navigation.navigate('RecSingleChangeCount', {_state});
+          }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
         <LikeButton>

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import RecSetChangeCountPresenter from './RecSetChangeCountPresenter';
 
 const RecSetChangeCountContainer = ({route}) => {
-  console.log(route.params._state.recSet.items);
   const [state, setState] = useState({
     isLoaded: false,
     ...route.params._state,

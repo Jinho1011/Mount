@@ -6,6 +6,8 @@ import FocusAwareStatusBar from '../../../../components/StatusBar';
 import Caution from '../../../../components/Common/Caution';
 import SingleCounter from '../../../../components/Food/SingleCounter';
 import SingleTotalPrice from '../../../../components/Food/SingleTotalPrice';
+import _ from 'lodash';
+import {useNavigation} from '@react-navigation/native';
 
 const PageWrap = styled.View``;
 
@@ -119,7 +121,7 @@ const BottomContentsContainer = styled.View`
 `;
 
 const FoodSinglePresenter = ({state, setState}) => {
-  console.log(state.foodSingle);
+  const navigation = useNavigation();
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
@@ -158,7 +160,11 @@ const FoodSinglePresenter = ({state, setState}) => {
         </BottomContentsContainer>
       </ScrollContainer>
       <BottomConatiner>
-        <ChangeCountButton>
+        <ChangeCountButton
+          onPress={() => {
+            const _state = _.cloneDeep(state);
+            navigation.navigate('FoodSingleChangeCount', {_state});
+          }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
         <LikeButton>
