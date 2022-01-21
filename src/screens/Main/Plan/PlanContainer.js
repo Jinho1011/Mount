@@ -4,11 +4,19 @@ import PlanPresenter from './PlanPresenter';
 
 export default ({navigation, route}) => {
   const planners = useSelector(state => state.planners.planners);
+  const [id, setId] = useState(route.params.id);
   const [state, setState] = useState({
-    plan: planners.filter(plan => plan.title === route.params.title),
+    planner: planners.find(planner => planner.id === id),
   });
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setState(prev => ({
+      ...prev,
+      planner: planners.find(planner => planner.id === id),
+    }));
+  }, [planners]);
+
+  // useEffect(() => {}, [state]);
 
   return <PlanPresenter state={state} setState={setState} />;
 };

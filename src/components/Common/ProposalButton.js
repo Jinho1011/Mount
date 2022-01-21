@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
-import {addItems} from '../../store/actions/planners';
+import {useSelector, useDispatch} from 'react-redux';
+import {addItems, getIdByTitle} from '../../store/actions/planners';
 
 const BottomConatiner = styled.View`
   flex-direction: row;
@@ -40,6 +40,7 @@ const ProposalButton = ({
 }) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const planners = useSelector(state => state.planners.planners);
 
   return (
     <BottomConatiner>
@@ -50,8 +51,17 @@ const ProposalButton = ({
           if (selectedPlanner == '') {
             setIsClicked(!isClicked);
           } else {
-            dispatch(addItems(selectedPlanner, state.items));
-            navigation.navigate('Planner', {title: selectedPlanner});
+            const category =
+              state.hasOwnProperty('foodSet') ||
+              state.hasOwnProperty('foodSingle')
+                ? 'food'
+                : 'rec';
+            const planner = planners.find(
+              planner => planner.title === selectedPlanner,
+            );
+
+            dispatch(addItems(planner.id, state.items, category));
+            navigation.navigate('Planner', {id: planner.id});
           }
         }}>
         <PlannerText>기획서</PlannerText>

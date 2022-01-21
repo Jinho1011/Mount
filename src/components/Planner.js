@@ -30,7 +30,6 @@ const PlannerTitle = ({planner, selectedPlanner, setSelectedPlanner}) => {
   );
 
   useEffect(() => {
-    console.log(selectedPlanner);
     setIsSelected(planner.title == selectedPlanner);
   }, [selectedPlanner]);
   return (

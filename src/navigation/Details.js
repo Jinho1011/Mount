@@ -10,6 +10,9 @@ import FoodSingle from '../screens/Main/Detail/FoodSingle';
 import RecreationSet from '../screens/Main/Detail/RecreationSet';
 import RecreationSingle from '../screens/Main/Detail/RecreationSingle';
 import FoodSetChangeCount from '../screens/Main/ChangeCount/FoodSetChangeCount';
+import FoodSingleChangeCount from '../screens/Main/ChangeCount/FoodSingleChangeCount';
+import RecSetChangeCount from '../screens/Main/ChangeCount/RecSetChnageCount';
+import RecSingleChangeCount from '../screens/Main/ChangeCount/RecSingleChangeCount';
 import FoodPlan from '../screens/Main/FoodPlan';
 import RecPlan from '../screens/Main/RecPlan';
 import FoodPlanChange from '../screens/Main/FoodPlanChange';
@@ -67,6 +70,21 @@ const Details = () => (
         component={FoodSetChangeCount}
         options={{tabBarLabel: '수량 변경'}}
       />
+      {/* <DetailNavigator.Screen
+        name="FoodSingleChangeCount"
+        component={FoodSingleChangeCount}
+        options={{tabBarLabel: '수량 변경'}}
+      />
+      <DetailNavigator.Screen
+        name="RecSetChangeCount"
+        component={RecSetChangeCount}
+        options={{tabBarLabel: '수량 변경'}}
+      />
+      <DetailNavigator.Screen
+        name="RecSingleChangeCount"
+        component={RecSingleChangeCount}
+        options={{tabBarLabel: '수량 변경'}}
+      /> */}
       <DetailNavigator.Screen
         name="RecSetChangeCount"
         component={RecSetChangeCount}
@@ -88,10 +106,6 @@ const Details = () => (
         options={{tabBarLabel: '수량 변경', headerShown: true}}
       />
     </DetailNavigator.Group>
-
-    {/* <DetailNavigator.Screen name="FoodSingleChangeCount" component={FoodSingleChangeCount} />
-    <DetailNavigator.Screen name="RecSetChangeCount" component={RecSetChangeCount} />
-    <DetailNavigator.Screen name="RecSingleChangeCount" component={RecSingleChangeCount} /> */}
   </DetailNavigator.Navigator>
 );
 
