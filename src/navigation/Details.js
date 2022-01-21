@@ -69,7 +69,7 @@ const Details = () => (
         component={FoodSetChangeCount}
         options={{tabBarLabel: '수량 변경'}}
       />
-      {/* <DetailNavigator.Screen
+      <DetailNavigator.Screen
         name="FoodSingleChangeCount"
         component={FoodSingleChangeCount}
         options={{tabBarLabel: '수량 변경'}}
@@ -82,11 +82,6 @@ const Details = () => (
       <DetailNavigator.Screen
         name="RecSingleChangeCount"
         component={RecSingleChangeCount}
-        options={{tabBarLabel: '수량 변경'}}
-      /> */}
-      <DetailNavigator.Screen
-        name="RecSetChangeCount"
-        component={RecSetChangeCount}
         options={{tabBarLabel: '수량 변경'}}
       />
       <DetailNavigator.Screen
