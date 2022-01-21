@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Dimensions, LogBox} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
@@ -65,32 +65,64 @@ const ItemPrice = styled.Text`
   line-height: 24px;
 `;
 
-const PlanItemsContainer = ({items}) => {
+const EmptyContainer = styled.View`
+  padding-top: 25px;
+  padding-bottom: 44px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const EmptyText = styled.Text`
+  color: #b4b4b4;
+  font-size: 14px;
+  font-family: 'NotoSansKR-Regular';
+  line-height: 20px;
+`;
+
+const PlanItemsContainer = ({category, items}) => {
   const navigation = useNavigation();
+  const type = category === '레크' ? 'rec' : 'food';
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    let totalPrice = 0;
+    items[type]?.map(item => (totalPrice += item.price));
+    setTotalPrice(totalPrice);
+  }, []);
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
 
   return (
     <Container>
       <TitleContainer>
-        <Title>레크</Title>
+        <Title>{category}</Title>
         <Subtitle>구성품</Subtitle>
       </TitleContainer>
       <ItemContainer>
-        {items.map((item, i, items) => {
-          if (i + 1 === items.length) {
-            return <Item item={item} key={item.id} />;
-          } else {
-            return (
-              <View key={item.id}>
-                <Item item={item} />
-                <ItemDivider />
-              </View>
-            );
-          }
-        })}
+        {items[type].length > 0 ? (
+          items[type]?.map((item, i, items) => {
+            if (i + 1 === items.length) {
+              return <Item item={item} key={item.id} />;
+            } else {
+              return (
+                <View key={item.id}>
+                  <Item item={item} />
+                  <ItemDivider />
+                </View>
+              );
+            }
+          })
+        ) : (
+          <EmptyContainer>
+            <EmptyText>구성품이 없습니다.</EmptyText>
+          </EmptyContainer>
+        )}
       </ItemContainer>
       <ItemPriceContainer>
-        <ItemPriceLabel>레크 합계금액</ItemPriceLabel>
-        <ItemPrice>84,560원</ItemPrice>
+        <ItemPriceLabel>{category} 합계금액</ItemPriceLabel>
+        <ItemPrice>{numberWithCommas(totalPrice)}원</ItemPrice>
       </ItemPriceContainer>
     </Container>
   );

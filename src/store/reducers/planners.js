@@ -5,25 +5,33 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'CREATE_PLANNER': {
-      let planner = {
-        title: '',
-        items: [],
+      const newPlanner = {
+        id: state.planners.length,
+        title: action.title,
+        items: {
+          rec: [],
+          food: [],
+        },
       };
-      planner.title = action.title;
 
       return {
         ...state,
-        planners: [...state.planners, planner],
+        planners: [...state.planners, newPlanner],
       };
     }
     case 'ADD_ITEM': {
-      const title = action.title;
+      const id = action.id;
+      const category = action.category;
       const newItem = action.item;
+
       const addedPlanners = state.planners.map(planner => {
-        if (planner.title == title) {
+        if (planner.id == id) {
           return {
             ...planner,
-            items: [...planner.items, newItem],
+            items: {
+              ...planner.items,
+              [category]: [...planner.items[category], newItem],
+            },
           };
         } else {
           return planner;
@@ -36,11 +44,18 @@ export default (state = initialState, action) => {
       };
     }
     case 'ADD_ITEMS': {
-      const title = action.title;
+      const id = action.id;
+      const category = action.category;
       const newItems = action.items;
       const addedPlanners = state.planners.map(planner => {
-        if (planner.title == title) {
-          return {...planner, items: [...planner.items, ...newItems]};
+        if (planner.id == id) {
+          return {
+            ...planner,
+            items: {
+              ...planner.items,
+              [category]: [...planner.items[category], ...newItems],
+            },
+          };
         } else {
           return planner;
         }
@@ -54,7 +69,7 @@ export default (state = initialState, action) => {
     case 'DELETE_PLANNER': {
       const planner = action.planner;
       const deletedPlanners = state.planners.filter((value, index, arr) => {
-        return value.id != planner.id && value.type != planner.type;
+        return value.id != planner.id;
       });
       return {
         ...state,
@@ -63,9 +78,9 @@ export default (state = initialState, action) => {
     }
     case 'MODIFY_TITLE': {
       const planner = action.planner;
-      const newTitle = action.newTitle;
+      const newTitle = action.title;
       const modifiedPlanners = state.planners.map(item => {
-        if (item.id == planner.id && item.type == planner.type) {
+        if (item.id === planner.id) {
           return {...item, title: newTitle};
         } else {
           return item;
@@ -79,7 +94,7 @@ export default (state = initialState, action) => {
     case 'UPDATE_PLANNER': {
       const planner = action.planner;
       const modifiedPlanners = state.planners.map(item => {
-        if (item.id == planner.id && item.type == planner.type) {
+        if (item.id == planner.id) {
           return planner;
         } else {
           return item;

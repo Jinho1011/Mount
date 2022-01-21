@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, Pressable} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 
@@ -47,8 +47,14 @@ const HeaderText = styled.Text`
 `;
 
 export const HeaderLeft = ({canGoBack}) => {
+  const navigation = useNavigation();
+
   if (canGoBack) {
-    return <HeaderBackButton source={require('../../../assets/back_w.png')} />;
+    return (
+      <Pressable onPress={() => navigation.goBack()}>
+        <HeaderBackButton source={require('../../../assets/back_w.png')} />
+      </Pressable>
+    );
   } else {
     return <View style={{width: 24, height: 24}}></View>;
   }
