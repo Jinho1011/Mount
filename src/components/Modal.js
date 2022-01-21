@@ -1,9 +1,7 @@
-import React, {useState} from 'react';
-import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
+import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import styled from 'styled-components';
-import ProposalButton from './Common/ProposalButton';
-import {createPlanner, addItem} from '../store/actions/planners';
+import {createPlanner} from '../store/actions/planners';
 import Planner from './Planner';
 
 const ModalContainer = styled.View`

@@ -71,7 +71,11 @@ const Item = ({item}) => {
     <Container>
       <ContainerLeft>
         <ItemImg />
-        <ItemTitle>{item?.title.slice(0, 5).concat('...')}</ItemTitle>
+        <ItemTitle>
+          {item?.name.length > 5
+            ? item.name.slice(0, 5).concat('...')
+            : item.name}
+        </ItemTitle>
       </ContainerLeft>
       <ContainerRight>
         <ItemCount>{item?.count}</ItemCount>
