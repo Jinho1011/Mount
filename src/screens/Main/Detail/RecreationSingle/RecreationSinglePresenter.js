@@ -1,13 +1,12 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
-import TitleContainer from '../../../../components/Common/SingleTitle';
 import SingleCounter from '../../../../components/Rec/SingleCounter';
 import Components from '../../../../components/Rec/Components';
 import RecSingleTotalPrice from '../../../../components/Rec/RecSingleTotalPrice';
 import Swiper from 'react-native-swiper';
+import SingleTitle from '../../../../components/Rec/SingleTitle';
 
 const PageWrap = styled.View``;
 
@@ -156,7 +155,7 @@ const RecreationSinglePresenter = ({state, setState}) => {
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
-        <TitleContainer
+        <SingleTitle
           img={state?.recSingle?.img}
           name={state?.recSingle?.name}
           oneLineDescription={state?.recSingle?.oneLineDescription}

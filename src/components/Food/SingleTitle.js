@@ -11,7 +11,7 @@ const SingleImage = styled.Image`
   height: 254px;
 `;
 
-const SingleTitle = styled.Text`
+const Name = styled.Text`
   color: #000;
   font-size: 18px;
   line-height: 26px;
@@ -31,15 +31,15 @@ const SingleInfo = styled.Text`
   margin-top: 4px;
 `;
 
-const TitleContainer = ({name, img, oneLineDescription}) => {
+const SingleTitle = ({name, img, recommendPerPerson}) => {
   return (
     <SingleTitleContainer>
       <SingleImage source={{uri: img}} />
       <TransparentHeader style={{position: 'absolute', top: 0, right: 0}} />
-      <SingleTitle>{name}</SingleTitle>
-      <SingleInfo>{oneLineDescription}</SingleInfo>
+      <Name>{name}</Name>
+      <SingleInfo>1인 권장량 {recommendPerPerson}</SingleInfo>
     </SingleTitleContainer>
   );
 };
 
-export default TitleContainer;
+export default SingleTitle;
