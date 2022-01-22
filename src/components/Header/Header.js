@@ -73,7 +73,7 @@ export const HeaderRight = () => {
   return (
     <HeaderProgram
       onPress={() => {
-        navigation.navigate('Planner');
+        navigation.navigate('Planner', {id: 0});
       }}>
       <HeaderProgramImage
         source={require('../../../assets/projectfile_w.png')}
