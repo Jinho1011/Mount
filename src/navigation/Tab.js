@@ -9,6 +9,17 @@ import Favorite from '../screens/Main/Favorite';
 import My from '../screens/Main/My';
 import Test from '../screens/Test';
 
+import {
+  Mount_icon_gnb_hambugerSvg,
+  Mount_icon_gnb_hambuger_Svg,
+  Mount_icon_gnb_homeSvg,
+  Mount_icon_gnb_home_Svg,
+  Mount_icon_gnb_likeSvg,
+  Mount_icon_gnb_like_Svg,
+  Mount_icon_gnb_searchSvg,
+  Mount_icon_gnb_search_Svg,
+} from '../components/assets';
+
 const TabsNavigator = createBottomTabNavigator();
 
 const Tabs = () => (
@@ -16,26 +27,68 @@ const Tabs = () => (
     screenOptions={({route}) => ({
       tabBarIcon: ({focused}) => {
         let source;
+        const focusedColor = '#000000';
+        const unfocusedColor = '#8b8b8b';
 
         if (route.name === 'Homes') {
-          source = focused
-            ? require('../../assets/tabs/home_.png')
-            : require('../../assets/tabs/home.png');
+          source = focused ? (
+            <Mount_icon_gnb_home_Svg
+              width={24}
+              height={24}
+              fill={focusedColor}
+            />
+          ) : (
+            <Mount_icon_gnb_homeSvg
+              width={24}
+              height={24}
+              fill={unfocusedColor}
+            />
+          );
         } else if (route.name === 'Search') {
-          source = focused
-            ? require('../../assets/tabs/search_.png')
-            : require('../../assets/tabs/search.png');
+          source = focused ? (
+            <Mount_icon_gnb_search_Svg
+              width={24}
+              height={24}
+              fill={focusedColor}
+            />
+          ) : (
+            <Mount_icon_gnb_searchSvg
+              width={24}
+              height={24}
+              fill={unfocusedColor}
+            />
+          );
         } else if (route.name === 'Fav') {
-          source = focused
-            ? require('../../assets/tabs/like_.png')
-            : require('../../assets/tabs/like.png');
+          source = focused ? (
+            <Mount_icon_gnb_like_Svg
+              width={24}
+              height={24}
+              fill={focusedColor}
+            />
+          ) : (
+            <Mount_icon_gnb_likeSvg
+              width={24}
+              height={24}
+              fill={unfocusedColor}
+            />
+          );
         } else if (route.name === 'MyPage') {
-          source = focused
-            ? require('../../assets/tabs/hamburger_.png')
-            : require('../../assets/tabs/hamburger.png');
+          source = focused ? (
+            <Mount_icon_gnb_hambuger_Svg
+              width={24}
+              height={24}
+              fill={focusedColor}
+            />
+          ) : (
+            <Mount_icon_gnb_hambugerSvg
+              width={24}
+              height={24}
+              fill={unfocusedColor}
+            />
+          );
         }
 
-        return <Image source={source} />;
+        return source;
       },
       tabBarActiveTintColor: '#373737',
       tabBarInactiveTintColor: '#8b8b8b',
