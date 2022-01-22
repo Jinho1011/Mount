@@ -1,75 +1,114 @@
-import like from '../../assets/like.svg';
-import Check_round_on from '../../assets/Check_round_on.svg';
-import selfproject_floating_btn from '../../assets/selfproject_floating_btn.svg';
-import minus_dis from '../../assets/minus_()_dis.svg';
-import Check_ from '../../assets/Check_.svg';
-import plus_s from '../../assets/plus_s.svg';
-import close_recent_search from '../../assets/close_recent search.svg';
+import React from 'react';
+import Back_b from '../../assets/back_B.svg';
+import Back_w from '../../assets/back_w.svg';
 import Check from '../../assets/Check.svg';
-import new_projectfile from '../../assets/new projectfile.svg';
-import close from '../../assets/close.svg';
-import reload from '../../assets/reload.svg';
-import back_w from '../../assets/back_w.svg';
-import projectfile_w from '../../assets/projectfile_w.svg';
-import more_with_typo from '../../assets/more_with_typo.svg';
-import back_B from '../../assets/back_B.svg';
-import projectfile_B from '../../assets/projectfile_B.svg';
-import like_s_ from '../../assets/like_s_.svg';
-import More from '../../assets/more.svg';
-import like_ from '../../assets/like_.svg';
-import Top_floating_btn from '../../assets/Top_floating_btn.svg';
+import Check_ from '../../assets/Check_.svg';
 import Check_round_off from '../../assets/Check_round_off.svg';
-import minus_s from '../../assets/minus_s.svg';
-import like_s from '../../assets/like_s.svg';
-import plus_dis from '../../assets/plus_dis.svg';
-import plus_ from '../../assets/plus_.svg';
-import more_s from '../../assets/more_s.svg';
-import minus_ from '../../assets/minus_().svg';
-import black_searchBar from '../../assets/검색바/back_검색바 용.svg';
-import close_searchBar from '../../assets/검색바/close_검색바 용.svg';
-import items_hidden from '../../assets/구성품 더보기,간략히/hidden.svg';
-import items_more from '../../assets/구성품 더보기,간략히/more.svg';
-import plan_minus from '../../assets/기획서 리스트 편집용/minus_.svg';
-import plan_new_ptroject from '../../assets/기획서 리스트 편집용/new projectfile.svg';
-import Check_off from '../../assets/직접기획/Check_off.svg';
-import Check_on from '../../assets/직접기획/Check_on.svg';
-import view_more from '../../assets/직접기획/view_more.svg';
+import Check_round_on from '../../assets/Check_round_on.svg';
+import Close from '../../assets/close.svg';
+import Close_recentsearch from '../../assets/close_recent search.svg';
+import Items_hidden from '../../assets/items/hidden.svg';
+import Items_more from '../../assets/items/more.svg';
+import Like from '../../assets/like.svg';
+import Like_ from '../../assets/like_.svg';
+import Minus_ from '../../assets/minus_().svg';
+import Minus__dis from '../../assets/minus_()_dis.svg';
+import Minus_s from '../../assets/minus_s.svg';
+import More from '../../assets/more.svg';
+import More_s from '../../assets/more_s.svg';
+import More_with_typo from '../../assets/more_with_typo.svg';
+import Mount_icon_gnb_hambuger from '../../assets/mount_icon_gnb/hambuger.svg';
+import Mount_icon_gnb_hambuger_ from '../../assets/mount_icon_gnb/hambuger_.svg';
+import Mount_icon_gnb_home from '../../assets/mount_icon_gnb/home.svg';
+import Mount_icon_gnb_home_ from '../../assets/mount_icon_gnb/home_.svg';
+import Mount_icon_gnb_like from '../../assets/mount_icon_gnb/like.svg';
+import Mount_icon_gnb_like_ from '../../assets/mount_icon_gnb/like_.svg';
+import Mount_icon_gnb_projectfile from '../../assets/mount_icon_gnb/projectfile.svg';
+import Mount_icon_gnb_projectfile_ from '../../assets/mount_icon_gnb/projectfile_.svg';
+import Mount_icon_gnb_search from '../../assets/mount_icon_gnb/search.svg';
+import Mount_icon_gnb_search_ from '../../assets/mount_icon_gnb/search_.svg';
+import Newprojectfile from '../../assets/new projectfile.svg';
+import Plan_check_off from '../../assets/plan/Check_off.svg';
+import Plan_check_on from '../../assets/plan/Check_on.svg';
+import Plan_view_more from '../../assets/plan/view_more.svg';
+import Planedit_minus_ from '../../assets/planEdit/minus_.svg';
+import Planedit_newprojectfile from '../../assets/planEdit/new projectfile.svg';
+import Plus_ from '../../assets/plus_.svg';
+import Plus_dis from '../../assets/plus_dis.svg';
+import Plus_s from '../../assets/plus_s.svg';
+import Projectfile_b from '../../assets/projectfile_B.svg';
+import Projectfile_w from '../../assets/projectfile_w.svg';
+import Reload from '../../assets/reload.svg';
+import Searchbar_back from '../../assets/searchBar/back.svg';
+import Searchbar_close from '../../assets/searchBar/close.svg';
+import Selfproject_floating_btn from '../../assets/selfproject_floating_btn.svg';
+import Top_floating_btn from '../../assets/Top_floating_btn.svg';
 
-export const like = props => <like {...props} />;
-export const Check_round_on = props => <Check_round_on {...props} />;
-export const selfproject_floating_btn = props => (
-  <selfproject_floating_btn {...props} />
+export const Back_bSvg = props => <Back_b {...props} />;
+export const Back_wSvg = props => <Back_w {...props} />;
+export const CheckSvg = props => <Check {...props} />;
+export const Check_Svg = props => <Check_ {...props} />;
+export const Check_round_offSvg = props => <Check_round_off {...props} />;
+export const Check_round_onSvg = props => <Check_round_on {...props} />;
+export const CloseSvg = props => <Close {...props} />;
+export const Close_recentsearchSvg = props => <Close_recentsearch {...props} />;
+export const Items_hiddenSvg = props => <Items_hidden {...props} />;
+export const Items_moreSvg = props => <Items_more {...props} />;
+export const LikeSvg = props => <Like {...props} />;
+export const Like_Svg = props => <Like_ {...props} />;
+export const Minus_Svg = props => <Minus_ {...props} />;
+export const Minus__disSvg = props => <Minus__dis {...props} />;
+export const Minus_sSvg = props => <Minus_s {...props} />;
+export const MoreSvg = props => <More {...props} />;
+export const More_sSvg = props => <More_s {...props} />;
+export const More_with_typoSvg = props => <More_with_typo {...props} />;
+export const Mount_icon_gnb_hambugerSvg = props => (
+  <Mount_icon_gnb_hambuger {...props} />
 );
-export const minus_dis = props => <minus_dis {...props} />;
-export const Check_ = props => <Check_ {...props} />;
-export const plus_s = props => <plus_s {...props} />;
-export const close_recent_search = props => <close_recent_search {...props} />;
-export const Check = props => <Check {...props} />;
-export const new_projectfile = props => <new_projectfile {...props} />;
-export const close = props => <close {...props} />;
-export const reload = props => <reload {...props} />;
-export const back_w = props => <back_w {...props} />;
-export const projectfile_w = props => <projectfile_w {...props} />;
-export const more_with_typo = props => <more_with_typo {...props} />;
-export const back_B = props => <back_B {...props} />;
-export const projectfile_B = props => <projectfile_B {...props} />;
-export const like_s_ = props => <like_s_ {...props} />;
-export const More = props => <More {...props} />;
-export const like_ = props => <like_ {...props} />;
-export const Top_floating_btn = props => <Top_floating_btn {...props} />;
-export const Check_round_off = props => <Check_round_off {...props} />;
-export const minus_s = props => <minus_s {...props} />;
-export const like_s = props => <like_s {...props} />;
-export const plus_dis = props => <plus_dis {...props} />;
-export const plus_ = props => <plus_ {...props} />;
-export const more_s = props => <more_s {...props} />;
-export const minus_ = props => <minus_ {...props} />;
-export const black_searchBar = props => <black_searchBar {...props} />;
-export const close_searchBar = props => <close_searchBar {...props} />;
-export const items_hidden = props => <items_hidden {...props} />;
-export const items_more = props => <items_more {...props} />;
-export const plan_minus = props => <plan_minus {...props} />;
-export const plan_new_ptroject = props => <plan_new_ptroject {...props} />;
-export const Check_off = props => <Check_off {...props} />;
-export const Check_on = props => <Check_on {...props} />;
-export const view_more = props => <view_more {...props} />;
+export const Mount_icon_gnb_hambuger_Svg = props => (
+  <Mount_icon_gnb_hambuger_ {...props} />
+);
+export const Mount_icon_gnb_homeSvg = props => (
+  <Mount_icon_gnb_home {...props} />
+);
+export const Mount_icon_gnb_home_Svg = props => (
+  <Mount_icon_gnb_home_ {...props} />
+);
+export const Mount_icon_gnb_likeSvg = props => (
+  <Mount_icon_gnb_like {...props} />
+);
+export const Mount_icon_gnb_like_Svg = props => (
+  <Mount_icon_gnb_like_ {...props} />
+);
+export const Mount_icon_gnb_projectfileSvg = props => (
+  <Mount_icon_gnb_projectfile {...props} />
+);
+export const Mount_icon_gnb_projectfile_Svg = props => (
+  <Mount_icon_gnb_projectfile_ {...props} />
+);
+export const Mount_icon_gnb_searchSvg = props => (
+  <Mount_icon_gnb_search {...props} />
+);
+export const Mount_icon_gnb_search_Svg = props => (
+  <Mount_icon_gnb_search_ {...props} />
+);
+export const NewprojectfileSvg = props => <Newprojectfile {...props} />;
+export const Plan_check_offSvg = props => <Plan_check_off {...props} />;
+export const Plan_check_onSvg = props => <Plan_check_on {...props} />;
+export const Plan_view_moreSvg = props => <Plan_view_more {...props} />;
+export const Planedit_minus_Svg = props => <Planedit_minus_ {...props} />;
+export const Planedit_newprojectfileSvg = props => (
+  <Planedit_newprojectfile {...props} />
+);
+export const Plus_Svg = props => <Plus_ {...props} />;
+export const Plus_disSvg = props => <Plus_dis {...props} />;
+export const Plus_sSvg = props => <Plus_s {...props} />;
+export const Projectfile_bSvg = props => <Projectfile_b {...props} />;
+export const Projectfile_wSvg = props => <Projectfile_w {...props} />;
+export const ReloadSvg = props => <Reload {...props} />;
+export const Searchbar_backSvg = props => <Searchbar_back {...props} />;
+export const Searchbar_closeSvg = props => <Searchbar_close {...props} />;
+export const Selfproject_floating_btnSvg = props => (
+  <Selfproject_floating_btn {...props} />
+);
+export const Top_floating_btnSvg = props => <Top_floating_btn {...props} />;
