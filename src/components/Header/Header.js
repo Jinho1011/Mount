@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 import styled from 'styled-components';
+import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 
 const HeaderContainer = styled.View`
@@ -69,11 +70,17 @@ export const HeaderTitle = ({title}) => {
 };
 
 export const HeaderRight = () => {
+  const planners = useSelector(state => state.planners.planners);
   const navigation = useNavigation();
+
   return (
     <HeaderProgram
       onPress={() => {
-        navigation.navigate('Planner', {id: 0});
+        if (planners.length > 0) {
+          navigation.navigate('Planner', {id: 0});
+        } else {
+          navigation.navigate('PlanEditor');
+        }
       }}>
       <HeaderProgramImage
         source={require('../../../assets/projectfile_w.png')}
