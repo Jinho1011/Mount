@@ -52,16 +52,21 @@ export default function TabBar({state, descriptors, navigation}) {
   const scrollY = useRef(new Animated.Value(0));
 
   useEffect(() => {
+    console.log(state.routes[index].params.offsetY);
     scrollY.current.setValue(state.routes[index].params.offsetY);
   }, [state]);
 
-  const scrollYClamped = Animated.diffClamp(scrollY.current, 0, headerHeight);
+  const scrollYClamped = Animated.diffClamp(scrollY.current, 0, headerHeight, {
+    useNativeDriver: true,
+  });
 
   const translateY = scrollYClamped.interpolate({
     inputRange: [0, headerHeight],
     outputRange: [0, -(headerHeight / 2)],
   });
+
   const translateYNumber = useRef();
+
   translateY.addListener(({value}) => {
     translateYNumber.current = value;
   });
