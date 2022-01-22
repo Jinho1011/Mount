@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
+import {CloseSvg} from '.././../components/assets';
 
 const TotalContainer = styled.View`
   justify-content: space-between;
@@ -99,7 +100,7 @@ const TotalPrice = ({isPressedArr, memberCnt, setMemberCnt}) => {
           <Price>{price} 원</Price>
         </PriceBox>
         <MultiplyImgBox>
-          <MultiplyImg source={require('../../../assets/close.png')} />
+          <CloseSvg width={16} height={16} />
         </MultiplyImgBox>
         <Count>{memberCnt}</Count>
         <TotalPriceBox>
