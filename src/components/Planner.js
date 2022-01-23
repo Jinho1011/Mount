@@ -24,20 +24,19 @@ const PlanerTitle = styled.Text`
   line-height: 24px;
 `;
 
-const PlannerTitle = ({planner, selectedPlanner, setSelectedPlanner}) => {
-  const [isSelected, setIsSelected] = useState(
-    planner?.title == selectedPlanner,
-  );
+const PlannerTitle = ({planner, selected, setSelected}) => {
+  const [isSelected, setIsSelected] = useState(planner?.id === selected.id);
 
   useEffect(() => {
-    setIsSelected(planner.title == selectedPlanner);
-  }, [selectedPlanner]);
+    setIsSelected(planner?.id === selected.id);
+  }, [selected]);
+
   return (
     <PlannerContainer>
       <PlannerButton
         isSelected={isSelected}
         onPress={() => {
-          setSelectedPlanner(planner?.title);
+          setSelected({id: planner?.id});
         }}>
         <PlanerTitle isSelected={isSelected}>{planner?.title}</PlanerTitle>
       </PlannerButton>
