@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
       const newItem = action.item;
 
       const addedPlanners = state.planners.map(planner => {
-        if (planner.id == id) {
+        if (planner.id === id) {
           return {
             ...planner,
             items: {
@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
       const category = action.category;
       const newItems = action.items;
       const addedPlanners = state.planners.map(planner => {
-        if (planner.id == id) {
+        if (planner.id === id) {
           return {
             ...planner,
             items: {
@@ -67,9 +67,9 @@ export default (state = initialState, action) => {
       };
     }
     case 'DELETE_PLANNER': {
-      const planner = action.planner;
+      const id = action.id;
       const deletedPlanners = state.planners.filter((value, index, arr) => {
-        return value.id != planner.id;
+        return value.id !== id;
       });
       return {
         ...state,
@@ -94,7 +94,7 @@ export default (state = initialState, action) => {
     case 'UPDATE_PLANNER': {
       const planner = action.planner;
       const modifiedPlanners = state.planners.map(item => {
-        if (item.id == planner.id) {
+        if (item.id === planner.id) {
           return planner;
         } else {
           return item;
