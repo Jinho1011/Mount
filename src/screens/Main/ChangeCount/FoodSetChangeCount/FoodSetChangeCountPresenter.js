@@ -122,6 +122,7 @@ const TotalPriceContainer = styled.View`
 const FoodSetChangeCountPresenter = ({state, setState}) => {
   const [isClicked, setIsClicked] = useState(false);
   const [selectedPlanner, setSelectedPlanner] = useState('');
+  const [selected, setSelected] = useState({});
 
   return (
     <PageWrap>
@@ -203,15 +204,10 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
             isClicked={isClicked}
             onPress={() => {
               setIsClicked(false);
-              setSelectedPlanner('');
+              setSelected({});
             }}
           />
-          <Modal
-            isClicked={isClicked}
-            setIsClicked={setIsClicked}
-            selectedPlanner={selectedPlanner}
-            setSelectedPlanner={setSelectedPlanner}
-          />
+          <Modal selected={selected} setSelected={setSelected} />
         </>
       ) : (
         <></>
@@ -220,20 +216,10 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
         state={state}
         isClicked={isClicked}
         setIsClicked={setIsClicked}
-        selectedPlanner={selectedPlanner}
-        setSelectedPlanner={setSelectedPlanner}
+        selected={selected}
       />
     </PageWrap>
   );
 };
-
-// isClicked == true && selectedPlanner == ''
-// => 기획서 버튼 비활성화
-
-// isClicked == true && selectedPlanner == '최강산디MT'
-// => 기획서 버튼 활성화 + 버튼 클릭 시 planer로 navigate
-
-// isClicked == false
-// => do nothing
 
 export default FoodSetChangeCountPresenter;
