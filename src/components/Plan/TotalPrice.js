@@ -80,7 +80,6 @@ const TotalPriceText = styled.Text`
 `;
 
 const TotalPrice = ({isPressedArr, memberCnt, setMemberCnt}) => {
-  console.log(isPressedArr[0].count);
   let price = 0;
   for (let i = 0; i < isPressedArr.length; i++) {
     price = parseInt(
@@ -88,7 +87,6 @@ const TotalPrice = ({isPressedArr, memberCnt, setMemberCnt}) => {
       10,
     );
   }
-  console.log(price);
   let total = memberCnt * price;
   return (
     <TotalContainer>
