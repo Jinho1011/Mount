@@ -27,12 +27,7 @@ const AddPlannerText = styled.Text`
   color: #8b8b8b;
 `;
 
-const Modal = ({
-  isClicked,
-  setIsClicked,
-  selectedPlanner,
-  setSelectedPlanner,
-}) => {
+const Modal = ({selected, setSelected}) => {
   const planners = useSelector(state => state.planners.planners);
   const dispatch = useDispatch();
 
@@ -59,8 +54,8 @@ const Modal = ({
             <Planner
               key={planner.title + index}
               planner={planner}
-              selectedPlanner={selectedPlanner}
-              setSelectedPlanner={setSelectedPlanner}
+              selected={selected}
+              setSelected={setSelected}
             />
           );
         })}
