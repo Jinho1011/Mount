@@ -17,7 +17,9 @@ const PlannerButton = styled.TouchableOpacity`
   flex: 1;
   padding: 12px 135px;
   background: ${props =>
-    props.selectedPlanner == '' && props.isClicked ? '#F3F3F3' : '#e2f955'};
+    Number.isInteger(props.selected.id) && props.isClicked
+      ? '#e2f955'
+      : '#F3F3F3'};
   align-content: center;
   justify-content: center;
   border-radius: 5px;
@@ -31,13 +33,7 @@ const PlannerText = styled.Text`
   color: #000000;
 `;
 
-const ProposalButton = ({
-  state,
-  isClicked,
-  setIsClicked,
-  selectedPlanner,
-  setSelectedPlanner,
-}) => {
+const ProposalButton = ({state, isClicked, setIsClicked, selected}) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const planners = useSelector(state => state.planners.planners);
@@ -45,23 +41,22 @@ const ProposalButton = ({
   return (
     <BottomConatiner>
       <PlannerButton
-        selectedPlanner={selectedPlanner}
+        selected={selected}
         isClicked={isClicked}
         onPress={() => {
-          if (selectedPlanner == '') {
-            setIsClicked(!isClicked);
-          } else {
+          console.log(selected);
+          console.log(Number.isInteger(selected.id));
+          if (selected.hasOwnProperty('id')) {
             const category =
               state.hasOwnProperty('foodSet') ||
               state.hasOwnProperty('foodSingle')
                 ? 'food'
                 : 'rec';
-            const planner = planners.find(
-              planner => planner.title === selectedPlanner,
-            );
 
-            dispatch(addItems(planner.id, state.items, category));
-            navigation.navigate('Planner', {id: planner.id});
+            dispatch(addItems(selected.id, state.items, category));
+            navigation.navigate('Planner', {id: selected.id});
+          } else {
+            setIsClicked(!isClicked);
           }
         }}>
         <PlannerText>기획서</PlannerText>
