@@ -167,7 +167,7 @@ export default ({state, setState}) => {
         <Divider></Divider>
         <PlanItemsContainer category={'음식'} items={state?.planner.items} />
         <TotalPriceContainer>
-          <TotalPrice state={state?.planner} />
+          {/* <TotalPrice state={state?.planner} /> */}
         </TotalPriceContainer>
         <Divider></Divider>
         <CautionContainer>
