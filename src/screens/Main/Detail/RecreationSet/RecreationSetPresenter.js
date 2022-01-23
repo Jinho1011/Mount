@@ -4,6 +4,8 @@ import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 import TitleContainer from '../../../../components/Common/SetTitle';
 import Counter from '../../../../components/Rec/Counter';
+import Item from '../../../../components/Common/Item';
+import FocusAwareStatusBar from '../../../../components/StatusBar';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
 import Components from '../../../../components/Rec/Components';
@@ -133,6 +135,8 @@ const RecreationSetPresenter = ({state, setState}) => {
   const navigation = useNavigation();
   return (
     <PageWrap style={{flex: 1}}>
+      <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
+
       <ScrollContainer>
         <TitleContainer
           img={state?.recSet?.img}

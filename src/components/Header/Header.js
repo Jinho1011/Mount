@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 import styled from 'styled-components';
-import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 const HeaderContainer = styled.View`
   flex-direction: row;
@@ -61,7 +62,7 @@ export const HeaderLeft = ({canGoBack}) => {
 };
 
 export const HeaderTitle = ({title}) => {
-  if (title == '홈') {
+  if (title === '홈') {
     return <HeaderTitleImage source={require('../../../assets/mount.png')} />;
   } else {
     return <HeaderText>{title}</HeaderText>;
@@ -69,11 +70,18 @@ export const HeaderTitle = ({title}) => {
 };
 
 export const HeaderRight = () => {
+  const planners = useSelector(state => state.planners.planners);
   const navigation = useNavigation();
+  const route = useRoute();
+
   return (
     <HeaderProgram
       onPress={() => {
-        navigation.navigate('Planner');
+        if (route.name === 'Planner' || planners.length === 0) {
+          navigation.navigate('PlanEditor');
+        } else {
+          navigation.navigate('Planner', {id: 0});
+        }
       }}>
       <HeaderProgramImage
         source={require('../../../assets/projectfile_w.png')}

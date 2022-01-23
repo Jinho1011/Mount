@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
+import {CloseSvg} from '.././../components/assets';
 
 const TotalContainer = styled.View`
   justify-content: space-between;
@@ -79,34 +80,35 @@ const TotalPriceText = styled.Text`
   text-align: right;
 `;
 
-const TotalPrice = ({isPressedArr, memberCnt, setMemberCnt}) => {
-  console.log(isPressedArr[0].count);
-  let price = 0;
-  for (let i = 0; i < isPressedArr.length; i++) {
-    price = parseInt(
-      (price + isPressedArr[i].count * isPressedArr[i].price) / memberCnt,
-      10,
-    );
-  }
-  console.log(price);
-  let total = memberCnt * price;
+const TotalPrice = ({state}) => {
+  console.log('🚀 ~ file: TotalPrice.js ~ line 83 ~ TotalPrice ~ state', state);
+  // state = {id, items: {rec, food}, tittle}
+
+  // let price = 0;
+  // for (let i = 0; i < isPressedArr.length; i++) {
+  //   price = parseInt(
+  //     (price + isPressedArr[i].count * isPressedArr[i].price) / memberCnt,
+  //     10,
+  //   );
+  // }
+  // let total = memberCnt * price;
   return (
     <TotalContainer>
-      <StyledTitle>총 예상금액</StyledTitle>
+      {/* <StyledTitle>총 예상금액</StyledTitle>
       <SmallContainer>
         <PriceBox>
           <PriceBoxTitle>1인 기준</PriceBoxTitle>
           <Price>{price} 원</Price>
         </PriceBox>
         <MultiplyImgBox>
-          <MultiplyImg source={require('../../../assets/close.png')} />
+          <CloseSvg width={16} height={16} />
         </MultiplyImgBox>
         <Count>{memberCnt}</Count>
         <TotalPriceBox>
           <TotalPriceTitle>총 금액</TotalPriceTitle>
           <TotalPriceText>{total} 원</TotalPriceText>
         </TotalPriceBox>
-      </SmallContainer>
+      </SmallContainer> */}
     </TotalContainer>
   );
 };
