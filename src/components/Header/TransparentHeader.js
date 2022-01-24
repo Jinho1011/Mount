@@ -3,6 +3,7 @@ import {Pressable} from 'react-native';
 import styled from 'styled-components';
 import LinearGradient from 'react-native-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
+import {Back_wSvg, Projectfile_wSvg} from '../../components/assets';
 
 const HeaderContainer = styled(LinearGradient)`
   position: absolute;
@@ -23,30 +24,13 @@ const HeaderProgram = styled.View`
   align-items: center;
   width: 54px;
   height: 54px;
-  margin-right: 10px;
 `;
-
-const HeaderProgramText = styled.Text`
-  color: #ffffff;
-  font-size: 10px;
-`;
-
-const HeaderBackButton = styled.Image`
-  width: 24px;
-  height: 24px;
-`;
-
-const HeaderProgramImage = styled.Image`
-  width: 24px;
-  height: 24px;
-`;
-
 export const HeaderLeft = () => {
   const navigation = useNavigation();
 
   return (
     <Pressable onPress={() => navigation.goBack()}>
-      <HeaderBackButton source={require('../../../assets/back_w.png')} />
+      <Back_wSvg width={24} height={24} />
     </Pressable>
   );
 };
@@ -58,10 +42,7 @@ export const HeaderRight = () => {
       onPress={() => {
         navigation.navigate('Planner');
       }}>
-      <HeaderProgramImage
-        source={require('../../../assets/projectfile_w.png')}
-      />
-      <HeaderProgramText>기획서</HeaderProgramText>
+      <Projectfile_wSvg width={28} height={39} />
     </HeaderProgram>
   );
 };
