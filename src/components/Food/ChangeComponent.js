@@ -95,52 +95,34 @@ const Counter = styled.View`
   padding-right: 12px;
 `;
 
-const Item = ({state, setState, item}) => {
-  const minusCount = () => {
-    let items = state.items.map(_item => {
-      if (item.id === _item.id) {
-        return {
-          ..._item,
-          count: _item.count - 1,
-        };
-      } else {
-        return _item;
-      }
-    });
+const ComponentImage = styled(Image)`
+  width: 32px;
+  height: 32px;
+`;
 
+const ChangeComponent = ({state, setState}) => {
+  const minusCount = () => {
+    let count = state?.foodSingle?.count;
     setState(prev => ({
       ...prev,
-      items,
+      count: Math.max(1, count - 1),
     }));
   };
 
   const plusCount = () => {
-    let items = state.items.map(_item => {
-      if (item.id === _item.id) {
-        return {
-          ..._item,
-          count: _item.count + 1,
-        };
-      } else {
-        return _item;
-      }
-    });
-
+    let count = state?.foodSingle?.count;
     setState(prev => ({
       ...prev,
-      items,
+      count: Math.max(1, count + 1),
     }));
+    console.log(count);
   };
-
-  console.log(item);
   return (
     <ItemBox>
       <ItemSmallBox>
         <ItemLeft>
-          <Image
-            source={require('../../../assets/rec_set_item_image_sample.png')}
-          />
-          <ItemName>{item.name}</ItemName>
+          <ComponentImage source={{uri: state?.foodSingle?.img}} />
+          <ItemName>{state?.foodSingle?.name}</ItemName>
         </ItemLeft>
         <ItemRight>
           <Counter>
@@ -148,15 +130,15 @@ const Item = ({state, setState, item}) => {
               <Image source={require('../../../assets/minus.png')} />
             </MinusPressable>
             <ItemCountBlock>
-              <ItemCount>{item.count}</ItemCount>
+              <ItemCount>{state?.foodSingle?.count}</ItemCount>
             </ItemCountBlock>
             <PlusPressable onPress={plusCount}>
               <Image source={require('../../../assets/plus.png')} />
             </PlusPressable>
           </Counter>
           <SetItemPriceContainer>
-            <SetItemize>4인 (800g)</SetItemize>
-            <SetItemPrice>{item.price}원</SetItemPrice>
+            <SetItemize>{state?.foodSingle?.description}</SetItemize>
+            <SetItemPrice>{state?.foodSingle?.price}원</SetItemPrice>
           </SetItemPriceContainer>
         </ItemRight>
       </ItemSmallBox>
@@ -165,4 +147,4 @@ const Item = ({state, setState, item}) => {
   );
 };
 
-export default Item;
+export default ChangeComponent;
