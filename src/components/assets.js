@@ -43,6 +43,7 @@ import Searchbar_back from '../../assets/searchBar/back.svg';
 import Searchbar_close from '../../assets/searchBar/close.svg';
 import Selfproject_floating_btn from '../../assets/selfproject_floating_btn.svg';
 import Top_floating_btn from '../../assets/Top_floating_btn.svg';
+import Mount from '../../assets/mount.svg';
 
 export const Back_bSvg = props => <Back_b {...props} />;
 export const Back_wSvg = props => <Back_w {...props} />;
@@ -112,3 +113,4 @@ export const Selfproject_floating_btnSvg = props => (
   <Selfproject_floating_btn {...props} />
 );
 export const Top_floating_btnSvg = props => <Top_floating_btn {...props} />;
+export const MountSvg = props => <Mount {...props} />;

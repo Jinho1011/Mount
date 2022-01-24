@@ -2,6 +2,10 @@ import React, {useEffect} from 'react';
 import {Text} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
+import {
+  Top_floating_btnSvg,
+  Selfproject_floating_btnSvg,
+} from '../../components/assets';
 
 const FloaterContainer = styled.View`
   position: absolute;
@@ -14,23 +18,10 @@ const FloaterContainer = styled.View`
 const TopButtonContainer = styled.Pressable`
   justify-content: center;
   align-items: center;
-  width: 33px;
-  height: 29px;
-  border-radius: 5px;
-  background-color: #f3f3f3;
-  elevation: 4;
   margin-bottom: 11px;
 `;
 
-const PlannerButtonContainer = styled.Pressable`
-  justify-content: center;
-  align-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 100px;
-  background-color: #000;
-  elevation: 4;
-`;
+const PlannerButtonContainer = styled.Pressable``;
 
 const Floaters = ({onPressTouch, target}) => {
   const navigation = useNavigation();
@@ -38,7 +29,7 @@ const Floaters = ({onPressTouch, target}) => {
   return (
     <FloaterContainer>
       <TopButtonContainer onPress={onPressTouch}>
-        <Text style={{color: '#555555', fontSize: 20}}>🔝</Text>
+        <Top_floating_btnSvg width={33} height={29} />
       </TopButtonContainer>
       <PlannerButtonContainer
         onPress={() =>
@@ -47,7 +38,7 @@ const Floaters = ({onPressTouch, target}) => {
             params: {initialRoute: target},
           })
         }>
-        <Text style={{color: 'yellow', fontSize: 36}}>+</Text>
+        <Selfproject_floating_btnSvg width={52} height={52} />
       </PlannerButtonContainer>
     </FloaterContainer>
   );
