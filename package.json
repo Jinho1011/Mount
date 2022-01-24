@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ant-design/react-native": "^4.2.0",
+    "@react-native-seoul/kakao-login": "^3.4.3",
     "@react-navigation/bottom-tabs": "^6.0.7",
     "@react-navigation/elements": "^1.2.1",
     "@react-navigation/material-top-tabs": "^6.0.6",
@@ -18,11 +19,11 @@
     "@react-navigation/native-stack": "^6.2.1",
     "@react-navigation/stack": "^6.0.9",
     "axios": "^0.24.0",
-    "fsevents": "^2.3.2",
     "lodash": "^4.17.21",
     "metro": "^0.66.2",
     "react": "17.0.2",
     "react-native": "0.65.1",
+    "react-native-cli": "^2.0.1",
     "react-native-collapsible-tab-view": "^4.4.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-image-slider-box": "^1.1.14",
@@ -57,5 +58,8 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
   }
 }
