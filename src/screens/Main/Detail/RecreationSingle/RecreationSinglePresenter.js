@@ -9,6 +9,7 @@ import RecSingleTotalPrice from '../../../../components/Rec/RecSingleTotalPrice'
 import Swiper from 'react-native-swiper';
 import SingleTitle from '../../../../components/Rec/SingleTitle';
 import _ from 'lodash';
+import MyCarousel from '../../../../components/Rec/MyCarousel';
 
 const PageWrap = styled.View``;
 
@@ -40,25 +41,13 @@ const GuideLineTitle = styled.Text`
   color: #000000;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 20px;
 `;
 
 const GuideLineContainer = styled.View`
   padding-top: 25px;
+  padding-bottom: 25px;
   background: #ffffff;
-`;
-
-const GuideLineImageBox = styled.View`
-  padding: 28px 44px 17px 39px;
-`;
-
-const FoodSetListTitle = styled.Text`
-  font-family: 'NotoSansKR-Bold';
-  font-size: 12px;
-  line-height: 16px;
-  color: #000000;
-
-  padding-left: 20px;
-  padding-top: 36px;
 `;
 
 /* bottom button container */
@@ -107,25 +96,10 @@ const LikeCount = styled.Text`
   margin-left: 3px;
 `;
 
-const TotalPriceContainer = styled.View`
-  padding-top: 25px;
-  padding-bottom: 19px;
-`;
-
 const BorderLine = styled.View`
   height: 4px;
   border: 0.35px solid #eaeaea;
   background: #f3f3f3;
-`;
-
-const ContentContainer = styled.View`
-  padding-left: 20px;
-`;
-
-const ItemsContainer = styled.View`
-  margin-top: 18px;
-  padding-left: 15px;
-  padding-right: 35px;
 `;
 
 const CounterContainer = styled.View`
@@ -140,20 +114,15 @@ const PriceContainer = styled(View)`
   padding: 25px 20px 20px 20px;
 `;
 
-const StyledSwiper = styled(Swiper)`
-  height: 240px;
-`;
-
-const SwiperView = styled(View)``;
-
-const SwiperImage = styled(Image)`
-  flex: 1;
+const ComponentsTitle = styled(Text)`
+  font-family: 'NotoSansKR-Bold'
+  font-size: 12px;
+  line-height: 17px;
+  padding-bottom: 10px;
 `;
 
 const RecreationSinglePresenter = ({state, setState}) => {
-  // console.log(state?.recSingle?.guideImages);
   const navigation = useNavigation();
-  const guideImages = state?.recSingle?.guideImages;
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
@@ -170,18 +139,11 @@ const RecreationSinglePresenter = ({state, setState}) => {
         <GuideLineContainer>
           <RecTitle>저희 레크는요...</RecTitle>
           <GuideLineTitle>가이드라인</GuideLineTitle>
-          {/* <StyledSwiper>
-            {guideImages?.map(guideImage => {
-              return (
-                <SwiperView>
-                  <Text>hello</Text>
-                </SwiperView>
-              );
-            })}
-          </StyledSwiper> */}
+          <MyCarousel state={state} setState={setState} />
         </GuideLineContainer>
         <BorderLine />
         <ComponentsContainer>
+          <ComponentsTitle>구성품</ComponentsTitle>
           {state?.recSingle?.components?.map(component => {
             return (
               <Components
