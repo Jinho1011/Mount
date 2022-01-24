@@ -1,14 +1,7 @@
 import React from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 import styled from 'styled-components';
-import {useNavigation} from '@react-navigation/native';
-import {
-  MountSvg,
-  Back_bSvg,
-  Back_wSvg,
-  Projectfile_bSvg,
-  Projectfile_wSvg,
-} from '../../components/assets';
+import {MountSvg, Back_bSvg, Projectfile_bSvg} from '../../components/assets';
 import {useSelector} from 'react-redux';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
