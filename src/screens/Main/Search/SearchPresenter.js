@@ -85,10 +85,9 @@ const RecentEmpty = styled.Text`
   padding-bottom: 6px;
 `;
 
-export default () => {
+export default ({state, setState}) => {
   const [isEditing, setIsEditing] = useState(true);
   const navigation = useNavigation();
-  const recentData = ['가', '가나', '가나다'];
 
   return (
     <View>
@@ -120,8 +119,8 @@ export default () => {
       <RecentContainer>
         <RecentTitle>최근 검색어</RecentTitle>
         <Recents horizontal={true}>
-          {recentData.length > 0 ? (
-            recentData.map(data => {
+          {state.recents.length > 0 ? (
+            state.recents.map(data => {
               return (
                 <Recent
                   onPress={() => {
