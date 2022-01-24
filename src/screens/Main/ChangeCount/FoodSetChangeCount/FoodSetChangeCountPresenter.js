@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Pressable, Image, Dimensions} from 'react-native';
-import {HeaderTitle} from '../../../../components/Header/Header';
 import styled from 'styled-components';
-import ItemMuttable from '../../../../components/Common/ItemMuttable';
-import foodSet from '../../../../data/detail/foodSet';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import PlannerButton from '../../../../components/Common/ProposalButton';
 import {ScrollView} from 'react-native-gesture-handler';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import Modal from '../../../../components/Modal';
+import ChangeComponents from '../../../../components/Food/ChangeComponents';
 
 const PageWrap = styled.View`
   flex: 1;
@@ -122,7 +120,7 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
   const [isClicked, setIsClicked] = useState(false);
   const [selectedPlanner, setSelectedPlanner] = useState('');
   const [selected, setSelected] = useState({});
-
+  console.log(state?.foodSet);
   return (
     <PageWrap>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
@@ -130,9 +128,7 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
         <ContentContainer>
           <SetContainer>
             <SetTitleContainer>
-              <SetImage
-                source={require('../../../../../assets/food_detail_sample.png')}
-              />
+              <SetImage source={{uri: state?.foodSet?.img}} />
               <SetTitle>
                 <SetName>{state?.foodSet.title}</SetName>
                 <SetItem>
@@ -182,7 +178,7 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
           <ListContainer>
             {state?.items?.map(item => {
               return (
-                <ItemMuttable
+                <ChangeComponents
                   state={state}
                   setState={setState}
                   item={item}
