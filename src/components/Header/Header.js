@@ -9,6 +9,8 @@ import {
   Projectfile_bSvg,
   Projectfile_wSvg,
 } from '../../components/assets';
+import {useSelector} from 'react-redux';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 const HeaderContainer = styled.View`
   flex-direction: row;
@@ -57,11 +59,18 @@ export const HeaderTitle = ({title}) => {
 };
 
 export const HeaderRight = () => {
+  const planners = useSelector(state => state.planners.planners);
   const navigation = useNavigation();
+  const route = useRoute();
+
   return (
     <HeaderProgram
       onPress={() => {
-        navigation.navigate('Planner');
+        if (route.name === 'Planner' || planners.length === 0) {
+          navigation.navigate('PlanEditor');
+        } else {
+          navigation.navigate('Planner', {id: 0});
+        }
       }}>
       <Projectfile_bSvg width={28} height={39} />
     </HeaderProgram>

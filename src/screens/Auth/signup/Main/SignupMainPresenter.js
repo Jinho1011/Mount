@@ -1,5 +1,4 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
 const Container = styled.View`
@@ -27,13 +26,13 @@ const ButtonText = styled.Text`
   text-align: center;
 `;
 
-export default () => {
-  const navigation = useNavigation();
-  const signupDetailPress = () => navigation.navigate('SignupDetail');
-
+export default ({signupDetailPress, signInWithKakao, getKakaoProfile}) => {
   return (
     <Container>
-      <TouchableOpacity marginTop="426px" bgColor="#FFE600">
+      <TouchableOpacity
+        marginTop="426px"
+        bgColor="#FFE600"
+        onPress={(signInWithKakao, getKakaoProfile)}>
         <ButtonText>카카오로 등록</ButtonText>
       </TouchableOpacity>
       <TouchableOpacity bgColor="#20E41C">

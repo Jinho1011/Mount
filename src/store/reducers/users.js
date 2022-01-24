@@ -5,6 +5,9 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case 'KAKAO_SIGNUP': {
+      return {...state, signupSuccess: action.payload};
+    }
     case 'SIGNUP_USER': {
       return {...state, signupSuccess: action.payload};
     }

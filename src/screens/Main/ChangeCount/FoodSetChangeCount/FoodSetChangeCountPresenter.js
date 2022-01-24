@@ -1,15 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, Pressable, Image, Dimensions} from 'react-native';
-import {HeaderTitle} from '../../../../components/Header/Header';
+import React, {useState} from 'react';
+import {Pressable, Image} from 'react-native';
 import styled from 'styled-components';
-import Item from '../../../../components/Common/Item';
-import ItemMuttable from '../../../../components/Common/ItemMuttable';
-import foodSet from '../../../../data/detail/foodSet';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import PlannerButton from '../../../../components/Common/ProposalButton';
 import {ScrollView} from 'react-native-gesture-handler';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import Modal from '../../../../components/Modal';
+import ChangeComponents from '../../../../components/Food/ChangeComponents';
 
 const PageWrap = styled.View`
   flex: 1;
@@ -121,8 +118,7 @@ const TotalPriceContainer = styled.View`
 
 const FoodSetChangeCountPresenter = ({state, setState}) => {
   const [isClicked, setIsClicked] = useState(false);
-  const [selectedPlanner, setSelectedPlanner] = useState('');
-
+  const [selected, setSelected] = useState({});
   return (
     <PageWrap>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
@@ -130,9 +126,7 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
         <ContentContainer>
           <SetContainer>
             <SetTitleContainer>
-              <SetImage
-                source={require('../../../../../assets/food_detail_sample.png')}
-              />
+              <SetImage source={{uri: state?.foodSet?.img}} />
               <SetTitle>
                 <SetName>{state?.foodSet.title}</SetName>
                 <SetItem>
@@ -182,7 +176,7 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
           <ListContainer>
             {state?.items?.map(item => {
               return (
-                <ItemMuttable
+                <ChangeComponents
                   state={state}
                   setState={setState}
                   item={item}
@@ -203,15 +197,10 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
             isClicked={isClicked}
             onPress={() => {
               setIsClicked(false);
-              setSelectedPlanner('');
+              setSelected({});
             }}
           />
-          <Modal
-            isClicked={isClicked}
-            setIsClicked={setIsClicked}
-            selectedPlanner={selectedPlanner}
-            setSelectedPlanner={setSelectedPlanner}
-          />
+          <Modal selected={selected} setSelected={setSelected} />
         </>
       ) : (
         <></>
@@ -220,20 +209,10 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
         state={state}
         isClicked={isClicked}
         setIsClicked={setIsClicked}
-        selectedPlanner={selectedPlanner}
-        setSelectedPlanner={setSelectedPlanner}
+        selected={selected}
       />
     </PageWrap>
   );
 };
-
-// isClicked == true && selectedPlanner == ''
-// => 기획서 버튼 비활성화
-
-// isClicked == true && selectedPlanner == '최강산디MT'
-// => 기획서 버튼 활성화 + 버튼 클릭 시 planer로 navigate
-
-// isClicked == false
-// => do nothing
 
 export default FoodSetChangeCountPresenter;

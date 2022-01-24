@@ -4,7 +4,7 @@ import {useNavigation, CommonActions} from '@react-navigation/native';
 import styled from 'styled-components';
 import TitleContainer from '../../../../components/Common/SetTitle';
 import Counter from '../../../../components/Food/Counter';
-import Item from '../../../../components/Common/Item';
+import Components from '../../../../components/Food/Components';
 
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import TotalPrice from '../../../../components/Common/TotalPrice';
@@ -117,7 +117,7 @@ const FoodSetPresenter = ({state, setState}) => {
           <ItemsContainer>
             {state?.items?.map(item => {
               return (
-                <Item
+                <Components
                   state={state}
                   setState={setState}
                   item={item}
@@ -144,9 +144,6 @@ const FoodSetPresenter = ({state, setState}) => {
           onPress={() => {
             const _state = _.cloneDeep(state);
             navigation.navigate('FoodSetChangeCount', {_state});
-            // setState(prev => ({
-            //   ...prev,
-            // }));
           }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>

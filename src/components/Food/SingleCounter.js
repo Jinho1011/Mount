@@ -53,6 +53,7 @@ const SingleCounter = ({state, setState}) => {
           <Pressable
             onPress={() => {
               let memCnt = state.memberCnt;
+              state.foodSingle.count = Math.max(1, memCnt - 1);
               setState(prev => ({
                 ...prev,
                 memberCnt: Math.max(1, memCnt - 1),
@@ -66,6 +67,7 @@ const SingleCounter = ({state, setState}) => {
           <Pressable
             onPress={() => {
               let memCnt = state.memberCnt;
+              state.foodSingle.count = Math.max(1, memCnt + 1);
               setState(prev => ({
                 ...prev,
                 memberCnt: Math.max(1, memCnt + 1),

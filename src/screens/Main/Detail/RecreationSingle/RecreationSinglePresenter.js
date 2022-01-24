@@ -1,14 +1,16 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, CommonActions} from '@react-navigation/native';
 import styled from 'styled-components';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
-import TitleContainer from '../../../../components/Common/SingleTitle';
-import Counter from '../../../../components/Rec/Counter';
-import TotalPrice from '../../../../components/Common/TotalPrice';
-import Caution from '../../../../components/Common/Caution';
 import SingleCounter from '../../../../components/Rec/SingleCounter';
-import {Carousel} from '@ant-design/react-native';
+import Components from '../../../../components/Rec/Components';
+import RecSingleTotalPrice from '../../../../components/Rec/RecSingleTotalPrice';
+import Swiper from 'react-native-swiper';
+import SingleTitle from '../../../../components/Rec/SingleTitle';
+import _ from 'lodash';
+import MyCarousel from '../../../../components/Rec/MyCarousel';
+
 const PageWrap = styled.View``;
 
 const ScrollContainer = styled.ScrollView`
@@ -39,25 +41,13 @@ const GuideLineTitle = styled.Text`
   color: #000000;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 20px;
 `;
 
 const GuideLineContainer = styled.View`
   padding-top: 25px;
+  padding-bottom: 25px;
   background: #ffffff;
-`;
-
-const GuideLineImageBox = styled.View`
-  padding: 28px 44px 17px 39px;
-`;
-
-const FoodSetListTitle = styled.Text`
-  font-family: 'NotoSansKR-Bold';
-  font-size: 12px;
-  line-height: 16px;
-  color: #000000;
-
-  padding-left: 20px;
-  padding-top: 36px;
 `;
 
 /* bottom button container */
@@ -106,40 +96,41 @@ const LikeCount = styled.Text`
   margin-left: 3px;
 `;
 
-const TotalPriceContainer = styled.View`
-  padding-top: 25px;
-  padding-bottom: 19px;
-`;
-
 const BorderLine = styled.View`
   height: 4px;
   border: 0.35px solid #eaeaea;
   background: #f3f3f3;
 `;
 
-const ContentContainer = styled.View`
-  padding-left: 20px;
-`;
-
-const ItemsContainer = styled.View`
-  margin-top: 18px;
-  padding-left: 15px;
-  padding-right: 35px;
-`;
-
 const CounterContainer = styled.View`
   padding: 17px 20px 24px 20px;
 `;
 
+const ComponentsContainer = styled(View)`
+  padding: 36px 20px 0px 20px;
+`;
+
+const PriceContainer = styled(View)`
+  padding: 25px 20px 20px 20px;
+`;
+
+const ComponentsTitle = styled(Text)`
+  font-family: 'NotoSansKR-Bold'
+  font-size: 12px;
+  line-height: 17px;
+  padding-bottom: 10px;
+`;
+
 const RecreationSinglePresenter = ({state, setState}) => {
+  const navigation = useNavigation();
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
-        <TitleContainer
+        <SingleTitle
           img={state?.recSingle?.img}
-          title={state?.recSingle?.title}
-          detail={state?.recSingle?.detail}
+          name={state?.recSingle?.name}
+          oneLineDescription={state?.recSingle?.oneLineDescription}
         />
         <CounterContainer>
           <SingleCounter state={state} setState={setState} />
@@ -148,28 +139,39 @@ const RecreationSinglePresenter = ({state, setState}) => {
         <GuideLineContainer>
           <RecTitle>저희 레크는요...</RecTitle>
           <GuideLineTitle>가이드라인</GuideLineTitle>
-          {/* <Carousel autoplay infinite>
-            {state?.recSingle?.guideImages?.map(image => {
-              return (
-                <View>
-                  <Text>Carousel 1</Text>
-                </View>
-              );
-            })}
-          </Carousel> */}
-          {/* <SliderBox images={state?.recSingle?.guideImages} autoplay /> */}
+          <MyCarousel state={state} setState={setState} />
         </GuideLineContainer>
         <BorderLine />
+        <ComponentsContainer>
+          <ComponentsTitle>구성품</ComponentsTitle>
+          {state?.recSingle?.components?.map(component => {
+            return (
+              <Components
+                state={state}
+                setState={setState}
+                component={component}
+                key={component.id}
+              />
+            );
+          })}
+        </ComponentsContainer>
+        <PriceContainer>
+          <RecSingleTotalPrice state={state} setState={setState} />
+        </PriceContainer>
       </ScrollContainer>
-      {/* <BottomConatiner>
-        <ChangeCountButton>
+      <BottomConatiner>
+        <ChangeCountButton
+          onPress={() => {
+            const _state = _.cloneDeep(state);
+            navigation.navigate('RecSingleChangeCount', {_state});
+          }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
         <LikeButton>
           <Image source={require('../../../../../assets/Like.png')} />
         </LikeButton>
         <LikeCount>23</LikeCount>
-      </BottomConatiner> */}
+      </BottomConatiner>
     </PageWrap>
   );
 };

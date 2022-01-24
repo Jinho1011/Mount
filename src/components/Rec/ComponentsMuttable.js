@@ -89,7 +89,46 @@ const Counter = styled.View`
   flex-direction: row;
 `;
 
-const Item = ({state, setState, item}) => {
+const MinusPressable = styled.Pressable`
+  padding: 16px 0 16px 24px;
+`;
+
+const PlusPressable = styled.Pressable`
+  padding: 11px 0 11px 6px;
+`;
+
+const ComponentsMuttable = ({state, setState, component}) => {
+  console.log(state.components);
+  const minusCount = () => {
+    let components = state?.components?.map(_component => {
+      if (component.id === _component.id) {
+        return {
+          ..._component,
+          count: _component.count - 1,
+        };
+      } else {
+        return components;
+      }
+    });
+  };
+
+  const plusCount = () => {
+    let components = state.components.map(_component => {
+      if (component.id === _component.id) {
+        return {
+          ..._component,
+          count: _component.count + 1,
+        };
+      } else {
+        return _component;
+      }
+    });
+
+    setState(prev => ({
+      ...prev,
+      components,
+    }));
+  };
   return (
     <ItemBox>
       <ItemSmallBox>
@@ -97,17 +136,23 @@ const Item = ({state, setState, item}) => {
           <Image
             source={require('../../../assets/rec_set_item_image_sample.png')}
           />
-          <ItemName>{item.name}</ItemName>
+          <ItemName>{component}</ItemName>
         </ItemLeft>
         <ItemRight>
           <Counter>
+            <MinusPressable onPress={minusCount}>
+              <Image source={require('../../../assets/minus.png')} />
+            </MinusPressable>
             <ItemCountBlock>
-              <ItemCount>{item.count}</ItemCount>
+              <ItemCount>{state?.teamCnt}</ItemCount>
             </ItemCountBlock>
+            <PlusPressable onPress={plusCount}>
+              <Image source={require('../../../assets/plus.png')} />
+            </PlusPressable>
           </Counter>
           <SetItemPriceContainer>
-            <SetItemSize>4인 (800g)</SetItemSize>
-            <SetItemPrice>{item.price}원</SetItemPrice>
+            <SetItemSize>1팀당 가격</SetItemSize>
+            <SetItemPrice>{state?.recSingle?.price}원</SetItemPrice>
           </SetItemPriceContainer>
         </ItemRight>
       </ItemSmallBox>
@@ -116,4 +161,4 @@ const Item = ({state, setState, item}) => {
   );
 };
 
-export default Item;
+export default ComponentsMuttable;
