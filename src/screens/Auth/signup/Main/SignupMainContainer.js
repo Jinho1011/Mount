@@ -9,21 +9,31 @@ export default () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const signupDetailPress = () => navigation.navigate('SignupDetail');
-  const [result, setResult] = useState('');
+  const [state, setState] = useState({
+    accessToken: '',
+    refreshToken: '',
+    email: '',
+    nickname: '',
+  });
 
   const signInWithKakao = async () => {
+    console.log(state);
     const token = await login();
-
-    setResult(JSON.stringify(token));
-    console.log(token);
-  };
-
-  const getKakaoProfile = async () => {
     const profile = await getProfile();
+    setState({
+      accessToken: token.accessToken,
+      refreshToken: token.refreshToken,
+      email: profile.email,
+      nickname: profile.nickname,
+    });
 
-    setResult(JSON.stringify(profile));
-
-    const signup = dispatch(kakaoSignup(profile));
+    let body = {
+      accessToken: token.accessToken,
+      refreshToken: token.refreshToken,
+      email: profile.email,
+      nickname: profile.nickname,
+    };
+    const signup = dispatch(kakaoSignup(body));
     if (signup.payload === true) {
       console.log('success');
     } else {
@@ -35,7 +45,6 @@ export default () => {
     <SignupMainPresenter
       signupDetailPress={signupDetailPress}
       signInWithKakao={signInWithKakao}
-      getKakaoProfile={getKakaoProfile}
     />
   );
 };
