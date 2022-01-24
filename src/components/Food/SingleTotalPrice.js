@@ -80,14 +80,15 @@ const TotalPriceText = styled.Text`
 `;
 
 const SingleTotalPrice = ({state, setState}) => {
-  let total = state.memberCnt * state.foodSingle.price;
+  let total = state.foodSingle.count * state.foodSingle.price;
+  let pricePerPerson = parseInt(total / state.memberCnt, 10);
   return (
     <TotalContainer>
       <StyledTitle>총 예상금액</StyledTitle>
       <SmallContainer>
         <PriceBox>
           <PriceBoxTitle>1인 기준</PriceBoxTitle>
-          <Price>{state.foodSingle.price} 원</Price>
+          <Price>{pricePerPerson} 원</Price>
         </PriceBox>
         <MultiplyImgBox>
           <MultiplyImg source={require('../../../assets/close.png')} />

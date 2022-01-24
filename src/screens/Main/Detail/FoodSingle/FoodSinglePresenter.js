@@ -122,6 +122,8 @@ const BottomContentsContainer = styled.View`
 
 const FoodSinglePresenter = ({state, setState}) => {
   const navigation = useNavigation();
+  console.log(state.foodSingle);
+  console.log(state.memberCnt);
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
