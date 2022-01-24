@@ -120,7 +120,6 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
   const [isClicked, setIsClicked] = useState(false);
   const [selectedPlanner, setSelectedPlanner] = useState('');
   const [selected, setSelected] = useState({});
-  console.log(state?.foodSet);
   return (
     <PageWrap>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
