@@ -41,7 +41,7 @@ const ModalWrap = styled.Pressable`
 
 export default function RecSetChangeCountPresenter({state, setState}) {
   const [isClicked, setIsClicked] = useState(false);
-  const [selectedPlanner, setSelectedPlanner] = useState('');
+  const [selected, setSelected] = useState({});
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
@@ -70,24 +70,19 @@ export default function RecSetChangeCountPresenter({state, setState}) {
             isClicked={isClicked}
             onPress={() => {
               setIsClicked(false);
-              setSelectedPlanner('');
+              setSelected({});
             }}
           />
-          <Modal
-            isClicked={isClicked}
-            setIsClicked={setIsClicked}
-            selectedPlanner={selectedPlanner}
-            setSelectedPlanner={setSelectedPlanner}
-          />
+          <Modal selected={selected} setSelected={setSelected} />
         </>
       ) : (
         <></>
       )}
       <PlannerButton
+        state={state}
         isClicked={isClicked}
         setIsClicked={setIsClicked}
-        selectedPlanner={selectedPlanner}
-        setSelectedPlanner={setSelectedPlanner}
+        selected={selected}
       />
     </>
   );
