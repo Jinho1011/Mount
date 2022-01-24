@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, Pressable, Image, Dimensions} from 'react-native';
+import React, {useState} from 'react';
+import {Pressable, Image} from 'react-native';
 import styled from 'styled-components';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import PlannerButton from '../../../../components/Common/ProposalButton';
@@ -118,7 +118,6 @@ const TotalPriceContainer = styled.View`
 
 const FoodSetChangeCountPresenter = ({state, setState}) => {
   const [isClicked, setIsClicked] = useState(false);
-  const [selectedPlanner, setSelectedPlanner] = useState('');
   const [selected, setSelected] = useState({});
   return (
     <PageWrap>
