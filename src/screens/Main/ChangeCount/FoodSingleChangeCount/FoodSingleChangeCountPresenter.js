@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, Pressable, ScrollView, Text, View} from 'react-native';
 import styled from 'styled-components';
 import Item from '../../../../components/Common/ItemMuttable';
+import Modal from '../../../../components/Modal';
+import PlannerButton from '../../../../components/Common/ProposalButton';
+
 const ScrollContainer = styled(ScrollView)`
   background: #fff;
   padding: 20px 20px 0px 20px;
@@ -38,7 +41,7 @@ const MinusPressable = styled(Pressable)``;
 
 const PlusPressable = styled(Pressable)``;
 
-const CounterNumberBox = styled.View`
+const CounterNumberBox = styled(View)`
   background: #f3f3f3;
   border-radius: 5px;
   padding: 0px 45px 0px 45px;
@@ -46,7 +49,7 @@ const CounterNumberBox = styled.View`
   margin-right: 18px;
 `;
 
-const CounterNumber = styled.Text`
+const CounterNumber = styled(Text)`
   font-family: 'NotoSansKR-Bold';
   font-size: 16px;
   line-height: 23px;
@@ -66,8 +69,20 @@ const ItemContainerTitle = styled(Text)`
   padding-left: 3px;
 `;
 
+const ModalWrap = styled.Pressable`
+  flex: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(139, 139, 139, 0.3);
+`;
+
 export default function FoodSingleChnageCountPresenter({state, setState}) {
-  console.log(state);
+  const [isClicked, setIsClicked] = useState(false);
+  const [selectedPlanner, setSelectedPlanner] = useState('');
+  const [selected, setSelected] = useState({});
   return (
     <>
       <ScrollContainer>
@@ -117,6 +132,26 @@ export default function FoodSingleChnageCountPresenter({state, setState}) {
           <Item state={state} setState={setState} item={state?.foodSingle} />
         </ItemContainer>
       </ScrollContainer>
+      {isClicked ? (
+        <>
+          <ModalWrap
+            isClicked={isClicked}
+            onPress={() => {
+              setIsClicked(false);
+              setSelected({});
+            }}
+          />
+          <Modal selected={selected} setSelected={setSelected} />
+        </>
+      ) : (
+        <></>
+      )}
+      <PlannerButton
+        state={state}
+        isClicked={isClicked}
+        setIsClicked={setIsClicked}
+        selected={selected}
+      />
     </>
   );
 }
