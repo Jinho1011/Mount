@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Modal from '../../../../components/Modal';
 import PlannerButton from '../../../../components/Common/ProposalButton';
 import ChangeComponent from '../../../../components/Food/ChangeComponent';
+import TotalPrice from '../../../../components/Common/TotalPrice';
+import SingleTotalPrice from '../../../../components/Food/SingleTotalPrice';
 
 const ScrollContainer = styled(ScrollView)`
   background: #fff;
@@ -79,6 +81,10 @@ const ModalWrap = styled.Pressable`
   background: rgba(139, 139, 139, 0.3);
 `;
 
+const TotalPriceContainer = styled.View`
+  padding: 25px 3px 0 3px;
+`;
+
 export default function FoodSingleChnageCountPresenter({state, setState}) {
   const [isClicked, setIsClicked] = useState(false);
   const [selectedPlanner, setSelectedPlanner] = useState('');
@@ -95,6 +101,7 @@ export default function FoodSingleChnageCountPresenter({state, setState}) {
             <MinusPressable
               onPress={() => {
                 let memCnt = state.memberCnt;
+                state.foodSingle.count = Math.max(1, memCnt - 1);
                 setState(prev => ({
                   ...prev,
                   memberCnt: Math.max(1, memCnt - 1),
@@ -108,6 +115,7 @@ export default function FoodSingleChnageCountPresenter({state, setState}) {
             <PlusPressable
               onPress={() => {
                 let memCnt = state.memberCnt;
+                state.foodSingle.count = Math.max(1, memCnt + 1);
                 setState(prev => ({
                   ...prev,
                   memberCnt: Math.max(1, memCnt + 1),
@@ -121,6 +129,9 @@ export default function FoodSingleChnageCountPresenter({state, setState}) {
         <ItemContainer>
           <ChangeComponent state={state} setState={setState} />
         </ItemContainer>
+        <TotalPriceContainer>
+          <SingleTotalPrice state={state} setState={setState} />
+        </TotalPriceContainer>
       </ScrollContainer>
       {isClicked ? (
         <>
