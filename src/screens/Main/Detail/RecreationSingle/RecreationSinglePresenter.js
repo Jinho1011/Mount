@@ -1,14 +1,15 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, CommonActions} from '@react-navigation/native';
 import styled from 'styled-components';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
-import TitleContainer from '../../../../components/Common/SingleTitle';
-import Counter from '../../../../components/Rec/Counter';
-import TotalPrice from '../../../../components/Common/TotalPrice';
-import Caution from '../../../../components/Common/Caution';
 import SingleCounter from '../../../../components/Rec/SingleCounter';
-import {Carousel} from '@ant-design/react-native';
+import Components from '../../../../components/Rec/Components';
+import RecSingleTotalPrice from '../../../../components/Rec/RecSingleTotalPrice';
+import Swiper from 'react-native-swiper';
+import SingleTitle from '../../../../components/Rec/SingleTitle';
+import _ from 'lodash';
+
 const PageWrap = styled.View``;
 
 const ScrollContainer = styled.ScrollView`
@@ -131,15 +132,36 @@ const CounterContainer = styled.View`
   padding: 17px 20px 24px 20px;
 `;
 
+const ComponentsContainer = styled(View)`
+  padding: 36px 20px 0px 20px;
+`;
+
+const PriceContainer = styled(View)`
+  padding: 25px 20px 20px 20px;
+`;
+
+const StyledSwiper = styled(Swiper)`
+  height: 240px;
+`;
+
+const SwiperView = styled(View)``;
+
+const SwiperImage = styled(Image)`
+  flex: 1;
+`;
+
 const RecreationSinglePresenter = ({state, setState}) => {
+  // console.log(state?.recSingle?.guideImages);
+  const navigation = useNavigation();
+  const guideImages = state?.recSingle?.guideImages;
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
-        <TitleContainer
+        <SingleTitle
           img={state?.recSingle?.img}
-          title={state?.recSingle?.title}
-          detail={state?.recSingle?.detail}
+          name={state?.recSingle?.name}
+          oneLineDescription={state?.recSingle?.oneLineDescription}
         />
         <CounterContainer>
           <SingleCounter state={state} setState={setState} />
@@ -148,28 +170,46 @@ const RecreationSinglePresenter = ({state, setState}) => {
         <GuideLineContainer>
           <RecTitle>저희 레크는요...</RecTitle>
           <GuideLineTitle>가이드라인</GuideLineTitle>
-          {/* <Carousel autoplay infinite>
-            {state?.recSingle?.guideImages?.map(image => {
+          {/* <StyledSwiper>
+            {guideImages?.map(guideImage => {
               return (
-                <View>
-                  <Text>Carousel 1</Text>
-                </View>
+                <SwiperView>
+                  <Text>hello</Text>
+                </SwiperView>
               );
             })}
-          </Carousel> */}
-          {/* <SliderBox images={state?.recSingle?.guideImages} autoplay /> */}
+          </StyledSwiper> */}
         </GuideLineContainer>
         <BorderLine />
+        <ComponentsContainer>
+          {state?.recSingle?.components?.map(component => {
+            return (
+              <Components
+                state={state}
+                setState={setState}
+                component={component}
+                key={component.id}
+              />
+            );
+          })}
+        </ComponentsContainer>
+        <PriceContainer>
+          <RecSingleTotalPrice state={state} setState={setState} />
+        </PriceContainer>
       </ScrollContainer>
-      {/* <BottomConatiner>
-        <ChangeCountButton>
+      <BottomConatiner>
+        <ChangeCountButton
+          onPress={() => {
+            const _state = _.cloneDeep(state);
+            navigation.navigate('RecSingleChangeCount', {_state});
+          }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
         <LikeButton>
           <Image source={require('../../../../../assets/Like.png')} />
         </LikeButton>
         <LikeCount>23</LikeCount>
-      </BottomConatiner> */}
+      </BottomConatiner>
     </PageWrap>
   );
 };

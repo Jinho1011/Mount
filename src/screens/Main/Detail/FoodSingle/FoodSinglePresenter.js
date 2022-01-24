@@ -1,15 +1,13 @@
 import React from 'react';
 import {Image} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
-import TitleContainer from '../../../../components/Common/SingleTitle';
-
+import SingleTitle from '../../../../components/Food/SingleTitle';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
-import Counter from '../../../../components/Food/Counter';
-import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
 import SingleCounter from '../../../../components/Food/SingleCounter';
 import SingleTotalPrice from '../../../../components/Food/SingleTotalPrice';
+import _ from 'lodash';
+import {useNavigation} from '@react-navigation/native';
 
 const PageWrap = styled.View``;
 
@@ -123,14 +121,15 @@ const BottomContentsContainer = styled.View`
 `;
 
 const FoodSinglePresenter = ({state, setState}) => {
+  const navigation = useNavigation();
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
-        <TitleContainer
+        <SingleTitle
           img={state?.foodSingle?.img}
-          title={state?.foodSingle?.title}
-          detail={state?.foodSingle?.detail}
+          name={state?.foodSingle?.name}
+          recommendPerPerson={state?.foodSingle?.recommendPerPerson}
         />
         <SingleCounter state={state} setState={setState} />
         <BorderLine />
@@ -161,7 +160,11 @@ const FoodSinglePresenter = ({state, setState}) => {
         </BottomContentsContainer>
       </ScrollContainer>
       <BottomConatiner>
-        <ChangeCountButton>
+        <ChangeCountButton
+          onPress={() => {
+            const _state = _.cloneDeep(state);
+            navigation.navigate('FoodSingleChangeCount', {_state});
+          }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
         <LikeButton>

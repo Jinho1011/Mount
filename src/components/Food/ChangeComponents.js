@@ -95,7 +95,13 @@ const Counter = styled.View`
   padding-right: 12px;
 `;
 
-const Item = ({state, setState, item}) => {
+const ComponentImage = styled(Image)`
+  width: 32px;
+  height: 32px;
+`;
+
+const ChangeComponents = ({state, setState, item}) => {
+  console.log(item);
   const minusCount = () => {
     let items = state.items.map(_item => {
       if (item.id === _item.id) {
@@ -137,9 +143,7 @@ const Item = ({state, setState, item}) => {
     <ItemBox>
       <ItemSmallBox>
         <ItemLeft>
-          <Image
-            source={require('../../../assets/rec_set_item_image_sample.png')}
-          />
+          <ComponentImage source={{uri: item?.img}} />
           <ItemName>{item.name}</ItemName>
         </ItemLeft>
         <ItemRight>
@@ -155,7 +159,7 @@ const Item = ({state, setState, item}) => {
             </PlusPressable>
           </Counter>
           <SetItemPriceContainer>
-            <SetItemize>4인 (800g)</SetItemize>
+            <SetItemize>{item.description}</SetItemize>
             <SetItemPrice>{item.price}원</SetItemPrice>
           </SetItemPriceContainer>
         </ItemRight>
@@ -165,4 +169,4 @@ const Item = ({state, setState, item}) => {
   );
 };
 
-export default Item;
+export default ChangeComponents;
