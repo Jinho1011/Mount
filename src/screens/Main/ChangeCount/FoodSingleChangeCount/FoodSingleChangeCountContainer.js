@@ -11,6 +11,7 @@ const FoodSingleChangeCountContainer = ({route}) => {
     const init = () => {
       let foodSingle = route.params._state.foodSingle;
       let memberCnt = route.params._state.memberCnt;
+      foodSingle.count = memberCnt;
 
       setState({
         isLoaded: true,

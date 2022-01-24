@@ -6,7 +6,7 @@ export default [
     recommendPerPerson: '1병',
     detail: '1인분 200g 기준',
     price: 12000,
-    description: '음식설명입니다',
+    description: '1인 1병',
     caution: '주의사항입니다',
     like: 22,
   },

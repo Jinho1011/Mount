@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Image, Pressable, ScrollView, Text, View} from 'react-native';
 import styled from 'styled-components';
-import Item from '../../../../components/Common/ItemMuttable';
 import Modal from '../../../../components/Modal';
 import PlannerButton from '../../../../components/Common/ProposalButton';
+import ChangeComponent from '../../../../components/Food/ChangeComponent';
 
 const ScrollContainer = styled(ScrollView)`
   background: #fff;
@@ -29,7 +29,7 @@ const HighLighter = styled(View)`
   z-index: -1;
 `;
 
-const CounterContainer = styled.View`
+const CounterContainer = styled(View)`
   flex-direction: row;
   margin-top: 24px;
   flex: 1;
@@ -95,14 +95,9 @@ export default function FoodSingleChnageCountPresenter({state, setState}) {
             <MinusPressable
               onPress={() => {
                 let memCnt = state.memberCnt;
-                let items = state.items.map(item => {
-                  item.count = Math.max(1, memCnt - 1);
-                  return item;
-                });
                 setState(prev => ({
                   ...prev,
                   memberCnt: Math.max(1, memCnt - 1),
-                  items,
                 }));
               }}>
               <Image source={require('../../../../../assets/minus_dis.png')} />
@@ -113,14 +108,9 @@ export default function FoodSingleChnageCountPresenter({state, setState}) {
             <PlusPressable
               onPress={() => {
                 let memCnt = state.memberCnt;
-                let items = state.items.map(item => {
-                  item.count = Math.max(1, memCnt + 1);
-                  return item;
-                });
                 setState(prev => ({
                   ...prev,
                   memberCnt: Math.max(1, memCnt + 1),
-                  items,
                 }));
               }}>
               <Image source={require('../../../../../assets/plus_.png')} />
@@ -129,7 +119,7 @@ export default function FoodSingleChnageCountPresenter({state, setState}) {
         </CountContainer>
         <ItemContainerTitle>구성품</ItemContainerTitle>
         <ItemContainer>
-          <Item state={state} setState={setState} item={state?.foodSingle} />
+          <ChangeComponent state={state} setState={setState} />
         </ItemContainer>
       </ScrollContainer>
       {isClicked ? (
