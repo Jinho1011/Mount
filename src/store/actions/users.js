@@ -3,17 +3,9 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const SIGNUP_USER = 'SIGNUP_USER';
 
 export const kakaoSignup = dataToSubmit => {
-  let req;
-  if (
-    dataToSubmit.nickname === '김현아' &&
-    dataToSubmit.email === 'amykim928@naver.com'
-  ) {
-    req = true;
-  } else {
-    req = false;
-  }
+  let req = true;
   return {
-    type: SIGNUP_USER,
+    type: KAKAO_SIGNUP,
     payload: req, //reducer로
   };
 };
