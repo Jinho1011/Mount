@@ -12,6 +12,7 @@ const ScrollContainer = styled.ScrollView`
   padding-top: 116px;
   padding-left: 23px;
   padding-right: 23px;
+  padding-bottom: 95px;
 `;
 
 const SmallBoxContainer = styled.View`
@@ -37,6 +38,8 @@ export default ({state}) => {
 
   return (
     <>
+      <Floaters onPressTouch={onPressTouch} target={'RecPlan'} />
+
       <ScrollContainer onScroll={onScroll} ref={scrollRef}>
         <FocusAwareStatusBar
           barStyle="light-content"
@@ -57,8 +60,8 @@ export default ({state}) => {
             );
           }
         })}
+        <View style={{paddingTop: 115}} />
       </ScrollContainer>
-      <Floaters onPressTouch={onPressTouch} target={'RecPlan'} />
     </>
   );
 };

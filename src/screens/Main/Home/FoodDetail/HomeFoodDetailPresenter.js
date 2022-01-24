@@ -37,17 +37,19 @@ export default ({state}) => {
 
   return (
     <>
+      <Floaters onPressTouch={onPressTouch} target={'FoodPlan'} />
       <ScrollContainer onScroll={onScroll} ref={scrollRef}>
         <FocusAwareStatusBar
           barStyle="light-content"
           backgroundColor="#000000"
         />
         {state?.items.map(itemArr => {
-          if (itemArr.length == 1) {
+          if (itemArr.length === 1) {
             const item = itemArr[0];
             return <Box item={item} key={item.type + item.id} />;
           } else {
             const item1 = itemArr[0];
+            ``;
             const item2 = itemArr[1];
             return (
               <SmallBoxContainer key={item1.type + item1.id}>
@@ -57,8 +59,8 @@ export default ({state}) => {
             );
           }
         })}
+        <View style={{paddingTop: 115}} />
       </ScrollContainer>
-      <Floaters onPressTouch={onPressTouch} target={'FoodPlan'} />
     </>
   );
 };
