@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 import styled from 'styled-components';
+import {MountSvg, Back_bSvg, Projectfile_bSvg} from '../../components/assets';
 import {useSelector} from 'react-redux';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
@@ -15,30 +16,11 @@ const HeaderContainer = styled.View`
   elevation: 1;
 `;
 
-const HeaderBackButton = styled.Image`
-  width: 24px;
-  height: 24px;
-`;
-
-const HeaderTitleImage = styled.Image`
-  width: 127px;
-`;
-
 const HeaderProgram = styled.Pressable`
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-right: 14px;
-`;
-
-const HeaderProgramText = styled.Text`
-  color: #373737;
-  font-size: 10px;
-`;
-
-const HeaderProgramImage = styled.Image`
-  width: 24px;
-  height: 24px;
 `;
 
 const HeaderText = styled.Text`
@@ -53,7 +35,7 @@ export const HeaderLeft = ({canGoBack}) => {
   if (canGoBack) {
     return (
       <Pressable onPress={() => navigation.goBack()}>
-        <HeaderBackButton source={require('../../../assets/back_w.png')} />
+        <Back_bSvg width={24} height={24} />
       </Pressable>
     );
   } else {
@@ -63,7 +45,7 @@ export const HeaderLeft = ({canGoBack}) => {
 
 export const HeaderTitle = ({title}) => {
   if (title === '홈') {
-    return <HeaderTitleImage source={require('../../../assets/mount.png')} />;
+    return <MountSvg width={127} height={21} />;
   } else {
     return <HeaderText>{title}</HeaderText>;
   }
@@ -83,10 +65,7 @@ export const HeaderRight = () => {
           navigation.navigate('Planner', {id: 0});
         }
       }}>
-      <HeaderProgramImage
-        source={require('../../../assets/projectfile_w.png')}
-      />
-      <HeaderProgramText>기획서</HeaderProgramText>
+      <Projectfile_bSvg width={28} height={39} />
     </HeaderProgram>
   );
 };
