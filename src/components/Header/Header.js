@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 import styled from 'styled-components';
-import {useNavigation} from '@react-navigation/native';
 import {
   MountSvg,
   Back_bSvg,
