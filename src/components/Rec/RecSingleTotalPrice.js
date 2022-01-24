@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import {CloseSvg} from '.././../components/assets';
 
 const TotalContainer = styled.View`
   justify-content: space-between;
@@ -80,37 +79,28 @@ const TotalPriceText = styled.Text`
   text-align: right;
 `;
 
-const TotalPrice = ({state}) => {
-  console.log('🚀 ~ file: TotalPrice.js ~ line 83 ~ TotalPrice ~ state', state);
-  // state = {id, items: {rec, food}, tittle}
-
-  // let price = 0;
-  // for (let i = 0; i < isPressedArr.length; i++) {
-  //   price = parseInt(
-  //     (price + isPressedArr[i].count * isPressedArr[i].price) / memberCnt,
-  //     10,
-  //   );
-  // }
-  // let total = memberCnt * price;
+const RecSingleTotalPrice = ({state, setState}) => {
+  let total = state?.teamCnt * state?.recSingle?.price;
+  let pricePerPerson = parseInt(total / state?.memberCnt, 10);
   return (
     <TotalContainer>
-      {/* <StyledTitle>총 예상금액</StyledTitle>
+      <StyledTitle>총 예상금액</StyledTitle>
       <SmallContainer>
         <PriceBox>
           <PriceBoxTitle>1인 기준</PriceBoxTitle>
-          <Price>{price} 원</Price>
+          <Price>{pricePerPerson}원</Price>
         </PriceBox>
         <MultiplyImgBox>
-          <CloseSvg width={16} height={16} />
+          <MultiplyImg source={require('../../../assets/close.png')} />
         </MultiplyImgBox>
-        <Count>{memberCnt}</Count>
+        <Count>{state.memberCnt}</Count>
         <TotalPriceBox>
           <TotalPriceTitle>총 금액</TotalPriceTitle>
-          <TotalPriceText>{total} 원</TotalPriceText>
+          <TotalPriceText>{total}원</TotalPriceText>
         </TotalPriceBox>
-      </SmallContainer> */}
+      </SmallContainer>
     </TotalContainer>
   );
 };
 
-export default TotalPrice;
+export default RecSingleTotalPrice;

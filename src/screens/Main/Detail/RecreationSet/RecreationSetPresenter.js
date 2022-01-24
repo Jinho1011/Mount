@@ -4,9 +4,12 @@ import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 import TitleContainer from '../../../../components/Common/SetTitle';
 import Counter from '../../../../components/Rec/Counter';
-import Item from '../../../../components/Common/Item';
+import FocusAwareStatusBar from '../../../../components/StatusBar';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
+import Components from '../../../../components/Rec/Components';
+import _ from 'lodash';
+import Items from '../../../../components/Rec/Items';
 
 const PageWrap = styled.View``;
 
@@ -84,16 +87,13 @@ const BottomConatiner = styled.View`
   flex-direction: row;
   background: #ffffff;
   border: 0.3px solid #b4b4b4;
-
   padding: 8px 21px 8px 23px;
 `;
 
 const ChangeCountButton = styled.TouchableOpacity`
   padding: 12px 118px;
-
   background: #e2f955;
   border-radius: 5px;
-
   height: 48px;
 `;
 
@@ -131,8 +131,11 @@ const TotalPriceContainer = styled.View`
 `;
 
 const RecreationSetPresenter = ({state, setState}) => {
+  const navigation = useNavigation();
   return (
     <PageWrap style={{flex: 1}}>
+      <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
+
       <ScrollContainer>
         <TitleContainer
           img={state?.recSet?.img}
@@ -150,7 +153,7 @@ const RecreationSetPresenter = ({state, setState}) => {
             <RecSetListItemTitle>구성품</RecSetListItemTitle>
             {state?.recSet?.items?.map(item => {
               return (
-                <Item
+                <Items
                   state={state}
                   setState={setState}
                   item={item}
@@ -176,7 +179,11 @@ const RecreationSetPresenter = ({state, setState}) => {
         </CautionContainer>
       </ScrollContainer>
       <BottomConatiner>
-        <ChangeCountButton>
+        <ChangeCountButton
+          onPress={() => {
+            const _state = _.cloneDeep(state);
+            navigation.navigate('RecSetChangeCount', {_state});
+          }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
         <LikeButton>

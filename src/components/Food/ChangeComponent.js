@@ -2,11 +2,11 @@
  * 플러스, 마이너스가 가능한 구성품 컴포넌트입니다.
  */
 import React from 'react';
-import {Image, Pressable} from 'react-native';
+import {Image, Pressable, Text, View} from 'react-native';
 import styled from 'styled-components';
 
 // 구성품 + 구분선
-const ItemBox = styled.View`
+const ItemBox = styled(View)`
   margin-top: 14px;
   flex: 1;
   width: 100%;
@@ -14,14 +14,14 @@ const ItemBox = styled.View`
 `;
 
 // 구성품
-const ItemSmallBox = styled.View`
+const ItemSmallBox = styled(View)`
   justify-content: space-between;
   flex-direction: row;
   margin-bottom: 14px;
   height: 32px;
 `;
 
-const ItemName = styled.Text`
+const ItemName = styled(Text)`
   font-family: 'NotoSansKR-Regular';
   font-style: normal;
   font-weight: normal;
@@ -33,15 +33,15 @@ const ItemName = styled.Text`
   padding-top: 5px;
 `;
 
-const MinusPressable = styled.Pressable`
+const MinusPressable = styled(Pressable)`
   padding: 16px 0 16px 24px;
 `;
 
-const PlusPressable = styled.Pressable`
+const PlusPressable = styled(Pressable)`
   padding: 11px 0 11px 6px;
 `;
 
-const ItemCountBlock = styled.View`
+const ItemCountBlock = styled(View)`
   background: #f3f3f3;
   border-radius: 12.5px;
   height: 25px;
@@ -50,20 +50,20 @@ const ItemCountBlock = styled.View`
   padding: 2px 16px 3px 16px;
 `;
 
-const ItemCount = styled.Text`
+const ItemCount = styled(Text)`
   color: #000000;
   font-size: 14px;
   font-family: 'NotoSansKR-Regular';
   line-height: 20px;
 `;
 
-const SetItemPriceContainer = styled.View`
+const SetItemPriceContainer = styled(View)`
   flex-direction: column;
   align-items: flex-end;
   margin-left: 12px;
 `;
 
-const SetItemize = styled.Text`
+const SetItemize = styled(Text)`
   font-family: 'NotoSansKR-Normal';
   font-size: 10px;
   line-height: 15px;
@@ -71,92 +71,72 @@ const SetItemize = styled.Text`
   color: #828282;
 `;
 
-const SetItemPrice = styled.Text`
+const SetItemPrice = styled(Text)`
   font-family: 'NotoSansKR-Bold';
   font-size: 14px;
   line-height: 20px;
   text-align: right;
 `;
 
-const SetBorderLine = styled.View`
+const SetBorderLine = styled(View)`
   border: 0.35px solid #eaeaea;
 `;
 
-const ItemLeft = styled.View`
+const ItemLeft = styled(View)`
   flex-direction: row;
 `;
 
-const ItemRight = styled.View`
+const ItemRight = styled(View)`
   flex-direction: row;
 `;
 
-const Counter = styled.View`
+const Counter = styled(View)`
   flex-direction: row;
   padding-right: 12px;
 `;
 
-const Item = ({state, setState, item}) => {
-  const minusCount = () => {
-    let items = state.items.map(_item => {
-      if (item.id === _item.id) {
-        return {
-          ..._item,
-          count: _item.count - 1,
-        };
-      } else {
-        return _item;
-      }
-    });
+const ComponentImage = styled(Image)`
+  width: 32px;
+  height: 32px;
+`;
 
-    setState(prev => ({
-      ...prev,
-      items,
-    }));
-  };
-
-  const plusCount = () => {
-    let items = state.items.map(_item => {
-      if (item.id === _item.id) {
-        return {
-          ..._item,
-          count: _item.count + 1,
-        };
-      } else {
-        return _item;
-      }
-    });
-
-    setState(prev => ({
-      ...prev,
-      items,
-    }));
-  };
-
-  console.log(item);
+const ChangeComponent = ({state, setState}) => {
   return (
     <ItemBox>
       <ItemSmallBox>
         <ItemLeft>
-          <Image
-            source={require('../../../assets/rec_set_item_image_sample.png')}
-          />
-          <ItemName>{item.name}</ItemName>
+          <ComponentImage source={{uri: state?.foodSingle?.img}} />
+          <ItemName>{state?.foodSingle?.name}</ItemName>
         </ItemLeft>
         <ItemRight>
           <Counter>
-            <MinusPressable onPress={minusCount}>
+            <MinusPressable
+              onPress={() => {
+                let itemCnt = state?.foodSingle?.count;
+                state.foodSingle.count = Math.max(1, itemCnt - 1);
+                setState(prev => ({
+                  ...prev,
+                }));
+              }}>
               <Image source={require('../../../assets/minus.png')} />
             </MinusPressable>
             <ItemCountBlock>
-              <ItemCount>{item.count}</ItemCount>
+              <ItemCount>{state?.foodSingle?.count}</ItemCount>
             </ItemCountBlock>
-            <PlusPressable onPress={plusCount}>
+            <PlusPressable
+              onPress={() => {
+                let itemCnt = state?.foodSingle?.count;
+                state.foodSingle.count = Math.max(1, itemCnt + 1);
+                setState(prev => ({
+                  ...prev,
+                }));
+              }}>
               <Image source={require('../../../assets/plus.png')} />
             </PlusPressable>
           </Counter>
           <SetItemPriceContainer>
-            <SetItemize>4인 (800g)</SetItemize>
-            <SetItemPrice>{item.price}원</SetItemPrice>
+            <SetItemize>{state?.foodSingle?.description}</SetItemize>
+            <SetItemPrice>{state?.foodSingle?.price}원</SetItemPrice>
           </SetItemPriceContainer>
         </ItemRight>
       </ItemSmallBox>
@@ -165,4 +145,4 @@ const Item = ({state, setState, item}) => {
   );
 };
 
-export default Item;
+export default ChangeComponent;
