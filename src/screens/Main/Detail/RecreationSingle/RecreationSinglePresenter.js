@@ -1,12 +1,11 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
-import {useNavigation, CommonActions} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import SingleCounter from '../../../../components/Rec/SingleCounter';
 import Components from '../../../../components/Rec/Components';
 import RecSingleTotalPrice from '../../../../components/Rec/RecSingleTotalPrice';
-import Swiper from 'react-native-swiper';
 import SingleTitle from '../../../../components/Rec/SingleTitle';
 import _ from 'lodash';
 import MyCarousel from '../../../../components/Rec/MyCarousel';
