@@ -10,21 +10,24 @@ export default [
     items: [
       {
         id: 1,
+        img: 'https://dummyimage.com/600x253/000/fff',
         name: '삼다수(2L)',
         price: 1000,
         description: '1인 1병',
       },
       {
         id: 2,
+        img: 'https://dummyimage.com/600x253/000/fff',
         name: '파워에이드(1.5L)',
         price: 1700,
-        description: '4인(800g)',
+        description: '1인 1/5병',
       },
       {
         id: 3,
-        name: '야채',
+        img: 'https://dummyimage.com/600x253/000/fff',
+        name: '돼지고기',
         price: 18000,
-        description: '4인(800g)',
+        description: '1인 400g',
       },
     ],
   },
