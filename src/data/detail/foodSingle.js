@@ -5,7 +5,7 @@ export default [
     name: '삼다수(2L)',
     recommendPerPerson: '1병',
     detail: '1인분 200g 기준',
-    price: 12000,
+    price: 1000,
     description: '1인 1병',
     caution: '주의사항입니다',
     like: 22,
