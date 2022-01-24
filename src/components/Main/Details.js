@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import styled from 'styled-components';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native';
+import {More_with_typoSvg} from '../../components/assets';
 
 const DetailsWrapper = styled.View`
   margin-top: 20px;
@@ -73,8 +73,7 @@ const DetailsContainer = ({title, navigate, items, isLoaded}) => {
             onPress={() => {
               navigation.navigate('HomeTabs', {initialRoute: navigate});
             }}>
-            <DetailMoreText>더보기</DetailMoreText>
-            <Icon name="arrow-right" size={12} color="#8b8b8b" />
+            <More_with_typoSvg width={46} height={16} />
           </DetailMore>
         )}
       </DetailsHeader>
