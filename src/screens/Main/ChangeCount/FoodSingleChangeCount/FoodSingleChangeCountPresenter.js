@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Modal from '../../../../components/Modal';
 import PlannerButton from '../../../../components/Common/ProposalButton';
 import ChangeComponent from '../../../../components/Food/ChangeComponent';
-import TotalPrice from '../../../../components/Common/TotalPrice';
 import SingleTotalPrice from '../../../../components/Food/SingleTotalPrice';
 
 const ScrollContainer = styled(ScrollView)`
@@ -71,7 +70,7 @@ const ItemContainerTitle = styled(Text)`
   padding-left: 3px;
 `;
 
-const ModalWrap = styled.Pressable`
+const ModalWrap = styled(Pressable)`
   flex: 1;
   position: absolute;
   top: 0;
@@ -81,7 +80,7 @@ const ModalWrap = styled.Pressable`
   background: rgba(139, 139, 139, 0.3);
 `;
 
-const TotalPriceContainer = styled.View`
+const TotalPriceContainer = styled(View)`
   padding: 25px 3px 0 3px;
 `;
 
