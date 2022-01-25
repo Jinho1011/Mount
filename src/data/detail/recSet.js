@@ -9,6 +9,7 @@ export default [
     items: [
       {
         id: 1,
+        img: 'https://dummyimage.com/600x253/000/fff',
         name: '초성게임',
         price: 1460,
         recommendMemberCnt: '4인 ~ 10인',
@@ -26,6 +27,7 @@ export default [
       },
       {
         id: 2,
+        img: 'https://dummyimage.com/600x253/000/fff',
         name: '몸으로 말해요',
         price: 1460,
         recommendMemberCnt: '4인 ~ 10인',
@@ -42,6 +44,7 @@ export default [
       },
       {
         id: 3,
+        img: 'https://dummyimage.com/600x253/000/fff',
         name: '스피드 퀴즈',
         price: 1460,
         recommendMemberCnt: '4인 ~ 10인',
