@@ -1,16 +1,37 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput, Dimensions} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  Dimensions,
+  ScrollView,
+  Keyboard,
+} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
-import {Searchbar_closeSvg} from '../../../components/assets';
+import {Searchbar_closeSvg, Back_bSvg} from '../../../components/assets';
 import FocusAwareStatusBar from '../../../components/StatusBar';
+import DetailsContainer from '../../../components/Main/Details';
 
 const screenWidth = Dimensions.get('window').width;
+
+const SearchContainer = styled.View`
+  flex: 1;
+  background-color: #fff;
+`;
 
 const SearchHeader = styled.View`
   flex-direction: row;
   background-color: #fff;
-  padding: 13px 16px 13px 28px;
+  padding: ${props => {
+    if (!props.isEditing && !props.isEntered) {
+      return '13px 18px 13px 28px';
+    } else if (props.isEditing && !props.isEntered) {
+      return '13px 16px 13px 28px';
+    } else if (props.isEntered) {
+      return '13px 20px 13px 15px';
+    }
+  }};
   justify-content: space-between;
   align-items: center;
 `;
@@ -23,9 +44,24 @@ const InputContainer = styled.View`
 
 const Input = styled.TextInput`
   background-color: #f3f3f3;
-  width: ${screenWidth - 82}px;
+  width: ${props => {
+    if (!props.isEditing && !props.isEntered) {
+      return `${screenWidth - 56}px`;
+    } else if (props.isEditing && !props.isEntered) {
+      return `${screenWidth - 92}px`;
+    } else if (props.isEntered) {
+      return `${screenWidth - 81}px`;
+    }
+  }};
   padding: 7px 0 5px 10px;
   border-radius: 5px;
+  margin-left: ${props => (props.isEntered ? 10 : 0)}px;
+`;
+
+const InputBackBtn = styled.Pressable`
+  width: 24px;
+  height: 24px;
+  padding-right: 20px;
 `;
 
 const InputClearButton = styled.Pressable`
@@ -85,19 +121,90 @@ const RecentEmpty = styled.Text`
   padding-bottom: 6px;
 `;
 
+const RecommandsContainer = styled.View`
+  background-color: #ffffff;
+  padding-bottom: 25px;
+`;
+
+const Padding = styled.View`
+  padding-bottom: 69px;
+  background-color: #f3f3f3;
+`;
+
 export default ({state, setState}) => {
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isEntered, setIsEntered] = useState(false);
+  const [text, setText] = useState('');
   const navigation = useNavigation();
 
+  const onChangeText = e => {
+    setText(e);
+  };
+
+  const onSubmit = () => {
+    setIsEntered(true);
+  };
+
+  const onPressBack = () => {
+    setIsEntered(false);
+    setText('');
+  };
+
+  useEffect(() => {
+    // console.log('🚀 ~ file: SearchPresenter.js ~ line 134 ~ text', text);
+    // console.log(
+    //   '🚀 ~ file: SearchPresenter.js ~ line 134 ~ isEntered',
+    //   isEntered,
+    // );
+    // console.log(
+    //   '🚀 ~ file: SearchPresenter.js ~ line 134 ~ isEditing',
+    //   isEditing,
+    // );
+  }, [isEditing, isEntered, text]);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setIsEditing(true); // or some other action
+      },
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setIsEditing(false); // or some other action
+      },
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
+
   return (
-    <View>
+    <SearchContainer>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-      <SearchHeader>
+      <SearchHeader isEditing={isEditing} isEntered={isEntered}>
         <InputContainer>
+          {isEntered ? (
+            <InputBackBtn onPress={onPressBack}>
+              <Back_bSvg width={24} height={24} />
+            </InputBackBtn>
+          ) : (
+            <></>
+          )}
+
           <Input
+            value={text}
+            onChangeText={onChangeText}
+            onSubmitEditing={onSubmit}
+            isEditing={isEditing}
+            isEntered={isEntered}
             placeholder="음식, 레크레이션 검색"
             placeholderTextColor="#b4b4b4"
           />
+
           {isEditing ? (
             <InputClearButton
               onPress={() => {
@@ -109,12 +216,16 @@ export default ({state, setState}) => {
             <></>
           )}
         </InputContainer>
-        <CancelInputBtn
-          onPress={() => {
-            console.log('cancel input');
-          }}>
-          <CancelInputBtnText>취소</CancelInputBtnText>
-        </CancelInputBtn>
+        {isEditing && !isEntered ? (
+          <CancelInputBtn
+            onPress={() => {
+              console.log('cancel input');
+            }}>
+            <CancelInputBtnText>취소</CancelInputBtnText>
+          </CancelInputBtn>
+        ) : (
+          <></>
+        )}
       </SearchHeader>
       <RecentContainer>
         <RecentTitle>최근 검색어</RecentTitle>
@@ -136,6 +247,29 @@ export default ({state, setState}) => {
           )}
         </Recents>
       </RecentContainer>
-    </View>
+      {isEntered ? (
+        <></>
+      ) : (
+        <>
+          <RecommandsContainer>
+            <DetailsContainer
+              title="Mount 추천 세트"
+              navigate=""
+              items={state.recommands.foods}
+              isLoaded={true}
+            />
+          </RecommandsContainer>
+          <Padding />
+          <RecommandsContainer>
+            <DetailsContainer
+              title="지금 인기있어요! - 아무튼 유엓라이팅"
+              navigate=""
+              items={state.recommands.recs}
+              isLoaded={true}
+            />
+          </RecommandsContainer>
+        </>
+      )}
+    </SearchContainer>
   );
 };
