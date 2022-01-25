@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
@@ -10,21 +10,13 @@ import SingleTitle from '../../../../components/Rec/SingleTitle';
 import _ from 'lodash';
 import MyCarousel from '../../../../components/Rec/MyCarousel';
 
-const PageWrap = styled.View``;
+const PageWrap = styled(View)``;
 
-const ScrollContainer = styled.ScrollView`
+const ScrollContainer = styled(ScrollView)`
   background-color: #fff;
 `;
 
-/* 레크레이션 세트 리스트 */
-const RecSetListContainer = styled.View`
-  margin-top: 4px;
-  padding: 20px 20px 20px 20px;
-  justify-content: space-between;
-  background-color: #fff;
-`;
-
-const RecTitle = styled.Text`
+const RecTitle = styled(Text)`
   font-family: 'NotoSansKR-Bold';
   font-size: 12px;
   line-height: 16px;
@@ -33,7 +25,7 @@ const RecTitle = styled.Text`
 `;
 
 /* 가이드라인 */
-const GuideLineTitle = styled.Text`
+const GuideLineTitle = styled(Text)`
   font-family: 'NotoSansKR-Regular';
   font-size: 12px;
   line-height: 17px;
@@ -43,65 +35,56 @@ const GuideLineTitle = styled.Text`
   padding-bottom: 20px;
 `;
 
-const GuideLineContainer = styled.View`
+const GuideLineContainer = styled(View)`
   padding-top: 25px;
   padding-bottom: 25px;
   background: #ffffff;
 `;
 
-/* bottom button container */
-const BottomConatiner = styled.View`
+const BottomConatiner = styled(View)`
   flex-direction: row;
   background: #ffffff;
   border: 0.3px solid #b4b4b4;
-
   padding: 8px 21px 8px 23px;
 `;
 
-const ChangeCountButton = styled.TouchableOpacity`
+const ChangeCountButton = styled(TouchableOpacity)`
   padding: 12px 118px;
-
   background: #e2f955;
   border-radius: 5px;
-
   height: 48px;
 `;
 
-const ChangeCountText = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
+const ChangeCountText = styled(Text)`
+  font-family: 'NotoSansKR-Regular';
   font-size: 16px;
   line-height: 24px;
   text-align: center;
   color: #000000;
 `;
 
-const LikeButton = styled.TouchableOpacity`
+const LikeButton = styled(TouchableOpacity)`
   margin: 14.5px 0 14.5px 13px;
 `;
 
-const LikeCount = styled.Text`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
+const LikeCount = styled(Text)`
+  font-family: 'NotoSansKR-Regular';
   font-size: 16px;
   line-height: 24px;
   display: flex;
   align-items: center;
   color: #8b8b8b;
-
   margin-top: 11px;
   margin-left: 3px;
 `;
 
-const BorderLine = styled.View`
+const BorderLine = styled(View)`
   height: 4px;
   border: 0.35px solid #eaeaea;
   background: #f3f3f3;
 `;
 
-const CounterContainer = styled.View`
+const CounterContainer = styled(View)`
   padding: 17px 20px 24px 20px;
 `;
 
