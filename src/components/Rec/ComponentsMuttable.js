@@ -97,56 +97,43 @@ const PlusPressable = styled.Pressable`
   padding: 11px 0 11px 6px;
 `;
 
+const ItemImage = styled(Image)`
+  width: 35px;
+  height: 35px;
+`;
+
 const ComponentsMuttable = ({state, setState, component}) => {
-  console.log(state.components);
-  const minusCount = () => {
-    let components = state?.components?.map(_component => {
-      if (component.id === _component.id) {
-        return {
-          ..._component,
-          count: _component.count - 1,
-        };
-      } else {
-        return components;
-      }
-    });
-  };
-
-  const plusCount = () => {
-    let components = state.components.map(_component => {
-      if (component.id === _component.id) {
-        return {
-          ..._component,
-          count: _component.count + 1,
-        };
-      } else {
-        return _component;
-      }
-    });
-
-    setState(prev => ({
-      ...prev,
-      components,
-    }));
-  };
+  console.log(state?.components);
   return (
     <ItemBox>
       <ItemSmallBox>
         <ItemLeft>
-          <Image
-            source={require('../../../assets/rec_set_item_image_sample.png')}
-          />
-          <ItemName>{component}</ItemName>
+          <ItemImage source={{uri: state?.recSingle?.img}} />
+          <ItemName>{component.name}</ItemName>
         </ItemLeft>
         <ItemRight>
           <Counter>
-            <MinusPressable onPress={minusCount}>
+            <MinusPressable
+              onPress={() => {
+                let componentCnt = component?.count;
+                component.count = Math.max(1, componentCnt - 1);
+                setState(prev => ({
+                  ...prev,
+                }));
+              }}>
               <Image source={require('../../../assets/minus.png')} />
             </MinusPressable>
             <ItemCountBlock>
-              <ItemCount>{state?.teamCnt}</ItemCount>
+              <ItemCount>{component?.count}</ItemCount>
             </ItemCountBlock>
-            <PlusPressable onPress={plusCount}>
+            <PlusPressable
+              onPress={() => {
+                let componentCnt = component?.count;
+                component.count = Math.max(1, componentCnt + 1);
+                setState(prev => ({
+                  ...prev,
+                }));
+              }}>
               <Image source={require('../../../assets/plus.png')} />
             </PlusPressable>
           </Counter>
