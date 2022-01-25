@@ -39,7 +39,7 @@ const ENTRIES1 = [
 const {width: screenWidth} = Dimensions.get('window');
 
 const MyCarousel = ({state, setState}) => {
-  console.log(state?.recSingle?.guideImages);
+  // console.log(state?.recSingle?.guideImages);
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
 
