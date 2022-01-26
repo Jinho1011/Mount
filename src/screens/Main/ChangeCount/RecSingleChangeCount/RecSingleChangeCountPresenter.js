@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import styled from 'styled-components';
-import SingleCounter from '../../../../components/Rec/SingleCounter';
 import ComponentsMuttable from '../../../../components/Rec/ComponentsMuttable';
 import RecSingleTotalPrice from '../../../../components/Rec/RecSingleTotalPrice';
 import Modal from '../../../../components/Modal';
 import PlannerButton from '../../../../components/Common/ProposalButton';
+import SingleCounter2 from '../../../../components/Rec/SingleCounter2';
 
 const ScrollContainer = styled(ScrollView)`
   background-color: #fff;
@@ -41,21 +41,25 @@ const ModalWrap = styled.Pressable`
 `;
 
 export default function RecSingleChangeCountPresenter({state, setState}) {
-  const component = state?.components;
   const [isClicked, setIsClicked] = useState(false);
-  const [selectedPlanner, setSelectedPlanner] = useState('');
+  const [selected, setSelected] = useState({});
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
       <ScrollContainer>
-        <SingleCounter state={state} setState={setState} />
+        <SingleCounter2 state={state} setState={setState} />
         <ComponentsContainerTitle>구성품</ComponentsContainerTitle>
         <ComponentsContainer>
-          <ComponentsMuttable
-            state={state}
-            setState={setState}
-            component={component}
-          />
+          {state?.components?.map(component => {
+            return (
+              <ComponentsMuttable
+                state={state}
+                setState={setState}
+                component={component}
+                key={component.id}
+              />
+            );
+          })}
         </ComponentsContainer>
         <TotalPriceContainer>
           <RecSingleTotalPrice state={state} setState={setState} />
@@ -67,15 +71,10 @@ export default function RecSingleChangeCountPresenter({state, setState}) {
             isClicked={isClicked}
             onPress={() => {
               setIsClicked(false);
-              setSelectedPlanner('');
+              setSelected({});
             }}
           />
-          <Modal
-            isClicked={isClicked}
-            setIsClicked={setIsClicked}
-            selectedPlanner={selectedPlanner}
-            setSelectedPlanner={setSelectedPlanner}
-          />
+          <Modal selected={selected} setSelected={setSelected} />
         </>
       ) : (
         <></>
@@ -84,8 +83,7 @@ export default function RecSingleChangeCountPresenter({state, setState}) {
         state={state}
         isClicked={isClicked}
         setIsClicked={setIsClicked}
-        selectedPlanner={selectedPlanner}
-        setSelectedPlanner={setSelectedPlanner}
+        selected={selected}
       />
     </>
   );
