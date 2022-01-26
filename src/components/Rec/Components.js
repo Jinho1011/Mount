@@ -89,14 +89,18 @@ const Counter = styled.View`
   flex-direction: row;
 `;
 
+const ItemImage = styled(Image)`
+  width: 32px;
+  height: 32px;
+`;
+
 const Components = ({state, setState, component}) => {
+  console.log(state?.recSingle?.img);
   return (
     <ItemBox>
       <ItemSmallBox>
         <ItemLeft>
-          <Image
-            source={require('../../../assets/rec_set_item_image_sample.png')}
-          />
+          <ItemImage source={{uri: state?.recSingle?.img}} />
           <ItemName>{component}</ItemName>
         </ItemLeft>
         <ItemRight>
