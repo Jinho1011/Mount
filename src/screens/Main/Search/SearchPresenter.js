@@ -9,9 +9,11 @@ import {
 } from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
+
 import {Searchbar_closeSvg, Back_bSvg} from '../../../components/assets';
 import FocusAwareStatusBar from '../../../components/StatusBar';
 import DetailsContainer from '../../../components/Main/Details';
+import SearchTab from '../../../components/Search/TabBar';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -227,30 +229,34 @@ export default ({state, setState}) => {
           <></>
         )}
       </SearchHeader>
-      <RecentContainer>
-        <RecentTitle>최근 검색어</RecentTitle>
-        <Recents horizontal={true}>
-          {state.recents.length > 0 ? (
-            state.recents.map(data => {
-              return (
-                <Recent
-                  onPress={() => {
-                    console.log('Delete Recent');
-                  }}>
-                  <RecentText>{data}</RecentText>
-                  <Searchbar_closeSvg width={11} height={11} fill={'#8b8b8b'} />
-                </Recent>
-              );
-            })
-          ) : (
-            <RecentEmpty>최근 검색어가 없습니다.</RecentEmpty>
-          )}
-        </Recents>
-      </RecentContainer>
       {isEntered ? (
-        <></>
+        <SearchTab />
       ) : (
         <>
+          <RecentContainer>
+            <RecentTitle>최근 검색어</RecentTitle>
+            <Recents horizontal={true}>
+              {state.recents.length > 0 ? (
+                state.recents.map(data => {
+                  return (
+                    <Recent
+                      onPress={() => {
+                        console.log('Delete Recent');
+                      }}>
+                      <RecentText>{data}</RecentText>
+                      <Searchbar_closeSvg
+                        width={11}
+                        height={11}
+                        fill={'#8b8b8b'}
+                      />
+                    </Recent>
+                  );
+                })
+              ) : (
+                <RecentEmpty>최근 검색어가 없습니다.</RecentEmpty>
+              )}
+            </Recents>
+          </RecentContainer>
           <RecommandsContainer>
             <DetailsContainer
               title="Mount 추천 세트"
