@@ -99,7 +99,8 @@ const getRemainder = (memberCnt, teamCnt) => {
   return memberCnt % teamCnt;
 };
 
-const SingleCounter = ({state, setState}) => {
+const SingleCounter2 = ({state, setState}) => {
+  console.log(state?.components);
   let quotient = state?.memberCnt / state?.teamCnt;
   let remainder = getRemainder(state?.memberCnt, state?.teamCnt);
   let totalTeam = state?.teamCnt;
@@ -154,6 +155,9 @@ const SingleCounter = ({state, setState}) => {
             <Pressable
               onPress={() => {
                 let teamCnt = state.teamCnt;
+                state.components.map(
+                  component => (component.count = Math.max(teamCnt - 1)),
+                );
                 setState(prev => ({
                   ...prev,
                   teamCnt: Math.max(1, teamCnt - 1),
@@ -167,6 +171,9 @@ const SingleCounter = ({state, setState}) => {
             <Pressable
               onPress={() => {
                 let teamCnt = state.teamCnt;
+                state.components.map(
+                  component => (component.count = Math.max(teamCnt + 1)),
+                );
                 setState(prev => ({
                   ...prev,
                   teamCnt: Math.max(1, teamCnt + 1),
@@ -181,4 +188,4 @@ const SingleCounter = ({state, setState}) => {
   );
 };
 
-export default SingleCounter;
+export default SingleCounter2;
