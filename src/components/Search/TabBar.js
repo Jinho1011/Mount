@@ -11,21 +11,61 @@ import {
 import styled from 'styled-components';
 import {TabView, SceneMap} from 'react-native-tab-view';
 
+import Items from './Items';
+
 const screenWidth = Dimensions.get('window').width;
+
+const Container = styled.View`
+  padding-left: 23px;
+  background-color: #ffffff;
+  border-bottom-width: 0.3px;
+  border-bottom-color: #b4b4b4;
+`;
+
+const TabWrapper = styled.View`
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  padding-left: 0px;
+`;
+
+const TabButton = styled.Pressable`
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 47px;
+  margin-right: 5px;
+  border-bottom-width: 4px;
+  border-bottom-color: ${props =>
+    props.isFocused ? '#000000' : 'transparent'};
+`;
+
+const TabText = styled.Text`
+  font-family: 'NotoSansKR-Bold';
+  font-size: 16px;
+  line-height: 24px;
+  color: ${props => (props.isFocused ? '#000000' : '#8B8B8B')};
+`;
+
+const ItemContainer = styled.ScrollView``;
 
 const TabBar = () => {
   const [index, setIndex] = useState(0);
   const [routes] = useState([
-    {key: 'first', title: 'First'},
-    {key: 'second', title: 'Second'},
+    {key: 'first', title: '음식'},
+    {key: 'second', title: '레크'},
   ]);
 
   const FirstRoute = () => (
-    <View style={{flex: 1, backgroundColor: '#ff4081'}} />
+    <ItemContainer>
+      <Items items={[]} />
+    </ItemContainer>
   );
 
   const SecondRoute = () => (
-    <View style={{flex: 1, backgroundColor: '#673ab7'}} />
+    <ItemContainer>
+      <Items items={[]} />
+    </ItemContainer>
   );
 
   const renderScene = SceneMap({
@@ -35,25 +75,17 @@ const TabBar = () => {
 
   const renderTabBar = props => {
     return (
-      <View
-        style={{
-          flexDirection: 'row',
-        }}>
-        {props.navigationState.routes.map((route, i) => {
-          return (
-            <TouchableOpacity
-              key={i}
-              style={{
-                flex: 1,
-                alignItems: 'center',
-                padding: 16,
-              }}
-              onPress={() => setIndex(i)}>
-              <Text>{route.title}</Text>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
+      <Container>
+        <TabWrapper>
+          {props.navigationState.routes.map((route, i) => {
+            return (
+              <TabButton onPress={() => setIndex(i)} isFocused={index === i}>
+                <TabText isFocused={index === i}>{route.title}</TabText>
+              </TabButton>
+            );
+          })}
+        </TabWrapper>
+      </Container>
     );
   };
 
