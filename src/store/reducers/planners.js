@@ -8,6 +8,7 @@ export default (state = initialState, action) => {
       const newPlanner = {
         id: state.planners.length,
         title: action.title,
+        memberCnt: 0,
         items: {
           rec: [],
           food: [],
@@ -47,10 +48,12 @@ export default (state = initialState, action) => {
       const id = action.id;
       const category = action.category;
       const newItems = action.items;
+      const memberCnt = action.memberCnt;
       const addedPlanners = state.planners.map(planner => {
         if (planner.id === id) {
           return {
             ...planner,
+            memberCnt,
             items: {
               ...planner.items,
               [category]: [...planner.items[category], ...newItems],

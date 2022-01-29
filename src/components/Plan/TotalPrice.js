@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
+import {View} from 'react-native';
 import {CloseSvg} from '.././../components/assets';
 
 const TotalContainer = styled.View`
@@ -80,35 +81,58 @@ const TotalPriceText = styled.Text`
   text-align: right;
 `;
 
-const TotalPrice = ({state}) => {
-  console.log('🚀 ~ file: TotalPrice.js ~ line 83 ~ TotalPrice ~ state', state);
-  // state = {id, items: {rec, food}, tittle}
+const NoMemberCntContainer = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
-  // let price = 0;
-  // for (let i = 0; i < isPressedArr.length; i++) {
-  //   price = parseInt(
-  //     (price + isPressedArr[i].count * isPressedArr[i].price) / memberCnt,
-  //     10,
-  //   );
-  // }
-  // let total = memberCnt * price;
+const TotalPrice = ({state}) => {
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const initState = item => {
+    setTotalPrice(prev => prev + item.count * item.price);
+  };
+
+  useEffect(() => {
+    state.items.food.map(item => {
+      initState(item);
+    });
+
+    state.items.rec.map(item => {
+      initState(item);
+    });
+  }, []);
+
   return (
     <TotalContainer>
-      {/* <StyledTitle>총 예상금액</StyledTitle>
+      <StyledTitle>총 예상금액</StyledTitle>
       <SmallContainer>
-        <PriceBox>
-          <PriceBoxTitle>1인 기준</PriceBoxTitle>
-          <Price>{price} 원</Price>
-        </PriceBox>
-        <MultiplyImgBox>
-          <CloseSvg width={16} height={16} />
-        </MultiplyImgBox>
-        <Count>{memberCnt}</Count>
-        <TotalPriceBox>
-          <TotalPriceTitle>총 금액</TotalPriceTitle>
-          <TotalPriceText>{total} 원</TotalPriceText>
-        </TotalPriceBox>
-      </SmallContainer> */}
+        {state.memberCnt > 0 ? (
+          <>
+            <PriceBox>
+              <PriceBoxTitle>1인 기준</PriceBoxTitle>
+              <Price>{totalPrice / state.memberCnt} 원</Price>
+            </PriceBox>
+            <MultiplyImgBox>
+              <CloseSvg width={16} height={16} />
+            </MultiplyImgBox>
+            <Count>{state.memberCnt}</Count>
+            <TotalPriceBox>
+              <TotalPriceTitle>총 금액</TotalPriceTitle>
+              <TotalPriceText>{totalPrice} 원</TotalPriceText>
+            </TotalPriceBox>
+          </>
+        ) : (
+          <NoMemberCntContainer>
+            <View />
+            <TotalPriceBox>
+              <TotalPriceTitle>총 금액</TotalPriceTitle>
+              <TotalPriceText>{totalPrice} 원</TotalPriceText>
+            </TotalPriceBox>
+          </NoMemberCntContainer>
+        )}
+      </SmallContainer>
     </TotalContainer>
   );
 };
