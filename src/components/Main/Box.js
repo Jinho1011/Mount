@@ -79,7 +79,7 @@ const Box = ({item}) => {
           params: {id: item.id},
         });
       }}>
-      <BoxImage source={{uri: item.img}} type={item.displayType}></BoxImage>
+      <BoxImage source={{uri: item.img}} type={item.displayType} />
       <BoxInfoContainer>
         <BoxLeft>
           <BoxTitle>{item.title}</BoxTitle>

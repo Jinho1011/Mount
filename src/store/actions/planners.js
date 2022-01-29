@@ -13,8 +13,8 @@ export const addItem = (id, item, category) => {
   return {type: ADD_ITEM, id, item, category};
 };
 
-export const addItems = (id, items, category) => {
-  return {type: ADD_ITEMS, id, items, category};
+export const addItems = (id, items, memberCnt, category) => {
+  return {type: ADD_ITEMS, id, items, memberCnt, category};
 };
 
 export const deletePlanner = id => {

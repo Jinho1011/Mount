@@ -1,7 +1,13 @@
 import React from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 import styled from 'styled-components';
-import {MountSvg, Back_bSvg, Projectfile_bSvg} from '../../components/assets';
+import {
+  MountSvg,
+  Back_bSvg,
+  Back_wSvg,
+  Projectfile_bSvg,
+  Projectfile_wSvg,
+} from '../../components/assets';
 import {useSelector} from 'react-redux';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
@@ -31,8 +37,9 @@ const HeaderText = styled.Text`
 
 export const HeaderLeft = ({canGoBack}) => {
   const navigation = useNavigation();
+  const route = useRoute();
 
-  if (canGoBack) {
+  if (canGoBack && route.name !== 'MyPage') {
     return (
       <Pressable onPress={() => navigation.goBack()}>
         <Back_bSvg width={24} height={24} />

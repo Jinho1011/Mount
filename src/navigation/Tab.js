@@ -1,13 +1,12 @@
 import React from 'react';
 import {Image} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Header} from '../components/Header/Header';
+import {Header, HeaderTitle} from '../components/Header/Header';
 
 import Homes from './Homes';
 import Search from '../screens/Main/Search';
 import Favorite from '../screens/Main/Favorite';
 import My from '../screens/Main/My';
-import Test from '../screens/Test';
 
 import {
   Mount_icon_gnb_hambugerSvg,
@@ -138,7 +137,6 @@ const Tabs = () => (
         }}
       />
     </TabsNavigator.Group>
-    <TabsNavigator.Screen name="Test" component={Test} />
   </TabsNavigator.Navigator>
 );
 
