@@ -49,7 +49,6 @@ export default ({state}) => {
             return <Box item={item} key={item.type + item.id} />;
           } else {
             const item1 = itemArr[0];
-            ``;
             const item2 = itemArr[1];
             return (
               <SmallBoxContainer key={item1.type + item1.id}>
