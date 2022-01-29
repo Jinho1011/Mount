@@ -87,7 +87,6 @@ const Counter = styled(View)`
 `;
 
 const Components = ({state, setState, item}) => {
-  console.log(item);
   return (
     <ItemBox>
       <ItemSmallBox>

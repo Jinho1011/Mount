@@ -132,7 +132,6 @@ const Item = ({state, setState, item}) => {
     }));
   };
 
-  console.log(item);
   return (
     <ItemBox>
       <ItemSmallBox>
