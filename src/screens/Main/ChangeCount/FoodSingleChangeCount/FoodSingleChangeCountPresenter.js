@@ -86,7 +86,6 @@ const TotalPriceContainer = styled(View)`
 
 export default function FoodSingleChnageCountPresenter({state, setState}) {
   const [isClicked, setIsClicked] = useState(false);
-  const [selectedPlanner, setSelectedPlanner] = useState('');
   const [selected, setSelected] = useState({});
   return (
     <>

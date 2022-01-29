@@ -16,10 +16,20 @@ const BottomConatiner = styled.View`
 const PlannerButton = styled.TouchableOpacity`
   flex: 1;
   padding: 12px 135px;
-  background: ${props =>
-    Number.isInteger(props.selected.id) && props.isClicked
-      ? '#e2f955'
-      : '#F3F3F3'};
+  background: ${props => {
+    if (
+      (!props.isClicked && !Number.isInteger(props.selected.id)) ||
+      (props.isClicked && Number.isInteger(props.selected.id))
+    ) {
+      return '#e2f955';
+    } else {
+      return '#F3F3F3';
+    }
+
+    // Number.isInteger(props.selected.id) && props.isClicked
+    //   ? '#e2f955'
+    //   : '#F3F3F3'
+  }};
   align-content: center;
   justify-content: center;
   border-radius: 5px;
@@ -34,6 +44,19 @@ const PlannerText = styled.Text`
 `;
 
 const ProposalButton = ({state, isClicked, setIsClicked, selected}) => {
+  console.log(
+    '🚀 ~ file: ProposalButton.js ~ line 37 ~ ProposalButton ~ selected',
+    selected,
+  );
+
+  console.log(
+    '🚀 ~ file: ProposalButton.js ~ line 37 ~ ProposalButton ~ isClicked',
+    isClicked,
+  );
+  console.log(
+    '🚀 ~ file: ProposalButton.js ~ line 37 ~ ProposalButton ~ state',
+    state,
+  );
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const planners = useSelector(state => state.planners.planners);
