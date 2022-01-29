@@ -8,7 +8,13 @@ const RecSingleChangeCountContainer = ({route}) => {
   });
   useEffect(() => {
     (async () => {
-      let recSingle = route.params._state.recSingle;
+      let teamCnt = route.params._state.teamCnt;
+      let components = route.params._state.components;
+
+      components.map(component => {
+        component.count = teamCnt;
+        return component;
+      });
 
       setState({
         isLoaded: true,

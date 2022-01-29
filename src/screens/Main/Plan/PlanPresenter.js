@@ -131,14 +131,6 @@ export default ({state, setState}) => {
     setTitle(e);
   };
 
-  // useEffect(() => {
-  //   console.log('🚀 ~ file: PlanPresenter.js ~ line 139 ~ title', title);
-  // }, [title]);
-
-  // useEffect(() => {
-  //   console.log('🚀 ~ file: PlanPresenter.js ~ line 143 ~ state', state);
-  // }, [state]);
-
   return (
     <Container>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />

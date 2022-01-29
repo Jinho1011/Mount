@@ -1,23 +1,22 @@
 import React from 'react';
-import {Image} from 'react-native';
-import {useNavigation, CommonActions} from '@react-navigation/native';
+import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 import TitleContainer from '../../../../components/Common/SetTitle';
 import Counter from '../../../../components/Food/Counter';
 import Components from '../../../../components/Food/Components';
-
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
 import _ from 'lodash';
 
-const PageWrap = styled.View``;
+const PageWrap = styled(View)``;
 
-const ScrollContainer = styled.ScrollView`
+const ScrollContainer = styled(ScrollView)`
   background-color: #fff;
 `;
 
-const FoodSetListTitle = styled.Text`
+const FoodSetListTitle = styled(Text)`
   font-family: 'NotoSansKR-Bold';
   line-height: 16px;
   font-size: 12px;
@@ -25,50 +24,45 @@ const FoodSetListTitle = styled.Text`
   margin-top: 32px;
 `;
 
-const ItemsContainer = styled.View`
+const ItemsContainer = styled(View)`
   margin-top: 18px;
   padding-left: 15px;
   padding-right: 35px;
 `;
 
 /* bottom button container */
-const BottomConatiner = styled.View`
+const BottomConatiner = styled(View)`
   flex-direction: row;
   justify-content: space-between;
   background: #ffffff;
   border: 0.3px solid #b4b4b4;
-
   padding: 8px 21px 8px 23px;
 `;
 
-const ChangeCountButton = styled.TouchableOpacity`
+const ChangeCountButton = styled(TouchableOpacity)`
   padding: 12px 102px;
-
   background: #e2f955;
   border-radius: 5px;
-
   height: 48px;
 `;
 
-const ChangeCountText = styled.Text`
+const ChangeCountText = styled(Text)`
   font-family: 'NotoSansKR-Regular';
-  font-style: normal;
-  font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
   color: #000000;
 `;
 
-const LikeView = styled.View`
+const LikeView = styled(View)`
   flex-direction: row;
   padding-top: 13px;
   padding-left: 13px;
 `;
 
-const LikeButton = styled.TouchableOpacity``;
+const LikeButton = styled(TouchableOpacity)``;
 
-const LikeCount = styled.Text`
+const LikeCount = styled(Text)`
   font-family: 'NotoSansKR-Regular';
   font-size: 16px;
   line-height: 24px;
@@ -78,21 +72,21 @@ const LikeCount = styled.Text`
   padding-left: 3px;
 `;
 
-const ContentContainer = styled.View`
+const ContentContainer = styled(View)`
   padding-left: 20px;
 `;
 
-const TotalPriceContainer = styled.View`
+const TotalPriceContainer = styled(View)`
   padding-top: 25px;
   padding-bottom: 19px;
   padding-right: 20px;
 `;
 
-const CautionContainer = styled.View`
+const CautionContainer = styled(View)`
   padding: 24px 20px 17px 20px;
 `;
 
-const BorderLine = styled.View`
+const BorderLine = styled(View)`
   height: 4px;
   border: 0.35px solid #eaeaea;
   background: #f3f3f3;
