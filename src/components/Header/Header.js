@@ -37,8 +37,9 @@ const HeaderText = styled.Text`
 
 export const HeaderLeft = ({canGoBack}) => {
   const navigation = useNavigation();
+  const route = useRoute();
 
-  if (canGoBack) {
+  if (canGoBack && route.name !== 'MyPage') {
     return (
       <Pressable onPress={() => navigation.goBack()}>
         <Back_bSvg width={24} height={24} />
