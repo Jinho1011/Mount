@@ -86,7 +86,7 @@ const PlanItemsContainer = ({category, items}) => {
 
   useEffect(() => {
     let totalPrice = 0;
-    items[type]?.map(item => (totalPrice += item.price));
+    items[type]?.map(item => (totalPrice += item.price * item.count));
     setTotalPrice(totalPrice);
   }, []);
 
