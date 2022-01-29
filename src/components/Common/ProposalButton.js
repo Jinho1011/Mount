@@ -44,8 +44,6 @@ const ProposalButton = ({state, isClicked, setIsClicked, selected}) => {
         selected={selected}
         isClicked={isClicked}
         onPress={() => {
-          console.log(selected);
-          console.log(Number.isInteger(selected.id));
           if (selected.hasOwnProperty('id')) {
             const category =
               state.hasOwnProperty('foodSet') ||
@@ -53,7 +51,9 @@ const ProposalButton = ({state, isClicked, setIsClicked, selected}) => {
                 ? 'food'
                 : 'rec';
 
-            dispatch(addItems(selected.id, state.items, category));
+            dispatch(
+              addItems(selected.id, state.items, state.memberCnt, category),
+            );
             navigation.navigate('Planner', {id: selected.id});
           } else {
             setIsClicked(!isClicked);
