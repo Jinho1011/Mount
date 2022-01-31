@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {View, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import FocusAwareStatusBar from '../../../../components/StatusBar';
 
 import Box from '../../../components/Main/Box';
 
@@ -38,6 +39,8 @@ export default ({state}) => {
 
   return (
     <FavContainer>
+      <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+
       {itemArr.map(item => {
         if (item.length === 2) {
           return (
