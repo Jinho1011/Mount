@@ -1,5 +1,12 @@
-import React from 'react';
-import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 import TitleContainer from '../../../../components/Common/SetTitle';
@@ -9,6 +16,11 @@ import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
 import _ from 'lodash';
 import Items from '../../../../components/Rec/Items';
+import Modal from 'react-native-modal';
+import {
+  CloseSvg,
+  Mount_icon_gnb_hambuger_Svg,
+} from '../../../../components/assets';
 
 const PageWrap = styled(View)``;
 
@@ -129,8 +141,41 @@ const TotalPriceContainer = styled(View)`
   padding-top: 25px;
 `;
 
+/* react-native-modal */
+const StyledSafeAreaView = styled.SafeAreaView`
+  flex: 1;
+`;
+
+const StyledModalContainer = styled.View`
+  flex-direction: column;
+  /* 모달창 크기 조절 */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+`;
+
+const ModalTitleContainer = styled(View)`
+  display: flex;
+  align-items: flex-end;
+`;
+
+const ModalCloseButton = styled(Pressable)`
+  width: 24px;
+  height: 24px;
+  margin-top: 31px;
+  margin-right: 21px;
+`;
+
+const ModalImage = styled(View)`
+  width: 300px;
+  height: 300px;
+`;
+
 const RecreationSetPresenter = ({state, setState}) => {
   const navigation = useNavigation();
+  //State를 이용하여 Modal을 제어함
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
@@ -159,7 +204,7 @@ const RecreationSetPresenter = ({state, setState}) => {
                 />
               );
             })}
-            <MoreRecButton onPress={() => console.log('press')}>
+            <MoreRecButton onPress={() => setModalVisible(true)}>
               <MoreRecButtonText>레크 정보 더보기</MoreRecButtonText>
             </MoreRecButton>
           </RecSetListItemBigContainer>
@@ -175,6 +220,28 @@ const RecreationSetPresenter = ({state, setState}) => {
             caution={state?.recSet.caution}
           />
         </CautionContainer>
+        <StyledSafeAreaView>
+          <Modal
+            isVisible={modalVisible}
+            useNativeDriver={true}
+            hideModalContentWhileAnimating={true}
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <StyledModalContainer>
+              <ModalTitleContainer>
+                <ModalCloseButton
+                  onPress={() => {
+                    setModalVisible(false);
+                    console.log(state?.recSet);
+                  }}>
+                  <CloseSvg />
+                </ModalCloseButton>
+                <ModalImage>
+                  <Image source={{uri: state?.recSet?.img}} />
+                </ModalImage>
+              </ModalTitleContainer>
+            </StyledModalContainer>
+          </Modal>
+        </StyledSafeAreaView>
       </ScrollContainer>
       <BottomConatiner>
         <ChangeCountButton
