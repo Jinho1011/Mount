@@ -17,10 +17,8 @@ import Caution from '../../../../components/Common/Caution';
 import _ from 'lodash';
 import Items from '../../../../components/Rec/Items';
 import Modal from 'react-native-modal';
-import {
-  CloseSvg,
-  Mount_icon_gnb_hambuger_Svg,
-} from '../../../../components/assets';
+import {CloseSvg} from '../../../../components/assets';
+import SetCarousel from '../../../../components/Rec/SetCarousel';
 
 const PageWrap = styled(View)``;
 
@@ -146,30 +144,70 @@ const StyledSafeAreaView = styled.SafeAreaView`
   flex: 1;
 `;
 
-const StyledModalContainer = styled.View`
+const StyledModalContainer = styled(View)`
+  flex: 1;
   flex-direction: column;
   /* 모달창 크기 조절 */
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 1);
-  border-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 `;
 
-const ModalTitleContainer = styled(View)`
+const StyledModal = styled(Modal)`
+  margin: 0;
+`;
+
+const ModalHeader = styled(View)`
   display: flex;
   align-items: flex-end;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  margin-top: 31px;
+  margin-right: 21px;
 `;
 
 const ModalCloseButton = styled(Pressable)`
   width: 24px;
   height: 24px;
-  margin-top: 31px;
-  margin-right: 21px;
 `;
 
-const ModalImage = styled(View)`
-  width: 300px;
-  height: 300px;
+const ModalImageBox = styled(View)`
+  width: 100%;
+`;
+
+const ModalImage = styled(Image)`
+  width: 100%;
+  height: 245px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+`;
+
+const ModalContentsContainer = styled(View)`
+  padding: 18px 26px 20px 26px;
+`;
+
+const ModalContentsTitle = styled(Text)`
+  font-family: 'NotoSansKR-Bold';
+  font-size: 18px;
+  line-height: 26px;
+`;
+
+const ModalGuideLineTitle = styled(Text)`
+  padding-top: 40px;
+  font-family: 'NotoSansKR-Bold';
+  font-size: 12px;
+  line-height: 16px;
+`;
+
+const ModalContentsDescription = styled(Text)`
+  padding-top: 4px;
+  font-family: 'NotosansKR-Regular';
+  font-size: 10px;
+  line-height: 15px;
+  color: #777;
 `;
 
 const RecreationSetPresenter = ({state, setState}) => {
@@ -179,7 +217,6 @@ const RecreationSetPresenter = ({state, setState}) => {
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
-
       <ScrollContainer>
         <TitleContainer
           img={state?.recSet?.img}
@@ -221,26 +258,34 @@ const RecreationSetPresenter = ({state, setState}) => {
           />
         </CautionContainer>
         <StyledSafeAreaView>
-          <Modal
+          <StyledModal
             isVisible={modalVisible}
+            animationIn="zoomIn"
+            animationOut="zoomOut"
             useNativeDriver={true}
-            hideModalContentWhileAnimating={true}
-            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            hideModalContentWhileAnimating={true}>
             <StyledModalContainer>
-              <ModalTitleContainer>
+              <ModalHeader>
                 <ModalCloseButton
                   onPress={() => {
                     setModalVisible(false);
-                    console.log(state?.recSet);
                   }}>
                   <CloseSvg />
                 </ModalCloseButton>
-                <ModalImage>
-                  <Image source={{uri: state?.recSet?.img}} />
-                </ModalImage>
-              </ModalTitleContainer>
+              </ModalHeader>
+              <ModalImageBox>
+                <ModalImage source={{uri: state?.recSet?.img}} />
+              </ModalImageBox>
+              <ModalContentsContainer>
+                <ModalContentsTitle>제목</ModalContentsTitle>
+                <ModalContentsDescription>
+                  한줄설명길이
+                </ModalContentsDescription>
+                <ModalGuideLineTitle>저희 레크는요...</ModalGuideLineTitle>
+              </ModalContentsContainer>
+              <SetCarousel state={state} setState={setState} />
             </StyledModalContainer>
-          </Modal>
+          </StyledModal>
         </StyledSafeAreaView>
       </ScrollContainer>
       <BottomConatiner>
