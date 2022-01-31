@@ -6,6 +6,11 @@ export default [
     subtitle: '세트설명어쩌구저쩌구어쩌..',
     caution: '주의사항입니다',
     like: 22,
+    guideImages: [
+      'https://dummyimage.com/600x253/000/fff',
+      'https://dummyimage.com/600x253/000/fff',
+      'https://dummyimage.com/600x253/000/fff',
+    ],
     items: [
       {
         id: 1,

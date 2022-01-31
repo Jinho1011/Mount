@@ -97,7 +97,7 @@ const PriceContainer = styled(View)`
 `;
 
 const ComponentsTitle = styled(Text)`
-  font-family: 'NotoSansKR-Bold'
+  font-family: 'NotoSansKR-Bold';
   font-size: 12px;
   line-height: 17px;
   padding-bottom: 10px;

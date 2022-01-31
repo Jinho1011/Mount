@@ -6,14 +6,12 @@ import {
   StyleSheet,
   TouchableOpacity,
   Platform,
-  Image,
 } from 'react-native';
 
 const {width: screenWidth} = Dimensions.get('window');
 
-const MyCarousel = ({state, setState}) => {
-  const ENTRIES1 = state?.recSingle?.guideImages;
-  console.log(ENTRIES1);
+const SetCarousel = ({state, setState}) => {
+  const ENTRIES1 = state?.recSet?.guideImages;
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
 
@@ -55,7 +53,7 @@ const MyCarousel = ({state, setState}) => {
   );
 };
 
-export default MyCarousel;
+export default SetCarousel;
 
 const styles = StyleSheet.create({
   container: {
