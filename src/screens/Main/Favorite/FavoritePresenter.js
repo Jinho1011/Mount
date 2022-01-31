@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {View, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import FocusAwareStatusBar from '../../../../components/StatusBar';
+import FocusAwareStatusBar from '../../../components/StatusBar';
 
 import Box from '../../../components/Main/Box';
 
