@@ -1,5 +1,12 @@
-import React from 'react';
-import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 import TitleContainer from '../../../../components/Common/SetTitle';
@@ -9,6 +16,9 @@ import TotalPrice from '../../../../components/Common/TotalPrice';
 import Caution from '../../../../components/Common/Caution';
 import _ from 'lodash';
 import Items from '../../../../components/Rec/Items';
+import Modal from 'react-native-modal';
+import {CloseSvg} from '../../../../components/assets';
+import SetCarousel from '../../../../components/Rec/SetCarousel';
 
 const PageWrap = styled(View)``;
 
@@ -129,12 +139,84 @@ const TotalPriceContainer = styled(View)`
   padding-top: 25px;
 `;
 
+/* react-native-modal */
+const StyledSafeAreaView = styled.SafeAreaView`
+  flex: 1;
+`;
+
+const StyledModalContainer = styled(View)`
+  flex: 1;
+  flex-direction: column;
+  /* 모달창 크기 조절 */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 1);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+`;
+
+const StyledModal = styled(Modal)`
+  margin: 0;
+`;
+
+const ModalHeader = styled(View)`
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  margin-top: 31px;
+  margin-right: 21px;
+`;
+
+const ModalCloseButton = styled(Pressable)`
+  width: 24px;
+  height: 24px;
+`;
+
+const ModalImageBox = styled(View)`
+  width: 100%;
+`;
+
+const ModalImage = styled(Image)`
+  width: 100%;
+  height: 245px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+`;
+
+const ModalContentsContainer = styled(View)`
+  padding: 18px 26px 20px 26px;
+`;
+
+const ModalContentsTitle = styled(Text)`
+  font-family: 'NotoSansKR-Bold';
+  font-size: 18px;
+  line-height: 26px;
+`;
+
+const ModalGuideLineTitle = styled(Text)`
+  padding-top: 40px;
+  font-family: 'NotoSansKR-Bold';
+  font-size: 12px;
+  line-height: 16px;
+`;
+
+const ModalContentsDescription = styled(Text)`
+  padding-top: 4px;
+  font-family: 'NotosansKR-Regular';
+  font-size: 10px;
+  line-height: 15px;
+  color: #777;
+`;
+
 const RecreationSetPresenter = ({state, setState}) => {
   const navigation = useNavigation();
+  //State를 이용하여 Modal을 제어함
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
-
       <ScrollContainer>
         <TitleContainer
           img={state?.recSet?.img}
@@ -159,7 +241,7 @@ const RecreationSetPresenter = ({state, setState}) => {
                 />
               );
             })}
-            <MoreRecButton>
+            <MoreRecButton onPress={() => setModalVisible(true)}>
               <MoreRecButtonText>레크 정보 더보기</MoreRecButtonText>
             </MoreRecButton>
           </RecSetListItemBigContainer>
@@ -175,6 +257,36 @@ const RecreationSetPresenter = ({state, setState}) => {
             caution={state?.recSet.caution}
           />
         </CautionContainer>
+        <StyledSafeAreaView>
+          <StyledModal
+            isVisible={modalVisible}
+            animationIn="zoomIn"
+            animationOut="zoomOut"
+            useNativeDriver={true}
+            hideModalContentWhileAnimating={true}>
+            <StyledModalContainer>
+              <ModalHeader>
+                <ModalCloseButton
+                  onPress={() => {
+                    setModalVisible(false);
+                  }}>
+                  <CloseSvg />
+                </ModalCloseButton>
+              </ModalHeader>
+              <ModalImageBox>
+                <ModalImage source={{uri: state?.recSet?.img}} />
+              </ModalImageBox>
+              <ModalContentsContainer>
+                <ModalContentsTitle>제목</ModalContentsTitle>
+                <ModalContentsDescription>
+                  한줄설명길이
+                </ModalContentsDescription>
+                <ModalGuideLineTitle>저희 레크는요...</ModalGuideLineTitle>
+              </ModalContentsContainer>
+              <SetCarousel state={state} setState={setState} />
+            </StyledModalContainer>
+          </StyledModal>
+        </StyledSafeAreaView>
       </ScrollContainer>
       <BottomConatiner>
         <ChangeCountButton
