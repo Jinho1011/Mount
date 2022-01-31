@@ -159,7 +159,7 @@ const RecreationSetPresenter = ({state, setState}) => {
                 />
               );
             })}
-            <MoreRecButton>
+            <MoreRecButton onPress={() => console.log('press')}>
               <MoreRecButtonText>레크 정보 더보기</MoreRecButtonText>
             </MoreRecButton>
           </RecSetListItemBigContainer>
