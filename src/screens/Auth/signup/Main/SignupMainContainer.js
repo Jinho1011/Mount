@@ -4,43 +4,35 @@ import SignupMainPresenter from './SignupMainPresenter';
 import {useNavigation} from '@react-navigation/native';
 import {kakaoSignup} from '../../../../store/actions/users';
 import {login, getProfile} from '@react-native-seoul/kakao-login';
+//import {NaverLogin, getNaverProfile} from '@react-native-seoul/naver-login';
+import {AsyncStorage} from 'react-native';
 
 export default () => {
   const users = useSelector(state => state.users);
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const signupDetailPress = () => navigation.navigate('SignupDetail');
-  const [state, setState] = useState({
-    accessToken: '',
-    refreshToken: '',
-    email: '',
-    nickname: '',
-  });
-
   const signInWithKakao = async () => {
     const token = await login();
     const profile = await getProfile();
 
     if (token) {
-      setState({
-        accessToken: token.accessToken,
-        refreshToken: token.refreshToken,
-        email: profile.email,
-        nickname: profile.nickname,
-      });
-
-      let body = {
+      let KakaoBody = {
         accessToken: token.accessToken,
         refreshToken: token.refreshToken,
         email: profile.email,
         nickname: profile.nickname,
       };
-
-      dispatch(kakaoSignup(body));
+      AsyncStorage.setItem(
+        'userData',
+        JSON.stringify({
+          KakaoBody,
+        }),
+      );
+      //console.log(KakaoBody);
       navigation.navigate('Tutorial');
     }
   };
-
   return (
     <SignupMainPresenter
       signupDetailPress={signupDetailPress}
