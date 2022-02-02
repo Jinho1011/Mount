@@ -73,7 +73,7 @@ export default ({
   emailChangeHandler,
   passwordChangeHandler,
   passwordCheckChangeHandler,
-  onPressHandler,
+  signupSuccessHandler,
 }) => {
   return (
     <Container>
@@ -130,7 +130,7 @@ export default ({
         //   !(state.emailValid && state.passwordValid && state.passwordCheckValid)
         // }
         disabled={false} //임시
-        onPress={onPressHandler}>
+        onPress={signupSuccessHandler}>
         <SignupText>회원가입</SignupText>
       </SignupButton>
     </Container>

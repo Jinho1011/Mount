@@ -26,13 +26,13 @@ const ButtonText = styled.Text`
   text-align: center;
 `;
 
-export default ({signupDetailPress, signInWithKakao, getKakaoProfile}) => {
+export default ({signupDetailPress, signInWithKakao}) => {
   return (
     <Container>
       <TouchableOpacity
         marginTop="426px"
         bgColor="#FFE600"
-        onPress={(signInWithKakao, getKakaoProfile)}>
+        onPress={signInWithKakao}>
         <ButtonText>카카오로 등록</ButtonText>
       </TouchableOpacity>
       <TouchableOpacity bgColor="#20E41C">
