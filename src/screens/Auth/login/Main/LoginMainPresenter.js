@@ -1,5 +1,4 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
 const Container = styled.View`
@@ -27,13 +26,10 @@ const ButtonText = styled.Text`
   text-align: center;
 `;
 
-export default () => {
-  const navigation = useNavigation();
-  const loginDetailPress = () => navigation.navigate('LoginDetail');
-
+export default ({loginDetailPress, loginWithKakao}) => {
   return (
     <Container>
-      <TouchableOpacity marginTop="426px">
+      <TouchableOpacity marginTop="426px" onPress={loginWithKakao}>
         <ButtonText>카카오톡 로그인</ButtonText>
       </TouchableOpacity>
       <TouchableOpacity>

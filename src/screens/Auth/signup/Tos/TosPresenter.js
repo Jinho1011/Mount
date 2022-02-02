@@ -95,7 +95,7 @@ export default ({
   secondCheckPress,
 }) => {
   const navigation = useNavigation();
-  const LoginMainPress = () => navigation.navigate('LoginMain');
+  const TutorialPress = () => navigation.navigate('Tutorial');
   return (
     <Container>
       <TitleText>이용 약관 동의</TitleText>
@@ -151,7 +151,7 @@ export default ({
       <TosTextBox>이용 약관 내용 첨부</TosTextBox>
       <SignupButton
         disabled={!(state.firstCheck && state.secondCheck)}
-        onPress={LoginMainPress}>
+        onPress={TutorialPress}>
         <SignupText>회원가입</SignupText>
       </SignupButton>
     </Container>
