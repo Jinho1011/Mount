@@ -11,7 +11,7 @@ export default () => {
   // 앱 처음 실행 시
   useEffect(() => {
     async function init() {
-      AsyncStorage.removeItem('userData');
+      //AsyncStorage.removeItem('userData');
       const value = await AsyncStorage.getItem('userData');
       if (value.includes('password')) {
         // 아이디와 비밀번호로 회원가입한 적이 있으므로 다시 서버에 로그인 요청해서 JWT 재발급 후

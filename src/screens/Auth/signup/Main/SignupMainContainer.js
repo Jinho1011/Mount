@@ -2,14 +2,19 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import SignupMainPresenter from './SignupMainPresenter';
 import {useNavigation} from '@react-navigation/native';
-import {kakaoSignup} from '../../../../store/actions/users';
 import {login, getProfile} from '@react-native-seoul/kakao-login';
 //import {NaverLogin, getNaverProfile} from '@react-native-seoul/naver-login';
 import {AsyncStorage} from 'react-native';
 
+export let KakaoBody = {
+  accessToken: '',
+  refreshToken: '',
+  email: '',
+  nickname: '',
+};
+
 export default () => {
   const users = useSelector(state => state.users);
-  const dispatch = useDispatch();
   const navigation = useNavigation();
   const signupDetailPress = () => navigation.navigate('SignupDetail');
   const signInWithKakao = async () => {
@@ -17,7 +22,7 @@ export default () => {
     const profile = await getProfile();
 
     if (token) {
-      let KakaoBody = {
+      KakaoBody = {
         accessToken: token.accessToken,
         refreshToken: token.refreshToken,
         email: profile.email,
@@ -29,7 +34,6 @@ export default () => {
           KakaoBody,
         }),
       );
-      //console.log(KakaoBody);
       navigation.navigate('Tutorial');
     }
   };

@@ -1,5 +1,4 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
 
 const Container = styled.View`
@@ -8,14 +7,11 @@ const Container = styled.View`
 `;
 
 const LoginButton = styled.TouchableOpacity`
-  width: 87%;
-  height: 48px;
-  margin-top: 618px;
-  margin-left: 23px;
-  border-radius: 5px;
   background-color: #e2f955;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  border-radius: 5px;
+  height: 48px;
+  justify-content: center;
+  margin: 594px 23px 0px 23px;
 `;
 
 const LoginText = styled.Text`
@@ -26,13 +22,10 @@ const LoginText = styled.Text`
   text-align: center;
 `;
 
-export default props => {
-  const navigation = useNavigation();
-  const onPress = () => navigation.navigate('Tutorial'); //다음으로 이동
-
+export default ({startPress}) => {
   return (
     <Container>
-      <LoginButton>
+      <LoginButton onPress={startPress}>
         <LoginText>시작 하기</LoginText>
       </LoginButton>
     </Container>
