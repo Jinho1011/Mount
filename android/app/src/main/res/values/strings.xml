@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Mount</string>
     <string name="kakao_app_key">1567139dba51359c2db6f401225ae6c2</string>
+    <string name="server_client_id">469644707016-3umer38b3mlc6do4kjr562or3as36eda.apps.googleusercontent.com</string>
 </resources>
