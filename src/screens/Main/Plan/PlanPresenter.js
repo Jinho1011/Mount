@@ -3,8 +3,8 @@ import {Dimensions} from 'react-native';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
-import {modifyPlannerTitle} from '../../../store/actions/planners';
 
+import {modifyPlannerTitle} from '../../../store/actions/planners';
 import FocusAwareStatusBar from '../../../components/StatusBar';
 import PlanItemsContainer from '../../../components/Plan/PlanItems';
 import TotalPrice from '../../../components/Plan/TotalPrice';

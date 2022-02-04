@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Pressable} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
+import KakaoShareLink from 'react-native-kakao-share-link';
 import Modal from 'react-native-modal';
 
 const ModalContainer = styled.View`
@@ -29,7 +30,7 @@ const ModalShareContainer = styled.View`
   justify-content: space-between;
 `;
 
-const ModalShare = styled.View`
+const ModalShare = styled.Pressable`
   justify-content: center;
 `;
 
@@ -90,6 +91,51 @@ const PlanModal = ({toggleModal, setToggleModal, items}) => {
     setToggleModal(!toggleModal);
   };
 
+  const sendCustom = async () => {
+    try {
+      const response = await KakaoShareLink.sendCommerce({
+        content: {
+          title: 'title',
+          imageUrl:
+            'http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg',
+          link: {
+            webUrl: 'https://developers.kakao.com/',
+            mobileWebUrl: 'https://developers.kakao.com/',
+          },
+          description: 'description',
+        },
+        commerce: {
+          regularPrice: 100000,
+          discountPrice: 80000,
+          discountRate: 20,
+        },
+        buttons: [
+          {
+            title: '앱에서 보기',
+            link: {
+              androidExecutionParams: [{key: 'key1', value: 'value1'}],
+              iosExecutionParams: [
+                {key: 'key1', value: 'value1'},
+                {key: 'key2', value: 'value2'},
+              ],
+            },
+          },
+          {
+            title: '웹에서 보기',
+            link: {
+              webUrl: 'https://developers.kakao.com/',
+              mobileWebUrl: 'https://developers.kakao.com/',
+            },
+          },
+        ],
+      });
+      console.log(response);
+    } catch (e) {
+      console.error(e);
+      console.error(e.message);
+    }
+  };
+
   return (
     <Modal isVisible={toggleModal} onBackdropPress={toggle}>
       <ModalContainer>
@@ -105,7 +151,7 @@ const PlanModal = ({toggleModal, setToggleModal, items}) => {
           </View>
         </ModalTitleContainer>
         <ModalShareContainer>
-          <ModalShare>
+          <ModalShare onPress={sendCustom}>
             <ModalShareImage></ModalShareImage>
             <ModalShareText>카카오톡 공유하기</ModalShareText>
           </ModalShare>

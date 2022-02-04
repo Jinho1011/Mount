@@ -1,5 +1,5 @@
 package com.mount;
-
+import com.reactnativekakaosharelink.KakaoShareLinkPackage;
 import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {
