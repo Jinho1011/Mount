@@ -174,7 +174,7 @@ export default ({state, setState}) => {
       <PlanModal
         toggleModal={toggleModal}
         setToggleModal={setToggleModal}
-        items={state?.planner}
+        state={state}
       />
     </Container>
   );
