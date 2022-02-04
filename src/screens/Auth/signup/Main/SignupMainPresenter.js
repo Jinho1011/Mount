@@ -26,19 +26,19 @@ const ButtonText = styled.Text`
   text-align: center;
 `;
 
-export default ({signupDetailPress, signInWithKakao}) => {
+export default ({signupDetailPress, signupWithKakao, signupWithGoogle}) => {
   return (
     <Container>
       <TouchableOpacity
         marginTop="426px"
         bgColor="#FFE600"
-        onPress={signInWithKakao}>
+        onPress={signupWithKakao}>
         <ButtonText>카카오로 등록</ButtonText>
       </TouchableOpacity>
       <TouchableOpacity bgColor="#20E41C">
         <ButtonText>네이버로 등록</ButtonText>
       </TouchableOpacity>
-      <TouchableOpacity bgColor="#FF5E5E">
+      <TouchableOpacity bgColor="#FF5E5E" onPress={signupWithGoogle}>
         <ButtonText>구글로 등록</ButtonText>
       </TouchableOpacity>
       <TouchableOpacity onPress={signupDetailPress} bgColor="#F3F3F3">

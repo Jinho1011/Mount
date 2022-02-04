@@ -5,6 +5,7 @@ import {signupUser} from '../../../../store/actions/users';
 import SignupDetailPresenter from './SignupDetailPresenter';
 import {AsyncStorage} from 'react-native';
 
+export let EtcSignBody = {email: '', password: ''};
 export default () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -54,7 +55,7 @@ export default () => {
 
   const signupSuccessHandler = e => {
     e.preventDefault();
-    let EtcSignBody = {
+    EtcSignBody = {
       email: state.email,
       password: state.password,
     };

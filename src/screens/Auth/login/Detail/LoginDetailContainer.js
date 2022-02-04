@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {loginUser} from '../../../../store/actions/users';
 import LoginDetailPresenter from './LoginDetailPresenter';
+import {AsyncStorage} from 'react-native';
+
+export let EtcLoginBody = {email: '', password: ''};
 
 export default () => {
   const dispatch = useDispatch();
@@ -42,23 +44,17 @@ export default () => {
 
   const loginSuccessHandler = e => {
     e.preventDefault();
-    let body = {
+    EtcLoginBody = {
       email: state.email,
       password: state.password,
     };
-    const login = dispatch(loginUser(body));
-    if (login.payload === true) {
-      console.log('success');
-    } else {
-      console.log('fail');
-    }
-  };
-
-  const tutorialPress = () => navigation.navigate('Tutorial'); //다음으로 이동
-
-  const onPressHandler = e => {
-    loginSuccessHandler(e);
-    tutorialPress();
+    AsyncStorage.setItem(
+      'userData',
+      JSON.stringify({
+        EtcLoginBody,
+      }),
+    );
+    navigation.navigate('Tutorial');
   };
 
   return (
@@ -66,7 +62,7 @@ export default () => {
       state={state}
       emailChangeHandler={emailChangeHandler}
       passwordChangeHandler={passwordChangeHandler}
-      onPressHandler={onPressHandler}
+      loginSuccessHandler={loginSuccessHandler}
     />
   );
 };

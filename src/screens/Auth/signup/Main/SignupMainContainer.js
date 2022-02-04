@@ -1,23 +1,35 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import SignupMainPresenter from './SignupMainPresenter';
 import {useNavigation} from '@react-navigation/native';
-import {kakaoSignup} from '../../../../store/actions/users';
 import {login, getProfile} from '@react-native-seoul/kakao-login';
 //import {NaverLogin, getNaverProfile} from '@react-native-seoul/naver-login';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {AsyncStorage} from 'react-native';
+
+export let KakaoBody = {
+  accessToken: '',
+  refreshToken: '',
+  email: '',
+  nickname: '',
+};
+
+export let GoogleBody = {
+  accessToken: '',
+  email: '',
+  name: '',
+};
 
 export default () => {
   const users = useSelector(state => state.users);
-  const dispatch = useDispatch();
   const navigation = useNavigation();
   const signupDetailPress = () => navigation.navigate('SignupDetail');
-  const signInWithKakao = async () => {
+  const signupWithKakao = async () => {
     const token = await login();
     const profile = await getProfile();
 
     if (token) {
-      let KakaoBody = {
+      KakaoBody = {
         accessToken: token.accessToken,
         refreshToken: token.refreshToken,
         email: profile.email,
@@ -29,14 +41,33 @@ export default () => {
           KakaoBody,
         }),
       );
-      //console.log(KakaoBody);
+      navigation.navigate('Tutorial');
+    }
+  };
+  const signupWithGoogle = async () => {
+    GoogleSignin.configure({});
+    const token = await GoogleSignin.getTokens();
+    const profile = await GoogleSignin.signIn();
+    if (token) {
+      GoogleBody = {
+        accessToken: token.accessToken,
+        email: profile.user.email,
+        name: profile.user.name,
+      };
+      AsyncStorage.setItem(
+        'userData',
+        JSON.stringify({
+          GoogleBody,
+        }),
+      );
       navigation.navigate('Tutorial');
     }
   };
   return (
     <SignupMainPresenter
       signupDetailPress={signupDetailPress}
-      signInWithKakao={signInWithKakao}
+      signupWithKakao={signupWithKakao}
+      signupWithGoogle={signupWithGoogle}
     />
   );
 };

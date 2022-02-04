@@ -88,7 +88,7 @@ export default ({
   state,
   emailChangeHandler,
   passwordChangeHandler,
-  onPressHandler,
+  loginSuccessHandler,
 }) => {
   const navigation = useNavigation();
   const loginFindPress = () => navigation.navigate('PwdFindMain');
@@ -131,7 +131,7 @@ export default ({
         //   !(state.emailValid && state.passwordValid && state.passwordCheckValid)
         // }
         disabled={false} //임시
-        onPress={onPressHandler}>
+        onPress={loginSuccessHandler}>
         <LoginText>로그인 하기</LoginText>
       </LoginButton>
       <FindPassword onPress={loginFindPress}>

@@ -6,7 +6,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'KAKAO_SIGNUP': {
+    case 'SOCIALMEDIA_SIGNUP': {
       // 서버로 정보를 보내면 jwt를 받음
       // const jwt = await getJwt(action.payload);
       const jwt = 'asfasdasfasd';
