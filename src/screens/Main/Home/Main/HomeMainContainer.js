@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {PermissionsAndroid} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
 import HomePresenter from './HomeMainPresenter';
@@ -11,6 +12,21 @@ export default () => {
     recs: [],
     isLoaded: false,
   });
+
+  const requestPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('You can use the WRITE_EXTERNAL_STORAGE');
+      } else {
+        console.log('WRITE_EXTERNAL_STORAGE permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
 
   const _loadData = async () => {
     const data = await fetch('/api/recommands');
@@ -50,6 +66,7 @@ export default () => {
 
   useEffect(() => {
     const init = async () => {
+      requestPermission();
       _loadData();
     };
     init();
