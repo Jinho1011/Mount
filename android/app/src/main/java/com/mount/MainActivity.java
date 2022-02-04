@@ -1,6 +1,7 @@
 package com.mount;
 import com.reactnativekakaosharelink.KakaoShareLinkPackage;
 import com.facebook.react.ReactActivity;
+import com.rnfs.RNFSPackage; // <------- add package
 
 public class MainActivity extends ReactActivity {
 
