@@ -28,7 +28,7 @@
     "react-native-collapsible-tab-view": "^4.4.0",
     "react-native-fs": "^2.18.0",
     "react-native-gesture-handler": "^1.10.3",
-    "react-native-kakao-links": "^1.0.6",
+    "react-native-kakao-share-link": "^1.0.6",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-modal": "^13.0.0",
     "react-native-pager-view": "^5.4.9",

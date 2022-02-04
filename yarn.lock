@@ -6979,6 +6979,11 @@
   "resolved" "https://registry.npmjs.org/react-native-kakao-links/-/react-native-kakao-links-1.0.6.tgz"
   "version" "1.0.6"
 
+"react-native-kakao-share-link@^1.0.6":
+  "integrity" "sha512-1jI6aIS1l6oZrc3kQ8OX0ehSvdyRosYcCzn7x3oJ/wqOy8DTeXvfsj3jexO6NdL3NfSQyNL81walRYFXhHlBfA=="
+  "resolved" "https://registry.npmjs.org/react-native-kakao-share-link/-/react-native-kakao-share-link-1.0.6.tgz"
+  "version" "1.0.6"
+
 "react-native-linear-gradient@^2.5.6":
   "integrity" "sha512-HDwEaXcQIuXXCV70O+bK1rizFong3wj+5Q/jSyifKFLg0VWF95xh8XQgfzXwtq0NggL9vNjPKXa016KuFu+VFg=="
   "resolved" "https://registry.npmjs.org/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz"
