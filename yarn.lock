@@ -1243,6 +1243,11 @@
   "resolved" "https://registry.npmjs.org/@react-native-community/slider/-/slider-4.1.12.tgz"
   "version" "4.1.12"
 
+"@react-native-google-signin/google-signin@^7.0.4":
+  "integrity" "sha512-N5uVDlTp/mgpa5gFr6VIr8pldt68jlmHOlqcTSnSwBuZXusXMiK53DCIOWuYk4OJ1rlb8Esa9J4FJwUB0psU9Q=="
+  "resolved" "https://registry.npmjs.org/@react-native-google-signin/google-signin/-/google-signin-7.0.4.tgz"
+  "version" "7.0.4"
+
 "@react-native-picker/picker@^1.9.10":
   "integrity" "sha512-pacdQDX6V6EmjF+HoiIh6u++qx4mTK0WnhgUHRc01B+Qt5eoeUwseBqmqfTSXTx/aHDEd6PiIw7UGvKgFoqgFQ=="
   "resolved" "https://registry.npmjs.org/@react-native-picker/picker/-/picker-1.16.8.tgz"
