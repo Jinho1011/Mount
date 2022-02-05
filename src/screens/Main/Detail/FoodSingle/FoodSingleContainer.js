@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getDetail} from '../../../../api/api';
+import {getDetail, getFoods} from '../../../../api/api';
 import FoodSinglePresenter from './FoodSinglePresenter';
 
 const FoodSingleContainer = ({navigation, route}) => {
@@ -10,7 +10,7 @@ const FoodSingleContainer = ({navigation, route}) => {
 
   useEffect(() => {
     const init = async () => {
-      let data = await getDetail('foodSingles', route.params?.id);
+      let data = await getFoods();
       let foodSingle = data.foodSingle;
       foodSingle.count = state.memberCnt;
 
