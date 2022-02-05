@@ -20,8 +20,36 @@ export default () => {
     for (let i = 0, max = foodSets.length; i < max; i++) {
       if (Math.random() > 0.5) {
         foodSets[i].display = 'long';
-        if (i + 1 < foodSets.length) foodSets[i + 1].display = 'long';
+        for (let j = 1; j <= 2; j++) {
+          if (i + j < max) {
+            foodSets[i + j].display = 'short';
+          }
+        }
       } else {
+        foodSets[i].display = 'long';
+        for (let j = 1; j <= 4; j++) {
+          if (i + j < max) {
+            foodSets[i + j].display = 'short';
+          }
+        }
+      }
+    }
+
+    for (let i = 0, max = recSets.length; i < max; i++) {
+      if (Math.random() > 0.5) {
+        recSets[i].display = 'long';
+        for (let j = 1; j <= 2; j++) {
+          if (i + j < max) {
+            recSets[i + j].display = 'short';
+          }
+        }
+      } else {
+        recSets[i].display = 'long';
+        for (let j = 1; j <= 4; j++) {
+          if (i + j < max) {
+            recSets[i + j].display = 'short';
+          }
+        }
       }
     }
 

@@ -50,13 +50,16 @@ export default ({state, setState}) => {
         navigate="HomeFoodDetail"
         items={state.foods}
         isLoaded={state.isLoaded}
+        type={type}
       />
       <DetailsContainer
         title="레크세트 어쩌구 문구"
         navigate="HomeRecDetail"
         items={state.recs}
         isLoaded={state.isLoaded}
+           type={type}
       /> */}
+      {/* FoodSet, FoodSingle, RecSet, RecSingle */}
     </ScrollContainer>
   );
 };
