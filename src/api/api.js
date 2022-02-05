@@ -1,17 +1,40 @@
 import axios from 'axios';
 
-const namespace = '/api';
+const namespace =
+  'http://mountwit-env.eba-zesvwpfj.ap-northeast-2.elasticbeanstalk.com';
 
-const getDetail = (label, id) => {
-  return axios.get(`${namespace}/${label}/${id}`).then(response => {
-    return response.data;
-  });
+export const getDatas = async label => {
+  const url = `${namespace}/${label}/?format=json`;
+
+  let config = {
+    method: 'get',
+    url,
+    headers: {},
+  };
+
+  return await axios(config)
+    .then(response => {
+      return response.data.data;
+    })
+    .catch(error => {
+      console.log(error);
+    });
 };
 
-const getDetails = label => {
-  return axios.get(`${namespace}/${label}`).then(response => {
-    return response.data;
-  });
-};
+export const getDetail = async (label, id) => {
+  const url = `${namespace}/${label}/${id}?format=json`;
 
-export {getDetail, getDetails};
+  let config = {
+    method: 'get',
+    url,
+    headers: {},
+  };
+
+  return await axios(config)
+    .then(response => {
+      return response.data.data;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};

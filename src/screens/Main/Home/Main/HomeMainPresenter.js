@@ -37,7 +37,7 @@ export default ({state, setState}) => {
 
   return (
     <ScrollContainer>
-      <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+      {/* <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
       <HomeHeaderContainer>
         <HomeHeaderTitle>입력된 문장</HomeHeaderTitle>
         <HomeHeaderSubTitle>
@@ -56,7 +56,7 @@ export default ({state, setState}) => {
         navigate="HomeRecDetail"
         items={state.recs}
         isLoaded={state.isLoaded}
-      />
+      /> */}
     </ScrollContainer>
   );
 };
