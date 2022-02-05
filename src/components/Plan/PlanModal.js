@@ -7,6 +7,8 @@ import KakaoShareLink from 'react-native-kakao-share-link';
 import Modal from 'react-native-modal';
 import XLSX from 'xlsx';
 
+import {KakaoSvg} from '../../components/assets';
+
 const ModalContainer = styled.View`
   background-color: #ffffff;
   border-radius: 12px;
@@ -29,17 +31,11 @@ const ModalClose = styled.Image``;
 const ModalShareContainer = styled.View`
   padding: 0 46px 45px 47px;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const ModalShare = styled.Pressable`
   justify-content: center;
-`;
-
-const ModalShareImage = styled.Image`
-  width: 48px;
-  height: 48px;
-  padding-bottom: 8px;
 `;
 
 const ModalShareText = styled.Text`
@@ -89,8 +85,6 @@ const ModalSaveText = styled.Text`
 `;
 
 const PlanModal = ({toggleModal, setToggleModal, state}) => {
-  const [directoryUri, setDirectoryUri] = useState('');
-
   const toggle = () => {
     setToggleModal(!toggleModal);
   };
@@ -175,7 +169,7 @@ const PlanModal = ({toggleModal, setToggleModal, state}) => {
         </ModalTitleContainer>
         <ModalShareContainer>
           <ModalShare onPress={sendCustom}>
-            <ModalShareImage></ModalShareImage>
+            <KakaoSvg width={48} height={48} style={{paddingBottom: 8}} />
             <ModalShareText>카카오톡 공유하기</ModalShareText>
           </ModalShare>
         </ModalShareContainer>
