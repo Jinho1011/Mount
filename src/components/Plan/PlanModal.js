@@ -1,8 +1,13 @@
 import React, {useState, useEffect} from 'react';
+import {StorageAccessFramework} from 'expo-file-system';
 import {View, Pressable} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
+import KakaoShareLink from 'react-native-kakao-share-link';
 import Modal from 'react-native-modal';
+import XLSX from 'xlsx';
+
+import {KakaoSvg} from '../../components/assets';
 
 const ModalContainer = styled.View`
   background-color: #ffffff;
@@ -26,17 +31,11 @@ const ModalClose = styled.Image``;
 const ModalShareContainer = styled.View`
   padding: 0 46px 45px 47px;
   flex-direction: row;
-  justify-content: space-between;
-`;
-
-const ModalShare = styled.View`
   justify-content: center;
 `;
 
-const ModalShareImage = styled.Image`
-  width: 48px;
-  height: 48px;
-  padding-bottom: 8px;
+const ModalShare = styled.Pressable`
+  justify-content: center;
 `;
 
 const ModalShareText = styled.Text`
@@ -85,9 +84,73 @@ const ModalSaveText = styled.Text`
   font-family: 'NotoSansKR-Regular';
 `;
 
-const PlanModal = ({toggleModal, setToggleModal, items}) => {
+const PlanModal = ({toggleModal, setToggleModal, state}) => {
   const toggle = () => {
     setToggleModal(!toggleModal);
+  };
+
+  const sendCustom = async () => {
+    try {
+      const combinedItems = [];
+      for (let item of state.planner.items.rec) {
+        if (combinedItems.length < 4) combinedItems.push(item);
+        else break;
+      }
+      for (let item of state.planner.items.food) {
+        if (combinedItems.length < 4) combinedItems.push(item);
+        else break;
+      }
+
+      const contents = combinedItems.map(item => {
+        return {
+          title: item.name,
+          imageUrl: item.img,
+          link: {
+            webUrl: 'https://developers.kakao.com/',
+            mobileWebUrl: 'https://developers.kakao.com/',
+          },
+          description: item.description,
+        };
+      });
+
+      const response = await KakaoShareLink.sendList({
+        headerTitle: state.planner.title,
+        headerLink: {
+          webUrl: 'https://developers.kakao.com/',
+          mobileWebUrl: 'https://developers.kakao.com/',
+        },
+        contents: contents,
+      });
+    } catch (e) {
+      console.error(e.message);
+    }
+  };
+
+  const savePlanner = async () => {
+    const permissions =
+      await StorageAccessFramework.requestDirectoryPermissionsAsync().catch(e =>
+        console.log('🚀 ~ file: PlanModal.js ~ line 141 ~ savePlanner ~ e', e),
+      );
+    if (permissions && permissions.granted) {
+      var wb = XLSX.utils.book_new();
+      var ws1 = XLSX.utils.json_to_sheet(state.planner.items.food);
+      var ws2 = XLSX.utils.json_to_sheet(state.planner.items.rec);
+
+      XLSX.utils.book_append_sheet(wb, ws1, 'food');
+      XLSX.utils.book_append_sheet(wb, ws2, 'rec');
+
+      const wbout = XLSX.write(wb, {type: 'binary', bookType: 'xlsx'});
+
+      StorageAccessFramework.createFileAsync(
+        permissions.directoryUri,
+        state.planner.title,
+        'application/vnd.ms-excel',
+      ).then(filepath =>
+        StorageAccessFramework.writeAsStringAsync(filepath, wbout, {
+          encoding: 'utf-8',
+        }).then(() => filepath),
+      );
+    }
   };
 
   return (
@@ -105,27 +168,16 @@ const PlanModal = ({toggleModal, setToggleModal, items}) => {
           </View>
         </ModalTitleContainer>
         <ModalShareContainer>
-          <ModalShare>
-            <ModalShareImage></ModalShareImage>
-            <ModalShareText>카카오톡 공유하기</ModalShareText>
-          </ModalShare>
-          <ModalShare>
-            <ModalShareImage></ModalShareImage>
-            <ModalShareText>카카오톡 공유하기</ModalShareText>
-          </ModalShare>
-          <ModalShare>
-            <ModalShareImage></ModalShareImage>
+          <ModalShare onPress={sendCustom}>
+            <KakaoSvg width={48} height={48} style={{paddingBottom: 8}} />
             <ModalShareText>카카오톡 공유하기</ModalShareText>
           </ModalShare>
         </ModalShareContainer>
         <ModalFooter>
           <ModalFileNameContainer>
-            <ModalFileName>최강산디 엠티 기획서.xlsx</ModalFileName>
+            <ModalFileName>{state.planner.title}</ModalFileName>
           </ModalFileNameContainer>
-          <ModalSaveBtn
-            onPress={() => {
-              console.log('저장하기');
-            }}>
+          <ModalSaveBtn onPress={savePlanner}>
             <ModalSaveText>저장하기</ModalSaveText>
           </ModalSaveBtn>
         </ModalFooter>
