@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import SignupDetailPresenter from './SignupDetailPresenter';
-import {USER_KEY, setData} from '../../../../api/storage';
+import {USER_KEY, storeData} from '../../../../api/storage';
 
 export let EtcSignBody = {email: '', password: ''};
 export default () => {
@@ -57,7 +57,7 @@ export default () => {
       password: state.password,
     };
 
-    await setData(USER_KEY, EtcSignBody);
+    await storeData(USER_KEY, EtcSignBody);
 
     navigation.navigate('SignupTos');
   };

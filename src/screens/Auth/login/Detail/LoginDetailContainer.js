@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import LoginDetailPresenter from './LoginDetailPresenter';
-import {USER_KEY, setData} from '../../../../api/storage';
+import {USER_KEY, storeData} from '../../../../api/storage';
 
 export let EtcLoginBody = {email: '', password: ''};
 
@@ -49,7 +49,7 @@ export default () => {
       password: state.password,
     };
 
-    await setData(USER_KEY, EtcLoginBody);
+    await storeData(USER_KEY, EtcLoginBody);
 
     navigation.navigate('Tutorial');
   };
