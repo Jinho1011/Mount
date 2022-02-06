@@ -2,7 +2,6 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import logger from 'redux-logger';
 
 import Gate from './components/Gate';
 import recommandsReducer from './store/reducers/recommands';
@@ -17,10 +16,7 @@ const rootReducer = combineReducers({
   search: searchReducer,
 });
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(logger)),
-);
+const store = createStore(rootReducer);
 
 export default function App() {
   return (
