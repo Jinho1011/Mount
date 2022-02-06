@@ -1,14 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity,
-  Keyboard,
-  Image,
-} from 'react-native';
+import {Dimensions} from 'react-native';
 import styled from 'styled-components';
 import {TabView, SceneMap} from 'react-native-tab-view';
 import Box from '../../components/Main/Box';
@@ -76,16 +67,7 @@ const TabBar = ({foodResults, recResults}) => {
     {key: 'second', title: '레크'},
   ]);
 
-  useEffect(() => {
-    // console.log(
-    //   '🚀 ~ file: TabBar.js ~ line 17 ~ TabBar ~ results',
-    //   foodResults,
-    // );
-    // console.log(
-    //   '🚀 ~ file: TabBar.js ~ line 17 ~ TabBar ~ results',
-    //   recResults,
-    // );
-  }, []);
+  useEffect(() => {}, []);
 
   const Component = ({items, type}) => {
     const itemsArr = [];
