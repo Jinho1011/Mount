@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {PermissionsAndroid} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import {getFoodSets, getRecSets, getFoods} from '../../../../api/api';
+import {useDispatch} from 'react-redux';
+import {getFoodSets, getRecSets} from '../../../../api/api';
 
 import HomePresenter from './HomeMainPresenter';
 import * as recommandsActions from '../../../../store/actions/recommands';
@@ -31,41 +31,38 @@ export default () => {
 
   const loadData = async () => {
     const foodSets = await getFoodSets();
+
     const recSets = await getRecSets();
 
     for (let i = 0, max = foodSets.length; i < max; i++) {
       if (Math.random() > 0.5) {
         foodSets[i].displayType = 'long';
-        for (let j = 1; j <= 2; j++) {
-          if (i + j < max) {
-            foodSets[i + j].displayType = 'short';
-          }
-        }
+        if (i + 1 < max) foodSets[i + 1].displayType = 'short';
+        if (i + 2 < max) foodSets[i + 2].displayType = 'short';
+        i += 2;
       } else {
-        foodSets[i].display = 'long';
-        for (let j = 1; j <= 4; j++) {
-          if (i + j < max) {
-            foodSets[i + j].displayType = 'short';
-          }
-        }
+        foodSets[i].displayType = 'long';
+        if (i + 1 < max) foodSets[i + 1].displayType = 'short';
+        if (i + 2 < max) foodSets[i + 2].displayType = 'short';
+        if (i + 3 < max) foodSets[i + 3].displayType = 'short';
+        if (i + 4 < max) foodSets[i + 4].displayType = 'short';
+        i += 4;
       }
     }
 
     for (let i = 0, max = recSets.length; i < max; i++) {
       if (Math.random() > 0.5) {
         recSets[i].displayType = 'long';
-        for (let j = 1; j <= 2; j++) {
-          if (i + j < max) {
-            recSets[i + j].displayType = 'short';
-          }
-        }
+        if (i + 1 < max) recSets[i + 1].displayType = 'short';
+        if (i + 2 < max) recSets[i + 2].displayType = 'short';
+        i += 2;
       } else {
-        recSets[i].display = 'long';
-        for (let j = 1; j <= 4; j++) {
-          if (i + j < max) {
-            recSets[i + j].displayType = 'short';
-          }
-        }
+        recSets[i].displayType = 'long';
+        if (i + 1 < max) recSets[i + 1].displayType = 'short';
+        if (i + 2 < max) recSets[i + 2].displayType = 'short';
+        if (i + 3 < max) recSets[i + 3].displayType = 'short';
+        if (i + 4 < max) recSets[i + 4].displayType = 'short';
+        i += 4;
       }
     }
 
