@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import {AsyncStorage} from 'react-native';
 import {View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 
 const MyContainer = styled.View`
   background-color: #ffffff;
