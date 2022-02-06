@@ -1,13 +1,10 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {signupUser} from '../../../../store/actions/users';
 import SignupDetailPresenter from './SignupDetailPresenter';
 import {AsyncStorage} from 'react-native';
 
 export let EtcSignBody = {email: '', password: ''};
 export default () => {
-  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const [state, setState] = useState({
@@ -62,7 +59,8 @@ export default () => {
     AsyncStorage.setItem(
       'userData',
       JSON.stringify({
-        EtcSignBody,
+        email: state.email,
+        password: state.password,
       }),
     );
     navigation.navigate('SignupTos');
