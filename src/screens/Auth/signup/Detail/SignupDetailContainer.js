@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import SignupDetailPresenter from './SignupDetailPresenter';
-import {AsyncStorage} from 'react-native';
+import {USER_KEY, setData} from '../../../../api/storage';
 
 export let EtcSignBody = {email: '', password: ''};
 export default () => {
@@ -50,19 +50,15 @@ export default () => {
     });
   };
 
-  const signupSuccessHandler = e => {
+  const signupSuccessHandler = async e => {
     e.preventDefault();
     EtcSignBody = {
       email: state.email,
       password: state.password,
     };
-    AsyncStorage.setItem(
-      'userData',
-      JSON.stringify({
-        email: state.email,
-        password: state.password,
-      }),
-    );
+
+    await setData(USER_KEY, EtcSignBody);
+
     navigation.navigate('SignupTos');
   };
 

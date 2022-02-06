@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import MyDetailPresenter from './MyDetailPresenter';
-import {AsyncStorage} from 'react-native';
+import {USER_KEY, getData, removeData} from '../../../../api/storage';
 import {useNavigation} from '@react-navigation/native';
 
 export default () => {
@@ -12,8 +12,8 @@ export default () => {
   const navigation = useNavigation();
   const myMainPress = () => navigation.navigate('MyMain');
   useEffect(() => {
-    AsyncStorage.getItem('userData', (err, result) => {
-      const value = JSON.parse(result);
+    const init = async () => {
+      const value = await getData(USER_KEY);
       if (value) {
         setState({
           email: value.email,
@@ -21,11 +21,14 @@ export default () => {
           name: value.name,
         });
       }
-    });
+    };
+    init();
   }, []);
-  const logOutPress = () => {
-    AsyncStorage.removeItem('userData');
+
+  const logOutPress = async () => {
+    await removeData(USER_KEY);
   };
+
   return (
     <MyDetailPresenter
       state={state}
