@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Dimensions,
-  ScrollView,
-  Keyboard,
-} from 'react-native';
+import {Dimensions, Keyboard} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 
@@ -56,6 +49,7 @@ const Input = styled.TextInput`
     }
   }};
   padding: 7px 0 5px 10px;
+  color: #000000;
   border-radius: 5px;
   margin-left: ${props => (props.isEntered ? 10 : 0)}px;
 `;
@@ -137,6 +131,8 @@ export default ({state, setState}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isEntered, setIsEntered] = useState(false);
   const [text, setText] = useState('');
+  const [foodResults, setFoodResults] = useState([]);
+  const [recResults, setRecResults] = useState([]);
   const navigation = useNavigation();
 
   const onChangeText = e => {
@@ -144,6 +140,17 @@ export default ({state, setState}) => {
   };
 
   const onSubmit = () => {
+    // state.recommands.foods와 rec 의 titel 중에서 text를 포함하는 결과
+    state.recommands.foods.map(item => {
+      if (item.title.includes(text)) {
+        setFoodResults(prev => [...prev, item]);
+      }
+    });
+    state.recommands.recs.map(item => {
+      if (item.title.includes(text)) {
+        setRecResults(prev => [...prev, item]);
+      }
+    });
     setIsEntered(true);
   };
 
@@ -230,7 +237,7 @@ export default ({state, setState}) => {
         )}
       </SearchHeader>
       {isEntered ? (
-        <SearchTab />
+        <SearchTab foodResults={foodResults} recResults={recResults} />
       ) : (
         <>
           <RecentContainer>
