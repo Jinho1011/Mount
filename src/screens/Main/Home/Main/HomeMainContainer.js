@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {PermissionsAndroid} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
+import {getFoodSets, getRecSets, getFoods} from '../../../../api/api';
 
 import HomePresenter from './HomeMainPresenter';
 import * as recommandsActions from '../../../../store/actions/recommands';
@@ -12,7 +13,7 @@ export default () => {
     recs: [],
     isLoaded: false,
   });
-
+  
   const requestPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
@@ -28,54 +29,71 @@ export default () => {
     }
   };
 
-  const _loadData = async () => {
-    const data = await fetch('/api/recommands');
-    const _foods = JSON.parse(data._bodyInit).foods.recomms;
-    const _recs = JSON.parse(data._bodyInit).recs.recomms;
 
-    const foods = await _loadItems(_foods, 'foods');
-    const recs = await _loadItems(_recs, 'recs');
+
+  const loadData = async () => {
+    const foodSets = await getFoodSets();
+    const recSets = await getRecSets();
+
+    for (let i = 0, max = foodSets.length; i < max; i++) {
+      if (Math.random() > 0.5) {
+        foodSets[i].display = 'long';
+        for (let j = 1; j <= 2; j++) {
+          if (i + j < max) {
+            foodSets[i + j].display = 'short';
+          }
+        }
+      } else {
+        foodSets[i].display = 'long';
+        for (let j = 1; j <= 4; j++) {
+          if (i + j < max) {
+            foodSets[i + j].display = 'short';
+          }
+        }
+      }
+    }
+
+    for (let i = 0, max = recSets.length; i < max; i++) {
+      if (Math.random() > 0.5) {
+        recSets[i].display = 'long';
+        for (let j = 1; j <= 2; j++) {
+          if (i + j < max) {
+            recSets[i + j].display = 'short';
+          }
+        }
+      } else {
+        recSets[i].display = 'long';
+        for (let j = 1; j <= 4; j++) {
+          if (i + j < max) {
+            recSets[i + j].display = 'short';
+          }
+        }
+      }
+    }
 
     setState(prev => ({
       ...prev,
-      foods,
-      recs,
+      foods: foodSets,
+      recs: recSets,
     }));
-
-    _setLoaded();
-  };
-
-  const _loadItems = async items => {
-    return await Promise.all(
-      items.map(async function (_item) {
-        const id = _item.id.split('-');
-        const displayType = _item.displayType;
-        const type = id[0].slice(0, -1);
-        const data = await fetch(`/api/${id[0]}/${id[1]}`);
-        const item = JSON.parse(data._bodyInit)[type];
-        item['type'] = type;
-        item['displayType'] = displayType;
-        return item;
-      }),
-    );
-  };
-
-  const _setLoaded = () => {
-    setState(prev => ({...prev, isLoaded: true}));
   };
 
   useEffect(() => {
     const init = async () => {
+      loadData();
       requestPermission();
-      _loadData();
     };
     init();
   }, []);
 
   useEffect(() => {
     if (state.foods.length > 0 && state.recs.length > 0) {
-      dispatch(recommandsActions.initFoods(state.foods));
-      dispatch(recommandsActions.initRecs(state.recs));
+      // dispatch(recommandsActions.initFoods(state.foods));
+      // dispatch(recommandsActions.initRecs(state.recs));
+      setState(prev => ({
+        ...prev,
+        isLoaded: true,
+      }));
     }
   }, [state]);
 
