@@ -9,7 +9,6 @@ import recommandsReducer from './store/reducers/recommands';
 import usersReducer from './store/reducers/users';
 import plannersReducer from './store/reducers/planners';
 import searchReducer from './store/reducers/search';
-import api from './mock';
 
 const rootReducer = combineReducers({
   recommands: recommandsReducer,
@@ -18,16 +17,7 @@ const rootReducer = combineReducers({
   search: searchReducer,
 });
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(logger)),
-);
-
-if (window.server) {
-  server.shutdown();
-}
-
-window.server = api;
+const store = createStore(rootReducer);
 
 export default function App() {
   return (
