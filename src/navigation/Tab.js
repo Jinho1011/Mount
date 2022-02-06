@@ -6,7 +6,7 @@ import {Header, HeaderTitle} from '../components/Header/Header';
 import Homes from './Homes';
 import Search from '../screens/Main/Search';
 import Favorite from '../screens/Main/Favorite';
-import My from '../screens/Main/My';
+import My from './My';
 
 import {
   Mount_icon_gnb_hambugerSvg,
