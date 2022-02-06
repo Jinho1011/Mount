@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {login, getProfile} from '@react-native-seoul/kakao-login';
 //import {NaverLogin, getNaverProfile} from '@react-native-seoul/naver-login';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {USER_KEY, setData} from '../../../../api/storage';
+import {USER_KEY, storeData} from '../../../../api/storage';
 
 export let KakaoBody = {
   accessToken: '',
@@ -35,7 +35,7 @@ export default () => {
         email: profile.email,
         nickname: profile.nickname,
       };
-      await setData(USER_KEY, KakaoBody);
+      await storeData(USER_KEY, KakaoBody);
       navigation.navigate('Tutorial');
     }
   };
@@ -50,7 +50,7 @@ export default () => {
         name: profile.user.name,
       };
 
-      await setData(USER_KEY, GoogleBody);
+      await storeData(USER_KEY, GoogleBody);
 
       navigation.navigate('Tutorial');
     }
