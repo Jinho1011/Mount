@@ -10,6 +10,7 @@ export default ({navigation, route}) => {
   });
 
   useEffect(() => {
+    console.log('🚀 ~ file: PlanContainer.js ~ line 11 ~ state', state);
     setState(prev => ({
       ...prev,
       planner: planners.find(planner => planner.id === id),
