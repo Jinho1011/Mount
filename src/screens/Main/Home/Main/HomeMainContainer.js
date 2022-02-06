@@ -13,23 +13,21 @@ export default () => {
     recs: [],
     isLoaded: false,
   });
-  
+
   const requestPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('You can use the WRITE_EXTERNAL_STORAGE');
+        // console.log('You can use the WRITE_EXTERNAL_STORAGE');
       } else {
-        console.log('WRITE_EXTERNAL_STORAGE permission denied');
+        // console.log('WRITE_EXTERNAL_STORAGE permission denied');
       }
     } catch (err) {
       console.warn(err);
     }
   };
-
-
 
   const loadData = async () => {
     const foodSets = await getFoodSets();
@@ -37,17 +35,17 @@ export default () => {
 
     for (let i = 0, max = foodSets.length; i < max; i++) {
       if (Math.random() > 0.5) {
-        foodSets[i].display = 'long';
+        foodSets[i].displayType = 'long';
         for (let j = 1; j <= 2; j++) {
           if (i + j < max) {
-            foodSets[i + j].display = 'short';
+            foodSets[i + j].displayType = 'short';
           }
         }
       } else {
         foodSets[i].display = 'long';
         for (let j = 1; j <= 4; j++) {
           if (i + j < max) {
-            foodSets[i + j].display = 'short';
+            foodSets[i + j].displayType = 'short';
           }
         }
       }
@@ -55,17 +53,17 @@ export default () => {
 
     for (let i = 0, max = recSets.length; i < max; i++) {
       if (Math.random() > 0.5) {
-        recSets[i].display = 'long';
+        recSets[i].displayType = 'long';
         for (let j = 1; j <= 2; j++) {
           if (i + j < max) {
-            recSets[i + j].display = 'short';
+            recSets[i + j].displayType = 'short';
           }
         }
       } else {
         recSets[i].display = 'long';
         for (let j = 1; j <= 4; j++) {
           if (i + j < max) {
-            recSets[i + j].display = 'short';
+            recSets[i + j].displayType = 'short';
           }
         }
       }
@@ -87,9 +85,10 @@ export default () => {
   }, []);
 
   useEffect(() => {
-    if (state.foods.length > 0 && state.recs.length > 0) {
-      // dispatch(recommandsActions.initFoods(state.foods));
-      // dispatch(recommandsActions.initRecs(state.recs));
+    if (state.recs.length > 0 && state.recs.length > 0 && !state.isLoaded) {
+      dispatch(recommandsActions.initFoods(state.foods));
+      dispatch(recommandsActions.initRecs(state.recs));
+
       setState(prev => ({
         ...prev,
         isLoaded: true,

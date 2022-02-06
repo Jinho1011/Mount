@@ -12,6 +12,7 @@ const ScrollContainer = styled.ScrollView`
   padding-top: 116px;
   padding-left: 23px;
   padding-right: 23px;
+  padding-bottom: 95px;
 `;
 
 const SmallBoxContainer = styled.View`
@@ -46,7 +47,9 @@ export default ({state}) => {
         {state?.items.map(itemArr => {
           if (itemArr.length === 1) {
             const item = itemArr[0];
-            return <Box item={item} key={item.type + item.id} />;
+            return (
+              <Box item={item} type={'FoodSet'} key={item.title + item.id} />
+            );
           } else {
             const item1 = itemArr[0];
             const item2 = itemArr[1];
