@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {PermissionsAndroid} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {getFoodSets, getRecSets, getFoods} from '../../../../api/api';
 
@@ -12,6 +13,23 @@ export default () => {
     recs: [],
     isLoaded: false,
   });
+  
+  const requestPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('You can use the WRITE_EXTERNAL_STORAGE');
+      } else {
+        console.log('WRITE_EXTERNAL_STORAGE permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+
 
   const loadData = async () => {
     const foodSets = await getFoodSets();
@@ -63,6 +81,7 @@ export default () => {
   useEffect(() => {
     const init = async () => {
       loadData();
+      requestPermission();
     };
     init();
   }, []);

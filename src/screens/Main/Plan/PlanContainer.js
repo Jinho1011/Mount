@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import PlanPresenter from './PlanPresenter';
+import {PLANNER_KEY, storeData} from '../../../api/storage';
 
 export default ({navigation, route}) => {
   const planners = useSelector(state => state.planners.planners);
@@ -10,6 +11,7 @@ export default ({navigation, route}) => {
   });
 
   useEffect(() => {
+    storeData(PLANNER_KEY, planners);
     setState(prev => ({
       ...prev,
       planner: planners.find(planner => planner.id === id),

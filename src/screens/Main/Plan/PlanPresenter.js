@@ -3,8 +3,8 @@ import {Dimensions} from 'react-native';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
-import {modifyPlannerTitle} from '../../../store/actions/planners';
 
+import {modifyPlannerTitle} from '../../../store/actions/planners';
 import FocusAwareStatusBar from '../../../components/StatusBar';
 import PlanItemsContainer from '../../../components/Plan/PlanItems';
 import TotalPrice from '../../../components/Plan/TotalPrice';
@@ -131,6 +131,8 @@ export default ({state, setState}) => {
     setTitle(e);
   };
 
+  useEffect(() => {}, [title]);
+
   return (
     <Container>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
@@ -154,14 +156,14 @@ export default ({state, setState}) => {
             </PlanEditBtn>
           </PlanTitleContainer>
         )}
-        <Divider></Divider>
+        <Divider />
         <PlanItemsContainer category={'레크'} items={state?.planner.items} />
-        <Divider></Divider>
+        <Divider />
         <PlanItemsContainer category={'음식'} items={state?.planner.items} />
         <TotalPriceContainer>
           <TotalPrice state={state?.planner} />
         </TotalPriceContainer>
-        <Divider></Divider>
+        <Divider />
         <CautionContainer>
           <Caution caution={'주의사항'} />
         </CautionContainer>
@@ -174,7 +176,7 @@ export default ({state, setState}) => {
       <PlanModal
         toggleModal={toggleModal}
         setToggleModal={setToggleModal}
-        items={state?.planner}
+        state={state}
       />
     </Container>
   );

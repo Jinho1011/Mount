@@ -2,6 +2,9 @@
   package="com.mount">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
     <application
       android:name=".MainApplication"
@@ -19,14 +22,15 @@
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+        </intent-filter>`
       </activity>
       <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
   <intent-filter>
       <action android:name="android.intent.action.VIEW" />
       <category android:name="android.intent.category.DEFAULT" />
       <category android:name="android.intent.category.BROWSABLE" />
-
+      <!-- <data android:scheme="@string/kakao_scheme" android:host="@string/kakaolink_host" /> -->
+      <data android:host="kakaolink" android:scheme="kakaokakao1567139dba51359c2db6f401225ae6c2" />
       <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ -->
       <data android:host="oauth"
           android:scheme="kakao1567139dba51359c2db6f401225ae6c2" />

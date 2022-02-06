@@ -38,7 +38,10 @@ export default () => {
       AsyncStorage.setItem(
         'userData',
         JSON.stringify({
-          KakaoBody,
+          accessToken: token.accessToken,
+          refreshToken: token.refreshToken,
+          email: profile.email,
+          nickname: profile.nickname,
         }),
       );
       navigation.navigate('Tutorial');
@@ -57,7 +60,9 @@ export default () => {
       AsyncStorage.setItem(
         'userData',
         JSON.stringify({
-          GoogleBody,
+          accessToken: token.accessToken,
+          email: profile.user.email,
+          name: profile.user.name,
         }),
       );
       navigation.navigate('Tutorial');

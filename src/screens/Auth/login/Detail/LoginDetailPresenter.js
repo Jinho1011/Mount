@@ -127,10 +127,9 @@ export default ({
         <HelpText color={false}>오류 원인 기재</HelpText>
       )}
       <LoginButton
-        // disabled={
-        //   !(state.emailValid && state.passwordValid && state.passwordCheckValid)
-        // }
-        disabled={false} //임시
+        disabled={
+          !(state.emailValid && state.passwordValid && state.passwordCheckValid)
+        }
         onPress={loginSuccessHandler}>
         <LoginText>로그인 하기</LoginText>
       </LoginButton>
