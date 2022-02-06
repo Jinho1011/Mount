@@ -21,6 +21,15 @@ export const getData = async key => {
   }
 };
 
+export const mergeData = async (key, value) => {
+  try {
+    const jsonValue = JSON.stringify(value);
+    await AsyncStorage.mergeItem(key, jsonValue);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 export const removeData = async key => {
   try {
     await AsyncStorage.removeItem(key);
