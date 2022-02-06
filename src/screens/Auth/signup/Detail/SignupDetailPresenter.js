@@ -105,9 +105,9 @@ export default ({
         returnKeyType={'done'}
       />
       {state.passwordBlank === state.passwordValid ? (
-        <HelpText color={true}>특수문자, 영문, 문자 포함 최소 8자리</HelpText>
+        <HelpText color={true}> </HelpText>
       ) : (
-        <HelpText color={false}>오류 원인 기재</HelpText>
+        <HelpText color={false}>특수문자, 영문, 문자 포함 최소 8자리</HelpText>
       )}
       <TextInput
         marginTop="8px"
@@ -121,9 +121,9 @@ export default ({
         returnKeyType={'done'}
       />
       {state.passwordCheckBlank === state.passwordCheckValid ? (
-        <HelpText color={true}>도움말 텍스트</HelpText>
+        <HelpText color={true}> </HelpText>
       ) : (
-        <HelpText color={false}>오류 원인 기재</HelpText>
+        <HelpText color={false}>비밀번호와 일치하지 않습니다.</HelpText>
       )}
       <SignupButton
         disabled={

@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {View} from 'react-native';
+import FocusAwareStatusBar from '../../../../components/StatusBar';
 
 const MyContainer = styled.View`
   background-color: #ffffff;
@@ -60,7 +61,6 @@ const NameTextInput = styled.TextInput`
   line-height: 24px;
   margin: 8px 23px 0px 23px;
   padding-left: 18px;
-  padding-bottom: 0px;
 `;
 
 const OutContainer = styled.View`
@@ -107,9 +107,10 @@ const SaveText = styled.Text`
   text-align: center;
 `;
 
-export default ({state, logOutPress, myMainPress}) => {
+export default ({state, logOutPress, savePress, nicknameChangeHandler}) => {
   return (
     <MyContainer>
+      <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
       <SettingText>이메일</SettingText>
       <MyProfileTextBox>{state.email}</MyProfileTextBox>
       <SettingText marginTop="17px">비밀번호</SettingText>
@@ -126,7 +127,12 @@ export default ({state, logOutPress, myMainPress}) => {
         }}
       />
       <SettingText2 marginTop="33px">닉네임</SettingText2>
-      <NameTextInput placeholder={state.name} placeholderTextColor="#000000" />
+      <NameTextInput
+        placeholder={state.name}
+        placeholderTextColor="#000000"
+        value={state.name}
+        onChangeText={nicknameChangeHandler}
+      />
       <OutContainer>
         <LogOutButton onPress={logOutPress}>
           <OutText>로그아웃</OutText>
@@ -142,7 +148,7 @@ export default ({state, logOutPress, myMainPress}) => {
           <OutText>회원탈퇴</OutText>
         </WithdrawalButton>
       </OutContainer>
-      <SaveButton onPress={myMainPress}>
+      <SaveButton onPress={savePress}>
         <SaveText>저장하기</SaveText>
       </SaveButton>
     </MyContainer>

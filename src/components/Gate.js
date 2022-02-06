@@ -14,6 +14,7 @@ export default () => {
   // 앱 처음 실행 시
   useEffect(() => {
     async function init() {
+      //removeData(USER_KEY);
       const value = await getData(USER_KEY);
       const planners = await getData(PLANNER_KEY);
 
@@ -30,11 +31,13 @@ export default () => {
   }, []);
 
   // 위 코드에서 else 부분 처리 후 회원가입 진행되고 실행되는 부분
-  // useEffect(() => {
-  //   if (userData.jwt !== '') {
-  //     setIsLoggedIn(true);
-  //   }
-  // }, [userData]);
+  useEffect(() => {
+    if (userData.jwt !== '') {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [userData]);
 
   return (
     <NavigationContainer>
