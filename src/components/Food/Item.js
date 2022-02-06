@@ -1,4 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
+import {toInteger} from 'lodash';
 import React from 'react';
 import {Pressable} from 'react-native';
 import styled from 'styled-components';
@@ -105,7 +106,6 @@ const HeartCount = styled.Text`
 `;
 
 export default function Item({item, state, setState}) {
-  console.log(item.id);
   const navigation = useNavigation();
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -150,7 +150,7 @@ export default function Item({item, state, setState}) {
       </ImageBox>
       <ContentBox>
         <NameText>{item.title}</NameText>
-        <DescriptionText>{item.subtitle}</DescriptionText>
+        <DescriptionText>{item.sub_title}</DescriptionText>
         <DetailNavBox
           key={item.type + item.id}
           onPress={() => {
@@ -171,7 +171,7 @@ export default function Item({item, state, setState}) {
         <HeartImageBox>
           <HeartImage source={require('../../../assets/plan_heart.png')} />
         </HeartImageBox>
-        <HeartCount>13</HeartCount>
+        <HeartCount>{toInteger(Math.random() * 60)}</HeartCount>
       </HeartBox>
     </Container>
   );

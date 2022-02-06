@@ -31,13 +31,13 @@ const SingleInfo = styled.Text`
   margin-top: 4px;
 `;
 
-const SingleTitle = ({name, img, recommendPerPerson}) => {
+const SingleTitle = ({image, title, description}) => {
   return (
     <SingleTitleContainer>
-      <SingleImage source={{uri: img}} />
+      <SingleImage source={{uri: image}} />
       <TransparentHeader style={{position: 'absolute', top: 0, right: 0}} />
-      <Name>{name}</Name>
-      <SingleInfo>1인 권장량 {recommendPerPerson}</SingleInfo>
+      <Name>{title}</Name>
+      <SingleInfo>1인 권장량 {description}</SingleInfo>
     </SingleTitleContainer>
   );
 };
