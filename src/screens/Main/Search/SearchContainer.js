@@ -12,9 +12,7 @@ export default () => {
     recommands: {foods, recs},
   });
 
-  useEffect(() => {
-    // console.log('🚀 ~ file: SearchContainer.js ~ line 11 ~ state', state);
-  }, [state]);
+  useEffect(() => {}, [state]);
 
   return <SearchPresenter state={state} setState={setState} />;
 };

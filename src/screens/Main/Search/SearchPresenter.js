@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Dimensions, Keyboard} from 'react-native';
 import styled from 'styled-components';
-import {useNavigation} from '@react-navigation/native';
 
 import {Searchbar_closeSvg, Back_bSvg} from '../../../components/assets';
 import FocusAwareStatusBar from '../../../components/StatusBar';
@@ -133,14 +132,12 @@ export default ({state, setState}) => {
   const [text, setText] = useState('');
   const [foodResults, setFoodResults] = useState([]);
   const [recResults, setRecResults] = useState([]);
-  const navigation = useNavigation();
 
   const onChangeText = e => {
     setText(e);
   };
 
   const onSubmit = () => {
-    // state.recommands.foods와 rec 의 titel 중에서 text를 포함하는 결과
     state.recommands.foods.map(item => {
       if (item.title.includes(text)) {
         setFoodResults(prev => [...prev, item]);
@@ -165,29 +162,19 @@ export default ({state, setState}) => {
     setRecResults([]);
   };
 
-  useEffect(() => {
-    // console.log('🚀 ~ file: SearchPresenter.js ~ line 134 ~ text', text);
-    // console.log(
-    //   '🚀 ~ file: SearchPresenter.js ~ line 134 ~ isEntered',
-    //   isEntered,
-    // );
-    // console.log(
-    //   '🚀 ~ file: SearchPresenter.js ~ line 134 ~ isEditing',
-    //   isEditing,
-    // );
-  }, [isEditing, isEntered, text]);
+  useEffect(() => {}, [isEditing, isEntered, text]);
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
       () => {
-        setIsEditing(true); // or some other action
+        setIsEditing(true);
       },
     );
     const keyboardDidHideListener = Keyboard.addListener(
       'keyboardDidHide',
       () => {
-        setIsEditing(false); // or some other action
+        setIsEditing(false);
       },
     );
 

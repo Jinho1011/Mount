@@ -1,7 +1,5 @@
 import React from 'react';
-import {View, Text, Pressable, Button, ScrollView} from 'react-native';
 import styled from 'styled-components';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import {useNavigation} from '@react-navigation/native';
 
 import FocusAwareStatusBar from '../../../../components/StatusBar';
@@ -33,8 +31,6 @@ const HomeHeaderSubTitle = styled.Text`
 `;
 
 export default ({state, setState}) => {
-  const navigation = useNavigation();
-
   return (
     <ScrollContainer>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
