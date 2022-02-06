@@ -1,17 +1,118 @@
 import axios from 'axios';
 
-const namespace = '/api';
+const namespace =
+  'http://mountwit-env.eba-zesvwpfj.ap-northeast-2.elasticbeanstalk.com';
 
-const getDetail = (label, id) => {
-  return axios.get(`${namespace}/${label}/${id}`).then(response => {
-    return response.data;
-  });
+export const getFoods = async () => {
+  const url = `${namespace}/foods/?format=json`;
+
+  let config = {
+    method: 'get',
+    url,
+    headers: {},
+  };
+
+  return await axios(config)
+    .then(response => {
+      return response.data.data;
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    });
 };
 
-const getDetails = label => {
-  return axios.get(`${namespace}/${label}`).then(response => {
-    return response.data;
-  });
+export const getRecs = async () => {
+  const url = `${namespace}/recs/?format=json`;
+
+  let config = {
+    method: 'get',
+    url,
+    headers: {},
+  };
+
+  return await axios(config)
+    .then(response => {
+      return response.data.data;
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    });
 };
 
-export {getDetail, getDetails};
+export const getFoodById = async id => {
+  const url = `${namespace}/foods/${id}?format=json`;
+
+  let config = {
+    method: 'get',
+    url,
+    headers: {},
+  };
+
+  return await axios(config)
+    .then(response => {
+      return response.data.data;
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    });
+};
+
+export const getRecById = async id => {
+  const url = `${namespace}/recs/${id}?format=json`;
+
+  let config = {
+    method: 'get',
+    url,
+    headers: {},
+  };
+
+  return await axios(config)
+    .then(response => {
+      return response.data.data;
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    });
+};
+
+export const getFoodSets = async () => {
+  const url = `${namespace}/foodset/?format=json`;
+
+  let config = {
+    method: 'get',
+    url,
+    headers: {},
+  };
+
+  return await axios(config)
+    .then(response => {
+      return response.data.data;
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    });
+};
+
+export const getRecSets = async () => {
+  const url = `${namespace}/recset/?format=json`;
+
+  let config = {
+    method: 'get',
+    url,
+    headers: {},
+  };
+
+  return await axios(config)
+    .then(response => {
+      return response.data.data;
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    });
+};
