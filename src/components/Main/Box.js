@@ -3,7 +3,7 @@ import {View, Text, Dimensions, LogBox} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 
-import {getFoodById, getRecById} from '../../api/api';
+import {getItemById} from '../../api/api';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -43,6 +43,12 @@ const BoxTitle = styled.Text`
   line-height: 20px;
 `;
 
+const BoxSubtitleContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+
 const BoxSubtitle = styled.Text`
   color: #8b8b8b8b;
   font-size: 10px;
@@ -52,6 +58,20 @@ const BoxSubtitle = styled.Text`
 
 const BoxRight = styled.View`
   padding-top: 2px;
+`;
+
+const BoxSetContainer = styled.View`
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  margin-right: 4px;
+`;
+
+const BoxSet = styled.Text`
+  color: #8b8b8b8b;
+  font-size: 8px;
+  font-family: 'NotoSansKR-Normal';
+  line-height: 12px;
+  padding: 2px 4px 1px 4px;
 `;
 
 const BoxHeart = styled.Image``;
@@ -64,23 +84,32 @@ const BoxHeartCount = styled.Text`
 `;
 
 const Box = ({item, type}) => {
-  const [state, setState] = useState({});
+  const [components, setComponents] = useState([]);
+  const [subtitle, setSubtitle] = useState('');
 
   useEffect(() => {
     const init = async () => {
-      const properyName = type === 'RecSet' ? 'recs_ids' : 'foods_ids';
+      const properyName = type === 'RecSet' ? 'recs_ids' : 'food_ids';
+      const category = type === 'RecSet' ? 'recs' : 'foods';
       const ids = item[properyName];
-      const singles = ids.map(async id => {
-        if (type === 'RecSet') {
-          return await getRecById(id);
-        } else {
-          return await getFoodById(id);
-        }
+      ids.map(async id => {
+        const data = await getItemById(category, id);
+        const title = data.title;
+        setComponents(prev => [...prev, title]);
       });
-      console.log('🚀 ~ file: Box.js ~ line 80 ~ init ~ singles', singles);
     };
     init();
   }, []);
+
+  useEffect(() => {
+    const text = components.join(', ');
+    const max = item.displayType === 'short' ? 14 : 29;
+    if (text.length > max) {
+      setSubtitle(text.slice(0, max) + ' ...');
+    } else {
+      setSubtitle(text);
+    }
+  }, [components]);
 
   const navigation = useNavigation();
 
@@ -97,11 +126,16 @@ const Box = ({item, type}) => {
       <BoxInfoContainer>
         <BoxLeft>
           <BoxTitle>{item.title}</BoxTitle>
-          <BoxSubtitle>{item.subtitle}</BoxSubtitle>
+          <BoxSubtitleContainer>
+            <BoxSetContainer>
+              <BoxSet>세트</BoxSet>
+            </BoxSetContainer>
+            <BoxSubtitle>{subtitle}</BoxSubtitle>
+          </BoxSubtitleContainer>
         </BoxLeft>
         <BoxRight>
           {/* <BoxHeart></BoxHeart>
-          <BoxHeartCount>{item.like}</BoxHeartCount> */}
+          <BoxHeartCount>1</BoxHeartCount> */}
         </BoxRight>
       </BoxInfoContainer>
     </BoxContainer>
