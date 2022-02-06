@@ -173,9 +173,7 @@ export default function FoodPlanPresenter({state, setState}) {
             <ChangeCountButtonText>수량변경</ChangeCountButtonText>
           </ChangeCountButton>
         ) : (
-          <ChangeCountButton
-            onPress={() => console.log('안눌림')}
-            pressedCnt={state?.pressedCnt}>
+          <ChangeCountButton>
             <ChangeCountButtonText>수량변경</ChangeCountButtonText>
           </ChangeCountButton>
         )}
