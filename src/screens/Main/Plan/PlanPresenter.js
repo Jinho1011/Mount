@@ -131,6 +131,8 @@ export default ({state, setState}) => {
     setTitle(e);
   };
 
+  useEffect(() => {}, [title]);
+
   return (
     <Container>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
