@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import LoginDetailPresenter from './LoginDetailPresenter';
-import {AsyncStorage} from 'react-native';
+import {USER_KEY, setData} from '../../../../api/storage';
 
 export let EtcLoginBody = {email: '', password: ''};
 
@@ -42,18 +42,15 @@ export default () => {
     });
   };
 
-  const loginSuccessHandler = e => {
+  const loginSuccessHandler = async e => {
     e.preventDefault();
     EtcLoginBody = {
       email: state.email,
       password: state.password,
     };
-    AsyncStorage.setItem(
-      'userData',
-      JSON.stringify({
-        EtcLoginBody,
-      }),
-    );
+
+    await setData(USER_KEY, EtcLoginBody);
+
     navigation.navigate('Tutorial');
   };
 

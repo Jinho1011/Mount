@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import {AsyncStorage} from 'react-native';
 import {View, StyleSheet} from 'react-native';
+
+import {USER_KEY, getData} from '../../../../api/storage';
 import {MoreSvg} from '../../../../components/assets';
 import {useNavigation} from '@react-navigation/native';
 
@@ -110,10 +111,11 @@ export default () => {
   const navigation = useNavigation();
   const myDetailPress = () => navigation.navigate('MyDetail');
   useEffect(() => {
-    AsyncStorage.getItem('userData', (err, result) => {
-      const value = JSON.parse(result);
+    const init = async () => {
+      const value = await getData(USER_KEY);
       setEmail(value.email);
-    });
+    };
+    init();
   }, []);
 
   return (
