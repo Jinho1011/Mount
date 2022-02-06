@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Dimensions, LogBox} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 
-LogBox.ignoreAllLogs(true);
+import {getFoodById, getRecById} from '../../api/api';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -63,31 +63,45 @@ const BoxHeartCount = styled.Text`
   line-height: 15px;
 `;
 
-const Box = ({item}) => {
-  const navigation = useNavigation();
+const Box = ({item, type}) => {
+  const [state, setState] = useState({});
 
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  useEffect(() => {
+    const init = async () => {
+      const properyName = type === 'RecSet' ? 'recs_ids' : 'foods_ids';
+      const ids = item[properyName];
+      const singles = ids.map(async id => {
+        if (type === 'RecSet') {
+          return await getRecById(id);
+        } else {
+          return await getFoodById(id);
+        }
+      });
+      console.log('🚀 ~ file: Box.js ~ line 80 ~ init ~ singles', singles);
+    };
+    init();
+  }, []);
+
+  const navigation = useNavigation();
 
   return (
     <BoxContainer
       type={item.displayType}
       onPress={() => {
         navigation.navigate('Details', {
-          screen: capitalizeFirstLetter(item.type),
+          screen: type,
           params: {id: item.id},
         });
       }}>
-      <BoxImage source={{uri: item.img}} type={item.displayType} />
+      <BoxImage source={{uri: item.image}} type={item.displayType} />
       <BoxInfoContainer>
         <BoxLeft>
           <BoxTitle>{item.title}</BoxTitle>
           <BoxSubtitle>{item.subtitle}</BoxSubtitle>
         </BoxLeft>
         <BoxRight>
-          <BoxHeart></BoxHeart>
-          <BoxHeartCount>{item.like}</BoxHeartCount>
+          {/* <BoxHeart></BoxHeart>
+          <BoxHeartCount>{item.like}</BoxHeartCount> */}
         </BoxRight>
       </BoxInfoContainer>
     </BoxContainer>
