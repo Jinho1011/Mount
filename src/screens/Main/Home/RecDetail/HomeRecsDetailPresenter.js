@@ -56,7 +56,7 @@ export default ({state}) => {
             return (
               <SmallBoxContainer key={item1.title + item1.id}>
                 <Box item={item1} type={'RecSet'} />
-                <Box item={item2} />
+                <Box item={item2} type={'RecSet'} />
               </SmallBoxContainer>
             );
           }
