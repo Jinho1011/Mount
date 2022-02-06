@@ -37,7 +37,7 @@ export default ({state, setState}) => {
 
   return (
     <ScrollContainer>
-      {/* <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+      <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
       <HomeHeaderContainer>
         <HomeHeaderTitle>입력된 문장</HomeHeaderTitle>
         <HomeHeaderSubTitle>
@@ -50,16 +50,15 @@ export default ({state, setState}) => {
         navigate="HomeFoodDetail"
         items={state.foods}
         isLoaded={state.isLoaded}
-        type={type}
+        type={'FoodSet'}
       />
       <DetailsContainer
         title="레크세트 어쩌구 문구"
         navigate="HomeRecDetail"
         items={state.recs}
         isLoaded={state.isLoaded}
-           type={type}
-      /> */}
-      {/* FoodSet, FoodSingle, RecSet, RecSingle */}
+        type={'RecSet'}
+      />
     </ScrollContainer>
   );
 };

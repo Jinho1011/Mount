@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {getFoodSets, getRecSets} from '../../../../api/api';
+import {getFoodSets, getRecSets, getFoods} from '../../../../api/api';
 
 import HomePresenter from './HomeMainPresenter';
 import * as recommandsActions from '../../../../store/actions/recommands';
@@ -53,12 +53,11 @@ export default () => {
       }
     }
 
-    // setState(prev => ({
-    //   ...prev,
-    //   foods,
-    //   recs,
-    //   isLoaded: true,
-    // }));
+    setState(prev => ({
+      ...prev,
+      foods: foodSets,
+      recs: recSets,
+    }));
   };
 
   useEffect(() => {
@@ -72,6 +71,10 @@ export default () => {
     if (state.foods.length > 0 && state.recs.length > 0) {
       // dispatch(recommandsActions.initFoods(state.foods));
       // dispatch(recommandsActions.initRecs(state.recs));
+      setState(prev => ({
+        ...prev,
+        isLoaded: true,
+      }));
     }
   }, [state]);
 
