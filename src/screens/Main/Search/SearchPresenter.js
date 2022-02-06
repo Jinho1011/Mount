@@ -1,14 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Dimensions,
-  ScrollView,
-  Keyboard,
-} from 'react-native';
+import {Dimensions, Keyboard} from 'react-native';
 import styled from 'styled-components';
-import {useNavigation} from '@react-navigation/native';
 
 import {Searchbar_closeSvg, Back_bSvg} from '../../../components/assets';
 import FocusAwareStatusBar from '../../../components/StatusBar';
@@ -56,6 +48,7 @@ const Input = styled.TextInput`
     }
   }};
   padding: 7px 0 5px 10px;
+  color: #000000;
   border-radius: 5px;
   margin-left: ${props => (props.isEntered ? 10 : 0)}px;
 `;
@@ -137,44 +130,51 @@ export default ({state, setState}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isEntered, setIsEntered] = useState(false);
   const [text, setText] = useState('');
-  const navigation = useNavigation();
+  const [foodResults, setFoodResults] = useState([]);
+  const [recResults, setRecResults] = useState([]);
 
   const onChangeText = e => {
     setText(e);
   };
 
   const onSubmit = () => {
+    state.recommands.foods.map(item => {
+      if (item.title.includes(text)) {
+        setFoodResults(prev => [...prev, item]);
+      }
+    });
+    state.recommands.recs.map(item => {
+      if (item.title.includes(text)) {
+        setRecResults(prev => [...prev, item]);
+      }
+    });
+    setState(prev => ({
+      ...prev,
+      recents: [...state.recents, text],
+    }));
     setIsEntered(true);
   };
 
   const onPressBack = () => {
     setIsEntered(false);
     setText('');
+    setFoodResults([]);
+    setRecResults([]);
   };
 
-  useEffect(() => {
-    // console.log('🚀 ~ file: SearchPresenter.js ~ line 134 ~ text', text);
-    // console.log(
-    //   '🚀 ~ file: SearchPresenter.js ~ line 134 ~ isEntered',
-    //   isEntered,
-    // );
-    // console.log(
-    //   '🚀 ~ file: SearchPresenter.js ~ line 134 ~ isEditing',
-    //   isEditing,
-    // );
-  }, [isEditing, isEntered, text]);
+  useEffect(() => {}, [isEditing, isEntered, text]);
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
       () => {
-        setIsEditing(true); // or some other action
+        setIsEditing(true);
       },
     );
     const keyboardDidHideListener = Keyboard.addListener(
       'keyboardDidHide',
       () => {
-        setIsEditing(false); // or some other action
+        setIsEditing(false);
       },
     );
 
@@ -230,17 +230,25 @@ export default ({state, setState}) => {
         )}
       </SearchHeader>
       {isEntered ? (
-        <SearchTab />
+        <SearchTab foodResults={foodResults} recResults={recResults} />
       ) : (
         <>
           <RecentContainer>
             <RecentTitle>최근 검색어</RecentTitle>
             <Recents horizontal={true}>
               {state.recents.length > 0 ? (
-                state.recents.map(data => {
+                state.recents.map((data, index) => {
                   return (
                     <Recent
+                      key={data + index}
                       onPress={() => {
+                        const deletedRecents = state.recents.filter(
+                          item => item !== data,
+                        );
+                        setState(prev => ({
+                          ...prev,
+                          recents: deletedRecents,
+                        }));
                         console.log('Delete Recent');
                       }}>
                       <RecentText>{data}</RecentText>
