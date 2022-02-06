@@ -20,9 +20,7 @@ export default () => {
         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        // console.log('You can use the WRITE_EXTERNAL_STORAGE');
       } else {
-        // console.log('WRITE_EXTERNAL_STORAGE permission denied');
       }
     } catch (err) {
       console.warn(err);
