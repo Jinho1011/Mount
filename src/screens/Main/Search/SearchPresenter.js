@@ -151,12 +151,18 @@ export default ({state, setState}) => {
         setRecResults(prev => [...prev, item]);
       }
     });
+    setState(prev => ({
+      ...prev,
+      recents: [...state.recents, text],
+    }));
     setIsEntered(true);
   };
 
   const onPressBack = () => {
     setIsEntered(false);
     setText('');
+    setFoodResults([]);
+    setRecResults([]);
   };
 
   useEffect(() => {
@@ -244,10 +250,18 @@ export default ({state, setState}) => {
             <RecentTitle>최근 검색어</RecentTitle>
             <Recents horizontal={true}>
               {state.recents.length > 0 ? (
-                state.recents.map(data => {
+                state.recents.map((data, index) => {
                   return (
                     <Recent
+                      key={data + index}
                       onPress={() => {
+                        const deletedRecents = state.recents.filter(
+                          item => item !== data,
+                        );
+                        setState(prev => ({
+                          ...prev,
+                          recents: deletedRecents,
+                        }));
                         console.log('Delete Recent');
                       }}>
                       <RecentText>{data}</RecentText>
