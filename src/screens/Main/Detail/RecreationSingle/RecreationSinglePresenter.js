@@ -110,32 +110,23 @@ const RecreationSinglePresenter = ({state, setState}) => {
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
         <SingleTitle
-          img={state?.recSingle?.img}
-          name={state?.recSingle?.name}
-          oneLineDescription={state?.recSingle?.oneLineDescription}
+          image={state?.recSingle?.image}
+          title={state?.recSingle?.title}
+          one_line_description={state?.recSingle?.one_line_description}
         />
         <CounterContainer>
           <SingleCounter state={state} setState={setState} />
         </CounterContainer>
         <BorderLine />
-        <GuideLineContainer>
+        {/* <GuideLineContainer>
           <RecTitle>저희 레크는요...</RecTitle>
           <GuideLineTitle>가이드라인</GuideLineTitle>
           <MyCarousel state={state} setState={setState} />
         </GuideLineContainer>
-        <BorderLine />
+        <BorderLine /> */}
         <ComponentsContainer>
           <ComponentsTitle>구성품</ComponentsTitle>
-          {state?.recSingle?.components?.map(component => {
-            return (
-              <Components
-                state={state}
-                setState={setState}
-                component={component}
-                key={component.id}
-              />
-            );
-          })}
+          <Components state={state} setState={setState} />
         </ComponentsContainer>
         <PriceContainer>
           <RecSingleTotalPrice state={state} setState={setState} />

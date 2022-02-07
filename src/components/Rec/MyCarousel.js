@@ -12,8 +12,13 @@ import {
 const {width: screenWidth} = Dimensions.get('window');
 
 const MyCarousel = ({state, setState}) => {
-  const ENTRIES1 = state?.recSingle?.guideImages;
-  console.log(ENTRIES1);
+  const sample = require('../../../assets/Unprepared_img.webp');
+  let ENTRIES1 = [];
+  {
+    state?.recSingle?.guideImages !== null
+      ? (ENTRIES1 = state?.recSingle?.guideImages)
+      : (ENTRIES1 = sample);
+  }
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
 
@@ -23,7 +28,7 @@ const MyCarousel = ({state, setState}) => {
 
   useEffect(() => {
     setEntries(ENTRIES1);
-  }, [ENTRIES1]);
+  }, []);
 
   const renderItem = ({item, index}, parallaxProps) => {
     return (
