@@ -52,7 +52,6 @@ export default function TabBar({state, descriptors, navigation}) {
   const scrollY = useRef(new Animated.Value(0));
 
   useEffect(() => {
-    console.log(state.routes[index].params.offsetY);
     scrollY.current.setValue(state.routes[index].params.offsetY);
   }, [state]);
 
