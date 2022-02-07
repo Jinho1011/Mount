@@ -45,6 +45,8 @@ const CounterNumber = styled.Text`
 `;
 
 const Counter = ({state, setState}) => {
+  console.log('state');
+  console.log(state.memberCnt);
   return (
     <CounterContainer>
       <CounterBox>

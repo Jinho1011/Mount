@@ -80,6 +80,7 @@ const CounterNumberBox = styled.View`
   background: #f3f3f3;
   border-radius: 5px;
   padding: 0px 45px 0px 45px;
+  height: 24px;
   margin-left: 18px;
   margin-right: 18px;
 `;
@@ -117,6 +118,8 @@ const TotalPriceContainer = styled.View`
 `;
 
 const FoodSetChangeCountPresenter = ({state, setState}) => {
+  console.log('state.memberCnt');
+  console.log(state.memberCnt);
   const [isClicked, setIsClicked] = useState(false);
   const [selected, setSelected] = useState({});
   return (
@@ -126,11 +129,11 @@ const FoodSetChangeCountPresenter = ({state, setState}) => {
         <ContentContainer>
           <SetContainer>
             <SetTitleContainer>
-              <SetImage source={{uri: state?.foodSet?.img}} />
+              <SetImage source={{uri: state?.foodSet?.image}} />
               <SetTitle>
                 <SetName>{state?.foodSet.title}</SetName>
                 <SetItem>
-                  {state?.items?.map(item => item.name).join(', ')}
+                  {state?.items?.map(item => item.title).join(', ')}
                 </SetItem>
               </SetTitle>
             </SetTitleContainer>

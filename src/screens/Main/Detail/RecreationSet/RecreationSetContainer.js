@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {getDetail} from '../../../../api/api';
-import {TransparentHeader} from '../../../../components/Header/TransparentHeader';
+import {getRecSets, getRecs} from '../../../../api/api';
 import RecreationSetPresenter from './RecreationSetPresenter';
 
 const RecreationSetContainer = ({route}) => {
@@ -13,9 +12,18 @@ const RecreationSetContainer = ({route}) => {
 
   useEffect(() => {
     const init = async () => {
-      let data = await getDetail('recSets', route.params?.id);
-      let recSet = data.recSet;
-      let items = recSet.items;
+      let data = await getRecSets();
+      let recs = await getRecs();
+      let recSet = data.find(element => element.id === route.params.id);
+      let recs_ids = recSet.recs_ids;
+      let items = [];
+      for (let i = 0; i < recs_ids.length; i++) {
+        for (let j = 0; j < recs.length; j++) {
+          if (recs[j].id + '' === recs_ids[i]) {
+            items.push(recs[j]);
+          }
+        }
+      }
 
       items.map(item => {
         item.count = 1;
@@ -25,7 +33,7 @@ const RecreationSetContainer = ({route}) => {
       setState(prev => ({
         ...prev,
         recSet,
-        items,
+        items: items,
       }));
     };
     init();

@@ -105,8 +105,15 @@ const ChangeComponent = ({state, setState}) => {
     <ItemBox>
       <ItemSmallBox>
         <ItemLeft>
-          <ComponentImage source={{uri: state?.foodSingle?.img}} />
-          <ItemName>{state?.foodSingle?.name}</ItemName>
+          {state?.foodSingle?.img === '' ? (
+            <ComponentImage source={{uri: state?.foodSingle?.img}} />
+          ) : (
+            <ComponentImage
+              source={require('../../../assets/Unprepared_img.webp')}
+            />
+          )}
+
+          <ItemName>{state?.foodSingle?.title}</ItemName>
         </ItemLeft>
         <ItemRight>
           <Counter>
