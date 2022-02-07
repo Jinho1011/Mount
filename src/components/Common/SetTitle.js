@@ -52,6 +52,7 @@ const SetElements = styled.Text`
 `;
 
 const TitleContainer = ({img, title, items}) => {
+  console.log(title);
   return (
     <SetTitleContainer>
       <SetImage source={{uri: img}} />

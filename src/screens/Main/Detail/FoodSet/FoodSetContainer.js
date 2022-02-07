@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {getFoodSets} from '../../../../api/api';
-import {TransparentHeader} from '../../../../components/Header/TransparentHeader';
+import {getFoods, getFoodSets} from '../../../../api/api';
 import FoodSetPresenter from './FoodSetPresenter';
 
 const FoodSetContainer = ({navigation, route}) => {
   const [state, setState] = useState({
-    // memberCnt: 1,
+    memberCnt: 1,
     foodSet: {},
     items: [],
   });
@@ -13,21 +12,25 @@ const FoodSetContainer = ({navigation, route}) => {
   useEffect(() => {
     const init = async () => {
       let data = await getFoodSets();
+      let foods = await getFoods();
+      console.log('푸드');
+      console.log(foods);
+      let foodSet = data.find(element => element.id === route.params.id);
+      let food_ids = foodSet.food_ids;
+      let intersection = food_ids.filter(x => foodSet.id);
+      let test = foods.find(food => food.id === 20);
 
-      let foodSet = data.foodSet;
-      let items = foodSet.items;
       let memberCnt = foodSet.memberCnt;
-
-      items.map(item => {
-        item.count = memberCnt;
-        return item;
-      });
+      // items.map(item => {
+      //   item.count = memberCnt;
+      //   return item;
+      // });
 
       setState(prev => ({
         ...prev,
         foodSet,
-        items,
-        memberCnt,
+        // items,
+        // memberCnt,
       }));
     };
     init();
