@@ -1,5 +1,4 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
 import SignupMainPresenter from './SignupMainPresenter';
 import {useNavigation} from '@react-navigation/native';
 import {login, getProfile} from '@react-native-seoul/kakao-login';
@@ -7,21 +6,20 @@ import {login, getProfile} from '@react-native-seoul/kakao-login';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {USER_KEY, storeData} from '../../../../api/storage';
 
-export let KakaoBody = {
+export let KakaoSignupBody = {
   accessToken: '',
   refreshToken: '',
   email: '',
   nickname: '',
 };
 
-export let GoogleBody = {
+export let GoogleSignupBody = {
   accessToken: '',
   email: '',
   name: '',
 };
 
 export default () => {
-  const users = useSelector(state => state.users);
   const navigation = useNavigation();
   const signupDetailPress = () => navigation.navigate('SignupDetail');
   const signupWithKakao = async () => {
@@ -29,13 +27,13 @@ export default () => {
     const profile = await getProfile();
 
     if (token) {
-      KakaoBody = {
+      KakaoSignupBody = {
         accessToken: token.accessToken,
         refreshToken: token.refreshToken,
         email: profile.email,
         nickname: profile.nickname,
       };
-      await storeData(USER_KEY, KakaoBody);
+      await storeData(USER_KEY, KakaoSignupBody);
       navigation.navigate('Tutorial');
     }
   };
@@ -44,13 +42,16 @@ export default () => {
     const token = await GoogleSignin.getTokens();
     const profile = await GoogleSignin.signIn();
     if (token) {
-      GoogleBody = {
-        accessToken: token.accessToken,
+      GoogleSignupBody = {
+        //accessToken: token.accessToken,
         email: profile.user.email,
+        pw: 'test1234!',
         name: profile.user.name,
+        birthday: null,
+        platform: '',
       };
 
-      await storeData(USER_KEY, GoogleBody);
+      await storeData(USER_KEY, GoogleSignupBody);
 
       navigation.navigate('Tutorial');
     }
