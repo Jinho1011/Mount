@@ -93,6 +93,8 @@ const BorderLine = styled(View)`
 `;
 
 const FoodSetPresenter = ({state, setState}) => {
+  console.log('foodset');
+  console.log(state);
   const navigation = useNavigation();
   return (
     <PageWrap style={{flex: 1}}>
