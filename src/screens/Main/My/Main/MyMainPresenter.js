@@ -30,6 +30,7 @@ const MyProfileTextBox = styled.Text`
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
+  width: 258px;
   height: 32px;
   line-height: 20px;
   margin-top: 15px;
@@ -57,7 +58,8 @@ const ButtonText = styled.Text`
 const MySettingContainer = styled.View`
   align-items: center;
   flex-direction: row;
-  height: 60px;
+  justify-content: space-between;
+  padding: 22px 28px 14px 0px;
 `;
 
 const MySettingText = styled.Text`
@@ -110,10 +112,11 @@ export default () => {
   const [email, setEmail] = useState('');
   const navigation = useNavigation();
   const myDetailPress = () => navigation.navigate('MyDetail');
+
   useEffect(() => {
     const init = async () => {
       const value = await getData(USER_KEY);
-      setEmail(value.email);
+      setEmail(value.email === 'null' ? value.nickname : value.email);
     };
     init();
   }, []);
@@ -165,7 +168,7 @@ export default () => {
       <View style={Lines.lightLine} />
       <VersionContainer>
         <VersionText>버전정보</VersionText>
-        <VersionText marginRight="33px">2.0.2</VersionText>
+        <VersionText marginRight="33px">1.0.0</VersionText>
       </VersionContainer>
     </MyContainer>
   );

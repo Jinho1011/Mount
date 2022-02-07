@@ -94,7 +94,7 @@ const ItemImage = styled(Image)`
   height: 32px;
 `;
 
-const Components = ({state, setState}) => {
+const Components = ({state, setState, component}) => {
   return (
     <ItemBox>
       <ItemSmallBox>

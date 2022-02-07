@@ -55,7 +55,11 @@ export default ({state}) => {
             return (
               <SmallBoxContainer key={item1.title + item1.id}>
                 <Box item={item1} type={'FoodSet'} />
-                <Box item={item2} type={'FoodSet'} />
+                {item2 === undefined ? (
+                  <></>
+                ) : (
+                  <Box item={item2} type={'FoodSet'} />
+                )}
               </SmallBoxContainer>
             );
           }
