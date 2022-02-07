@@ -84,7 +84,7 @@ const TotalPrice = ({state, setState}) => {
   let price = 0;
   for (let i = 0; i < state?.items?.length; i++) {
     price = parseInt(
-      (price + state?.items[i]?.count * state?.items[i]?.total_price) /
+      (price + state?.items[i]?.count * state?.items[i]?.price) /
         state?.memberCnt,
       10,
     );
