@@ -1,15 +1,9 @@
 import React, {useEffect} from 'react';
 import TutorialPresenter from './tutorialPresenter';
-import {
-  socialMediaSignup,
-  signupUser,
-  loginUser,
-} from '../../../store/actions/users';
-import {KakaoBody, GoogleBody} from '../signup/Main/SignupMainContainer';
-import {EtcSignBody} from '../signup/Detail/SignupDetailContainer';
-import {EtcLoginBody} from '../login/Detail/LoginDetailContainer';
+import {auth} from '../../../store/actions/users';
 import {useDispatch} from 'react-redux';
 import {BackHandler} from 'react-native';
+import {USER_KEY, getData} from '../../../api/storage';
 
 export default () => {
   useEffect(() => {
@@ -26,16 +20,9 @@ export default () => {
   }, []);
 
   const dispatch = useDispatch();
-  const startPress = () => {
-    if (KakaoBody.accessToken !== '') {
-      dispatch(socialMediaSignup(KakaoBody));
-    } else if (GoogleBody.accessToken !== '') {
-      dispatch(socialMediaSignup(GoogleBody));
-    } else if (EtcSignBody.email !== '') {
-      dispatch(signupUser(EtcSignBody));
-    } else if (EtcLoginBody.email !== '') {
-      dispatch(loginUser(EtcLoginBody));
-    }
+  const startPress = async () => {
+    const value = await getData(USER_KEY);
+    if (value.email !== '') dispatch(auth(value));
   };
   return <TutorialPresenter startPress={startPress} />;
 };
