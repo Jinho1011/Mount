@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {Text, View} from 'react-native';
 import ItemMuttable from '../../../components/Plan/ItemMuttable';
-import TotalPrice from '../../../components/Common/TotalPrice';
+import TotalPrice from '../../../components/Food/TotalPrice';
 import Modal from '../../../components/Modal';
 import PlannerButton from '../../../components/Common/ProposalButton';
 import FocusAwareStatusBar from '../../../components/StatusBar';

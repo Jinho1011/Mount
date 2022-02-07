@@ -241,9 +241,9 @@ const RecreationSetPresenter = ({state, setState}) => {
                 />
               );
             })}
-            <MoreRecButton onPress={() => setModalVisible(true)}>
+            {/* <MoreRecButton onPress={() => setModalVisible(true)}>
               <MoreRecButtonText>레크 정보 더보기</MoreRecButtonText>
-            </MoreRecButton>
+            </MoreRecButton> */}
           </RecSetListItemBigContainer>
           <TotalPriceContainer>
             <TotalPrice state={state} setState={setState} />
