@@ -11,7 +11,7 @@ const RecSetChangeCountContainer = ({route}) => {
       let recSet = route.params._state.recSet;
       let memberCnt = route.params._state.memberCnt;
       let teamCnt = route.params._state.teamCnt;
-      let items = recSet.items;
+      let items = route.params._state.items;
 
       items.map(item => {
         item.count = teamCnt;
