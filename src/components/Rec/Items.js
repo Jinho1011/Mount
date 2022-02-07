@@ -99,8 +99,8 @@ const Items = ({state, setState, item}) => {
     <ItemBox>
       <ItemSmallBox>
         <ItemLeft>
-          <ItemImage source={{uri: item.img}} />
-          <ItemName>{item.name}</ItemName>
+          <ItemImage source={{uri: item.image}} />
+          <ItemName>{item.title}</ItemName>
         </ItemLeft>
         <ItemRight>
           <Counter>
@@ -110,7 +110,11 @@ const Items = ({state, setState, item}) => {
           </Counter>
           <SetItemPriceContainer>
             <SetItemSize>1팀당 가격</SetItemSize>
-            <SetItemPrice>{item.price}원</SetItemPrice>
+            {item.total_price !== null ? (
+              <SetItemPrice>{item.total_price}원</SetItemPrice>
+            ) : (
+              <SetItemPrice>{parseInt(0, 10)}원</SetItemPrice>
+            )}
           </SetItemPriceContainer>
         </ItemRight>
       </ItemSmallBox>

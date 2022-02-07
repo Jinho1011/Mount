@@ -141,8 +141,8 @@ const ChangeComponents = ({state, setState, item}) => {
     <ItemBox>
       <ItemSmallBox>
         <ItemLeft>
-          <ComponentImage source={{uri: item?.img}} />
-          <ItemName>{item.name}</ItemName>
+          <ComponentImage source={{uri: item?.image}} />
+          <ItemName>{item?.title}</ItemName>
         </ItemLeft>
         <ItemRight>
           <Counter>
@@ -150,7 +150,7 @@ const ChangeComponents = ({state, setState, item}) => {
               <Image source={require('../../../assets/minus.png')} />
             </MinusPressable>
             <ItemCountBlock>
-              <ItemCount>{item.count}</ItemCount>
+              <ItemCount>{item?.count}</ItemCount>
             </ItemCountBlock>
             <PlusPressable onPress={plusCount}>
               <Image source={require('../../../assets/plus.png')} />
