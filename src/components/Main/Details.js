@@ -40,6 +40,14 @@ const DetailMoreText = styled.Text`
 
 const Details = styled.ScrollView``;
 
+const DetailPress = styled.Pressable`
+  background: #f3f3f3;
+  width: 128px;
+  height: 128px;
+  margin-right: 10;
+  border-radius: 4;
+`;
+
 const DetailReady = styled.View`
   width: 128px;
   height: 128px;
@@ -55,7 +63,7 @@ const Detail = styled.Image`
   border-radius: 4px;
 `;
 
-const DetailsContainer = ({title, navigate, items, isLoaded}) => {
+const DetailsContainer = ({title, navigate, items, isLoaded, type}) => {
   const navigation = useNavigation();
 
   function capitalizeFirstLetter(string) {
@@ -82,23 +90,16 @@ const DetailsContainer = ({title, navigate, items, isLoaded}) => {
         {isLoaded ? (
           items.map(item => {
             return (
-              <TouchableOpacity
-                style={{
-                  backgroundColor: '#f3f3f3',
-                  width: 128,
-                  height: 128,
-                  marginRight: 10,
-                  borderRadius: 4,
-                }}
-                key={item.type + item.id}
+              <DetailPress
+                key={item.title + item.id}
                 onPress={() => {
                   navigation.navigate('Details', {
-                    screen: capitalizeFirstLetter(item.type),
+                    screen: type,
                     params: {id: item.id},
                   });
                 }}>
-                <Detail source={{uri: item.img}} key={item.type + item.id} />
-              </TouchableOpacity>
+                <Detail source={{uri: item.image}} />
+              </DetailPress>
             );
           })
         ) : (

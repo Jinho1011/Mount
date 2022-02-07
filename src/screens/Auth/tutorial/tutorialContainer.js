@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import TutorialPresenter from './tutorialPresenter';
 import {
   socialMediaSignup,
@@ -9,8 +9,22 @@ import {KakaoBody, GoogleBody} from '../signup/Main/SignupMainContainer';
 import {EtcSignBody} from '../signup/Detail/SignupDetailContainer';
 import {EtcLoginBody} from '../login/Detail/LoginDetailContainer';
 import {useDispatch} from 'react-redux';
+import {BackHandler} from 'react-native';
 
 export default () => {
+  useEffect(() => {
+    const backAction = () => {
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   const dispatch = useDispatch();
   const startPress = () => {
     if (KakaoBody.accessToken !== '') {

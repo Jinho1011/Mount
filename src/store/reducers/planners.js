@@ -20,6 +20,22 @@ export default (state = initialState, action) => {
         planners: [...state.planners, newPlanner],
       };
     }
+    case 'ADD_PLANNER': {
+      const planner = action.planner;
+
+      return {
+        ...state,
+        planners: [...state.planners, planner],
+      };
+    }
+    case 'ADD_PLANNERS': {
+      const planners = action.planners;
+
+      return {
+        ...state,
+        planners: [...state.planners, ...planners],
+      };
+    }
     case 'ADD_ITEM': {
       const id = action.id;
       const category = action.category;

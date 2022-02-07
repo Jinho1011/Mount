@@ -2,25 +2,29 @@ import React, {useState, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import Auth from '../navigation/Auth';
 import Main from '../navigation/Main';
-import {useSelector} from 'react-redux';
-import {AsyncStorage} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {PLANNER_KEY, USER_KEY, getData, removeData} from '../api/storage';
+import {addPlanners} from '../store/actions/planners';
 
 export default () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const userData = useSelector(state => state.users);
+  const dispatch = useDispatch();
+
   // 앱 처음 실행 시
   useEffect(() => {
     async function init() {
-      AsyncStorage.removeItem('userData');
-      const value = await AsyncStorage.getItem('userData');
-      if (value.includes('password')) {
-        // 아이디와 비밀번호로 회원가입한 적이 있으므로 다시 서버에 로그인 요청해서 JWT 재발급 후
+      //removeData(USER_KEY);
+      const value = await getData(USER_KEY);
+      const planners = await getData(PLANNER_KEY);
+
+      if (planners != null) dispatch(addPlanners(planners));
+
+      if (
+        value.hasOwnProperty('accessToken') ||
+        value.hasOwnProperty('password')
+      ) {
         setIsLoggedIn(true);
-      } else if (value.includes('accessToken')) {
-        // 카카오톡 회원가입으로 AccessToken이 있으므로 다시 서버에 요청해서 JWT 재발급 후
-        setIsLoggedIn(true);
-      } else {
-        // 회원가입한적이 없거나 재설치한 경우로 회원가입 페이지로 setIsLoggedIn(false)
       }
     }
     init();
@@ -30,6 +34,8 @@ export default () => {
   useEffect(() => {
     if (userData.jwt !== '') {
       setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
     }
   }, [userData]);
 

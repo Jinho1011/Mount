@@ -1,13 +1,10 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {signupUser} from '../../../../store/actions/users';
 import SignupDetailPresenter from './SignupDetailPresenter';
-import {AsyncStorage} from 'react-native';
+import {USER_KEY, storeData} from '../../../../api/storage';
 
 export let EtcSignBody = {email: '', password: ''};
 export default () => {
-  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const [state, setState] = useState({
@@ -53,18 +50,15 @@ export default () => {
     });
   };
 
-  const signupSuccessHandler = e => {
+  const signupSuccessHandler = async e => {
     e.preventDefault();
     EtcSignBody = {
       email: state.email,
       password: state.password,
     };
-    AsyncStorage.setItem(
-      'userData',
-      JSON.stringify({
-        EtcSignBody,
-      }),
-    );
+
+    await storeData(USER_KEY, EtcSignBody);
+
     navigation.navigate('SignupTos');
   };
 

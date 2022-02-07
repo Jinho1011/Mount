@@ -1,5 +1,5 @@
-import React, {useEffect, useRef} from 'react';
-import {View, Text, Dimensions} from 'react-native';
+import React, {useRef} from 'react';
+import {View} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 
@@ -12,6 +12,7 @@ const ScrollContainer = styled.ScrollView`
   padding-top: 116px;
   padding-left: 23px;
   padding-right: 23px;
+  padding-bottom: 95px;
 `;
 
 const SmallBoxContainer = styled.View`
@@ -45,14 +46,16 @@ export default ({state}) => {
         {state?.items.map(itemArr => {
           if (itemArr.length === 1) {
             const item = itemArr[0];
-            return <Box item={item} key={item.type + item.id} />;
+            return (
+              <Box item={item} type={'FoodSet'} key={item.title + item.id} />
+            );
           } else {
             const item1 = itemArr[0];
             const item2 = itemArr[1];
             return (
-              <SmallBoxContainer key={item1.type + item1.id}>
-                <Box item={item1} key={item1.type + item1.id} />
-                <Box item={item2} key={item2.type + item2.id} />
+              <SmallBoxContainer key={item1.title + item1.id}>
+                <Box item={item1} type={'FoodSet'} />
+                <Box item={item2} type={'FoodSet'} />
               </SmallBoxContainer>
             );
           }

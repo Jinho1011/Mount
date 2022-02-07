@@ -18,6 +18,7 @@ export const getFoods = async () => {
     })
     .catch(error => {
       console.log(error);
+      throw error;
     });
 };
 
@@ -36,12 +37,12 @@ export const getRecs = async () => {
     })
     .catch(error => {
       console.log(error);
+      throw error;
     });
 };
 
 export const getFoodById = async id => {
   const url = `${namespace}/foods/?format=json&id=${id}`;
-
   let config = {
     method: 'get',
     url,
@@ -72,6 +73,7 @@ export const getRecById = async id => {
     })
     .catch(error => {
       console.log(error);
+      throw error;
     });
 };
 
@@ -90,6 +92,7 @@ export const getFoodSets = async () => {
     })
     .catch(error => {
       console.log(error);
+      throw error;
     });
 };
 
@@ -108,5 +111,6 @@ export const getRecSets = async () => {
     })
     .catch(error => {
       console.log(error);
+      throw error;
     });
 };
