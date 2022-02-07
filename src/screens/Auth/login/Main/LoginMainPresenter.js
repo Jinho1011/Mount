@@ -26,7 +26,7 @@ const ButtonText = styled.Text`
   text-align: center;
 `;
 
-export default ({loginDetailPress, loginWithKakao}) => {
+export default ({loginDetailPress, loginWithKakao, loginWithGoogle}) => {
   return (
     <Container>
       <TouchableOpacity marginTop="426px" onPress={loginWithKakao}>
@@ -35,7 +35,7 @@ export default ({loginDetailPress, loginWithKakao}) => {
       <TouchableOpacity>
         <ButtonText>네이버 로그인</ButtonText>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={loginWithGoogle}>
         <ButtonText>구글 로그인</ButtonText>
       </TouchableOpacity>
       <TouchableOpacity onPress={loginDetailPress}>

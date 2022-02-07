@@ -37,13 +37,9 @@ export default () => {
       //removeData(USER_KEY);
       const value = await getData(USER_KEY);
       const planners = await getData(PLANNER_KEY);
-
       if (planners != null) dispatch(addPlanners(planners));
 
-      if (
-        value.hasOwnProperty('accessToken') ||
-        value.hasOwnProperty('password')
-      ) {
+      if (value.hasOwnProperty('email')) {
         setIsLoggedIn(true);
         setIsloading(false);
       }
