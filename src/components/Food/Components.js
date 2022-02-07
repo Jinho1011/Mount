@@ -91,8 +91,8 @@ const Components = ({state, setState, item}) => {
     <ItemBox>
       <ItemSmallBox>
         <ItemLeft>
-          <ItemImage source={{uri: item.img}} />
-          <ItemName>{item.name}</ItemName>
+          <ItemImage source={{uri: item.image}} />
+          <ItemName>{item.title}</ItemName>
         </ItemLeft>
         <ItemRight>
           <Counter>

@@ -1,4 +1,5 @@
 import React from 'react';
+import {View} from 'react-native';
 import styled from 'styled-components';
 import {TransparentHeader} from '../Header/TransparentHeader';
 
@@ -23,7 +24,8 @@ const SetImage = styled.Image`
 
 const SetInfo = styled.View`
   flex-direction: row;
-  margin-left: 27px;
+  padding-left: 27px;
+  padding-right: 20px;
   margin-top: 3px;
 `;
 
@@ -51,11 +53,14 @@ const SetElements = styled.Text`
   line-height: 15px;
 `;
 
-const TitleContainer = ({img, title, items}) => {
-  console.log(title);
+const ElementsContainer = styled(View)`
+  padding-right: 20px;
+`;
+
+const TitleContainer = ({image, title, items}) => {
   return (
     <SetTitleContainer>
-      <SetImage source={{uri: img}} />
+      <SetImage source={{uri: image}} />
       <TransparentHeader style={{position: 'absolute', top: 0, right: 0}} />
 
       <SetTitle>{title}</SetTitle>
@@ -63,7 +68,9 @@ const TitleContainer = ({img, title, items}) => {
         <SetLabelContainer>
           <SetLabel>세트</SetLabel>
         </SetLabelContainer>
-        <SetElements>{items}</SetElements>
+        <ElementsContainer>
+          <SetElements>{items}</SetElements>
+        </ElementsContainer>
       </SetInfo>
     </SetTitleContainer>
   );
