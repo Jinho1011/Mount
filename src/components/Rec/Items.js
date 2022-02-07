@@ -95,8 +95,6 @@ const ItemImage = styled(Image)`
 `;
 
 const Items = ({state, setState, item}) => {
-  console.log('item');
-  console.log(item);
   return (
     <ItemBox>
       <ItemSmallBox>

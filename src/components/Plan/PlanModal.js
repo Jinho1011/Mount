@@ -129,7 +129,7 @@ const PlanModal = ({toggleModal, setToggleModal, state}) => {
   const savePlanner = async () => {
     const permissions =
       await StorageAccessFramework.requestDirectoryPermissionsAsync().catch(e =>
-        console.log('🚀 ~ file: PlanModal.js ~ line 141 ~ savePlanner ~ e', e),
+        console.error(e),
       );
     if (permissions && permissions.granted) {
       var wb = XLSX.utils.book_new();

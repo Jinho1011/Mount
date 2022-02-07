@@ -98,7 +98,13 @@ const DetailsContainer = ({title, navigate, items, isLoaded, type}) => {
                     params: {id: item.id},
                   });
                 }}>
-                <Detail source={{uri: item.image}} />
+                {item.image === '' || item.image === '1' ? (
+                  <Detail
+                    source={require('../../../assets/Unprepared_img.webp')}
+                  />
+                ) : (
+                  <Detail source={{uri: item.image}} />
+                )}
               </DetailPress>
             );
           })
