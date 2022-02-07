@@ -164,19 +164,14 @@ export default function FoodPlanPresenter({state, setState}) {
         </FoodsContainer>
       </ScrollContainer>
       <Footer>
-        {state?.pressedCnt > 0 ? (
-          <ChangeCountButton
-            onPress={() => {
+        <ChangeCountButton
+          onPress={() => {
+            if (state?.pressedCnt > 0)
               navigation.navigate('FoodPlanChange', {isPressedArr});
-            }}
-            pressedCnt={state?.pressedCnt}>
-            <ChangeCountButtonText>수량변경</ChangeCountButtonText>
-          </ChangeCountButton>
-        ) : (
-          <ChangeCountButton>
-            <ChangeCountButtonText>수량변경</ChangeCountButtonText>
-          </ChangeCountButton>
-        )}
+          }}
+          pressedCnt={state?.pressedCnt}>
+          <ChangeCountButtonText>수량변경</ChangeCountButtonText>
+        </ChangeCountButton>
       </Footer>
     </>
   );
