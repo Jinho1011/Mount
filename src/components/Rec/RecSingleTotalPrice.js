@@ -80,7 +80,6 @@ const TotalPriceText = styled.Text`
 `;
 
 const RecSingleTotalPrice = ({state, setState}) => {
-  console.log(state);
   let total = state?.components[0]?.count * state?.recSingle?.price;
   // 어차피 구성품 여러개가 아니라 세트로 하나로 묶을거니까?
   let pricePerPerson = parseInt(total / state?.memberCnt, 10);
