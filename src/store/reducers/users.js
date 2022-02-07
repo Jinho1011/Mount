@@ -20,6 +20,9 @@ export default (state = initialState, action) => {
       const jwt = 'asfasdasfasd';
       return {...state, signupSuccess: action.payload, jwt};
     }
+    case 'LOGOUT': {
+      return {signupSuccess: false, loginSuccess: false, jwt: ''};
+    }
     default:
       return state;
   }

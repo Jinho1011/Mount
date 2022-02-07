@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {PermissionsAndroid} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {getFoodSets, getRecSets} from '../../../../api/api';
 
 import HomePresenter from './HomeMainPresenter';
 import * as recommandsActions from '../../../../store/actions/recommands';
@@ -19,63 +20,74 @@ export default () => {
         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('You can use the WRITE_EXTERNAL_STORAGE');
       } else {
-        console.log('WRITE_EXTERNAL_STORAGE permission denied');
       }
     } catch (err) {
       console.warn(err);
     }
   };
 
-  const _loadData = async () => {
-    const data = await fetch('/api/recommands');
-    const _foods = JSON.parse(data._bodyInit).foods.recomms;
-    const _recs = JSON.parse(data._bodyInit).recs.recomms;
+  const loadData = async () => {
+    const foodSets = await getFoodSets();
 
-    const foods = await _loadItems(_foods, 'foods');
-    const recs = await _loadItems(_recs, 'recs');
+    const recSets = await getRecSets();
+
+    for (let i = 0, max = foodSets.length; i < max; i++) {
+      if (Math.random() > 0.5) {
+        foodSets[i].displayType = 'long';
+        if (i + 1 < max) foodSets[i + 1].displayType = 'short';
+        if (i + 2 < max) foodSets[i + 2].displayType = 'short';
+        i += 2;
+      } else {
+        foodSets[i].displayType = 'long';
+        if (i + 1 < max) foodSets[i + 1].displayType = 'short';
+        if (i + 2 < max) foodSets[i + 2].displayType = 'short';
+        if (i + 3 < max) foodSets[i + 3].displayType = 'short';
+        if (i + 4 < max) foodSets[i + 4].displayType = 'short';
+        i += 4;
+      }
+    }
+
+    for (let i = 0, max = recSets.length; i < max; i++) {
+      if (Math.random() > 0.5) {
+        recSets[i].displayType = 'long';
+        if (i + 1 < max) recSets[i + 1].displayType = 'short';
+        if (i + 2 < max) recSets[i + 2].displayType = 'short';
+        i += 2;
+      } else {
+        recSets[i].displayType = 'long';
+        if (i + 1 < max) recSets[i + 1].displayType = 'short';
+        if (i + 2 < max) recSets[i + 2].displayType = 'short';
+        if (i + 3 < max) recSets[i + 3].displayType = 'short';
+        if (i + 4 < max) recSets[i + 4].displayType = 'short';
+        i += 4;
+      }
+    }
 
     setState(prev => ({
       ...prev,
-      foods,
-      recs,
+      foods: foodSets,
+      recs: recSets,
     }));
-
-    _setLoaded();
-  };
-
-  const _loadItems = async items => {
-    return await Promise.all(
-      items.map(async function (_item) {
-        const id = _item.id.split('-');
-        const displayType = _item.displayType;
-        const type = id[0].slice(0, -1);
-        const data = await fetch(`/api/${id[0]}/${id[1]}`);
-        const item = JSON.parse(data._bodyInit)[type];
-        item['type'] = type;
-        item['displayType'] = displayType;
-        return item;
-      }),
-    );
-  };
-
-  const _setLoaded = () => {
-    setState(prev => ({...prev, isLoaded: true}));
   };
 
   useEffect(() => {
     const init = async () => {
+      loadData();
       requestPermission();
-      _loadData();
     };
     init();
   }, []);
 
   useEffect(() => {
-    if (state.foods.length > 0 && state.recs.length > 0) {
+    if (state.recs.length > 0 && state.recs.length > 0 && !state.isLoaded) {
       dispatch(recommandsActions.initFoods(state.foods));
       dispatch(recommandsActions.initRecs(state.recs));
+
+      setState(prev => ({
+        ...prev,
+        isLoaded: true,
+      }));
     }
   }, [state]);
 

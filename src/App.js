@@ -1,8 +1,8 @@
 import React from 'react';
+import {LogBox} from 'react-native';
 import {Provider} from 'react-redux';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import logger from 'redux-logger';
 
 import Gate from './components/Gate';
 import recommandsReducer from './store/reducers/recommands';
@@ -20,6 +20,7 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer);
 
 export default function App() {
+  LogBox.ignoreAllLogs();
   return (
     <Provider store={store}>
       <Gate />

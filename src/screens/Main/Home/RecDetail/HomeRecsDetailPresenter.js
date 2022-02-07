@@ -38,22 +38,25 @@ export default ({state}) => {
 
   return (
     <>
+      <Floaters onPressTouch={onPressTouch} target={'RecPlan'} />
       <ScrollContainer onScroll={onScroll} ref={scrollRef}>
         <FocusAwareStatusBar
           barStyle="light-content"
           backgroundColor="#000000"
         />
         {state?.items.map(itemArr => {
-          if (itemArr.length == 1) {
+          if (itemArr.length === 1) {
             const item = itemArr[0];
-            return <Box item={item} key={item.type + item.id} />;
+            return (
+              <Box item={item} type={'RecSet'} key={item.title + item.id} />
+            );
           } else {
             const item1 = itemArr[0];
             const item2 = itemArr[1];
             return (
-              <SmallBoxContainer key={item1.type + item1.id}>
-                <Box item={item1} key={item1.type + item1.id} />
-                <Box item={item2} key={item2.type + item2.id} />
+              <SmallBoxContainer key={item1.title + item1.id}>
+                <Box item={item1} type={'RecSet'} />
+                <Box item={item2} type={'RecSet'} />
               </SmallBoxContainer>
             );
           }
