@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getDetails} from '../../../api/api';
+import {getRecs} from '../../../api/api';
 import RecPlanPresenter from './RecPlanPresenter';
 
 const RecPlanContainer = () => {
@@ -12,8 +12,8 @@ const RecPlanContainer = () => {
 
   useEffect(() => {
     const init = async () => {
-      let data = await getDetails('recSingles');
-      let items = data.recSingles;
+      let recs = await getRecs();
+      let items = recs;
 
       items.map(item => {
         item.isPressed = false;

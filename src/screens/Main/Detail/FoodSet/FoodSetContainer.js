@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getDetail} from '../../../../api/api';
+import {getFoodSets} from '../../../../api/api';
 import {TransparentHeader} from '../../../../components/Header/TransparentHeader';
 import FoodSetPresenter from './FoodSetPresenter';
 
@@ -12,7 +12,8 @@ const FoodSetContainer = ({navigation, route}) => {
 
   useEffect(() => {
     const init = async () => {
-      let data = await getDetail('foodSets', route.params?.id);
+      let data = await getFoodSets();
+
       let foodSet = data.foodSet;
       let items = foodSet.items;
       let memberCnt = foodSet.memberCnt;
