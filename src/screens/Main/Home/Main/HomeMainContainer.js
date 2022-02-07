@@ -29,7 +29,6 @@ export default () => {
 
   const loadData = async () => {
     const foodSets = await getFoodSets();
-
     const recSets = await getRecSets();
 
     for (let i = 0, max = foodSets.length; i < max; i++) {

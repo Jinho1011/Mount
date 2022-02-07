@@ -17,13 +17,29 @@ const BoxContainer = styled.Pressable`
 `;
 
 const BoxImage = styled.Image`
-  /* width: ${props => {
-    if (props.type == 'long') return '100%';
+  width: ${props => {
+    if (props.type === 'long') return '100%';
     else return `${parseInt((screenWidth - 40) / 2 - 8)}}px`;
-  }}; */
+  }};
   height: 150px;
   background-color: #f3f3f3;
   border-radius: 4px;
+`;
+
+const NoImageContainer = styled.View`
+  width: ${props => {
+    if (props.type === 'long') return '100%';
+    else return `${parseInt((screenWidth - 40) / 2 - 8)}}px`;
+  }};
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f3f3;
+  border-radius: 4px;
+`;
+
+const NoImage = styled.Image`
+  width: 150px;
+  height: 150px;
 `;
 
 const BoxInfoContainer = styled.View`
@@ -103,7 +119,7 @@ const Box = ({item, type}) => {
 
   useEffect(() => {
     const text = components.join(', ');
-    const max = item.displayType === 'short' ? 14 : 29;
+    const max = item?.displayType === 'short' ? 14 : 32;
     if (text.length > max) {
       setSubtitle(text.slice(0, max) + ' ...');
     } else {
@@ -115,17 +131,23 @@ const Box = ({item, type}) => {
 
   return (
     <BoxContainer
-      type={item.displayType}
+      type={item?.displayType}
       onPress={() => {
         navigation.navigate('Details', {
           screen: type,
           params: {id: item.id},
         });
       }}>
-      <BoxImage source={{uri: item.image}} type={item.displayType} />
+      {item?.image === '' || item?.image === '1' ? (
+        <NoImageContainer type={item?.displayType}>
+          <NoImage source={require('../../../assets/Unprepared_img.webp')} />
+        </NoImageContainer>
+      ) : (
+        <BoxImage source={{uri: item?.image}} type={item?.displayType} />
+      )}
       <BoxInfoContainer>
         <BoxLeft>
-          <BoxTitle>{item.title}</BoxTitle>
+          <BoxTitle>{item?.title}</BoxTitle>
           <BoxSubtitleContainer>
             <BoxSetContainer>
               <BoxSet>세트</BoxSet>
