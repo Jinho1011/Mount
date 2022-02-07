@@ -12,7 +12,7 @@ const FoodSetChangeCounterContainer = ({navigation, route}) => {
     const init = () => {
       let foodSet = route.params._state.foodSet;
       let memberCnt = route.params._state.memberCnt;
-      let items = foodSet.items;
+      let items = route.params._state.items;
 
       items.map(item => {
         item.count = memberCnt;

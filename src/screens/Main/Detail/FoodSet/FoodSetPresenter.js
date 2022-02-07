@@ -93,18 +93,16 @@ const BorderLine = styled(View)`
 `;
 
 const FoodSetPresenter = ({state, setState}) => {
-  console.log('foodset');
-  console.log(state);
   const navigation = useNavigation();
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
         <TitleContainer
-          img={state?.foodSet?.img}
+          image={state?.foodSet?.image}
           title={state?.foodSet?.title}
           // items 배열의 name들을 map으로 받아오고 ', '으로 join
-          items={state?.items?.map(item => item.name).join(', ')}
+          items={state?.items?.map(item => item.title).join(', ')}
         />
         <Counter state={state} setState={setState} />
         <BorderLine />
