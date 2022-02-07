@@ -103,7 +103,7 @@ const Box = ({item, type}) => {
 
   useEffect(() => {
     const text = components.join(', ');
-    const max = item.displayType === 'short' ? 14 : 32;
+    const max = item?.displayType === 'short' ? 14 : 32;
     if (text.length > max) {
       setSubtitle(text.slice(0, max) + ' ...');
     } else {
@@ -115,17 +115,17 @@ const Box = ({item, type}) => {
 
   return (
     <BoxContainer
-      type={item.displayType}
+      type={item?.displayType}
       onPress={() => {
         navigation.navigate('Details', {
           screen: type,
           params: {id: item.id},
         });
       }}>
-      <BoxImage source={{uri: item.image}} type={item.displayType} />
+      <BoxImage source={{uri: item?.image}} type={item?.displayType} />
       <BoxInfoContainer>
         <BoxLeft>
-          <BoxTitle>{item.title}</BoxTitle>
+          <BoxTitle>{item?.title}</BoxTitle>
           <BoxSubtitleContainer>
             <BoxSetContainer>
               <BoxSet>세트</BoxSet>
