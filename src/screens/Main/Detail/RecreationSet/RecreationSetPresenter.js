@@ -219,9 +219,9 @@ const RecreationSetPresenter = ({state, setState}) => {
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
         <TitleContainer
-          img={state?.recSet?.img}
+          img={state?.recSet?.image}
           title={state?.recSet?.title}
-          items={state?.recSet?.items?.map(item => item.name).join(', ')}
+          items={state?.items?.map(item => item.title).join(', ')}
         />
         <CounterContainer>
           <Counter state={state} setState={setState} />
@@ -229,9 +229,9 @@ const RecreationSetPresenter = ({state, setState}) => {
         <RecSetListContainer>
           <RecSetListTitle>세트 리스트</RecSetListTitle>
           <RecSetListItemBigContainer>
-            <RecSetListName>{state.recSet.title}</RecSetListName>
+            <RecSetListName>{state?.recSet?.title}</RecSetListName>
             <RecSetListItemTitle>구성품</RecSetListItemTitle>
-            {state?.recSet?.items?.map(item => {
+            {state?.items?.map(item => {
               return (
                 <Items
                   state={state}
@@ -274,10 +274,10 @@ const RecreationSetPresenter = ({state, setState}) => {
                 </ModalCloseButton>
               </ModalHeader>
               <ModalImageBox>
-                <ModalImage source={{uri: state?.recSet?.img}} />
+                <ModalImage source={{uri: state?.recSet?.image}} />
               </ModalImageBox>
               <ModalContentsContainer>
-                <ModalContentsTitle>제목</ModalContentsTitle>
+                <ModalContentsTitle>{state?.recSet?.title}</ModalContentsTitle>
                 <ModalContentsDescription>
                   한줄설명길이
                 </ModalContentsDescription>

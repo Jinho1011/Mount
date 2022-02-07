@@ -81,11 +81,10 @@ const TotalPriceText = styled.Text`
 `;
 
 const TotalPrice = ({state, setState}) => {
-  // console.log(state);
   let price = 0;
   for (let i = 0; i < state?.items?.length; i++) {
     price = parseInt(
-      (price + state?.items[i]?.count * state?.items[i]?.price) /
+      (price + state?.items[i]?.count * state?.items[i]?.total_price) /
         state?.memberCnt,
       10,
     );
