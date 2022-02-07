@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getDetails} from '../../../api/api';
+import {getFoods} from '../../../api/api';
 import FoodPlanPresenter from './FoodPlanPresenter';
 
 const FoodPlanContainer = () => {
@@ -11,8 +11,8 @@ const FoodPlanContainer = () => {
 
   useEffect(() => {
     const init = async () => {
-      let data = await getDetails('foodSingles');
-      let items = data.foodSingles;
+      let foods = await getFoods();
+      let items = foods;
 
       items.map(item => {
         item.isPressed = false;
