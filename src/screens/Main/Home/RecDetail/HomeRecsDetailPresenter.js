@@ -63,6 +63,7 @@ export default ({state}) => {
         })}
         <View style={{paddingTop: 115}} />
       </ScrollContainer>
+      <Floaters onPressTouch={onPressTouch} target={'RecPlan'} />
     </>
   );
 };

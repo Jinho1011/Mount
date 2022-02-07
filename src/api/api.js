@@ -42,8 +42,7 @@ export const getRecs = async () => {
 };
 
 export const getFoodById = async id => {
-  const url = `${namespace}/foods/?id=${id}&format=json`;
-
+  const url = `${namespace}/foods/?format=json&id=${id}`;
   let config = {
     method: 'get',
     url,
@@ -56,31 +55,11 @@ export const getFoodById = async id => {
     })
     .catch(error => {
       console.log(error);
-      throw error;
     });
 };
 
 export const getRecById = async id => {
-  const url = `${namespace}/recs/?id=${id}&format=json`;
-
-  let config = {
-    method: 'get',
-    url,
-    headers: {},
-  };
-
-  return await axios(config)
-    .then(response => {
-      return response.data.data[0];
-    })
-    .catch(error => {
-      console.log(error);
-      throw error;
-    });
-};
-
-export const getItemById = async (type, id) => {
-  const url = `${namespace}/${type}/?id=${id}&format=json`;
+  const url = `${namespace}/recs/?format=json&id=${id}`;
 
   let config = {
     method: 'get',

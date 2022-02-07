@@ -1,13 +1,14 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import {toInteger} from 'lodash';
+import React from 'react';
 import {Pressable} from 'react-native';
 import styled from 'styled-components';
 
 const Container = styled.View`
   background: ${props =>
-    props.isPressed ? 'rgba(226, 249, 85, 0.2)' : '#ffffff'} 
+    props.isPressed ? 'rgba(226, 249, 85, 0.2)' : '#ffffff'};
   border: ${props =>
-    props.isPressed ? '1px solid #e2f955' : '1px solid #f3f3f3'} 
+    props.isPressed ? '1px solid #e2f955' : '1px solid #f3f3f3'};
   border-radius: 5px;
   padding: 8px 13px 8px 7px;
   flex-direction: row;
@@ -17,7 +18,7 @@ const Container = styled.View`
 
 const CheckBox = styled.Pressable`
   border: 1px solid #b4b4b4;
-  background: ${props => (props.isPressed ? '#373737' : '#ffffff')}
+  background: ${props => (props.isPressed ? '#373737' : '#ffffff')};
   border-radius: 5px;
   width: 24px;
   height: 24px;
@@ -124,12 +125,6 @@ export default function Item({item, state, setState}) {
                 return e;
               }
             });
-
-            // console.log(
-            //   '🚀 ~ file: Item.js ~ line 124 ~ Item ~ item.isPressed ? prev.pressedCnt - 1 : prev.pressedCnt + 1',
-            //   item.isPressed ? prev.pressedCnt - 1 : prev.pressedCnt + 1,
-            // );
-
             return {
               ...prev,
               items: modifiedItems,
@@ -138,8 +133,6 @@ export default function Item({item, state, setState}) {
                 : prev.pressedCnt + 1,
             };
           });
-
-          // setIsPress(!isPress);
         }}
         isPressed={item.isPressed}>
         {item.isPressed ? (
@@ -153,11 +146,15 @@ export default function Item({item, state, setState}) {
         )}
       </CheckBox>
       <ImageBox>
-        <Image source={{uri: item.img}} />
+        {item.image !== '' ? (
+          <Image source={{uri: item.image}} />
+        ) : (
+          <Image source={require('../../../assets/Unprepared_img.webp')} />
+        )}
       </ImageBox>
       <ContentBox>
         <NameText>{item.title}</NameText>
-        <DescriptionText>{item.subtitle}</DescriptionText>
+        <DescriptionText>{item.sub_title}</DescriptionText>
         <DetailNavBox
           key={item.type + item.id}
           onPress={() => {
@@ -178,7 +175,7 @@ export default function Item({item, state, setState}) {
         <HeartImageBox>
           <HeartImage source={require('../../../assets/plan_heart.png')} />
         </HeartImageBox>
-        <HeartCount>13</HeartCount>
+        <HeartCount>{toInteger(Math.random() * 60)}</HeartCount>
       </HeartBox>
     </Container>
   );
