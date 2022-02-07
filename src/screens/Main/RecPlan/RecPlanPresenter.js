@@ -21,12 +21,12 @@ const Footer = styled.View`
 
 const ChangeCountButton = styled.Pressable`
   padding: 12px 128px;
-  background: ${prop => (prop.pressedCnt > 0 ? '#e2f955' : '#f3f3f3')} 
+  background: ${prop => (prop.pressedCnt > 0 ? '#e2f955' : '#f3f3f3')};
   border-radius: 5px;
 `;
 
 const ChangeCountButtonText = styled.Text`
-  font-family: 'NotoSansKR-Regular'
+  font-family: 'NotoSansKR-Regular';
   font-size: 16px;
   line-height: 24px;
   margin: auto;

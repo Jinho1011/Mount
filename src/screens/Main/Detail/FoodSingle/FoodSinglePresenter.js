@@ -121,6 +121,7 @@ const BottomContentsContainer = styled.View`
 `;
 
 const FoodSinglePresenter = ({state, setState}) => {
+  // console.log(state.foodSingle);
   const navigation = useNavigation();
 
   return (
@@ -128,9 +129,9 @@ const FoodSinglePresenter = ({state, setState}) => {
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
       <ScrollContainer>
         <SingleTitle
-          img={state?.foodSingle?.img}
-          name={state?.foodSingle?.name}
-          recommendPerPerson={state?.foodSingle?.recommendPerPerson}
+          image={state?.foodSingle?.image}
+          title={state?.foodSingle?.title}
+          description={state?.foodSingle?.description}
         />
         <SingleCounter state={state} setState={setState} />
         <BorderLine />
