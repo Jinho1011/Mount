@@ -9,19 +9,28 @@ import {
 
 const FloaterContainer = styled.View`
   position: absolute;
-  bottom: 5;
+  bottom: 20;
   right: 23;
   justify-content: center;
   align-items: center;
 `;
 
 const TopButtonContainer = styled.Pressable`
+  margin-bottom: 11px;
   justify-content: center;
   align-items: center;
-  margin-bottom: 11px;
+  background-color: #ffffff;
+  elevation: 2;
+  border-radius: 5px;
 `;
 
-const PlannerButtonContainer = styled.Pressable``;
+const PlannerButtonContainer = styled.Pressable`
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  elevation: 5;
+  border-radius: 40px;
+`;
 
 const Floaters = ({onPressTouch, target}) => {
   const navigation = useNavigation();
