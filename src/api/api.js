@@ -58,7 +58,7 @@ export const getFoodById = async id => {
 };
 
 export const getRecById = async id => {
-  const url = `${namespace}/recs/${id}?format=json`;
+  const url = `${namespace}/recs/?format=json&id=${id}`;
 
   let config = {
     method: 'get',
@@ -68,7 +68,7 @@ export const getRecById = async id => {
 
   return await axios(config)
     .then(response => {
-      return response.data.data;
+      return response.data.data[0];
     })
     .catch(error => {
       console.log(error);

@@ -146,7 +146,11 @@ export default function Item({item, state, setState}) {
         )}
       </CheckBox>
       <ImageBox>
-        <Image source={{uri: item.image}} />
+        {item.image !== '' ? (
+          <Image source={{uri: item.image}} />
+        ) : (
+          <Image source={require('../../../assets/Unprepared_img.webp')} />
+        )}
       </ImageBox>
       <ContentBox>
         <NameText>{item.title}</NameText>

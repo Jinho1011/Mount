@@ -94,14 +94,19 @@ const ItemImage = styled(Image)`
   height: 32px;
 `;
 
-const Components = ({state, setState, component}) => {
-  console.log(state?.recSingle?.img);
+const Components = ({state, setState}) => {
   return (
     <ItemBox>
       <ItemSmallBox>
         <ItemLeft>
-          <ItemImage source={{uri: state?.recSingle?.img}} />
-          <ItemName>{component}</ItemName>
+          {state?.recSingle?.image === '' ? (
+            <ItemImage
+              source={require('../../../assets/Unprepared_img.webp')}
+            />
+          ) : (
+            <ItemImage source={{uri: state?.recSingle?.image}} />
+          )}
+          <ItemName>{state?.components}</ItemName>
         </ItemLeft>
         <ItemRight>
           <Counter>
@@ -111,7 +116,7 @@ const Components = ({state, setState, component}) => {
           </Counter>
           <SetItemPriceContainer>
             <SetItemSize>1팀당 가격</SetItemSize>
-            <SetItemPrice>{state?.recSingle?.price}원</SetItemPrice>
+            <SetItemPrice>{state?.recSingle?.total_price}원</SetItemPrice>
           </SetItemPriceContainer>
         </ItemRight>
       </ItemSmallBox>
