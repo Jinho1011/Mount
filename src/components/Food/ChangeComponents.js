@@ -101,7 +101,6 @@ const ComponentImage = styled(Image)`
 `;
 
 const ChangeComponents = ({state, setState, item}) => {
-  console.log(item);
   const minusCount = () => {
     let items = state.items.map(_item => {
       if (item.id === _item.id) {
@@ -138,7 +137,6 @@ const ChangeComponents = ({state, setState, item}) => {
     }));
   };
 
-  console.log(item);
   return (
     <ItemBox>
       <ItemSmallBox>

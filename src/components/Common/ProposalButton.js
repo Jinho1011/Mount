@@ -44,19 +44,6 @@ const PlannerText = styled.Text`
 `;
 
 const ProposalButton = ({state, isClicked, setIsClicked, selected}) => {
-  console.log(
-    '🚀 ~ file: ProposalButton.js ~ line 37 ~ ProposalButton ~ selected',
-    selected,
-  );
-
-  console.log(
-    '🚀 ~ file: ProposalButton.js ~ line 37 ~ ProposalButton ~ isClicked',
-    isClicked,
-  );
-  console.log(
-    '🚀 ~ file: ProposalButton.js ~ line 37 ~ ProposalButton ~ state',
-    state,
-  );
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const planners = useSelector(state => state.planners.planners);

@@ -103,7 +103,7 @@ const Box = ({item, type}) => {
 
   useEffect(() => {
     const text = components.join(', ');
-    const max = item.displayType === 'short' ? 14 : 29;
+    const max = item.displayType === 'short' ? 14 : 32;
     if (text.length > max) {
       setSubtitle(text.slice(0, max) + ' ...');
     } else {

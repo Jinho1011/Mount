@@ -95,7 +95,6 @@ const ItemImage = styled(Image)`
 `;
 
 const Components = ({state, setState, component}) => {
-  console.log(state?.recSingle?.img);
   return (
     <ItemBox>
       <ItemSmallBox>
