@@ -36,8 +36,8 @@ const Caution = ({state, setState, caution}) => {
       <CautionTitle>주의 사항</CautionTitle>
       <CautionDetailContainer>
         <CautionDetail>
-          mount에 나와있는 레크레이션 제품들의 가격은 '쿠팡' 최상위 랭킹
-          기준입니다. 예상 가격은 실제와 다를 수 있습니다.
+          mount에 나와있는 식품 가격은 '쿠팡' 최상위 랭킹 기준입니다. 예상
+          가격은 실제와 다를 수 있습니다.
         </CautionDetail>
       </CautionDetailContainer>
     </CautionContainer>

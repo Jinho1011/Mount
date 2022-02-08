@@ -18,8 +18,8 @@ const PlannerButton = styled.TouchableOpacity`
   padding: 12px 135px;
   background: ${props => {
     if (
-      (!props.isClicked && !Number.isInteger(props.selected.id)) ||
-      (props.isClicked && Number.isInteger(props.selected.id))
+      (!props.isClicked && !Number.isInteger(props.selected?.id)) ||
+      (props.isClicked && Number.isInteger(props.selected?.id))
     ) {
       return '#e2f955';
     } else {

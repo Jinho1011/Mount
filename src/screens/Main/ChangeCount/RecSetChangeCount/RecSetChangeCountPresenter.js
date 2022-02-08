@@ -27,6 +27,7 @@ const ItemContainer = styled(View)`
 
 const TotalPriceContainer = styled(View)`
   padding-top: 25px;
+  padding-bottom: 25px;
 `;
 
 const ModalWrap = styled.Pressable`
