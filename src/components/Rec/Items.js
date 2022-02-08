@@ -94,13 +94,13 @@ const ItemImage = styled(Image)`
   height: 32px;
 `;
 
-const Items = ({state, setState, item}) => {
+const Items = ({item}) => {
   return (
     <ItemBox>
       <ItemSmallBox>
         <ItemLeft>
           <ItemImage source={require('../../../assets/Unprepared_img.webp')} />
-          <ItemName>{item.title}</ItemName>
+          <ItemName>{item.person_item}</ItemName>
         </ItemLeft>
         <ItemRight>
           <Counter>
