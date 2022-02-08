@@ -45,6 +45,7 @@ const ItemCount = styled(Text)`
 `;
 
 const SetItemPriceContainer = styled(View)`
+  width: 80px;
   padding-left: 28px;
   flex-direction: column;
   align-items: flex-end;

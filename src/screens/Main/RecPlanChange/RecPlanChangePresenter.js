@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import {Text, View} from 'react-native';
 import styled from 'styled-components';
-import FocusAwareStatusBar from '../../../components/StatusBar';
-import Modal from '../../../components/Modal';
-import PlannerButton from '../../../components/Common/ProposalButton';
+import {Text, View} from 'react-native';
 import ItemMuttable from '../../../components/Plan/ItemMuttable';
 import TotalPrice from '../../../components/Common/TotalPrice';
-import SingleCounter from '../../../components/Rec/SingleCounter';
+import Modal from '../../../components/Modal';
+import PlannerButton from '../../../components/Common/ProposalButton';
+import FocusAwareStatusBar from '../../../components/StatusBar';
 import Counter from '../../../components/Rec/Counter';
 
 const ScrollContainer = styled.ScrollView`
@@ -42,7 +41,8 @@ const ModalWrap = styled.Pressable`
 
 export default function RecPlanChangePresenter({state, setState}) {
   const [isClicked, setIsClicked] = useState(false);
-  const [selectedPlanner, setSelectedPlanner] = useState('');
+  const [selectedPlanner, setSelectedPlanner] = useState({});
+
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
@@ -71,24 +71,19 @@ export default function RecPlanChangePresenter({state, setState}) {
             isClicked={isClicked}
             onPress={() => {
               setIsClicked(false);
-              setSelectedPlanner('');
+              setSelectedPlanner({});
             }}
           />
-          <Modal
-            isClicked={isClicked}
-            setIsClicked={setIsClicked}
-            selectedPlanner={selectedPlanner}
-            setSelectedPlanner={setSelectedPlanner}
-          />
+          <Modal selected={selectedPlanner} setSelected={setSelectedPlanner} />
         </>
       ) : (
         <></>
       )}
       <PlannerButton
+        state={state}
         isClicked={isClicked}
         setIsClicked={setIsClicked}
-        selectedPlanner={selectedPlanner}
-        setSelectedPlanner={setSelectedPlanner}
+        selected={selectedPlanner}
       />
     </>
   );
