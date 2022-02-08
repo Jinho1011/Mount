@@ -52,7 +52,6 @@ export default () => {
 
   useEffect(() => {
     const init = async () => {
-      // await initFavs();
       const value = await getData(USER_KEY);
       const planners = await getData(PLANNER_KEY);
       if (planners != null) dispatch(addPlanners(planners));

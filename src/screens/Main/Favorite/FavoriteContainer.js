@@ -63,9 +63,5 @@ export default () => {
     }));
   }, []);
 
-  useEffect(() => {
-    // console.log('🚀 ~ file: FavoriteContainer.js ~ line 31 ~ state', state);
-  }, [state]);
-
   return <FavoritePresenter state={state} setState={setState} />;
 };

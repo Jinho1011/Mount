@@ -6,7 +6,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case 'CREATE_PLANNER': {
       const newPlanner = {
-        id: state.planners.length,
+        id: Date.now(),
         title: action.title,
         memberCnt: 0,
         items: {
@@ -63,8 +63,39 @@ export default (state = initialState, action) => {
     case 'ADD_ITEMS': {
       const id = action.id;
       const category = action.category;
-      const newItems = action.items;
       const memberCnt = action.memberCnt;
+      const newItems = action.items;
+      const targetPlannerItems = state.planners.find(e => e.id === id).items[
+        category
+      ];
+
+      let combinedItems = [];
+      if (newItems.length >= targetPlannerItems.length) {
+        combinedItems = newItems.map(item => {
+          const found = targetPlannerItems.find(e => e.id === item.id);
+          if (found === undefined) {
+            return item;
+          } else {
+            return {
+              ...item,
+              count: item.count + found.count,
+            };
+          }
+        });
+      } else {
+        combinedItems = targetPlannerItems.map(item => {
+          const found = newItems.find(e => e.id === item.id);
+          if (found === undefined) {
+            return item;
+          } else {
+            return {
+              ...item,
+              count: item.count + found.count,
+            };
+          }
+        });
+      }
+
       const addedPlanners = state.planners.map(planner => {
         if (planner.id === id) {
           return {
@@ -72,7 +103,7 @@ export default (state = initialState, action) => {
             memberCnt,
             items: {
               ...planner.items,
-              [category]: [...planner.items[category], ...newItems],
+              [category]: combinedItems,
             },
           };
         } else {
