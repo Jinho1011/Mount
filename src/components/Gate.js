@@ -34,7 +34,7 @@ export default () => {
   // 앱 처음 실행 시
   useEffect(() => {
     async function init() {
-      //removeData(USER_KEY);
+      // removeData(PLANNER_KEY);
       const value = await getData(USER_KEY);
       const planners = await getData(PLANNER_KEY);
       if (planners != null) dispatch(addPlanners(planners));
