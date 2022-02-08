@@ -118,8 +118,6 @@ const TotalPriceContainer = styled.View`
 `;
 
 const FoodSetChangeCountPresenter = ({state, setState}) => {
-  console.log('state.memberCnt');
-  console.log(state.memberCnt);
   const [isClicked, setIsClicked] = useState(false);
   const [selected, setSelected] = useState({});
   return (

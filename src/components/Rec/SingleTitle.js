@@ -34,11 +34,12 @@ const SingleInfo = styled.Text`
 const SingleTitle = ({image, title, one_line_description}) => {
   return (
     <SingleTitleContainer>
-      {image !== '' ? (
-        <SingleImage source={{uri: image}} />
-      ) : (
+      <SingleImage source={require('../../../assets/Unprepared_img.webp')} />
+      {/* {image !== '' ? (
         <SingleImage source={require('../../../assets/Unprepared_img.webp')} />
-      )}
+      ) : (
+        <SingleImage source={{uri: image}} />
+      )} */}
       <TransparentHeader style={{position: 'absolute', top: 0, right: 0}} />
       <Name>{title}</Name>
       <SingleInfo>{one_line_description}</SingleInfo>
