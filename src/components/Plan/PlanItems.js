@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Dimensions, LogBox} from 'react-native';
+import {View} from 'react-native';
 import styled from 'styled-components';
-import {useNavigation} from '@react-navigation/native';
 
 import Item from './Item';
 
@@ -80,22 +79,13 @@ const EmptyText = styled.Text`
 `;
 
 const PlanItemsContainer = ({category, items}) => {
-  const navigation = useNavigation();
   const type = category === '레크' ? 'rec' : 'food';
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    console.log(
-      '🚀 ~ file: PlanItems.js ~ line 83 ~ PlanItemsContainer ~ category',
-      category,
-    );
-    console.log(
-      '🚀 ~ file: PlanItems.js ~ line 83 ~ PlanItemsContainer ~ items',
-      items,
-    );
-    let totalPrice = 0;
-    items[type]?.map(item => (totalPrice += item.price * item.count));
-    setTotalPrice(totalPrice);
+    let price = 0;
+    items[type]?.map(item => (price += item.price * item.count));
+    setTotalPrice(price);
   }, []);
 
   function numberWithCommas(x) {
@@ -110,8 +100,8 @@ const PlanItemsContainer = ({category, items}) => {
       </TitleContainer>
       <ItemContainer>
         {items[type].length > 0 ? (
-          items[type]?.map((item, i, items) => {
-            if (i + 1 === items.length) {
+          items[type]?.map((item, i, arr) => {
+            if (i + 1 === arr.length) {
               return <Item item={item} key={item.id} />;
             } else {
               return (
