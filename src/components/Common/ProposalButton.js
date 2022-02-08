@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
-import {useSelector, useDispatch} from 'react-redux';
-import {addItems, getIdByTitle} from '../../store/actions/planners';
+import {useDispatch} from 'react-redux';
+import {addItems} from '../../store/actions/planners';
 
 const BottomConatiner = styled.View`
   flex-direction: row;
@@ -25,10 +25,6 @@ const PlannerButton = styled.TouchableOpacity`
     } else {
       return '#F3F3F3';
     }
-
-    // Number.isInteger(props.selected.id) && props.isClicked
-    //   ? '#e2f955'
-    //   : '#F3F3F3'
   }};
   align-content: center;
   justify-content: center;
@@ -46,7 +42,6 @@ const PlannerText = styled.Text`
 const ProposalButton = ({state, isClicked, setIsClicked, selected}) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const planners = useSelector(state => state.planners.planners);
 
   return (
     <BottomConatiner>
