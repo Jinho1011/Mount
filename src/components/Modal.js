@@ -52,7 +52,7 @@ const Modal = ({selected, setSelected}) => {
         {planners.map((planner, index) => {
           return (
             <Planner
-              key={planner.title + index}
+              key={planner.id}
               planner={planner}
               selected={selected}
               setSelected={setSelected}

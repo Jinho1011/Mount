@@ -33,6 +33,8 @@ export default () => {
 
   useEffect(() => {
     const init = async () => {
+      // removeData(PLANNER_KEY);
+
       const value = await getData(USER_KEY);
       const planners = await getData(PLANNER_KEY);
       if (planners != null) dispatch(addPlanners(planners));
@@ -43,7 +45,6 @@ export default () => {
         }
       }
       setIsloading(false);
-      console.log('VALUE', value);
     };
     init();
   }, []);

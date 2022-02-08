@@ -70,17 +70,17 @@ const Item = ({item}) => {
   return (
     <Container>
       <ContainerLeft>
-        <ItemImg />
+        <ItemImg source={{uri: item.image}} />
         <ItemTitle>
-          {item?.name.length > 5
-            ? item.name.slice(0, 5).concat('...')
-            : item.name}
+          {item?.title.length > 5
+            ? item.title.slice(0, 5).concat('...')
+            : item.title}
         </ItemTitle>
       </ContainerLeft>
       <ContainerRight>
         <ItemCount>{item?.count}</ItemCount>
         <ItemPriceContainer>
-          <ItemDesc>{item?.desc}</ItemDesc>
+          <ItemDesc>{item?.description}</ItemDesc>
           <ItemPrice>{item?.price}원</ItemPrice>
         </ItemPriceContainer>
       </ContainerRight>
