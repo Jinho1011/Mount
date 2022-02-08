@@ -54,7 +54,11 @@ export default () => {
     e.preventDefault();
     EtcSignBody = {
       email: state.email,
-      password: state.password,
+      pw: state.password,
+      name: '',
+      access_token: '',
+      identifier: '',
+      platform: 'Mount',
     };
 
     await storeData(USER_KEY, EtcSignBody);

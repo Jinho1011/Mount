@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Image, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components';
@@ -96,6 +96,28 @@ export default ({
 }) => {
   const navigation = useNavigation();
   const TutorialPress = () => navigation.navigate('Tutorial');
+
+  const [text1, setText1] = useState('');
+  const [text2, setText2] = useState('');
+
+  useEffect(() => {
+    const init = async () => {
+      let data1 = await fetch(
+        'https://62012796fdf5090017249898.mockapi.io/terms/1',
+      );
+      let data2 = await fetch(
+        'https://62012796fdf5090017249898.mockapi.io/terms/2',
+      );
+
+      data1 = await data1.json();
+      data2 = await data2.json();
+
+      setText1(data1.data);
+      setText2(data2.data);
+    };
+    init();
+  }, []);
+
   return (
     <Container>
       <TitleText>이용 약관 동의</TitleText>
@@ -132,7 +154,7 @@ export default ({
       </CheckButton>
       <TosTextBlack>이용약관</TosTextBlack>
       <TosTextRed>(필수)</TosTextRed>
-      <TosTextBox>이용 약관 내용 첨부</TosTextBox>
+      <TosTextBox>{text1}</TosTextBox>
       <CheckButton2 onPress={secondCheckPress}>
         {state.secondCheck ? (
           <Image
@@ -148,7 +170,7 @@ export default ({
       </CheckButton2>
       <TosTextBlack>이용약관</TosTextBlack>
       <TosTextRed>(필수)</TosTextRed>
-      <TosTextBox>이용 약관 내용 첨부</TosTextBox>
+      <TosTextBox>{text2}</TosTextBox>
       <SignupButton
         disabled={!(state.firstCheck && state.secondCheck)}
         onPress={TutorialPress}>
