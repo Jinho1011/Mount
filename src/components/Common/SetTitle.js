@@ -60,9 +60,8 @@ const ElementsContainer = styled(View)`
 const TitleContainer = ({image, title, items}) => {
   return (
     <SetTitleContainer>
-      <SetImage source={{uri: image}} />
+      <SetImage source={require('../../../assets/Unprepared_img.webp')} />
       <TransparentHeader style={{position: 'absolute', top: 0, right: 0}} />
-
       <SetTitle>{title}</SetTitle>
       <SetInfo>
         <SetLabelContainer>

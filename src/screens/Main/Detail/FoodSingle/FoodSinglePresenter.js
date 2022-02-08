@@ -3,7 +3,7 @@ import {Image} from 'react-native';
 import styled from 'styled-components';
 import SingleTitle from '../../../../components/Food/SingleTitle';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
-import Caution from '../../../../components/Common/Caution';
+import Caution from '../../../../components/Food/Caution';
 import SingleCounter from '../../../../components/Food/SingleCounter';
 import SingleTotalPrice from '../../../../components/Food/SingleTotalPrice';
 import _ from 'lodash';

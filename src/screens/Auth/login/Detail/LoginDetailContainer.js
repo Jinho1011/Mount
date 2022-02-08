@@ -46,7 +46,11 @@ export default () => {
     e.preventDefault();
     EtcLoginBody = {
       email: state.email,
-      password: state.password,
+      pw: state.password,
+      name: '',
+      access_token: '',
+      identifier: '',
+      platform: 'Mount',
     };
 
     await storeData(USER_KEY, EtcLoginBody);

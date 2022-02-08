@@ -6,8 +6,8 @@ import TitleContainer from '../../../../components/Common/SetTitle';
 import Counter from '../../../../components/Food/Counter';
 import Components from '../../../../components/Food/Components';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
-import TotalPrice from '../../../../components/Common/TotalPrice';
-import Caution from '../../../../components/Common/Caution';
+import TotalPrice from '../../../../components/Food/TotalPrice';
+import Caution from '../../../../components/Food/Caution';
 import _ from 'lodash';
 
 const PageWrap = styled(View)``;
