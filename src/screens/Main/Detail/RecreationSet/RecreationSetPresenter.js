@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {
   Image,
+  ImageBackground,
   Pressable,
   ScrollView,
   Text,
@@ -39,29 +40,6 @@ const RecSetListTitle = styled(Text)`
   font-size: 12px;
   line-height: 16px;
   color: #000000;
-`;
-
-const RecSetListItemBigContainer = styled(View)`
-  border: 1px solid #eaeaea;
-  border-radius: 12px;
-  margin-top: 17px;
-  padding: 14px 15px 0px 15px;
-`;
-
-const RecSetListName = styled(Text)`
-  font-family: 'NotoSansKR-Bold';
-  font-size: 16px;
-  line-height: 24px;
-  color: #000000;
-`;
-
-const RecSetListItemTitle = styled(Text)`
-  font-family: 'NotoSansKR-Bold';
-  font-size: 12px;
-  line-height: 17px;
-  color: #000000;
-  padding-top: 14px;
-  margin-bottom: 13px;
 `;
 
 const RecSetBorderLine = styled(View)`
@@ -178,7 +156,7 @@ const ModalImageBox = styled(View)`
   width: 100%;
 `;
 
-const ModalImage = styled(Image)`
+const ModalImage = styled(ImageBackground)`
   width: 100%;
   height: 245px;
   border-top-right-radius: 10px;
@@ -210,10 +188,34 @@ const ModalContentsDescription = styled(Text)`
   color: #777;
 `;
 
+const ContentContainer = styled(View)`
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  margin-top: 17px;
+  padding: 14px 15px 22px 15px;
+`;
+
+const ContentTitle = styled(Text)`
+  font-family: 'NotoSansKR-Bold';
+  font-size: 16px;
+  line-height: 24px;
+  color: #000;
+`;
+
+const ContentSubtitle = styled(Text)`
+  font-family: 'NotoSansKR-Bold';
+  font-size: 12px;
+  line-height: 17px;
+  color: #000;
+  padding-top: 14px;
+  padding-bottom: 14px;
+`;
+
 const RecreationSetPresenter = ({state, setState}) => {
   const navigation = useNavigation();
   //State를 이용하여 Modal을 제어함
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalOutput, setModalOutput] = useState('');
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
@@ -228,23 +230,28 @@ const RecreationSetPresenter = ({state, setState}) => {
         </CounterContainer>
         <RecSetListContainer>
           <RecSetListTitle>세트 리스트</RecSetListTitle>
-          <RecSetListItemBigContainer>
-            <RecSetListName>{state?.recSet?.title}</RecSetListName>
-            <RecSetListItemTitle>구성품</RecSetListItemTitle>
-            {state?.items?.map(item => {
-              return (
-                <Items
-                  state={state}
-                  setState={setState}
-                  item={item}
-                  key={item.id}
-                />
-              );
-            })}
-            {/* <MoreRecButton onPress={() => setModalVisible(true)}>
-              <MoreRecButtonText>레크 정보 더보기</MoreRecButtonText>
-            </MoreRecButton> */}
-          </RecSetListItemBigContainer>
+          {state?.items?.map(item => {
+            return (
+              <ContentContainer>
+                <ContentTitle>{item.title}</ContentTitle>
+                {item.person_item === null ? (
+                  <ContentSubtitle />
+                ) : (
+                  <>
+                    <ContentSubtitle>구성품</ContentSubtitle>
+                    <Items item={item} />
+                  </>
+                )}
+                <MoreRecButton
+                  onPress={() => {
+                    setModalVisible(true);
+                    setModalOutput(item);
+                  }}>
+                  <MoreRecButtonText>레크 정보 더보기</MoreRecButtonText>
+                </MoreRecButton>
+              </ContentContainer>
+            );
+          })}
           <TotalPriceContainer>
             <TotalPrice state={state} setState={setState} />
           </TotalPriceContainer>
@@ -269,18 +276,22 @@ const RecreationSetPresenter = ({state, setState}) => {
                 <ModalCloseButton
                   onPress={() => {
                     setModalVisible(false);
+                    setModalOutput('');
                   }}>
                   <CloseSvg />
                 </ModalCloseButton>
               </ModalHeader>
               <ModalImageBox>
-                <ModalImage source={{uri: state?.recSet?.image}} />
+                <ModalImage
+                  source={require('../../../../../assets/Unprepared_img.webp')}
+                  resizeMode="cover"
+                />
               </ModalImageBox>
               <ModalContentsContainer>
-                <ModalContentsTitle>{state?.recSet?.title}</ModalContentsTitle>
-                <ModalContentsDescription>
+                <ModalContentsTitle>{modalOutput.title}</ModalContentsTitle>
+                {/* <ModalContentsDescription>
                   한줄설명길이
-                </ModalContentsDescription>
+                </ModalContentsDescription> */}
                 <ModalGuideLineTitle>저희 레크는요...</ModalGuideLineTitle>
               </ModalContentsContainer>
               <SetCarousel state={state} setState={setState} />
