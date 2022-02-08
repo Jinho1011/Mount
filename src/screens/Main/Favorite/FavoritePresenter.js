@@ -6,8 +6,21 @@ import FocusAwareStatusBar from '../../../components/StatusBar';
 
 import Box from '../../../components/Main/Box';
 
-const FavContainer = styled.View`
+const NoContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const NoImage = styled.Image`
+  width: 230px;
+  height: 310px;
+`;
+
+const FavContainer = styled.ScrollView`
+  flex: 1;
   padding: 24px 23px 95px 23px;
+  background-color: #ffffff;
 `;
 
 const SmallBoxContainer = styled.View`
@@ -40,24 +53,31 @@ export default ({state}) => {
   return (
     <FavContainer>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-
-      {itemArr.map(item => {
-        if (item.length === 2) {
-          return (
-            <SmallBoxContainer key={item[0].title + item[0].id}>
-              <Box item={item[0]} />
-              <Box item={item[1]} />
-            </SmallBoxContainer>
-          );
-        } else {
-          return (
-            <SmallBoxContainer key={item[0].title + item[0].id}>
-              <Box item={item[0]} />
-              <></>
-            </SmallBoxContainer>
-          );
-        }
-      })}
+      {state?.items.length > 0 ? (
+        itemArr.map(item => {
+          if (item.length === 2) {
+            return (
+              <SmallBoxContainer key={item[0].title + item[0].id}>
+                <Box item={item[0]} type={item[0].type} />
+                <Box item={item[1]} type={item[1].type} />
+              </SmallBoxContainer>
+            );
+          } else {
+            return (
+              <SmallBoxContainer key={item[0].title + item[0].id}>
+                <Box item={item[0]} type={item[0].type} />
+                <></>
+              </SmallBoxContainer>
+            );
+          }
+        })
+      ) : (
+        <NoContainer>
+          <NoImage
+            source={require('../../../../assets/error/like_error_img.webp')}
+          />
+        </NoContainer>
+      )}
     </FavContainer>
   );
 };
