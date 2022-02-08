@@ -7,6 +7,7 @@ const FoodSetContainer = ({navigation, route}) => {
     memberCnt: 1,
     foodSet: {},
     items: [],
+    id: route.params.id,
   });
 
   useEffect(() => {
