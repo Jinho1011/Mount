@@ -8,6 +8,7 @@ import Components from '../../../../components/Food/Components';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import TotalPrice from '../../../../components/Food/TotalPrice';
 import Caution from '../../../../components/Food/Caution';
+import Like from '../../../../components/Common/Like';
 import _ from 'lodash';
 
 const PageWrap = styled(View)``;
@@ -40,6 +41,7 @@ const BottomConatiner = styled(View)`
 `;
 
 const ChangeCountButton = styled(TouchableOpacity)`
+  flex: 2;
   padding: 12px 102px;
   background: #e2f955;
   border-radius: 5px;
@@ -52,24 +54,6 @@ const ChangeCountText = styled(Text)`
   line-height: 24px;
   text-align: center;
   color: #000000;
-`;
-
-const LikeView = styled(View)`
-  flex-direction: row;
-  padding-top: 13px;
-  padding-left: 13px;
-`;
-
-const LikeButton = styled(TouchableOpacity)``;
-
-const LikeCount = styled(Text)`
-  font-family: 'NotoSansKR-Regular';
-  font-size: 16px;
-  line-height: 24px;
-  display: flex;
-  align-items: center;
-  color: #8b8b8b;
-  padding-left: 3px;
 `;
 
 const ContentContainer = styled(View)`
@@ -141,12 +125,7 @@ const FoodSetPresenter = ({state, setState}) => {
           }}>
           <ChangeCountText>수량변경</ChangeCountText>
         </ChangeCountButton>
-        <LikeView>
-          <LikeButton>
-            <Image source={require('../../../../../assets/Like.png')} />
-          </LikeButton>
-          <LikeCount>23</LikeCount>
-        </LikeView>
+        <Like type={'foodSet'} id={state.id} />
       </BottomConatiner>
     </PageWrap>
   );
