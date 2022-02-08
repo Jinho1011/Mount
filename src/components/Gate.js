@@ -7,6 +7,25 @@ import {useSelector, useDispatch} from 'react-redux';
 import {PLANNER_KEY, USER_KEY, getData, removeData} from '../api/storage';
 import {addPlanners} from '../store/actions/planners';
 
+import {addUser} from '../api/fav';
+
+// const initFavs = async () => {
+//   const foodSets = await getFoodSets();
+//   const foodSingles = await getFoods();
+//   const recSets = await getRecSets();
+//   const recSingles = await getRecs();
+
+//   const it = (arr, type) => {
+//     arr.map(async e => {
+//       await addItem(type, e.id);
+//     });
+//   };
+//   it(foodSets, 'foodSet');
+//   it(foodSingles, 'foodSingle');
+//   it(recSets, 'recSet');
+//   it(recSingles, 'recSingle');
+// };
+
 const LoadingContainer = styled.View`
   flex: 1;
   background: #ffffff;
@@ -33,6 +52,7 @@ export default () => {
 
   useEffect(() => {
     const init = async () => {
+      // await initFavs();
       const value = await getData(USER_KEY);
       const planners = await getData(PLANNER_KEY);
       if (planners != null) dispatch(addPlanners(planners));
@@ -41,9 +61,9 @@ export default () => {
         if (value.hasOwnProperty('email')) {
           setIsLoggedIn(true);
         }
+        addUser(value.email === 'null' ? value.identifier : value.email);
       }
       setIsloading(false);
-      console.log('VALUE', value);
     };
     init();
   }, []);

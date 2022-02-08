@@ -5,6 +5,17 @@ const namespace =
   'http://mountwit-env.eba-zesvwpfj.ap-northeast-2.elasticbeanstalk.com';
 
 export const getJWT = async value => {
+  let data = qs.stringify({
+    email: 'ss23412242cs',
+    pw: '9ar2RDSadceK241FCVQ',
+    name: '',
+    access_token: '9ar2412CVQ',
+    identifier: '210629124scqs242141245797',
+    platform: 'mount',
+  });
+
+  // let data = qs.stringify(value);
+
   let config = {
     method: 'post',
     url: 'http://mountwit-env.eba-zesvwpfj.ap-northeast-2.elasticbeanstalk.com/login/?format=json',
@@ -24,15 +35,16 @@ export const getJWT = async value => {
         'http://mountwit-env.eba-zesvwpfj.ap-northeast-2.elasticbeanstalk.com/login/',
       'Accept-Language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
     },
-    data: qs.stringify(value),
+    data: data,
   };
 
   return await axios(config)
     .then(response => {
+      console.log('🚀 ~ file: api.js ~ line 32 ~ response', response);
       return JSON.stringify(response.data);
     })
-    .catch(error => {
-      console.log(error);
+    .catch(async error => {
+      console.error(error);
     });
 };
 
@@ -129,6 +141,29 @@ export const getFoodSets = async () => {
     });
 };
 
+export const getFoodSetsById = async id => {
+  const url = `${namespace}/foodset/?format=json&id=${id}`;
+
+  let config = {
+    method: 'get',
+    url,
+    headers: {},
+  };
+
+  return await axios(config)
+    .then(response => {
+      const data = response.data.data;
+      console.log('🚀 ~ file: api.js ~ line 156 ~ data', data);
+      const find = data.find(e => e.id == id);
+      console.log('🚀 ~ file: api.js ~ line 158 ~ find', find);
+      return find;
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    });
+};
+
 export const getRecSets = async () => {
   const url = `${namespace}/recset/?format=json`;
 
@@ -141,6 +176,27 @@ export const getRecSets = async () => {
   return await axios(config)
     .then(response => {
       return response.data.data;
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    });
+};
+
+export const getRecSetsById = async id => {
+  const url = `${namespace}/recset/?format=json&id=${id}`;
+
+  let config = {
+    method: 'get',
+    url,
+    headers: {},
+  };
+
+  return await axios(config)
+    .then(response => {
+      const data = response.data.data;
+      const find = data.find(e => e.id === id);
+      return find;
     })
     .catch(error => {
       console.log(error);

@@ -133,9 +133,11 @@ const Box = ({item, type}) => {
     <BoxContainer
       type={item?.displayType}
       onPress={() => {
+        console.log('🚀 ~ file: Box.js ~ line 141 ~ Box ~ type', type);
+        console.log('🚀 ~ file: Box.js ~ line 137 ~ Box ~ item?.id', item?.id);
         navigation.navigate('Details', {
           screen: type,
-          params: {id: item.id},
+          params: {id: item?.id},
         });
       }}>
       {item?.image === '' || item?.image === '1' ? (
