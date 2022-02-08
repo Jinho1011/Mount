@@ -4,6 +4,7 @@ import {auth} from '../../../store/actions/users';
 import {useDispatch} from 'react-redux';
 import {BackHandler} from 'react-native';
 import {USER_KEY, getData} from '../../../api/storage';
+import {getJWT} from '../../../api/api';
 
 export default () => {
   useEffect(() => {
@@ -22,7 +23,9 @@ export default () => {
   const dispatch = useDispatch();
   const startPress = async () => {
     const value = await getData(USER_KEY);
-    if (value.email !== '') dispatch(auth(value));
+    const jwt = await getJWT(value);
+
+    dispatch(auth(value, jwt));
   };
   return <TutorialPresenter startPress={startPress} />;
 };
