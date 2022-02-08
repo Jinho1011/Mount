@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Dimensions} from 'react-native';
 import {useDispatch} from 'react-redux';
 import styled from 'styled-components';
-import {useNavigation} from '@react-navigation/native';
 
 import {modifyPlannerTitle} from '../../../store/actions/planners';
 import FocusAwareStatusBar from '../../../components/StatusBar';
@@ -113,7 +112,6 @@ export default ({state, setState}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [toggleModal, setToggleModal] = useState(false);
 
-  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const onEditBtnPressed = () => {
@@ -130,8 +128,6 @@ export default ({state, setState}) => {
   const onChangeTitle = e => {
     setTitle(e);
   };
-
-  useEffect(() => {}, [title]);
 
   return (
     <Container>

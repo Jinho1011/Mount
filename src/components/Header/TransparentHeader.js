@@ -2,7 +2,8 @@ import React from 'react';
 import {Pressable} from 'react-native';
 import styled from 'styled-components';
 import LinearGradient from 'react-native-linear-gradient';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 import {Back_wSvg, Projectfile_wSvg} from '../../components/assets';
 
 const HeaderContainer = styled(LinearGradient)`
@@ -18,7 +19,7 @@ const HeaderContainer = styled(LinearGradient)`
   justify-content: space-between;
 `;
 
-const HeaderProgram = styled.View`
+const HeaderProgram = styled.Pressable`
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -36,11 +37,19 @@ export const HeaderLeft = () => {
 };
 
 export const HeaderRight = () => {
+  const planners = useSelector(state => state.planners.planners);
   const navigation = useNavigation();
+  const route = useRoute();
+
   return (
     <HeaderProgram
       onPress={() => {
-        navigation.navigate('Planner');
+        console.log('TPHGEADER PRESSED');
+        if (route.name === 'Planner' || planners.length === 0) {
+          navigation.navigate('PlanEditor');
+        } else {
+          navigation.navigate('Planner', {id: planners[0].id});
+        }
       }}>
       <Projectfile_wSvg width={28} height={39} />
     </HeaderProgram>
