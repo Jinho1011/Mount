@@ -32,12 +32,7 @@ export default () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-<<<<<<< HEAD
-    async function init() {
-      // removeData(PLANNER_KEY);
-=======
     const init = async () => {
->>>>>>> cdab69720c5fdcb20545891082f245d1774287f2
       const value = await getData(USER_KEY);
       const planners = await getData(PLANNER_KEY);
       if (planners != null) dispatch(addPlanners(planners));
