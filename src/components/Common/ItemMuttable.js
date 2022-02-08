@@ -58,6 +58,7 @@ const ItemCount = styled.Text`
 `;
 
 const SetItemPriceContainer = styled.View`
+  width: 50px;
   flex-direction: column;
   align-items: flex-end;
   margin-left: 12px;
@@ -93,6 +94,11 @@ const ItemRight = styled.View`
 const Counter = styled.View`
   flex-direction: row;
   padding-right: 12px;
+`;
+
+const ItemImage = styled(Image)`
+  width: 32px;
+  height: 32px;
 `;
 
 const Item = ({state, setState, item}) => {
@@ -136,10 +142,8 @@ const Item = ({state, setState, item}) => {
     <ItemBox>
       <ItemSmallBox>
         <ItemLeft>
-          <Image
-            source={require('../../../assets/rec_set_item_image_sample.png')}
-          />
-          <ItemName>{item.name}</ItemName>
+          <ItemImage source={require('../../../assets/Unprepared_img.webp')} />
+          <ItemName>{item.title}</ItemName>
         </ItemLeft>
         <ItemRight>
           <Counter>
@@ -154,8 +158,12 @@ const Item = ({state, setState, item}) => {
             </PlusPressable>
           </Counter>
           <SetItemPriceContainer>
-            <SetItemize>4인 (800g)</SetItemize>
-            <SetItemPrice>{item.price}원</SetItemPrice>
+            <SetItemize>{item.recommand_persons} 명</SetItemize>
+            {item.total_price === null ? (
+              <SetItemPrice>{parseInt(0)} 원</SetItemPrice>
+            ) : (
+              <SetItemPrice>{item.total_price}원</SetItemPrice>
+            )}
           </SetItemPriceContainer>
         </ItemRight>
       </ItemSmallBox>

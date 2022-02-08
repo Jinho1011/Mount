@@ -56,21 +56,14 @@ export default function RecPlanPresenter({state, setState}) {
         </ItemsContainer>
       </ScrollContainer>
       <Footer>
-        {state.pressedCnt > 0 ? (
-          <ChangeCountButton
-            onPress={() => {
+        <ChangeCountButton
+          onPress={() => {
+            if (state?.pressedCnt > 0)
               navigation.navigate('RecPlanChange', {isPressedArr});
-            }}
-            pressedCnt={state.pressedCnt}>
-            <ChangeCountButtonText>수량변경</ChangeCountButtonText>
-          </ChangeCountButton>
-        ) : (
-          <ChangeCountButton
-            onPress={() => console.log('안눌림')}
-            pressedCnt={state.pressedCnt}>
-            <ChangeCountButtonText>수량변경</ChangeCountButtonText>
-          </ChangeCountButton>
-        )}
+          }}
+          pressedCnt={state?.pressedCnt}>
+          <ChangeCountButtonText>수량변경</ChangeCountButtonText>
+        </ChangeCountButton>
       </Footer>
     </>
   );

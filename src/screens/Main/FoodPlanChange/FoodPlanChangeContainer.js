@@ -6,6 +6,7 @@ const FoodPlanChangeContainer = ({navigation, route}) => {
     memberCnt: 1,
     ...route.params.isPressedArr,
   });
+
   // const [memberCnt, setMemberCnt] = useState(1);
   useEffect(() => {
     const init = () => {
@@ -22,6 +23,9 @@ const FoodPlanChangeContainer = ({navigation, route}) => {
     };
     init();
   }, []);
+
+  useEffect(() => {}, []);
+
   return <FoodPlanChangePresenter state={state} setState={setState} />;
 };
 

@@ -99,7 +99,7 @@ const Items = ({state, setState, item}) => {
     <ItemBox>
       <ItemSmallBox>
         <ItemLeft>
-          <ItemImage source={{uri: item.image}} />
+          <ItemImage source={require('../../../assets/Unprepared_img.webp')} />
           <ItemName>{item.title}</ItemName>
         </ItemLeft>
         <ItemRight>
