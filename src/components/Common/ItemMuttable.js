@@ -58,6 +58,7 @@ const ItemCount = styled.Text`
 `;
 
 const SetItemPriceContainer = styled.View`
+  width: 50px;
   flex-direction: column;
   align-items: flex-end;
   margin-left: 12px;
