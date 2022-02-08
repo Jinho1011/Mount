@@ -28,10 +28,12 @@ export default () => {
 
     if (token) {
       KakaoLoginBody = {
-        accessToken: token.accessToken,
-        refreshToken: token.refreshToken,
         email: profile.email,
-        nickname: profile.nickname,
+        pw: '',
+        name: profile.nickname,
+        access_token: token.accessToken,
+        identifier: profile.id,
+        platform: 'Kakaotalk',
       };
       await storeData(USER_KEY, KakaoLoginBody);
       navigation.navigate('Tutorial');
@@ -43,12 +45,12 @@ export default () => {
     const profile = await GoogleSignin.signIn();
     if (token) {
       GoogleLoginBody = {
-        //accessToken: token.accessToken,
         email: profile.user.email,
-        pw: 'test1234!',
+        pw: '',
         name: profile.user.name,
-        birthday: null,
-        platform: '',
+        access_token: token.accessToken,
+        identifier: profile.user.id,
+        platform: 'Google',
       };
 
       await storeData(USER_KEY, GoogleLoginBody);
