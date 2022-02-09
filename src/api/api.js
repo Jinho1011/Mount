@@ -122,6 +122,25 @@ export const getRecById = async id => {
     });
 };
 
+export const getItemById = async (category, id) => {
+  const url = `${namespace}/${category}/?format=json&id=${id}`;
+
+  let config = {
+    method: 'get',
+    url,
+    headers: {},
+  };
+
+  return await axios(config)
+    .then(response => {
+      return response.data.data[0];
+    })
+    .catch(error => {
+      console.log(error);
+      throw error;
+    });
+};
+
 export const getFoodSets = async () => {
   const url = `${namespace}/foodset/?format=json`;
 
@@ -153,9 +172,7 @@ export const getFoodSetsById = async id => {
   return await axios(config)
     .then(response => {
       const data = response.data.data;
-      console.log('🚀 ~ file: api.js ~ line 156 ~ data', data);
       const find = data.find(e => e.id == id);
-      console.log('🚀 ~ file: api.js ~ line 158 ~ find', find);
       return find;
     })
     .catch(error => {
