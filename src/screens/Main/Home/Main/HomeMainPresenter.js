@@ -1,44 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Dimensions} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import DetailsContainer from '../../../../components/Main/Details';
 
+const screenWidth = Dimensions.get('window').width;
+
 const ScrollContainer = styled.ScrollView`
   background-color: #fff;
 `;
 
-const HomeHeaderContainer = styled.View`
+const HomeHeaderContainer = styled.Pressable``;
+
+const HomeHeaderImage = styled.Image`
+  width: ${screenWidth}px;
   height: 215px;
-  padding: 20px;
-  background-color: black;
-  justify-content: flex-end;
-`;
-
-const HomeHeaderTitle = styled.Text`
-  color: #ffffff;
-  font-size: 24px;
-  font-family: 'NotoSansKR-Bold';
-  line-height: 38px;
-`;
-
-const HomeHeaderSubTitle = styled.Text`
-  color: #9f9f9f;
-  font-size: 18px;
-  font-family: 'NotoSansKR-Regular';
-  line-height: 24px;
 `;
 
 export default ({state, setState}) => {
+  const navigation = useNavigation();
   return (
     <ScrollContainer>
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-      <HomeHeaderContainer>
-        <HomeHeaderTitle>입력된 문장</HomeHeaderTitle>
-        <HomeHeaderSubTitle>
-          더보기 안내로 이어짐 : 서비스 튜토리얼 페이지
-        </HomeHeaderSubTitle>
+      <HomeHeaderContainer onPress={() => navigation.navigate('HomeTutorial')}>
+        <HomeHeaderImage
+          source={require('../../../../../assets/banner.webp')}
+        />
       </HomeHeaderContainer>
 
       <DetailsContainer
