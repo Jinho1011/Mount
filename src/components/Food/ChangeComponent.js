@@ -98,6 +98,7 @@ const Counter = styled(View)`
 const ComponentImage = styled(Image)`
   width: 32px;
   height: 32px;
+  border: 0.2px solid #b4b4b4;
 `;
 
 const ChangeComponent = ({state, setState}) => {

@@ -37,9 +37,6 @@ const Floaters = ({onPressTouch, target}) => {
 
   return (
     <FloaterContainer>
-      <TopButtonContainer onPress={onPressTouch}>
-        <Top_floating_btnSvg width={33} height={29} />
-      </TopButtonContainer>
       <PlannerButtonContainer
         onPress={() =>
           navigation.navigate('Details', {

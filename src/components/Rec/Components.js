@@ -92,6 +92,7 @@ const Counter = styled.View`
 const ItemImage = styled(Image)`
   width: 32px;
   height: 32px;
+  border: 0.2px solid #b4b4b4;
 `;
 
 const Components = ({state, setState, component}) => {

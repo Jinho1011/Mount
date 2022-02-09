@@ -162,6 +162,7 @@ export default function FoodPlanPresenter({state, setState}) {
             );
           })}
         </FoodsContainer>
+        <View style={{padding: 20}} />
       </ScrollContainer>
       <Footer>
         <ChangeCountButton

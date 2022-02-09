@@ -100,6 +100,7 @@ const PlusPressable = styled.Pressable`
 const ItemImage = styled(Image)`
   width: 35px;
   height: 35px;
+  border: 0.2px solid #b4b4b4;
 `;
 
 const ComponentsMuttable = ({state, setState, component}) => {

@@ -43,6 +43,7 @@ const SetTitleContainer = styled.View`
 const SetImage = styled.Image`
   width: 54px;
   height: 54px;
+  border: 0.2px solid #b4b4b4;
 `;
 
 const SetTitle = styled.View`
