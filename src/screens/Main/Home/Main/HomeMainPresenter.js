@@ -42,14 +42,14 @@ export default ({state, setState}) => {
       </HomeHeaderContainer>
 
       <DetailsContainer
-        title="음식세트 어쩌구 문구"
+        title="음식세트상품"
         navigate="HomeFoodDetail"
         items={state.foods}
         isLoaded={state.isLoaded}
         type={'FoodSet'}
       />
       <DetailsContainer
-        title="레크세트 어쩌구 문구"
+        title="레크세트상품"
         navigate="HomeRecDetail"
         items={state.recs}
         isLoaded={state.isLoaded}
