@@ -7,7 +7,7 @@ import {modifyPlannerTitle} from '../../../store/actions/planners';
 import FocusAwareStatusBar from '../../../components/StatusBar';
 import PlanItemsContainer from '../../../components/Plan/PlanItems';
 import TotalPrice from '../../../components/Plan/TotalPrice';
-import Caution from '../../../components/Common/Caution';
+import {TotalCaution} from '../../../components/Common/Caution';
 import PlanModal from '../../../components/Plan/PlanModal';
 
 const windowWidth = Dimensions.get('window').width;
@@ -161,7 +161,7 @@ export default ({state, setState}) => {
         </TotalPriceContainer>
         <Divider />
         <CautionContainer>
-          <Caution caution={'주의사항'} />
+          <TotalCaution caution={'주의사항'} />
         </CautionContainer>
       </ScrollContainer>
       <FooterContainer>
