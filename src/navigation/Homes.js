@@ -70,9 +70,9 @@ const Homes = () => {
           options={{tabBarLabel: '홈', headerShown: false}}
         />
         <HomeNavigator.Screen
-          name="HomeTutorials"
+          name="HomeTutorial"
           component={Tutorial}
-          options={{tabBarLabel: '튜토리얼', headerShown: false}}
+          options={{tabBarLabel: '홈'}}
         />
       </HomeNavigator.Group>
     </HomeNavigator.Navigator>
