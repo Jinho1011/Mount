@@ -12,6 +12,7 @@ import TabBar from '../components/Header/TabBar';
 import HomeMain from '../screens/Main/Home/Main';
 import FoodDetail from '../screens/Main/Home/FoodDetail';
 import RecDetail from '../screens/Main/Home/RecDetail';
+import Tutorial from '../screens/Main/Home/Tutorial';
 
 const HomeNavigator = createStackNavigator();
 
@@ -67,6 +68,11 @@ const Homes = () => {
           name="HomeTabs"
           component={HomeTabs}
           options={{tabBarLabel: '홈', headerShown: false}}
+        />
+        <HomeNavigator.Screen
+          name="HomeTutorials"
+          component={Tutorial}
+          options={{tabBarLabel: '튜토리얼', headerShown: false}}
         />
       </HomeNavigator.Group>
     </HomeNavigator.Navigator>
