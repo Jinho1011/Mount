@@ -1,4 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
+import {View} from 'react-native';
 import React from 'react';
 import styled from 'styled-components';
 import Item from '../../../components/Food/Item';
@@ -54,6 +55,7 @@ export default function RecPlanPresenter({state, setState}) {
             );
           })}
         </ItemsContainer>
+        <View style={{padding: 20}} />
       </ScrollContainer>
       <Footer>
         <ChangeCountButton
