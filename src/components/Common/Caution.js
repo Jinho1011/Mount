@@ -30,7 +30,7 @@ const CautionDetail = styled.Text`
   color: #8b8b8b;
 `;
 
-const Caution = ({state, setState, caution}) => {
+export const Caution = ({state, setState, caution}) => {
   return (
     <CautionContainer>
       <CautionTitle>주의 사항</CautionTitle>
@@ -44,4 +44,20 @@ const Caution = ({state, setState, caution}) => {
   );
 };
 
-export default Caution;
+export const TotalCaution = ({state, setState, caution}) => {
+  return (
+    <CautionContainer>
+      <CautionTitle>주의 사항</CautionTitle>
+      <CautionDetailContainer>
+        <CautionDetail>
+          mount에 나와있는 식품 가격은 '쿠팡' 최상위 랭킹 기준입니다. 예상
+          가격은 실제와 다를 수 있습니다.
+        </CautionDetail>
+        <CautionDetail style={{paddingTop: 20}}>
+          mount에 나와있는 레크레이션 제품들의 가격은 '쿠팡' 최상위 랭킹
+          기준입니다. 예상 가격은 실제와 다를 수 있습니다.
+        </CautionDetail>
+      </CautionDetailContainer>
+    </CautionContainer>
+  );
+};

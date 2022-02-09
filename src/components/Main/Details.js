@@ -46,6 +46,7 @@ const DetailPress = styled.Pressable`
   height: 128px;
   margin-right: 10;
   border-radius: 4;
+  border: 0.2px solid #b4b4b4;
 `;
 
 const DetailReady = styled.View`
@@ -57,18 +58,13 @@ const DetailReady = styled.View`
 `;
 
 const Detail = styled.Image`
-  width: 128px;
-  height: 128px;
-  margin-right: 10px;
-  border-radius: 4px;
+  width: 127px;
+  height: 127px;
+  border-radius: 5px;
 `;
 
 const DetailsContainer = ({title, navigate, items, isLoaded, type}) => {
   const navigation = useNavigation();
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
   return (
     <DetailsWrapper>
