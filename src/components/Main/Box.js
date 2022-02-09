@@ -105,6 +105,10 @@ const Box = ({item, type}) => {
 
   useEffect(() => {
     const init = async () => {
+      item.displayType =
+        item.displayType === undefined || item.displayType === null
+          ? 'short'
+          : item.displayType;
       const properyName = type === 'RecSet' ? 'recs_ids' : 'food_ids';
       const category = type === 'RecSet' ? 'recs' : 'foods';
       const ids = item[properyName];
@@ -133,8 +137,6 @@ const Box = ({item, type}) => {
     <BoxContainer
       type={item?.displayType}
       onPress={() => {
-        console.log('🚀 ~ file: Box.js ~ line 141 ~ Box ~ type', type);
-        console.log('🚀 ~ file: Box.js ~ line 137 ~ Box ~ item?.id', item?.id);
         navigation.navigate('Details', {
           screen: type,
           params: {id: item?.id},

@@ -42,6 +42,7 @@ const Like = ({type, id}) => {
     const init = async () => {
       const value = await getData(USER_KEY);
       const key = value.email === 'null' ? value.identifier : value.email;
+      setJwt(key);
       const isLikedData = await getIsLiked(key, type, id);
       const likeData = await getLikeCount(type, id);
       setIsLiekd(isLikedData);
