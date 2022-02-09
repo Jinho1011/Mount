@@ -47,8 +47,8 @@ const ItemCount = styled.Text`
 `;
 
 const ItemPriceContainer = styled.View`
-  padding-left: 28px;
   align-items: flex-end;
+  width: 80px;
 `;
 
 const ItemPrice = styled.Text`
