@@ -23,6 +23,7 @@ const ItemImg = styled.Image`
   width: 32px;
   height: 32px;
   background-color: #c4c4c4;
+  border: 0.2px solid #b4b4b4;
 `;
 
 const ItemTitle = styled.Text`

@@ -18,23 +18,25 @@ const BoxContainer = styled.Pressable`
 
 const BoxImage = styled.Image`
   width: ${props => {
-    if (props.type === 'long') return '100%';
+    if (props.type === 'long') return `${screenWidth - 46}px`;
     else return `${parseInt((screenWidth - 40) / 2 - 8)}}px`;
   }};
   height: 150px;
   background-color: #f3f3f3;
   border-radius: 4px;
+  border: 0.2px solid #b4b4b4;
 `;
 
 const NoImageContainer = styled.View`
   width: ${props => {
-    if (props.type === 'long') return '100%';
+    if (props.type === 'long') return `${screenWidth - 46}px`;
     else return `${parseInt((screenWidth - 40) / 2 - 8)}}px`;
   }};
   justify-content: center;
   align-items: center;
   background-color: #f3f3f3;
   border-radius: 4px;
+  border: 0.2px solid #b4b4b4;
 `;
 
 const NoImage = styled.Image`
