@@ -64,12 +64,5 @@ export default () => {
     }));
   }, [isFocused]);
 
-  useEffect(() => {
-    console.log(
-      '🚀 ~ file: FavoriteContainer.js ~ line 31 ~ state',
-      state.items,
-    );
-  }, [state]);
-
   return <FavoritePresenter state={state} setState={setState} />;
 };

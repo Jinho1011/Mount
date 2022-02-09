@@ -1,13 +1,7 @@
 import React from 'react';
-import {View, Text, Image, Pressable} from 'react-native';
+import {View, Pressable} from 'react-native';
 import styled from 'styled-components';
-import {
-  MountSvg,
-  Back_bSvg,
-  Back_wSvg,
-  Projectfile_bSvg,
-  Projectfile_wSvg,
-} from '../../components/assets';
+import {MountSvg, Back_bSvg, Projectfile_bSvg} from '../../components/assets';
 import {useSelector} from 'react-redux';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
@@ -69,7 +63,7 @@ export const HeaderRight = () => {
         if (route.name === 'Planner' || planners.length === 0) {
           navigation.navigate('PlanEditor');
         } else {
-          navigation.navigate('Planner', {id: 0});
+          navigation.navigate('Planner', {id: planners[0].id});
         }
       }}>
       <Projectfile_bSvg width={28} height={39} />
