@@ -92,7 +92,6 @@ export const getLikeCount = async (type, id) => {
 };
 
 export const getLiked = async jwt => {
-  const items = await GET(ITEMS);
   const user = await getUser(jwt);
   const liked = isObject(user.liked) ? user.liked : JSON.parse(user.liked);
   return liked;
@@ -100,7 +99,7 @@ export const getLiked = async jwt => {
 
 export const getUser = async jwt => {
   const users = await GET(USERS);
-  const find = users.find(user => user.key === jwt);
+  const find = users.find(user => user.key == jwt);
   return find;
 };
 
@@ -130,12 +129,13 @@ export const like = async (jwt, type, id) => {
   const item = await getItemsbyId(type, id);
   const user = await getUser(jwt);
   const liked = isObject(user.liked) ? user.liked : JSON.parse(user.liked);
+  const addedLiked = [...liked, item];
 
   const itemRes = await PUT(ITEMS, item.id, {
     like: parseInt(item.like) + 1,
   });
   const userRes = await PUT(USERS, user.id, {
-    liked: JSON.stringify([...liked, item]),
+    liked: JSON.stringify(addedLiked),
   });
 };
 
@@ -153,6 +153,3 @@ export const unlike = async (jwt, type, id) => {
 };
 
 // todo: typescript와 class로 구현해보기
-
-// [{"id":"1","type":"foodSet","like":"0","itemId":"1"},{"type":"foodSet","itemId":"6","like":"0","id":"2"},{"type":"foodSet","itemId":"5","like":"0","id":"3"},{"type":"foodSet","itemId":"4","like":"0","id":"4"},{"type":"foodSet","itemId":"3","like":"0","id":"5"},{"type":"foodSet","itemId":"2","like":"0","id":"6"},{"type":"foodSet","itemId":"4","like":"0","id":"7"},{"type":"foodSet","itemId":"1","like":"0","id":"8"},{"type":"foodSet","itemId":"3","like":"0","id":"7"},{"type":"foodSet","itemId":"2","like":"0","id":"8"},{"type":"foodSet","itemId":"6","like":"0","id":"9"},{"type":"foodSingle","itemId":"20","like":"0","id":"10"},{"type":"foodSingle","itemId":"22","like":"0","id":"11"},{"type":"foodSingle","itemId":"21","like":"0","id":"12"},{"type":"foodSingle","itemId":"24","like":"0","id":"13"},{"type":"foodSingle","itemId":"23","like":"0","id":"13"},{"type":"foodSingle","itemId":"25","like":"0","id":"14"},{"type":"foodSingle","itemId":"27","like":"0","id":"15"},{"type":"foodSingle","itemId":"17","like":"0","id":"16"},{"type":"foodSingle","itemId":"29","like":"0","id":"16"},{"type":"foodSingle","itemId":"14","like":"0","id":"16"},{"type":"foodSingle","itemId":"10","like":"0","id":"17"},{"type":"foodSingle","itemId":"11","like":"0","id":"18"},{"type":"foodSingle","itemId":"41","like":"0","id":"18"},{"type":"foodSingle","itemId":"30","like":"0","id":"19"},{"type":"foodSingle","itemId":"6","like":"0","id":"19"}]
-// [{"key":"2106295797","liked":[],"id":"1"}]
