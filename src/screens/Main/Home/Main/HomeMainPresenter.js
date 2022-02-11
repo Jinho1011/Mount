@@ -23,27 +23,36 @@ export default ({state, setState}) => {
   const navigation = useNavigation();
   return (
     <ScrollContainer>
-      <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-      <HomeHeaderContainer onPress={() => navigation.navigate('HomeTutorial')}>
-        <HomeHeaderImage
-          source={require('../../../../../assets/banner.webp')}
-        />
-      </HomeHeaderContainer>
-
-      <DetailsContainer
-        title="음식세트상품"
-        navigate="HomeFoodDetail"
-        items={state.foods}
-        isLoaded={state.isLoaded}
-        type={'FoodSet'}
-      />
-      <DetailsContainer
-        title="레크세트상품"
-        navigate="HomeRecDetail"
-        items={state.recs}
-        isLoaded={state.isLoaded}
-        type={'RecSet'}
-      />
+      {state.isLoaded ? (
+        <>
+          <FocusAwareStatusBar
+            barStyle="dark-content"
+            backgroundColor="#ffffff"
+          />
+          <HomeHeaderContainer
+            onPress={() => navigation.navigate('HomeTutorial')}>
+            <HomeHeaderImage
+              source={require('../../../../../assets/banner.webp')}
+            />
+          </HomeHeaderContainer>
+          <DetailsContainer
+            title="음식세트상품"
+            navigate="HomeFoodDetail"
+            items={state.foods}
+            isLoaded={state.isLoaded}
+            type={'FoodSet'}
+          />
+          <DetailsContainer
+            title="레크세트상품"
+            navigate="HomeRecDetail"
+            items={state.recs}
+            isLoaded={state.isLoaded}
+            type={'RecSet'}
+          />
+        </>
+      ) : (
+        <></>
+      )}
     </ScrollContainer>
   );
 };

@@ -5,16 +5,8 @@ const namespace =
   'http://mountwit-env.eba-zesvwpfj.ap-northeast-2.elasticbeanstalk.com';
 
 export const getJWT = async value => {
-  let data = qs.stringify({
-    email: 'ss23412242cs',
-    pw: '9ar2RDSadceK241FCVQ',
-    name: '',
-    access_token: '9ar2412CVQ',
-    identifier: '210629124scqs242141245797',
-    platform: 'mount',
-  });
+  let data = qs.stringify(value);
 
-  // let data = qs.stringify(value);
 
   let config = {
     method: 'post',
@@ -40,7 +32,6 @@ export const getJWT = async value => {
 
   return await axios(config)
     .then(response => {
-      console.log('🚀 ~ file: api.js ~ line 32 ~ response', response);
       return JSON.stringify(response.data);
     })
     .catch(async error => {
