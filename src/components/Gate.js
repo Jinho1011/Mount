@@ -51,7 +51,6 @@ export default () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // removeData(USER_KEY);
     const init = async () => {
       const value = await getData(USER_KEY);
       const planners = await getData(PLANNER_KEY);

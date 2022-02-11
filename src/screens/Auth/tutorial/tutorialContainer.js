@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect} from 'react';
 import TutorialPresenter from './tutorialPresenter';
 import {auth} from '../../../store/actions/users';
@@ -7,10 +8,12 @@ import {USER_KEY, getData} from '../../../api/storage';
 import {getJWT} from '../../../api/api';
 
 export default () => {
+
   const [state, setState] = useState({
     jwt: {},
     value: {},
   });
+
   useEffect(() => {
     const backAction = () => {
       return true;
@@ -29,12 +32,15 @@ export default () => {
     };
     init();
 
+
     return () => backHandler.remove();
   }, []);
 
   const dispatch = useDispatch();
   const startPress = async () => {
+
     dispatch(auth(state.value, state.jwt));
   };
   return <TutorialPresenter startPress={startPress} state={state} />;
+
 };
