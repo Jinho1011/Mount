@@ -2,12 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {PermissionsAndroid} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {getFoodSets, getRecSets, getFoods, getRecs} from '../../../../api/api';
-// import {getFoodSets, getRecSets} from '../../../../api/api';
 
 import HomePresenter from './HomeMainPresenter';
 import * as recommandsActions from '../../../../store/actions/recommands';
-
-const initFav = async () => {};
 
 export default () => {
   const dispatch = useDispatch();
@@ -75,7 +72,7 @@ export default () => {
 
   useEffect(() => {
     const init = async () => {
-      loadData();
+      await loadData();
       requestPermission();
     };
     init();

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {View, StyleSheet, Button, Alert} from 'react-native';
 
 const Container = styled.View`
   flex: 1;
@@ -22,10 +23,34 @@ const LoginText = styled.Text`
   text-align: center;
 `;
 
-export default ({startPress}) => {
+export default ({startPress, state}) => {
+  const showAlert = () =>
+    Alert.alert(
+      'ERROR',
+      JSON.stringify(state.jwt) + '\n' + JSON.stringify(state.value),
+      [
+        {
+          text: 'Cancel',
+          onPress: () => Alert.alert('Cancel Pressed'),
+          style: 'cancel',
+        },
+      ],
+      {
+        cancelable: true,
+        onDismiss: () =>
+          Alert.alert(
+            'This alert was dismissed by tapping outside of the alert dialog.',
+          ),
+      },
+    );
+
   return (
     <Container>
-      <LoginButton onPress={startPress}>
+      <LoginButton
+        onPress={() => {
+          // showAlert();
+          startPress();
+        }}>
         <LoginText>시작 하기</LoginText>
       </LoginButton>
     </Container>
