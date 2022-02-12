@@ -39,11 +39,7 @@ const RecreationSetContainer = ({route}) => {
     init();
   }, [route.params?.id]);
 
-  return (
-    <>
-      <RecreationSetPresenter state={state} setState={setState} />
-    </>
-  );
+  return <RecreationSetPresenter state={state} setState={setState} />;
 };
 
 export default RecreationSetContainer;

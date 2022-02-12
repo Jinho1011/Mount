@@ -90,17 +90,13 @@ const NoMemberCntContainer = styled.View`
 const TotalPrice = ({state}) => {
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const initState = item => {
-    setTotalPrice(prev => prev + item.count * item.price);
-  };
-
   useEffect(() => {
     state.items.food.map(item => {
-      initState(item);
+      setTotalPrice(prev => prev + item.count * item.price);
     });
 
     state.items.rec.map(item => {
-      initState(item);
+      setTotalPrice(prev => prev + item.count * item.total_price);
     });
   }, []);
 
