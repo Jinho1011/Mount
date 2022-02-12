@@ -58,9 +58,15 @@ const ElementsContainer = styled(View)`
 `;
 
 const TitleContainer = ({image, title, items}) => {
+  console.log(image);
   return (
     <SetTitleContainer>
-      <SetImage source={require('../../../assets/Unprepared_img.webp')} />
+      {image === undefined ? (
+        <SetImage source={require('../../../assets/Unprepared_img.webp')} />
+      ) : (
+        <SetImage source={{uri: image}} />
+      )}
+
       <TransparentHeader style={{position: 'absolute', top: 0, right: 0}} />
       <SetTitle>{title}</SetTitle>
       <SetInfo>

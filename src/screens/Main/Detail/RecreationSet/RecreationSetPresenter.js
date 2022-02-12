@@ -14,12 +14,12 @@ import TitleContainer from '../../../../components/Common/SetTitle';
 import Counter from '../../../../components/Rec/Counter';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import TotalPrice from '../../../../components/Common/TotalPrice';
-import Caution from '../../../../components/Common/Caution';
 import _ from 'lodash';
 import Items from '../../../../components/Rec/Items';
 import Modal from 'react-native-modal';
 import {CloseSvg} from '../../../../components/assets';
 import SetCarousel from '../../../../components/Rec/SetCarousel';
+import {Caution} from '../../../../components/Common/Caution';
 
 const PageWrap = styled(View)``;
 
