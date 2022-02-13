@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {CloseSvg} from '.././../components/assets';
 
@@ -81,15 +81,30 @@ const TotalPriceText = styled.Text`
 `;
 
 const TotalPrice = ({state, setState}) => {
-  let price = 0;
-  for (let i = 0; i < state?.items?.length; i++) {
-    price = parseInt(
-      (price + state?.items[i]?.count * state?.items[i]?.total_price) /
-        state?.memberCnt,
-      10,
-    );
-  }
-  let total = state?.memberCnt * price;
+  console.log('🚀 ~ file: TotalPrice.js ~ line 84 ~ TotalPrice ~ state', state);
+  const [price, setPrice] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    let pricePropertyName, personCountPropertyName;
+    if (state.hasOwnProperty('recSet')) {
+      pricePropertyName = 'total_price';
+      personCountPropertyName = 'teamCnt';
+    } else {
+      pricePropertyName = 'price';
+      personCountPropertyName = 'memberCnt';
+    }
+
+    let totalPrice = 0;
+    for (let i = 0; i < state?.items?.length; i++) {
+      const itemPrice =
+        state?.items[i]?.count * state?.items[i][pricePropertyName];
+      totalPrice += itemPrice;
+    }
+    setPrice(parseInt(totalPrice / state[personCountPropertyName]));
+    setTotal(totalPrice * state[personCountPropertyName]);
+  }, []);
+
   return (
     <TotalContainer>
       <StyledTitle>총 예상금액</StyledTitle>
@@ -112,3 +127,79 @@ const TotalPrice = ({state, setState}) => {
 };
 
 export default TotalPrice;
+
+const recSet = {
+  isLoaded: true,
+  items: [
+    {
+      count: 1,
+      description: null,
+      guide_images: null,
+      id: 34,
+      image: '',
+      one_line_description: null,
+      person_item: '고깔',
+      person_price: null,
+      recommand_persons: '4~6',
+      set_name: [Array],
+      title: '고깔게임',
+      total_item: '고깔5',
+      total_price: null,
+    },
+    {
+      count: 1,
+      description: null,
+      guide_images: null,
+      id: 35,
+      image: '',
+      one_line_description: null,
+      person_item: '안대(좀비안경)',
+      person_price: null,
+      recommand_persons: '4~6',
+      set_name: [Array],
+      title: '좀비게임',
+      total_item: '안대(좀비안경)5',
+      total_price: null,
+    },
+    {
+      count: 1,
+      description: null,
+      guide_images: null,
+      id: 37,
+      image: '',
+      one_line_description: null,
+      person_item: null,
+      person_price: null,
+      recommand_persons: '4~10',
+      set_name: [Array],
+      title: '속담 이어말하기',
+      total_item: null,
+      total_price: null,
+    },
+    {
+      count: 1,
+      description: null,
+      guide_images: null,
+      id: 38,
+      image: '',
+      one_line_description: null,
+      person_item: null,
+      person_price: null,
+      recommand_persons: '4~10',
+      set_name: [Array],
+      title: '네글자퀴즈',
+      total_item: null,
+      total_price: null,
+    },
+  ],
+  memberCnt: 1,
+  recSet: {
+    created_at: '2022-01-25T14:10:19.693767Z',
+    id: 2,
+    image: '1',
+    recs_ids: ['34', '35', '37', '38'],
+    title: '신서유기 게임',
+    updated_at: '2022-01-25T14:10:19.693767Z',
+  },
+  teamCnt: 1,
+};

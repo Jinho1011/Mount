@@ -28,8 +28,15 @@ export default () => {
   };
 
   const loadData = async () => {
-    const foodSets = await getFoodSets();
-    const recSets = await getRecSets();
+    let foodSets;
+    let recSets;
+    try {
+      foodSets = await getFoodSets();
+      recSets = await getRecSets();
+    } catch (e) {
+      foodSets = [];
+      recSets = [];
+    }
 
     for (let i = 0, max = foodSets.length; i < max; i++) {
       if (Math.random() > 0.5) {

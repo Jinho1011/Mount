@@ -14,12 +14,11 @@ import TitleContainer from '../../../../components/Common/SetTitle';
 import Counter from '../../../../components/Rec/Counter';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import TotalPrice from '../../../../components/Common/TotalPrice';
+import {Caution} from '../../../../components/Common/Caution';
 import _ from 'lodash';
 import Items from '../../../../components/Rec/Items';
 import Modal from 'react-native-modal';
 import {CloseSvg} from '../../../../components/assets';
-import SetCarousel from '../../../../components/Rec/SetCarousel';
-import {Caution} from '../../../../components/Common/Caution';
 
 const PageWrap = styled(View)``;
 
@@ -216,6 +215,7 @@ const RecreationSetPresenter = ({state, setState}) => {
   //State를 이용하여 Modal을 제어함
   const [modalVisible, setModalVisible] = useState(false);
   const [modalOutput, setModalOutput] = useState('');
+
   return (
     <PageWrap style={{flex: 1}}>
       <FocusAwareStatusBar barStyle="light-content" backgroundColor="#000000" />
@@ -253,7 +253,7 @@ const RecreationSetPresenter = ({state, setState}) => {
             );
           })}
           <TotalPriceContainer>
-            <TotalPrice state={state} setState={setState} />
+            {/* <TotalPrice state={state} setState={setState} /> */}
           </TotalPriceContainer>
         </RecSetListContainer>
         <RecSetBorderLine />
@@ -294,7 +294,7 @@ const RecreationSetPresenter = ({state, setState}) => {
                 </ModalContentsDescription> */}
                 <ModalGuideLineTitle>저희 레크는요...</ModalGuideLineTitle>
               </ModalContentsContainer>
-              <SetCarousel state={state} setState={setState} />
+              {/* <SetCarousel state={state} setState={setState} /> */}
             </StyledModalContainer>
           </StyledModal>
         </StyledSafeAreaView>

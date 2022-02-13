@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Dimensions, LogBox} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
@@ -67,11 +67,21 @@ const ItemDesc = styled.Text`
 
 const Item = ({item, category}) => {
   const navigation = useNavigation();
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    console.log('🚀 ~ file: Item.js ~ line 69 ~ Item ~ item', item);
+    if (category === '레크') {
+      setPrice(item?.total_price === null ? 0 : item.total_price);
+    } else {
+      setPrice(item?.price);
+    }
+  }, []);
 
   return (
     <Container>
       <ContainerLeft>
-        {category === '레크' ? (
+        {item.image === '' ? (
           <ItemImg source={require('../../../assets/Unprepared_img.webp')} />
         ) : (
           <ItemImg source={{uri: item.image}} />

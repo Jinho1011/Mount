@@ -76,7 +76,6 @@ const DetailsContainer = ({title, navigate, items, isLoaded, type}) => {
           <DetailMore
             onPress={() => {
               navigation.navigate('HomeTabs', {initialRoute: navigate});
-              console.log('press');
             }}>
             <More_with_typoSvg width={46} height={16} />
           </DetailMore>

@@ -27,7 +27,9 @@ const StyledScrollView = styled(ScrollView)`
   background: #ffffff;
 `;
 
-const ContentContainer = styled.View``;
+const ContentContainer = styled.View`
+  padding-bottom: 60px;
+`;
 
 const SetContainer = styled.View`
   border: 1px solid #eaeaea;

@@ -83,10 +83,10 @@ const PlanItemsContainer = ({category, items}) => {
 
   useEffect(() => {
     let price = 0;
-    {
-      category === '레크'
-        ? items[type]?.map(item => (price += item.total_price * item.count))
-        : items[type]?.map(item => (price += item.price * item.count));
+    if (category === '레크') {
+      items[type]?.map(item => (price += item.total_price * item.count));
+    } else {
+      items[type]?.map(item => (price += item.price * item.count));
     }
     setTotalPrice(price);
   }, []);
@@ -105,7 +105,7 @@ const PlanItemsContainer = ({category, items}) => {
         {items[type].length > 0 ? (
           items[type]?.map((item, i, arr) => {
             if (i + 1 === arr.length) {
-              <Item item={item} key={item.id} category={category} />;
+              return <Item item={item} category={category} key={item.id} />;
             } else {
               return (
                 <View key={item.id}>
