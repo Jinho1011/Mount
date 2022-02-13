@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Pressable, Image} from 'react-native';
 import styled from 'styled-components';
-import TotalPrice from '../../../../components/Common/TotalPrice';
+import TotalPrice from '../../../../components/Food/TotalPrice';
 import PlannerButton from '../../../../components/Common/ProposalButton';
 import {ScrollView} from 'react-native-gesture-handler';
 import FocusAwareStatusBar from '../../../../components/StatusBar';

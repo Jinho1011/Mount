@@ -61,6 +61,7 @@ const SetItemPriceContainer = styled.View`
   flex-direction: column;
   align-items: flex-end;
   margin-left: 12px;
+  width: 50px;
 `;
 
 const SetItemize = styled.Text`

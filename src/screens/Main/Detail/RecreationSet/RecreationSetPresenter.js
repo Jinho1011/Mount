@@ -19,7 +19,6 @@ import _ from 'lodash';
 import Items from '../../../../components/Rec/Items';
 import Modal from 'react-native-modal';
 import {CloseSvg} from '../../../../components/assets';
-// import SetCarousel from '../../../../components/Rec/SetCarousel';
 
 const PageWrap = styled(View)``;
 

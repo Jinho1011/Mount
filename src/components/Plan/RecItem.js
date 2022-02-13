@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {View, Text, Dimensions, LogBox} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
@@ -65,27 +65,13 @@ const ItemDesc = styled.Text`
   line-height: 15px;
 `;
 
-const Item = ({item, category}) => {
+const RecItem = ({item}) => {
   const navigation = useNavigation();
-  const [price, setPrice] = useState(0);
-
-  useEffect(() => {
-    console.log('🚀 ~ file: Item.js ~ line 69 ~ Item ~ item', item);
-    if (category === '레크') {
-      setPrice(item?.total_price === null ? 0 : item.total_price);
-    } else {
-      setPrice(item?.price);
-    }
-  }, []);
 
   return (
     <Container>
       <ContainerLeft>
-        {item.image === '' ? (
-          <ItemImg source={require('../../../assets/Unprepared_img.webp')} />
-        ) : (
-          <ItemImg source={{uri: item.image}} />
-        )}
+        <ItemImg source={require('../../../assets/Unprepared_img.webp')} />
         <ItemTitle>
           {item?.title.length > 5
             ? item.title.slice(0, 5).concat('...')
@@ -95,15 +81,11 @@ const Item = ({item, category}) => {
       <ContainerRight>
         <ItemCount>{item?.count}</ItemCount>
         <ItemPriceContainer>
-          {category === '레크' ? (
-            <ItemDesc>{item?.recommand_persons}명</ItemDesc>
+          <ItemDesc>{item?.description}</ItemDesc>
+          {item?.total_price === null ? (
+            <ItemPrice>{parseInt(0)} 원</ItemPrice>
           ) : (
-            <ItemDesc>{item?.description}</ItemDesc>
-          )}
-          {category === '레크' ? (
-            <ItemPrice>{item?.total_price || parseInt(0, 2)}원</ItemPrice>
-          ) : (
-            <ItemPrice>{item?.price}원</ItemPrice>
+            <ItemPrice>{item?.total_price}원</ItemPrice>
           )}
         </ItemPriceContainer>
       </ContainerRight>
@@ -111,4 +93,4 @@ const Item = ({item, category}) => {
   );
 };
 
-export default Item;
+export default RecItem;

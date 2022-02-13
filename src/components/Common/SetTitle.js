@@ -58,6 +58,7 @@ const ElementsContainer = styled(View)`
 `;
 
 const TitleContainer = ({image, title, items}) => {
+  console.log(image);
   return (
     <SetTitleContainer>
       {image === undefined ? (
