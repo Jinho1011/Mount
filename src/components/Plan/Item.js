@@ -66,6 +66,7 @@ const ItemDesc = styled.Text`
 `;
 
 const Item = ({item, category}) => {
+  console.log(item.image);
   const navigation = useNavigation();
   const [price, setPrice] = useState(0);
 
@@ -81,7 +82,11 @@ const Item = ({item, category}) => {
   return (
     <Container>
       <ContainerLeft>
-        <ItemImg source={{uri: item.image}} />
+        {item.image === '' ? (
+          <ItemImg source={require('../../../assets/Unprepared_img.webp')} />
+        ) : (
+          <ItemImg source={{uri: item.image}} />
+        )}
         <ItemTitle>
           {item?.title.length > 5
             ? item.title.slice(0, 5).concat('...')
