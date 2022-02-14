@@ -1,4 +1,4 @@
-package com.mount;
+package com.wit.mount;
 import expo.modules.ReactActivityDelegateWrapper;
 import com.facebook.react.ReactActivityDelegate;
 import com.reactnativekakaosharelink.KakaoShareLinkPackage;

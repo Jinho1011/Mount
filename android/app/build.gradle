@@ -130,7 +130,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.mount"
+        applicationId "com.wit.mount"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
