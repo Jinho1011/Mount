@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import styled from 'styled-components';
-
 import Item from './Item';
 
 const Container = styled.View`
@@ -89,7 +88,6 @@ const PlanItemsContainer = ({category, items}) => {
     } else {
       items[type]?.map(item => (price += item.price * item.count));
     }
-
     setTotalPrice(price);
   }, []);
 
