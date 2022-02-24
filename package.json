@@ -8,7 +8,9 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "build-android": "cd ./android && ./gradlew app:assembleRelease --stacktrace &&  cd .."
+    "debug:android": "cd android && ./gradlew assembleDebug",
+    "release:android": "cd android && ./gradlew assembleRelease",
+    "release:play": "cd android && ./gradlew bundleRelease"
   },
   "dependencies": {
     "@ant-design/react-native": "^4.2.0",
@@ -21,6 +23,7 @@
     "@react-navigation/native": "^6.0.4",
     "@react-navigation/native-stack": "^6.2.1",
     "@react-navigation/stack": "^6.0.9",
+    "@sentry/react-native": "^3.2.13",
     "axios": "^0.24.0",
     "expo": ">=44.0.0-0 <45.0.0",
     "expo-file-system": "~13.1.2",

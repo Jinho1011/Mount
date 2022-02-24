@@ -14,3 +14,5 @@
 -dontwarn okio.**
 # Note: the configuration keeps the entry point 'okhttp3.internal.ws.WebSocketWriter$FrameSink { void write(okio.Buffer,long); }', but not the descriptor class 'okio.Buffer'
 -dontwarn okhttp3.**
+
+-keep public class com.horcrux.svg.** {*;}

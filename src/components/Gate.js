@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import Auth from '../navigation/Auth';
 import Main from '../navigation/Main';

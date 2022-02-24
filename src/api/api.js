@@ -7,7 +7,6 @@ const namespace =
 export const getJWT = async value => {
   let data = qs.stringify(value);
 
-
   let config = {
     method: 'post',
     url: 'http://mountwit-env.eba-zesvwpfj.ap-northeast-2.elasticbeanstalk.com/login/?format=json',

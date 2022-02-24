@@ -22,23 +22,31 @@ export let GoogleSignupBody = {
 export default () => {
   const navigation = useNavigation();
   const signupDetailPress = () => navigation.navigate('SignupDetail');
-  const signupWithKakao = async () => {
-    const token = await login();
-    const profile = await getProfile();
 
-    if (token) {
-      KakaoSignupBody = {
-        email: profile.email,
-        pw: '',
-        name: profile.nickname,
-        access_token: token.accessToken,
-        identifier: profile.id,
-        platform: 'Kakaotalk',
-      };
-      await storeData(USER_KEY, KakaoSignupBody);
+  const signupWithKakao = async () => {
+    try {
+      const token = await login();
+      const profile = await getProfile();
+
+      if (token) {
+        KakaoSignupBody = {
+          email: profile.email,
+          pw: '',
+          name: profile.nickname,
+          access_token: token.accessToken,
+          identifier: profile.id,
+          platform: 'Kakaotalk',
+        };
+
+        await storeData(USER_KEY, KakaoSignupBody);
+      }
+
+      navigation.navigate('Tutorial');
+    } catch (e) {
       navigation.navigate('Tutorial');
     }
   };
+
   const signupWithGoogle = async () => {
     GoogleSignin.configure({});
     const token = await GoogleSignin.getTokens();

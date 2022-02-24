@@ -23,19 +23,25 @@ export default () => {
   const navigation = useNavigation();
   const loginDetailPress = () => navigation.navigate('LoginDetail');
   const loginWithKakao = async () => {
-    const token = await login();
-    const profile = await getProfile();
+    try {
+      const token = await login();
+      const profile = await getProfile();
 
-    if (token) {
-      KakaoLoginBody = {
-        email: profile.email,
-        pw: '',
-        name: profile.nickname,
-        access_token: token.accessToken,
-        identifier: profile.id,
-        platform: 'Kakaotalk',
-      };
-      await storeData(USER_KEY, KakaoLoginBody);
+      if (token) {
+        KakaoLoginBody = {
+          email: profile.email,
+          pw: '',
+          name: profile.nickname,
+          access_token: token.accessToken,
+          identifier: profile.id,
+          platform: 'Kakaotalk',
+        };
+
+        await storeData(USER_KEY, KakaoLoginBody);
+      }
+
+      navigation.navigate('Tutorial');
+    } catch (e) {
       navigation.navigate('Tutorial');
     }
   };

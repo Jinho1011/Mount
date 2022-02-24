@@ -43,10 +43,7 @@ function HomeTabs(navigation) {
 
 const Homes = () => {
   return (
-    <HomeNavigator.Navigator
-      screenOptions={{
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      }}>
+    <HomeNavigator.Navigator>
       <HomeNavigator.Group
         screenOptions={{
           header: ({navigation, route, options, back}) => (
