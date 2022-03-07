@@ -1,6 +1,7 @@
 # 🗻 Mount
 
 하나의 어플로 끝내는 MT 기획
+[Play Store](https://play.google.com/store/apps/details?id=com.wit.mount)
 
 ![](https://github.com/Jinho1011/Mount-app/blob/main/screenshots/index.png?raw=true)
 
@@ -23,5 +24,4 @@ EASY-한 MT기획
   <img src="https://img.shields.io/badge/jest-27.2.1-57BCAD?style=flat&logo=" />
 </div>
 
----
 
