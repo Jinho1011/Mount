@@ -24,4 +24,6 @@ EASY-한 MT기획
   <img src="https://img.shields.io/badge/jest-27.2.1-57BCAD?style=flat&logo=" />
 </div>
 
+## Retrospect
+- [전진호](https://mannered.tistory.com/7)
 
