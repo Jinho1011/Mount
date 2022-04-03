@@ -2,7 +2,9 @@ import React, {useEffect, useRef} from 'react';
 import {View, Text, Dimensions} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector, useDispatch} from 'react-redux';
 
+import {updateY} from '../../../../store/actions/scrolls';
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import Box from '../../../../components/Main/Box';
 import Floaters from '../../../../components/Main/Floaters';
@@ -21,10 +23,10 @@ const SmallBoxContainer = styled.View`
 `;
 
 export default ({state}) => {
-  const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const onScroll = e => {
-    navigation.setParams({offsetY: e.nativeEvent.contentOffset.y});
+    dispatch(updateY('HomeRecDetail', e.nativeEvent.contentOffset.y));
   };
 
   const scrollRef = useRef();

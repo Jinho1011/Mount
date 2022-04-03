@@ -1,5 +1,12 @@
 const initialState = {
-  foods: [],
+  foods: [
+    {displayType: 'long', title: 'title', image: '', id: 1},
+    {displayType: 'long', title: 'title', image: '', id: 2},
+    {displayType: 'long', title: 'title', image: '', id: 3},
+    {displayType: 'long', title: 'title', image: '', id: 4},
+    {displayType: 'long', title: 'title', image: '', id: 5},
+    {displayType: 'long', title: 'title', image: '', id: 6},
+  ],
   recs: [],
 };
 

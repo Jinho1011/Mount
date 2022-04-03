@@ -10,6 +10,7 @@ import recommandsReducer from './store/reducers/recommands';
 import usersReducer from './store/reducers/users';
 import plannersReducer from './store/reducers/planners';
 import searchReducer from './store/reducers/search';
+import scrollsReducer from './store/reducers/scrolls';
 
 Sentry.init({
   dsn: 'https://be6e0801fa4348a2b7e26d40c40f459d@o1149194.ingest.sentry.io/6221093',
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   users: usersReducer,
   planners: plannersReducer,
   search: searchReducer,
+  scrolls: scrollsReducer,
 });
 
 const store = createStore(rootReducer);

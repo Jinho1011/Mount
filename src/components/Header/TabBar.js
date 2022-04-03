@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {Animated} from 'react-native';
 import styled from 'styled-components/native';
+import {useSelector} from 'react-redux';
 import {HeaderLeft, HeaderTitle, HeaderRight} from './Header';
 
 const Container = styled.View`
@@ -47,13 +48,16 @@ const TabText = styled.Text`
 
 export default function TabBar({state, descriptors, navigation}) {
   const headerHeight = 58 * 2;
-  let index = descriptors[state.routes[0].key].navigation.isFocused() ? 0 : 1;
+  let index = descriptors[state.routes[0].key].navigation.isFocused()
+    ? 'HomeFoodDetail'
+    : 'HomeRecDetail';
 
   const scrollY = useRef(new Animated.Value(0));
+  const y = useSelector(state => state.scrolls[index]);
 
   useEffect(() => {
-    scrollY.current.setValue(state.routes[index].params.offsetY);
-  }, [state]);
+    if (y < 120) scrollY.current.setValue(y);
+  }, [y]);
 
   const scrollYClamped = Animated.diffClamp(scrollY.current, 0, headerHeight, {
     useNativeDriver: true,
