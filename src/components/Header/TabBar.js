@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {Animated} from 'react-native';
 import styled from 'styled-components/native';
-import {useSelector} from 'react-redux';
+import global from '../../global';
 import {HeaderLeft, HeaderTitle, HeaderRight} from './Header';
 
 const Container = styled.View`
@@ -53,7 +53,7 @@ export default function TabBar({state, descriptors, navigation}) {
     : 'HomeRecDetail';
 
   const scrollY = useRef(new Animated.Value(0));
-  const y = useSelector(state => state.scrolls[index]);
+  const y = global.scroll.y;
 
   useEffect(() => {
     if (y < 120) scrollY.current.setValue(y);

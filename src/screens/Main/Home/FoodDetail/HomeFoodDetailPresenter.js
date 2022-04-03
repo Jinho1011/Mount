@@ -1,10 +1,9 @@
 import React, {useRef} from 'react';
 import {View} from 'react-native';
 import styled from 'styled-components';
-import {useNavigation} from '@react-navigation/native';
-import {useSelector, useDispatch} from 'react-redux';
 
-import {updateY} from '../../../../store/actions/scrolls';
+import global from '../../../../global';
+
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import Box from '../../../../components/Main/Box';
 import Floaters from '../../../../components/Main/Floaters';
@@ -23,12 +22,9 @@ const SmallBoxContainer = styled.View`
 `;
 
 export default ({state}) => {
-  const dispatch = useDispatch();
-
   const onScroll = e => {
-    dispatch(updateY('HomeFoodDetail', e.nativeEvent.contentOffset.y));
+    global.scroll.updateY(e.nativeEvent.contentOffset.y);
   };
-
   const scrollRef = useRef();
 
   const onPressTouch = () => {

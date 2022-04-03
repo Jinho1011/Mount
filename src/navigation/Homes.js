@@ -1,18 +1,16 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
-import {
-  CardStyleInterpolators,
-  createStackNavigator,
-} from '@react-navigation/stack';
-import styled from 'styled-components';
+import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {Header, HeaderRight, HeaderTitle} from '../components/Header/Header';
+import {Header} from '../components/Header/Header';
 
 import TabBar from '../components/Header/TabBar';
 import HomeMain from '../screens/Main/Home/Main';
 import FoodDetail from '../screens/Main/Home/FoodDetail';
 import RecDetail from '../screens/Main/Home/RecDetail';
 import Tutorial from '../screens/Main/Home/Tutorial';
+
+import useScroll from '../hooks/useScroll';
+import global from '../global';
 
 const HomeNavigator = createStackNavigator();
 
@@ -38,6 +36,8 @@ function HomeTabs(navigation) {
 }
 
 const Homes = () => {
+  global.scroll = useScroll();
+
   return (
     <HomeNavigator.Navigator>
       <HomeNavigator.Group
