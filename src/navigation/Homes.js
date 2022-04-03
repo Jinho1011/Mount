@@ -17,6 +17,8 @@ const HomeNavigator = createStackNavigator();
 const HomeTab = createMaterialTopTabNavigator();
 
 function HomeTabs(navigation) {
+  global.scroll = useScroll();
+
   return (
     <HomeTab.Navigator
       initialRouteName={navigation.route.params.initialRoute}
@@ -36,8 +38,6 @@ function HomeTabs(navigation) {
 }
 
 const Homes = () => {
-  global.scroll = useScroll();
-
   return (
     <HomeNavigator.Navigator>
       <HomeNavigator.Group
