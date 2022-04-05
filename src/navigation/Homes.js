@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useRef} from 'react';
+import {Animated} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {Header} from '../components/Header/Header';
@@ -9,28 +10,25 @@ import FoodDetail from '../screens/Main/Home/FoodDetail';
 import RecDetail from '../screens/Main/Home/RecDetail';
 import Tutorial from '../screens/Main/Home/Tutorial';
 
-import useScroll from '../hooks/useScroll';
-import global from '../global';
-
 const HomeNavigator = createStackNavigator();
 
 const HomeTab = createMaterialTopTabNavigator();
 
 function HomeTabs(navigation) {
-  global.scroll = useScroll();
+  const scrollY = useRef(new Animated.Value(0));
 
   return (
     <HomeTab.Navigator
       initialRouteName={navigation.route.params.initialRoute}
-      tabBar={props => <TabBar {...props} />}>
+      tabBar={props => <TabBar scrollY={scrollY} {...props} />}>
       <HomeTab.Screen
         name="HomeFoodDetail"
-        component={FoodDetail}
+        component={() => <FoodDetail scrollY={scrollY} />}
         options={{title: '음식'}}
       />
       <HomeTab.Screen
         name="HomeRecDetail"
-        component={RecDetail}
+        component={() => <RecDetail scrollY={scrollY} />}
         options={{title: '레크'}}
       />
     </HomeTab.Navigator>

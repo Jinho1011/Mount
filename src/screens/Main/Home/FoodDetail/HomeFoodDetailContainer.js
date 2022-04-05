@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 
 import HomeFoodDetailPresenter from './HomeFoodDetailPresenter';
 
-export default ({navigation, route}) => {
+export default ({scrollY}) => {
   const [state, setState] = useState({
     items: [],
   });
@@ -25,5 +25,5 @@ export default ({navigation, route}) => {
     }
   }, []);
 
-  return <HomeFoodDetailPresenter state={state} />;
+  return <HomeFoodDetailPresenter state={state} scrollY={scrollY} />;
 };

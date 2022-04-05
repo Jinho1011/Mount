@@ -1,7 +1,6 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {Text, Animated} from 'react-native';
+import React, {useRef} from 'react';
+import {Animated} from 'react-native';
 import styled from 'styled-components/native';
-import global from '../../global';
 import {HeaderLeft, HeaderTitle, HeaderRight} from './Header';
 
 const Container = styled.View`
@@ -46,19 +45,10 @@ const TabText = styled.Text`
   color: ${props => (props.isFocused ? '#000000' : '#8B8B8B')};
 `;
 
-export default function TabBar({state, descriptors, navigation}) {
+export default function TabBar({scrollY, state, descriptors, navigation}) {
   const headerHeight = 58 * 2;
 
-  useEffect(() => {
-    console.log(global.scroll.y);
-    scrollY.current.setValue(global.scroll.y);
-  }, [global.scroll.y]);
-
-  const scrollY = useRef(new Animated.Value(0));
-
-  const scrollYClamped = Animated.diffClamp(scrollY.current, 0, headerHeight, {
-    useNativeDriver: true,
-  });
+  const scrollYClamped = Animated.diffClamp(scrollY.current, 0, headerHeight);
 
   const translateY = scrollYClamped.interpolate({
     inputRange: [0, headerHeight],

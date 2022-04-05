@@ -1,8 +1,6 @@
 import React, {useRef} from 'react';
-import {View} from 'react-native';
+import {View, Animated} from 'react-native';
 import styled from 'styled-components';
-
-import global from '../../../../global';
 
 import FocusAwareStatusBar from '../../../../components/StatusBar';
 import Box from '../../../../components/Main/Box';
@@ -21,10 +19,7 @@ const SmallBoxContainer = styled.View`
   justify-content: space-between;
 `;
 
-export default ({state}) => {
-  const onScroll = e => {
-    global.scroll.updateY(e.nativeEvent.contentOffset.y);
-  };
+export default ({state, scrollY}) => {
   const scrollRef = useRef();
 
   const onPressTouch = () => {
@@ -36,7 +31,18 @@ export default ({state}) => {
 
   return (
     <>
-      <ScrollContainer onScroll={onScroll} ref={scrollRef}>
+      <ScrollContainer
+        onScroll={Animated.event([
+          {
+            nativeEvent: {
+              contentOffset: {
+                y: scrollY.current,
+              },
+            },
+          },
+        ])}
+        ref={scrollRef}
+        scrollEventThrottle={16}>
         <FocusAwareStatusBar
           barStyle="light-content"
           backgroundColor="#000000"
